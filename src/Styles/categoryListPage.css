@@ -1,0 +1,88 @@
+
+.eachCategoryList{
+    /* border: 1px solid rgb(110, 109, 109); */
+    margin: 0 3%;
+}
+
+.TopCourses .course-box-list{
+    display: flex;  
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.TopCourses .course-box-list .course-box{
+    border: 1px solid rgb(3, 146, 171);
+    width: 15%; 
+    margin-bottom: 20px;  
+}
+
+.TopCourses .course-box-list .course-box img{
+    width: 100%;
+    
+}
+
+.TopCourses .course-box-list .course-box-details{
+    padding: 0 0.5em;
+}
+
+/* STYLING FOR ALL COURSES DIV */
+.allCategory .allCoursesDisplay {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.allCategory .allCoursesDisplay .left {
+    display: flex;
+    align-items: center;
+
+}
+
+.allCategory .allCoursesDisplay .left .image {
+    width: 30%;
+}
+
+
+.allCategory .allCoursesDisplay .left .image >img {
+    width: 100%;
+}
+
+
+
+@media(max-width: 1200px){
+    .TopCourses .course-box-list .course-box{
+        border: 1px solid #0390a8;
+        width: 30%;   
+    }
+    /* .allCategory .allCoursesDisplay .left .image >img {
+        width: 30%;
+    } */
+}
+
+@media(max-width: 850px){
+    .TopCourses .course-box-list .course-box{
+        border: 1px solid #0390a8;
+        width: 45%;   
+    }
+    /* .allCategory .allCoursesDisplay .left .image >img {
+        width: 40%;
+    } */
+}
+
+@media(max-width: 600px){
+    .TopCourses .course-box-list .course-box{
+        border: 1px solid #0390a8;
+        width: 75%;   
+    }
+}
+
+@media(max-width: 360px){
+    .TopCourses .course-box-list .course-box{
+        border: 1px solid #0390a8;
+        width: 95%;  
+        margin-bottom: 12px; 
+    }
+}
+

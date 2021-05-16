@@ -1,0 +1,112 @@
+.featuredCourses {
+    margin: 10px 20px;
+}
+
+.featuredCourses .course-box-list{
+    display: flex;  
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.featuredCourses .course-box-list .course-box{
+    border: 1px solid rgb(3, 146, 171);
+    width: 15%; 
+    margin: 20px 10px;  
+}
+
+.featuredCourses .course-box-list .course-box img{
+    width: 100%;
+    
+}
+
+.featuredCourses .course-box-list .course-box-details{
+    padding: 0 0.5em;
+}
+
+
+
+@media(max-width: 1200px){
+    .featuredCourses .course-box-list .course-box{
+        border: 1px solid #0390a8;
+        width: 30%;   
+    }
+}
+
+@media(max-width: 850px){
+    .featuredCourses .course-box-list .course-box{
+        border: 1px solid #0390a8;
+        width: 45%;   
+    }
+}
+
+@media(max-width: 600px){
+    .featuredCourses .course-box-list .course-box{
+        border: 1px solid #0390a8;
+        width: 75%;   
+    }
+}
+
+@media(max-width: 360px){
+    .featuredCourses .course-box-list .course-box{
+        border: 1px solid #0390a8;
+        width: 95%;  
+        margin-bottom: 12px; 
+    }
+}
+
+
+/* ///////ABOUT INSTRUCTOR */
+/* .instructor-div{
+    width: 100%;
+} */
+
+.instructor-div .about-instructor {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.instructor-div .about-instructor >img {
+ width: 20%;
+}
+
+
+
+.instructor-div .about-instructor .instructor-details {
+    width: 40%;
+    margin-left: 30px;
+    border: 1px solid black;
+}
+
+
+@media(max-width: 1200px) {
+    .instructor-div .about-instructor >img {
+        width: 40%;
+    }       
+}
+
+@media(max-width: 700px) {
+    .instructor-div .about-instructor >img {
+        width: 60%;
+    } 
+    .instructor-div .about-instructor .instructor-details {
+        width: 60%;
+        margin-top: 20px;
+    }
+          
+}
+
+/* ABOUT THE PROJECT */
+
+.aboutProject-div .aboutProject-boxlist{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.aboutProject-div .aboutProject-box{
+    text-align: center;
+}
