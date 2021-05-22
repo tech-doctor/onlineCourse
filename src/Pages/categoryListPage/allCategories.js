@@ -43,9 +43,7 @@ const AllCategories = () => {
         <AllCategory/>
         <AllCategory/>
         <AllCategory/>
-        <AllCategory/>
-
-        
+        <AllCategory/>  
       </div>
     )
 }

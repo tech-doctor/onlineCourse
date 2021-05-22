@@ -4,7 +4,6 @@ import  { faSearch, faTimes} from '@fortawesome/free-solid-svg-icons'
 
 const  Search = (props) =>  {
 
-  
   const {setSearchInput} = props
   
   const handleSearchCancel = () => {
@@ -24,15 +23,15 @@ const  Search = (props) =>  {
 	)
 }
 
-const searchIcon = {
-  fontSize: '22px', 
-  position: 'fixed', 
-  left: '80px', 
-  top: '20px',
-  zIndex: '100',
-  cursor:  'pointer',
-  border: 'none'
-}
+// const searchIcon = {
+//   fontSize: '22px', 
+//   position: 'fixed', 
+//   left: '80px', 
+//   top: '20px',
+//   zIndex: '100',
+//   cursor:  'pointer',
+//   border: 'none'
+// }
 
 const cancelIcon = {
   fontSize: '22px', 

@@ -1,45 +1,45 @@
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight, faUserCircle, faAngleDown} from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom'
 
 const  SideBar = (props) => {
   const [closedCategory, setCategory] = useState(true)
-	//const [angleRight, setAngleDirection] = useState(faAngleRight)
 
- const 	getStyle =  {
-		display: closedCategory? 
-		'none' : 'block',	
-	}
-  
+
 	const MobileCategories = function category(){
+       
+
     return (
       <div className = "category">
-        <p onClick = {onAngleIconClick} style  = {{ cursor: 'pointer'}}>Categories {closedCategory? 
-					 <FontAwesomeIcon  style ={{fontSize: '15px'}} icon={faAngleRight}/> :
-          <FontAwesomeIcon  style ={{fontSize: '15px'}} icon={faAngleDown}/>
+        <p 
+          onClick = {onAngleIconClick} 
+          style  = {{ cursor: 'pointer', fontSize: '17px'}}>
+          Categories {closedCategory? 
+            <FontAwesomeIcon icon={faAngleRight}/> :
+            <FontAwesomeIcon icon={faAngleDown}/>
 					}
-					
-				 </p>
-      <ul style = {getStyle}>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>Javascript</li>
-          <li>JQuery</li>
+				</p>
+      {closedCategory? '' :
+      <ul>
+        <li><Link to = "/courses/category">HTML</Link></li>
+				<li><Link to = "/courses/category">CSS</Link></li>
+				<li><Link to = "/courses/category">Javascript</Link></li>
+				<li><Link to = "/courses/category">JQuery</Link></li>
       </ul> 
-        <p style = {{fontWeight : '700', cursor: 'pointer'}}>Random</p>
+    }
+        <p style = {{fontWeight : '700', cursor: 'pointer'}}><Link to = "/courses/category">Random</Link></p>
       </div>  
     )
   }
 
 
 	 const  onAngleIconClick = () => {
-		 //setAngleDirection(faAngleDown)
       setCategory(!closedCategory)
 	 }
 	
    const {isLoggedIn} = props
-
-	return (
+	return(
 		<div>
 		  <div className = "side-bar" style = {props.getSidebarStyle} >
         {!isLoggedIn? 
@@ -47,7 +47,8 @@ const  SideBar = (props) => {
           <button>Login</button><br/>
           <button>Register</button>
           <MobileCategories/>
-        </div> : 
+        </div>
+         : 
         <div  className = "sidebar-profile">
           <div className = 'profile-details'>
             <div className = "avatar" style = {{fontSize: '40px'}}>
@@ -61,9 +62,9 @@ const  SideBar = (props) => {
           <div className = "profile-list">
             <MobileCategories/>
             <ul>
-              <li>My courses <small>1</small></li>
-              <li>My Cart <small>2</small></li>
-              <li>Purchase history <small>3</small></li>
+              <li><Link to = "/home/my-courses">My courses</Link><small>2</small></li>
+              <li><Link to = "/cart">My Cart</Link><small>1</small></li>
+              <li><Link to = "/dashboard/purchase-history">Purchase history</Link><small>3</small></li>
             </ul>  
           </div>
           <div className = "logOut">

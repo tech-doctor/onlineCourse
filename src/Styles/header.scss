@@ -1,0 +1,210 @@
+
+@mixin border-radius($x) {
+  border-radius: $x;
+  -webkit-border-radius: $x;
+  -moz-border-radius: $x;
+  -ms-border-radius: $x;
+  -o-border-radius: $x;
+}
+
+.flex-center{
+  display: flex;
+  align-items: center;
+}
+
+
+
+.header >header {
+ .desktop-header{
+    @extend .flex-center;
+    justify-content: space-evenly;
+  }
+
+  .nav > nav p {
+    display: inline-flex;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .search{
+    width: 30%;
+    position: relative;
+    .search-icon{
+      font-size: 16px;
+      position: absolute;
+      color: rgb(173, 173, 173);
+      right: -20px;
+      top: 6px;
+    }
+  }
+
+  .user .user-icon{
+    font-size: 30px;
+    color: rgb(105, 105, 105);
+    cursor: pointer;
+  }
+
+  .search input{
+    width: 100%;
+    padding: 0.5em 1em;
+    outline: none;
+    border: 1px solid black;
+    @include border-radius(7px);
+    
+    
+}
+
+ .language >select{
+    padding: 0.2em;
+    cursor: pointer;
+  }
+
+  .Authentication button{
+    margin-left: 20px;
+    cursor: pointer;
+  } 
+
+}
+
+
+
+/* header display when screen size is less than 1200px */
+@media(max-width:1200px) {
+	.header >header {
+    .search input{
+			width: 90%;	
+		}
+
+    .search .search-icon{
+			right: 5%;	
+	  }  
+  }
+}
+
+
+/* header display when screen size is less than 850px */
+@media(max-width:850px) {
+	.header >header {
+    .search input{
+			width: 90%;
+			padding: 0.4em 0.6em;
+		}
+
+    .search .search-icon{
+			font-size: 16px;
+			position: absolute;
+			color: rgb(173, 173, 173);
+			right: 5%;
+			top: 6px;
+	  }     
+  }
+}
+
+
+@media (max-width: 750px){
+  .header >header .desktop-header{
+    display: none;
+  }
+}
+
+
+
+/* CategoryList */
+.categoryList  { 
+  ul{
+    list-style: none;
+    border: 1px solid black;
+    width: 80px;
+    margin-left: 10px;
+    padding: 0.4em 0.7em 0.6em 1em;
+    // display: none;
+    li {
+      padding: 1em 1em 1em 0em;
+    }
+  }
+}
+
+
+/* Profile details */
+.profile{
+  border: 1px solid black;
+  width:300px;
+  margin-left: 20px;
+  height: 100%;
+  //display: none;
+
+  .profile-details{
+    @extend .flex-center;
+    padding: 0.4em 0.2em;
+    margin-left: 20px;
+    .email-name{
+      margin-left: 10px;
+    }
+  }
+
+  .profile-list ul li {
+    list-style: none;
+    margin-top: 25px;
+    small{
+      float: right;
+      margin-right: 20px;
+    }
+  }
+
+  .logOut {
+    margin-left: 25px;
+  }
+  
+
+   
+}
+
+
+/* ///////////////////////////Design for  mobileview///////////
+ */
+
+
+.mobile-header {
+
+  .mobile-icons{
+    @extend .flex-center;
+    justify-content: space-between;
+    padding: 0 1.5em;
+    *{
+      cursor: pointer;
+    }
+  }
+  
+  .side-bar{
+    border:1px solid black;
+    width:350px;
+    margin-left: 20px;
+    padding: 0.1em 1em;
+
+    .sidebar-profile .profile-details{
+      @extend .flex-center;
+      padding: 0.4em 0.2em;
+    }
+
+    .category ul li, .profile-list ul li {
+      list-style: none;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .profile-list ul li small {
+      float: right;
+    }
+  }
+}
+  
+
+
+@media (min-width: 750px){
+ .mobile-header  .mobile-icons,.mobileSearchDiv{
+    display: none;
+  }
+  
+  /* mobile search input style  when screen size is more than 750px */
+
+}

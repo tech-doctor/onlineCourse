@@ -1,0 +1,23 @@
+footer {
+  .footer-1 >table{
+    width: 100%;
+    table, th, td {
+      border-collapse: collapse;
+      text-align: center;
+      padding: 0.2em 1em;
+    
+    }
+    
+  }
+
+  .footer-2{
+    text-align: center;
+  }
+  .footer-2-flex {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+  }
+}
+
+  
