@@ -17,8 +17,7 @@ const AllCategories = () => {
             <div className = "price-tag">
               <p>Price</p>
             </div>
-          </div>
-          
+          </div>   
         </div>
      )
    }

@@ -1,0 +1,96 @@
+
+.eachCategoryList {
+
+  .author-div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    border: 1px solid black;
+
+    img{
+      width: 200px;
+      border-radius: 50% ;
+      -webkit-border-radius: 50% ;
+      -moz-border-radius: 50% ;
+      -ms-border-radius: 50% ;
+      -o-border-radius: 50% ;
+    }
+    p{
+      width: 100%;
+    }
+  }
+
+
+  .TopCourses {
+    .course-box-list{
+      display: flex;  
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+  
+      .course-box{
+        border: 1px solid rgb(3, 146, 171);
+        width: 15%; 
+        margin-bottom: 20px;  
+        img{
+          width: 100%;   
+        }    
+      }
+  
+      .course-box-details{
+        padding: 0 0.5em;
+      }
+    }
+  }
+
+  /* STYLING FOR ALL COURSES DIV */
+ .allCategory {
+    .allCoursesDisplay {
+      border: 1px solid black;
+      display: flex;
+      justify-content: space-between;
+
+      .left {
+        display: flex;
+        align-items: center;
+
+        .image {
+          width: 30%;
+          >img {
+            width:100%;
+          }
+        }
+
+      }
+    }
+  }  
+}
+
+
+@media(max-width: 1200px){
+  .TopCourses .course-box-list .course-box{
+    width: 30%;  
+  }
+}
+
+@media(max-width: 850px){
+  .TopCourses .course-box-list .course-box{
+    width: 45%;   
+  }
+}
+
+@media(max-width: 600px){
+  .TopCourses .course-box-list .course-box{
+    width: 75%;   
+  }
+}
+
+@media(max-width: 360px){
+  .TopCourses .course-box-list .course-box{
+    width: 95%;  
+    margin-bottom: 12px; 
+  }
+}
+

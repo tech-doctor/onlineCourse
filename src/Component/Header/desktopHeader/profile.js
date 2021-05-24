@@ -20,13 +20,10 @@ const  Profile = () => {
 			<hr/>
 			<div className = "profile-list">
 			  <ul>
-					{/* <li>My courses <small>2</small></li>
-					<li>My Cart <small>1</small></li>
-					<li>Purchase history <small>3</small></li> */}
-          <li><Link to = "/home/my-courses">My courses</Link><small>2</small></li>
-          <li><Link to = "/cart">My Cart</Link><small>1</small></li>
-          <li><Link to = "/dashboard/purchase-history">Purchase history</Link><small>3</small></li>
-				</ul>
+					<li><Link to = "/home/my-courses">My courses</Link><small>2</small></li>
+					<li><Link to = "/cart">My Cart</Link><small>1</small></li>
+					<li><Link to = "/dashboard/purchase-history">Purchase history</Link><small>3</small></li>
+			  </ul>
 			</div>
 			<hr/>
 			<div className = "logOut">

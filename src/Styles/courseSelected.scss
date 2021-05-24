@@ -1,0 +1,28 @@
+.courseSelected{
+    
+  .center-div{
+    margin: 20px 30px;
+
+    .sameCategoryCourses{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+     .course-box + .course-box {
+        margin-left: 20px;
+      }
+      .course-box {
+        border: 1px solid black;
+       .image{
+          img{
+            width: 100%;
+          }
+        }
+        .box-details{
+          padding-left: 10px;
+        }
+      }
+
+
+    }
+  }
+}

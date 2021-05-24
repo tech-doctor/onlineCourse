@@ -117,7 +117,7 @@
     width: 80px;
     margin-left: 10px;
     padding: 0.4em 0.7em 0.6em 1em;
-    // display: none;
+    display: none;
     li {
       padding: 1em 1em 1em 0em;
     }
@@ -131,7 +131,7 @@
   width:300px;
   margin-left: 20px;
   height: 100%;
-  //display: none;
+  display: none;
 
   .profile-details{
     @extend .flex-center;
@@ -199,12 +199,8 @@
 }
   
 
-
 @media (min-width: 750px){
  .mobile-header  .mobile-icons,.mobileSearchDiv{
     display: none;
   }
-  
-  /* mobile search input style  when screen size is more than 750px */
-
 }

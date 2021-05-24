@@ -5,7 +5,8 @@ import FeaturedCourses from './featuredCourses'
 import AboutInstructor from "./aboutInstructor"
 import AboutProject from './aboutProject'
 import Subscribe from './subscribe'
-import '../../Styles/landingPage.css'
+import '../../Styles/landingPage.scss'
+
 
 const  LandingPage = () => {
   return (

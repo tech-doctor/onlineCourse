@@ -1,8 +1,9 @@
 import React from 'react'
 import Header from '../../Component/Header/desktopHeader/Header'
 import Footer from '../../Component/Footer/footer'
-import '../../Styles/categoryListPage.css'
+import '../../Styles/categoryListPage.scss'
 import AllCategories from './allCategories'
+import Author from './author'
 
 const  CategoryListPage = ()  => {
 
@@ -27,7 +28,10 @@ const  CategoryListPage = ()  => {
 		  <div>
 			  <Header/>
 			</div>
-			<div className = "eachCategoryList">
+			<div style = {{margin: "0 3%"}} className = "eachCategoryList">
+        <div>
+          <Author/>
+        </div>
 			  <div className = "TopCourses">
 		      <div>
 				   <p style = {{ fontSize: '25px'}}>Top JS Courses</p>
