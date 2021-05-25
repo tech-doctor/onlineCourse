@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 
 const  Header = () => {
   // Set the loggedIn state(might enter the global Redux state later)
-  const [isLoggedIn] = useState(true);
+  const [isLoggedIn] = useState(false);
     
 	return (
 		<div className = "">

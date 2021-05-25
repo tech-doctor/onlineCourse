@@ -1,6 +1,6 @@
 import React from 'react'
 
-const  subscribe = () =>{
+const  Subscribe = () =>{
 	return (
 		<div style = {{textAlign : 'center'}}>
 				<span style = {{fontSize: '16px', fontWeight: '700'}}>New to FE<small>learn?</small></span><br/>
@@ -10,6 +10,6 @@ const  subscribe = () =>{
 	)
 }
 
-export default subscribe
+export default Subscribe
 
 

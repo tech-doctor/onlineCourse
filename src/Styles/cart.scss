@@ -1,0 +1,24 @@
+.cart{
+    .center-div{
+        .title{
+            background-color: black;
+            padding: 1em;
+        }
+        .body{
+          .cartList-Total{
+            .cartList{
+              width: 100%;
+                border : 1px solid black;
+              .image{
+                width: 30%;
+                img{
+                  width: 100%;
+                }
+              }
+            }
+          }
+            
+        }
+        
+    }
+}

@@ -1,0 +1,56 @@
+.myCourse {
+	.center-div{
+		
+			.title{
+				background-color : black;
+				padding: 1em 3em;
+			}
+
+			.body{
+				display: flex;
+				flex-direction: row;
+				padding: 1em 3em;
+				// flex-wrap: wrap;
+			
+				.myCourse-box{
+					border: 1px solid black;
+
+					.image{
+						width: 100%;
+						img{
+							width: 100%;
+						}
+					}
+				}
+				.myCourse-box + .myCourse-box {
+					margin-left: 20px;
+				}
+			}
+	}
+}
+
+@media(max-width: 800px){
+	.myCourse {
+		.center-div{
+			
+				.title{
+					padding: 1em 1.5em;
+				}
+	
+				.body{
+					padding: 1em 1.5em;
+					 flex-wrap: wrap;
+					 align-items: center;
+					 justify-content: center;
+					 margin: auto 0;
+					  .myCourse-box{
+						 margin-bottom: 20px;
+						 width: 70%;
+					  }
+						.myCourse-box + .myCourse-box {
+							margin-left: 0px;
+						}
+				}
+		}
+	}
+}
