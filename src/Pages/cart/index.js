@@ -20,11 +20,11 @@ const  cartPage = ()  => {
             </div>
             <div className ="right">
               <div  className = "remove">
-                <span>Remove</span>
+                <span>X</span>
               </div>
               <div className = "price-tag">
-                <span>normal price</span>
-                <p>Discount</p>
+              <p>$9.88</p>
+              <p style = {{textDecoration: 'line-through'}}>$19.88</p><br/>
                 <button>BUY</button>
               </div>
             </div> 
@@ -45,9 +45,12 @@ const  cartPage = ()  => {
 				<div className = "cartList-Total">
 					<CartList/>
           <CartList/>
-					<div className = "total">
-						<p>Total</p>
-           
+					<div style = {{border: '1px solid black'}} className = "total">
+						<p style = {{fontSize: '22px'}}>Total:</p>
+            <span style = {{fontSize: '25px', fontWeight: '700'}}>$19.98</span><br/>
+            <span style = {{textDecoration: 'line-through'}}>$189.88</span><br/>
+            <span>89% off</span><br/>
+            <button style = {{width: '100%'}}>Checkout</button>
 					</div>
 			  </div>
         <div className = "otherCourses">
