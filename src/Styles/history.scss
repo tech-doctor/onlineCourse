@@ -1,0 +1,21 @@
+.purchaseHistory{
+  .center-div{
+    margin: 10px 5%;
+    .body{
+      margin-top: 50px;
+      table{
+        width: 100%;
+        tr{
+          border: 1px solid rgb(117, 117, 117);
+        }
+      }
+      table, th, td {
+        border-collapse: collapse;
+        text-align: center;
+        padding: 2em ;
+        // width: 100%;
+      }
+          
+    }
+  }
+}

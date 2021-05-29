@@ -2,6 +2,8 @@ import React from 'react'
 import Header from "../../Component/Header/desktopHeader/Header"
 import Footer from '../../Component/Footer/footer'
 import '../../Styles/cart.scss'
+import TotalCart from './totalCart'
+import OtherCourses from './otherCourses'
 
 const  cartPage = ()  => {
 
@@ -41,20 +43,18 @@ const  cartPage = ()  => {
 		  <div className = "title">
 			  <h2 style ={{color: 'white'}}>Shopping Cart</h2>
       </div>
-			<div className = "body">
+			<div style = {{margin: '50px 10%'}} className = "body">
 				<div className = "cartList-Total">
-					<CartList/>
+         <div>
           <CartList/>
-					<div style = {{border: '1px solid black'}} className = "total">
-						<p style = {{fontSize: '22px'}}>Total:</p>
-            <span style = {{fontSize: '25px', fontWeight: '700'}}>$19.98</span><br/>
-            <span style = {{textDecoration: 'line-through'}}>$189.88</span><br/>
-            <span>89% off</span><br/>
-            <button style = {{width: '100%'}}>Checkout</button>
-					</div>
+          <CartList/>
+         </div>
+         <div>
+          <TotalCart/>
+         </div> 
 			  </div>
         <div className = "otherCourses">
-
+          <OtherCourses/>
 				</div>
 			</div>
 		</div>
