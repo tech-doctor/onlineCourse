@@ -16,7 +16,6 @@ const  courseSelected = ()  => {
 			<hr/>
 			<div className = "center-div">
 			  <div>
-        
           <CategoryDetails/>
         </div>
 				<hr/>
@@ -30,8 +29,9 @@ const  courseSelected = ()  => {
 				<div>
           <Review/>
         </div>
-				<hr/>
+				
 			</div>
+      <hr/>
 			<div>
 				<Footer/>
 			</div>	
