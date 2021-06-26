@@ -4,11 +4,10 @@ import Footer from '../../Component/Footer/footer'
 import '../../Styles/courseSelected.scss'
 import SameCategory from './sameCategory'
 import CategoryDetails from './categoryDetails'
+import { Spinner} from "@chakra-ui/react"
 import Review from './review'
 
 const  courseSelected = ()  => {
-
-
 	return (
 		<div className = "courseSelected">
       <div>
@@ -17,10 +16,14 @@ const  courseSelected = ()  => {
 			<hr/>
 			<div className = "center-div">
 			  <div>
+        
           <CategoryDetails/>
         </div>
 				<hr/>
 				<div>
+        <div style = {{textAlign: 'center'}} >
+          <Spinner  size="xl"/>
+        </div>
          <SameCategory/>
         </div>
 				<hr/>

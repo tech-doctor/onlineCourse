@@ -4,6 +4,7 @@ import Footer from '../../Component/Footer/footer'
 import Subscribe from '../landingPage/subscribe'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faSearch, faShoppingCart, faUserCircle}  from '@fortawesome/free-solid-svg-icons'
+import { Spinner, Stack,Skeleton} from "@chakra-ui/react"
 import '../../Styles/history.scss'
 
 const  purchaseHistory = ()  => {
@@ -14,6 +15,9 @@ const  purchaseHistory = ()  => {
 			</div>
 			<hr/>
 			<div className = "center-div">
+      <div style = {{textAlign: 'center'}} >
+          <Spinner  size="xl"/>
+        </div>
 				<div className = "title">
           <h1>Purchase History</h1>
 				</div>

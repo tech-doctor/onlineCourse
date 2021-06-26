@@ -4,6 +4,7 @@ import  {faStar}  from '@fortawesome/free-solid-svg-icons'
 import Header from '../../Component/Header/desktopHeader/Header'
 import Footer from '../../Component/Footer/footer'
 import Subscribe from '../landingPage/subscribe'
+import { Spinner, Stack,Skeleton} from "@chakra-ui/react"
 import '../../Styles/myCourse.scss'
 
 
@@ -51,6 +52,9 @@ const  myCourses = ()  => {
 					<h2 style = {{color: 'white'}}>MY COURSES</h2>
 				</div>
 				<hr/>
+        <div style = {{textAlign: 'center'}} >
+          <Spinner  size="xl"/>
+        </div>
 				<div className = "body">
 					<Box/>
 					<Box/>

@@ -13,7 +13,7 @@ const FeaturedCourses = () => {
 			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
 			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
 			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-				</span>
+			</span>
 			)
 	}
   
@@ -25,7 +25,7 @@ const FeaturedCourses = () => {
 				</div>
 			  <div className = "course-box-details">
 					<p style = {deepText}>Hereis the title for this course</p>
-					<p>7th june 2020</p>
+					<p>11:47secs</p>
 					<p><small><span style = {deepText} className = "rating-number">4.5</span><Stars/>
 					<span className = "likes">(147,256)</span></small>
 					</p>

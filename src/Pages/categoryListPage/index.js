@@ -5,6 +5,7 @@ import Header from '../../Component/Header/desktopHeader/Header'
 import Footer from '../../Component/Footer/footer'
 import '../../Styles/categoryListPage.scss'
 import AllCategories from './allCategories'
+import { Spinner, Stack,Skeleton} from "@chakra-ui/react"
 import Author from './author'
 
 
@@ -51,7 +52,11 @@ const  CategoryListPage = ()  => {
         <div>
           <Author/>
         </div>
+        <hr/>
 			  <div className = "TopCourses">
+        <div style = {{textAlign: 'center'}} >
+          <Spinner  size="xl"/>
+        </div>
 		      <div>
 				   <p style = {{ fontSize: '25px'}}>Top JS Courses</p>
 			    </div>
@@ -64,8 +69,18 @@ const  CategoryListPage = ()  => {
 						<Box/>
 			    </div>	
 		    </div>
+        <hr/>
 				<div>
-					<AllCategories/>
+          <div>
+            <Stack>
+              {/* isLOaded will cancel out the effect when the content is loaded */}
+              <Skeleton height="70px" isLoaded>
+              </Skeleton>
+              <Skeleton height="70px" />
+              <Skeleton height="70px" />
+            </Stack>
+          </div>
+			  	<AllCategories/>
 				</div>
 			</div>
 			<div>

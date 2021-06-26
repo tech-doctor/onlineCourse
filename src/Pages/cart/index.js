@@ -4,6 +4,7 @@ import Footer from '../../Component/Footer/footer'
 import '../../Styles/cart.scss'
 import TotalCart from './totalCart'
 import OtherCourses from './otherCourses'
+import { Spinner, Stack,Skeleton, SkeletonText} from "@chakra-ui/react"
 
 const  cartPage = ()  => {
 
@@ -44,6 +45,9 @@ const  cartPage = ()  => {
 			  <h2 style ={{color: 'white'}}>Shopping Cart</h2>
       </div>
 			<div style = {{margin: '50px 10%'}} className = "body">
+         <div style = {{textAlign: 'center'}} >
+            <Spinner  size="xl"/>
+          </div>
 				<div className = "cartList-Total">
          <div>
           <CartList/>
