@@ -7,6 +7,7 @@ import '../../Styles/categoryListPage.scss'
 import AllCategories from './allCategories'
 import { Spinner, Stack,Skeleton} from "@chakra-ui/react"
 import Author from './author'
+import {Link} from 'react-router-dom'
 
 
 const  CategoryListPage = ()  => {
@@ -25,6 +26,7 @@ const  CategoryListPage = ()  => {
 	const Box = function box(){
 		return (
 		<div className = "course-box">
+      <Link to = "course-selected">
 				<div className = 'image'>
           <img alt ="" src = "https://www.valuecoders.com/blog/wp-content/uploads/2020/06/10-reasons-to-use-reactjs-for-enterprise-app-development-1024x614.jpg"></img>
 				</div>
@@ -39,6 +41,7 @@ const  CategoryListPage = ()  => {
 						<span style = {{textDecoration: "line-through"}} className = "oldPrice"> $87.99</span>
 					</p>
 				</div>
+        </Link>
 			</div>
 		)
 	}

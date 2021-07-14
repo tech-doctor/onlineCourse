@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faStar}  from '@fortawesome/free-solid-svg-icons'
-
+import { Link } from 'react-router-dom'
 
 
 const FeaturedCourses = () => {
@@ -20,6 +20,7 @@ const FeaturedCourses = () => {
 	const Box = function box(){
 		return (
 		  <div className = "course-box">
+        <Link to = "courses/course-selected">
 				<div className = 'image'>
           <img alt ="" src = "Assets/React-frontend.jpg"></img>
 				</div>
@@ -34,6 +35,7 @@ const FeaturedCourses = () => {
 						<span style = {{textDecoration: "line-through"}} className = "oldPrice"> $87.99</span>
 					</p>
 				</div>
+        </Link>
 			</div>
 		)
 	}
@@ -44,7 +46,8 @@ const FeaturedCourses = () => {
 				<p style = {{textAlign: 'center', fontSize: '30px'}}>Featured Courses</p>
 			</div>
 			<div className = 'course-box-list'>
-				<Box/>
+        <Box/>
+        <Box/>
 				<Box/>
 				<Box/>
 				<Box/>

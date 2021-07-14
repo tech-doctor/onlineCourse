@@ -2,6 +2,7 @@ import React from 'react'
 import '../../Styles/cart.scss'
 
 
+
 const  TotalCart = () => {
   return ( 
     <div style = {{border: '1px solid black'}} className = "total">

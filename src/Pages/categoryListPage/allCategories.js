@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faStar}  from '@fortawesome/free-solid-svg-icons'
-
+import { Link } from 'react-router-dom'
 
 const AllCategories = () => {
 
@@ -18,25 +18,27 @@ const AllCategories = () => {
 
    const AllCategory = function allCategories() {
      return (
+      <Link to = "course-selected">
      <div style = {{marginBottom: '20px'}} className = "allCoursesDisplay" >
-          <div className = "left">
-            <div className = "image"> 
-              <img  alt = "" src = "https://www.valuecoders.com/blog/wp-content/uploads/2020/06/10-reasons-to-use-reactjs-for-enterprise-app-development-1024x614.jpg"/>
-            </div>
-            <div className = "about">
-              <p style = {deepText}>Here is the title for this course</p>
-              <p><small><span style = {deepText} className = "rating-number">4.5</span><Stars/>
-              <p>11:47secs</p>
-              <span className = "likes">(147,256)</span></small>
-              </p>
-            </div>
+        <div className = "left">
+          <div className = "image"> 
+            <img  alt = "" src = "https://www.valuecoders.com/blog/wp-content/uploads/2020/06/10-reasons-to-use-reactjs-for-enterprise-app-development-1024x614.jpg"/>
           </div>
-          <div className = "right">
-            <div className = "price-tag">
-              <p>	<span style = {deepText} className = "newPrice">$15.99</span></p>
-            </div>
-          </div>   
+          <div className = "about">
+            <p style = {deepText}>Here is the title for this course</p>
+            <p><small><span style = {deepText} className = "rating-number">4.5</span><Stars/>
+            <p>11:47secs</p>
+            <span className = "likes">(147,256)</span></small>
+            </p>
+          </div>
         </div>
+        <div className = "right">
+          <div className = "price-tag">
+            <p>	<span style = {deepText} className = "newPrice">$15.99</span></p>
+          </div>
+        </div>    
+      </div>
+      </Link> 
      )
    }
 

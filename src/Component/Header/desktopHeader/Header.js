@@ -13,6 +13,21 @@ const  Header = () => {
   // Set the loggedIn state(might enter the global Redux state later)
   const [isLoggedIn] = useState(true);
     
+  //set the initial visibility state of the category list and profile details as false 
+  const [profileVisibility, setProfileVisibility]  = useState(false)
+  const [categoryVisibility, setCategoryVisibility]  = useState(false)
+
+  
+  // set display Visibility as "none" before click, and "block" when clicked
+  const visibility = (Visibility) => {
+    const 	getStyle =  {
+      display: Visibility? 
+      'block' : 'none',	
+    }
+    return getStyle
+  }
+  
+
 	return (
 		<div className = "">
 		 <div className = "header">
@@ -23,7 +38,9 @@ const  Header = () => {
 				  </div>
 			    <div className = "nav">
 					  <nav>
-              <p>Categories</p>
+              <p
+              onClick = {() => setCategoryVisibility(!categoryVisibility)}
+              >Categories</p>
               <p><Link to = "/courses/category">Random</Link> </p>					
 					  </nav>
 				  </div>
@@ -34,7 +51,7 @@ const  Header = () => {
           {/* Conditions on what to  display when the user is Logged In or Out  */}
 					{isLoggedIn? 
           <div className = "course">
-            <p>Course</p>
+            <p><Link style = {{cursor: 'pointer'}} to = "/home/my-courses">Course</Link></p>
           </div> : ''
 				  }
 				  <div className = "cart-icon" style = {{cursor: 'pointer'}}>
@@ -44,7 +61,9 @@ const  Header = () => {
 				  </div>
 				    {isLoggedIn? 
 					<div className = "user">
-				    <FontAwesomeIcon className = "user-icon" icon={faUserCircle}/>
+				    <FontAwesomeIcon 
+            onClick = {() => setProfileVisibility(!profileVisibility)}
+            className = "user-icon" icon={faUserCircle}/>
 				  </div> 
           : ''}
           <div className = 'language'>
@@ -63,10 +82,10 @@ const  Header = () => {
 			</header>		
 		</div>
 		 <div>
-			 <CategoryList/>
+			 <CategoryList getCategortListStyle = {visibility(categoryVisibility)}/>
 		 </div>
 		 <div>
-			<Profile/>
+			<Profile getProfileDetailStyle = {visibility(profileVisibility)}/>
 		 </div>
 		</div>
 

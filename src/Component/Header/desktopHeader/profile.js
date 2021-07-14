@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  { faUserCircle}  from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
 
-const  Profile = () => {
+const  Profile = (props) => {
 
 
   return (
-		<div className = 'profile'>
+		<div style = {props.getProfileDetailStyle} className = 'profile'>
 			<div className = 'profile-details'>
 				<div className = "avatar" style = {{fontSize: '40px'}}>
 				  <FontAwesomeIcon className = "user-icon" icon={faUserCircle}/>
@@ -27,7 +27,7 @@ const  Profile = () => {
 			</div>
 			<hr/>
 			<div className = "logOut">
-        <p>LogOut</p>
+        <p style = {{cursor: 'pointer'}}>LogOut</p>
 			</div>
 		</div>
   )

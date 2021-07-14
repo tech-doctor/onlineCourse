@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faStar}  from '@fortawesome/free-solid-svg-icons'
-
+import {Link} from 'react-router-dom'
 const  SameCategory = () => {
 
   const Stars = () => {
@@ -18,6 +18,7 @@ const  SameCategory = () => {
     const Box = function box(){
 		return (
 		<div className = "course-box">
+      <Link to = "course-selected">
       <div className = 'image'>
         <img alt ="" src = "../Assets/React-frontend.jpg"></img>
       </div>
@@ -32,6 +33,7 @@ const  SameCategory = () => {
 						<span style = {{textDecoration: "line-through"}} className = "oldPrice"> $87.99</span>
 					</p>
       </div>
+      </Link>
 		</div>
 		)
 	}

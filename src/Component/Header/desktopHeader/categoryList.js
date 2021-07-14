@@ -1,9 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const  categoryList = () => {
+const  categoryList = (props) => {
+	//const getCategortListStyle = props.getCategortListStyle
 	return (
-		<div className ="categoryList">
+		<div style = {props.getCategortListStyle } className ="categoryList">
 			<ul>
 				<li><Link to = "/courses/category">HTML</Link></li>
 				<li><Link to = "/courses/category">CSS</Link></li>

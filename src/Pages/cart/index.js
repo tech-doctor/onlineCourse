@@ -4,6 +4,7 @@ import Footer from '../../Component/Footer/footer'
 import '../../Styles/cart.scss'
 import TotalCart from './totalCart'
 import OtherCourses from './otherCourses'
+import { Link } from 'react-router-dom'
 import { Spinner, Stack,Skeleton, SkeletonText} from "@chakra-ui/react"
 
 const  cartPage = ()  => {
@@ -12,7 +13,9 @@ const  cartPage = ()  => {
     return (
       <div  className = "cartList">
 						{/* <p>Cart List(Pictures, title,price-tag with remove and buy button)</p> */}
-						<div className = "left">
+						<Link to = 'courses/course-selected'>
+            <div className = "left">
+            
               <div className ="image">
                 <img  alt = "" src = "../Assets/React-frontend.jpg"/>
               </div>
@@ -20,7 +23,9 @@ const  cartPage = ()  => {
                 <p>TITLE</p>
                 <p>Little details</p>
               </div>
+              
             </div>
+            </Link>
             <div className ="right">
               <div  className = "remove">
                 <span>X</span>
@@ -45,10 +50,17 @@ const  cartPage = ()  => {
 			  <h2 style ={{color: 'white'}}>Shopping Cart</h2>
       </div>
 			<div style = {{margin: '50px 10%'}} className = "body">
-         <div style = {{textAlign: 'center'}} >
-            <Spinner  size="xl"/>
-          </div>
+         
 				<div className = "cartList-Total">
+          <div className = "skeleton">
+          <Stack>
+              {/* isLOaded will cancel out the effect when the content is loaded */}
+              <Skeleton height="200px" isLoaded>
+              </Skeleton>
+              <Skeleton height="200px" />
+              <Skeleton height="200px" />
+            </Stack>
+          </div>
          <div>
           <CartList/>
           <CartList/>

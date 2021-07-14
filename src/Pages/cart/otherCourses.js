@@ -1,10 +1,11 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faStar}  from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
+import { Spinner} from "@chakra-ui/react"
 
 const  otherCourses = () => {
   
-
 	const Stars = () => {
 		return(
 			<span className = "rating-stars">
@@ -19,6 +20,7 @@ const  otherCourses = () => {
   const Box = function courseBox () {
     return (
        <div className = "box">
+         <Link to = 'courses/course-selected'>
          <div className = 'image'>
         <img alt ="" src = "https://www.valuecoders.com/blog/wp-content/uploads/2020/06/10-reasons-to-use-reactjs-for-enterprise-app-development-1024x614.jpg"></img>
       </div>
@@ -33,11 +35,16 @@ const  otherCourses = () => {
 						<span style = {{textDecoration: "line-through"}} className = "oldPrice"> $87.99</span>
 					</p>
 			</div>
+      </Link>
        </div>
     )
   }
 	return (
 		<div className = "otherCourses">
+      <div style = {{textAlign: 'center'}} >
+            <Spinner  size="xl"/>
+            
+          </div>
 		<div className = "div-title">
 			<p style = {{textAlign: 'center', fontWeight: '700', fontSize: '20px'}}>Other Courses you might interest you</p>
 		</div>
