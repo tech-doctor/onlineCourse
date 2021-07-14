@@ -7,10 +7,12 @@
   margin: 10px 20px;
 
   .course-box-list{
-    @extend .flex-center;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    //@extend .flex-center;
+    // justify-content: space-around;
+    // flex-wrap: wrap;
+    
     .course-box{
+      display: inline-block;
       border: 1px solid rgb(3, 146, 171);
       width: 15%; 
       margin: 20px 10px; 

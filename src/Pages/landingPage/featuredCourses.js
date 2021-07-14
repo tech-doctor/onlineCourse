@@ -53,6 +53,10 @@ const FeaturedCourses = () => {
 				<Box/>
 				<Box/>
 				<Box/>
+				<Box/>
+				<Box/>
+				<Box/>
+				
 			</div>	
 		</div>
 	)

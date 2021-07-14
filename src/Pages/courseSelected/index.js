@@ -28,8 +28,7 @@ const  courseSelected = ()  => {
 				<hr/>
 				<div>
           <Review/>
-        </div>
-				
+        </div>	
 			</div>
       <hr/>
 			<div>

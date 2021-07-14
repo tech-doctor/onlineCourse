@@ -16,18 +16,8 @@ const  Header = () => {
   //set the initial visibility state of the category list and profile details as false 
   const [profileVisibility, setProfileVisibility]  = useState(false)
   const [categoryVisibility, setCategoryVisibility]  = useState(false)
-
   
-  // set display Visibility as "none" before click, and "block" when clicked
-  const visibility = (Visibility) => {
-    const 	getStyle =  {
-      display: Visibility? 
-      'block' : 'none',	
-    }
-    return getStyle
-  }
   
-
 	return (
 		<div className = "">
 		 <div className = "header">
@@ -82,10 +72,10 @@ const  Header = () => {
 			</header>		
 		</div>
 		 <div>
-			 <CategoryList getCategortListStyle = {visibility(categoryVisibility)}/>
+			 <CategoryList categoryVisibility = {categoryVisibility} setCategoryVisibility = {setCategoryVisibility}/>
 		 </div>
 		 <div>
-			<Profile getProfileDetailStyle = {visibility(profileVisibility)}/>
+    <Profile profileVisibility = {profileVisibility}  setProfileVisibility = {setProfileVisibility}/>
 		 </div>
 		</div>
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight} from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 const  categoryDetails = () => {
     return (
@@ -14,8 +15,11 @@ const  categoryDetails = () => {
 					<h4>Full details with share Link and play button</h4>
 				</div>
 				<div className =" ADD-BUY">
-          <button>Add To Cart</button>
-					<button>Buy Now</button>
+          <button style ={{cursor : 'pointer'}}>Add To Cart</button>
+					<Link to = '/cart/checkout'>
+          <button  style = {{cursor: 'pointer'}}>Buy Now</button>
+          </Link>
+
 				</div>
         </div>
     )
