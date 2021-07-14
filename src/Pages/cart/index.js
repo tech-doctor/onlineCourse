@@ -13,7 +13,7 @@ const  cartPage = ()  => {
     return (
       <div  className = "cartList">
 						{/* <p>Cart List(Pictures, title,price-tag with remove and buy button)</p> */}
-						<Link to = 'courses/course-selected'>
+						<Link style = {{textDecoration: 'none', color: 'black'}} to = 'courses/course-selected'>
             <div className = "left">
             
               <div className ="image">

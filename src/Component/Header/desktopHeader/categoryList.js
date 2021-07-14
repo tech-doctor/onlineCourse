@@ -6,10 +6,10 @@ const  categoryList = (props) => {
 	return (
 		<div style = {props.getCategortListStyle } className ="categoryList">
 			<ul>
-				<li><Link to = "/courses/category">HTML</Link></li>
-				<li><Link to = "/courses/category">CSS</Link></li>
-				<li><Link to = "/courses/category">Javascript</Link></li>
-				<li><Link to = "/courses/category">JQuery</Link></li>
+				<li><Link to = "/courses/category" style = {{textDecoration: 'none', color: 'black'}} >HTML</Link></li>
+				<li><Link to = "/courses/category" style = {{textDecoration: 'none', color: 'black'}} >CSS</Link></li>
+				<li><Link to = "/courses/category" style = {{textDecoration: 'none', color: 'black'}} >Javascript</Link></li>
+				<li><Link to = "/courses/category" style = {{textDecoration: 'none', color: 'black'}} >JQuery</Link></li>
 			</ul> 
 		</div>
 	)

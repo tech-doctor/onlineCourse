@@ -18,7 +18,7 @@ const  SameCategory = () => {
     const Box = function box(){
 		return (
 		<div className = "course-box">
-      <Link to = "course-selected">
+      <Link to = "course-selected" style = {{textDecoration: 'none', color: 'black'}} >
       <div className = 'image'>
         <img alt ="" src = "../Assets/React-frontend.jpg"></img>
       </div>

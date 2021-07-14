@@ -45,7 +45,7 @@ const  MobileHeader = (props) =>  {
           />
         </div>
         <div className = "logo">
-        <h3><Link to = "/">LOGO</Link></h3>
+        <h3><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/">LOGO</Link></h3>
         </div>
         <div style ={{fontSize: '20px'}}
           className =    "search-cart">
@@ -53,7 +53,7 @@ const  MobileHeader = (props) =>  {
             onClick =  {() => {setSearchInput(true)}} className = 'search-icon' 
             icon={faSearch} 
             />
-           <Link to = "/cart"><FontAwesomeIcon
+           <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/cart"><FontAwesomeIcon
             style ={{marginLeft: '20px'}}
             className = 'search-icon' 
             icon={faShoppingCart}

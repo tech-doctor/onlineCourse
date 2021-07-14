@@ -18,7 +18,7 @@ const AllCategories = () => {
 
    const AllCategory = function allCategories() {
      return (
-      <Link to = "course-selected">
+      <Link style = {{textDecoration: 'none', color: 'black'}}  to = "course-selected">
      <div style = {{marginBottom: '20px'}} className = "allCoursesDisplay" >
         <div className = "left">
           <div className = "image"> 

@@ -26,7 +26,7 @@ const  CategoryListPage = ()  => {
 	const Box = function box(){
 		return (
 		<div className = "course-box">
-      <Link to = "course-selected">
+      <Link style = {{textDecoration: 'none', color: 'black'}}  to = "course-selected">
 				<div className = 'image'>
           <img alt ="" src = "https://www.valuecoders.com/blog/wp-content/uploads/2020/06/10-reasons-to-use-reactjs-for-enterprise-app-development-1024x614.jpg"></img>
 				</div>

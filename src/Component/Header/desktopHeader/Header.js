@@ -34,14 +34,14 @@ const  Header = () => {
 			<header>
 			  <div className = "desktop-header">
 			    <div className = "logo">
-				    <h1><Link to = "/">LOGO</Link></h1>
+				    <h1><Link to = "/" style = {{textDecoration: 'none', color: 'black'}} >LOGO</Link ></h1>
 				  </div>
 			    <div className = "nav">
 					  <nav>
               <p
               onClick = {() => setCategoryVisibility(!categoryVisibility)}
               >Categories</p>
-              <p><Link to = "/courses/category">Random</Link> </p>					
+              <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/courses/category">Random</Link> </p>					
 					  </nav>
 				  </div>
 				  <div className = "search">
@@ -51,11 +51,11 @@ const  Header = () => {
           {/* Conditions on what to  display when the user is Logged In or Out  */}
 					{isLoggedIn? 
           <div className = "course">
-            <p><Link style = {{cursor: 'pointer'}} to = "/home/my-courses">Course</Link></p>
+            <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/home/my-courses">Course</Link></p>
           </div> : ''
 				  }
 				  <div className = "cart-icon" style = {{cursor: 'pointer'}}>
-            <Link to = "/cart">
+            <Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} >
               <FontAwesomeIcon icon={faShoppingCart} />
             </Link> 
 				  </div>

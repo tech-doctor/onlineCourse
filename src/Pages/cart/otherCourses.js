@@ -20,7 +20,7 @@ const  otherCourses = () => {
   const Box = function courseBox () {
     return (
        <div className = "box">
-         <Link to = 'courses/course-selected'>
+         <Link style = {{textDecoration: 'none', color: 'black'}}  to = 'courses/course-selected'>
          <div className = 'image'>
         <img alt ="" src = "https://www.valuecoders.com/blog/wp-content/uploads/2020/06/10-reasons-to-use-reactjs-for-enterprise-app-development-1024x614.jpg"></img>
       </div>

@@ -20,7 +20,7 @@ const FeaturedCourses = () => {
 	const Box = function box(){
 		return (
 		  <div className = "course-box">
-        <Link to = "courses/course-selected">
+        <Link to = "courses/course-selected" style = {{textDecoration: 'none', color: 'black'}} >
 				<div className = 'image'>
           <img alt ="" src = "Assets/React-frontend.jpg"></img>
 				</div>
