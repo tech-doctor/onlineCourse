@@ -46,8 +46,9 @@ const  Header = () => {
 				  }
 				  <div className = "cart-icon" style = {{cursor: 'pointer'}}>
             <Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} >
-              <FontAwesomeIcon icon={faShoppingCart} />
+              <FontAwesomeIcon icon={faShoppingCart} style = {{fontSize: '20px'}} />
             </Link> 
+            <small>1</small>
 				  </div>
 				    {isLoggedIn? 
 					<div className = "user">

@@ -5,7 +5,29 @@
       padding: 1em 5em;
     }
     .body{
-      
+      .empty-chart{
+         width: 30%;
+         margin: auto;
+         img{
+          opacity: 0.7;
+           width: 100%;
+         }
+         .details{
+           text-align: center;
+           p{
+             font-size: 18px;
+           }
+           button{
+             background-color: rgb(112, 112, 112);
+             color: white;
+             padding: 0.5em 3em;
+             font-size: 15px;
+             border-radius: 4px;
+             border: none;
+             cursor: pointer;
+           }
+         }
+      }
       .cartList-Total{
         border: 1px solid black;
          padding: 0.6em;
@@ -116,7 +138,26 @@
   .cart{
     .center-div{
       .body{
+        .empty-chart{
+          width: 70%;
+          img{
+           
+          }
+          .details{
+            text-align: center;
+            p{
+              font-size: 15px;
+            }
+            button{
+              background-color: rgb(112, 112, 112);
+              color: white;
+              padding: 0.3em 1.5em;
+              font-size: 15px;
+            }
+          }
+       }
         .cartList-Total{
+          
           margin: 0 -10%;
           .cartList{
             // display: flex;

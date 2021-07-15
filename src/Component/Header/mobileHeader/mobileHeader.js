@@ -58,6 +58,7 @@ const  MobileHeader = (props) =>  {
             className = 'search-icon' 
             icon={faShoppingCart}
           /></Link>
+          <small>1</small>
         </div>
       </div>
       <div>

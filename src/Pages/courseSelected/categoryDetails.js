@@ -19,7 +19,6 @@ const  categoryDetails = () => {
 					<Link to = '/cart/checkout'>
           <button  style = {{cursor: 'pointer'}}>Buy Now</button>
           </Link>
-
 				</div>
         </div>
     )

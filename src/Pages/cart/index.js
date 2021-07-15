@@ -12,31 +12,28 @@ const  cartPage = ()  => {
   const CartList = function cartList() {
     return (
       <div  className = "cartList">
-						{/* <p>Cart List(Pictures, title,price-tag with remove and buy button)</p> */}
-						<Link style = {{textDecoration: 'none', color: 'black'}} to = 'courses/course-selected'>
-            <div className = "left">
-            
-              <div className ="image">
-                <img  alt = "" src = "../Assets/React-frontend.jpg"/>
-              </div>
-              <div className = 'title-details'>
-                <p>TITLE</p>
-                <p>Little details</p>
-              </div>
-              
-            </div>
-            </Link>
-            <div className ="right">
-              <div  className = "remove">
-                <span>X</span>
-              </div>
-              <div className = "price-tag">
-              <p>$9.88</p>
-              <p style = {{textDecoration: 'line-through'}}>$19.88</p><br/>
-                <button>BUY</button>
-              </div>
-            </div> 
-					</div>
+        <Link style = {{textDecoration: 'none', color: 'black'}} to = 'courses/course-selected'>
+        <div className = "left">
+          <div className ="image">
+            <img  alt = "" src = "../Assets/React-frontend.jpg"/>
+          </div>
+          <div className = 'title-details'>
+            <p>TITLE</p>
+            <p>Little details</p>
+          </div>
+        </div>
+        </Link>
+        <div className ="right">
+          <div  className = "remove">
+            <span>X</span>
+          </div>
+          <div className = "price-tag">
+          <p>$9.88</p>
+          <p style = {{textDecoration: 'line-through'}}>$19.88</p><br/>
+            <button>BUY</button>
+          </div>
+        </div> 
+      </div>
     )
   }
 	return (
@@ -52,8 +49,18 @@ const  cartPage = ()  => {
 			<div style = {{margin: '50px 10%'}} className = "body">
          
 				<div className = "cartList-Total">
+          <div className = "empty-chart">
+            <div className = "image">
+            <img alt = "noChart" src = "../Assets/Empty-chart.png"/>
+            </div>
+            <div className = 'details'>
+              <p>You have no cart at the moment</p>
+              <button>Keep Shopping</button>
+            </div>
+           
+          </div>
           <div className = "skeleton">
-          <Stack>
+            <Stack>
               {/* isLOaded will cancel out the effect when the content is loaded */}
               <Skeleton height="200px" isLoaded>
               </Skeleton>

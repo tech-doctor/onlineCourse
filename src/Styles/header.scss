@@ -16,6 +16,18 @@
 
 .header >header {
  .desktop-header{
+   .cart-icon{
+     position: relative;
+     small{
+      background-color: red;
+      padding: 1px 6px;
+      border-radius: 50%;
+      position: absolute;
+      left: 60%;
+      bottom: 50%
+     }
+     
+   }
     @extend .flex-center;
     justify-content: space-evenly;
     position: relative;
@@ -179,7 +191,17 @@
 
 
 .mobile-header {
-
+  small{
+    background-color: red;
+    font-size: 13px;
+    padding: 2px 7px;
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    top: 10px
+    
+   }
+   
   .mobile-icons{
     @extend .flex-center;
     justify-content: space-between;

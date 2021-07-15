@@ -12,9 +12,7 @@ const  CategoryList = (props) => {
 			!container.current.contains(event.target)
 		) {
 			setCategoryVisibility(false)
-			// this.setState({
-			// 	open: false,
-			// });
+			
 		}
 	};
 
