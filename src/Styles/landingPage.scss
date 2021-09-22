@@ -1,21 +1,27 @@
 .flex-center{
-  display: flex;
-  align-items: center;
+  // display: flex;
+  //s align-items: center;
 }
 
 .featuredCourses {
   margin: 10px 20px;
+  border: 1px solid black;
+  // width: 100%;
+  // margin: auto;
+  
 
   .course-box-list{
     //@extend .flex-center;
     // justify-content: space-around;
     // flex-wrap: wrap;
-    
+     width: 100%;
+     border: 1px solid black;
     .course-box{
       display: inline-block;
       border: 1px solid rgb(3, 146, 171);
       width: 15%; 
-      margin: 20px 10px; 
+      margin: 20px 10px ; 
+      //transform: translateX(80px);
       
       img{
         width: 100%;    
@@ -29,6 +35,19 @@
 }
 
 
+.slideIcon{
+   font-size: 30px;
+   background-color: grey;
+   padding: 0.2em 0.4em;
+   border-radius: 50%;
+   cursor: pointer;
+}
+.slideIconRight{
+  
+}
+.slideIconLeft{
+  margin-right: 20px;
+}
 
 
 

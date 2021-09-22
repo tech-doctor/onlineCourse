@@ -9,30 +9,69 @@ import { Spinner, Stack,Skeleton, SkeletonText} from "@chakra-ui/react"
 
 const  cartPage = ()  => {
 
+  const cartObj  = [
+    {
+      id: 1,
+      mainPrice: 19,
+      discountPrice: 9.99
+    },
+    {
+      id: 2,
+      mainPrice: 18.89,
+      discountPrice: 8.99
+    }
+  ]
+
+  
+  const mainPriceSum = () => {
+    let sum  = 0
+    cartObj.forEach (price => {
+      sum += price.mainPrice
+    })
+     return sum
+  }
+
+
+  const discountPriceSum = () => {
+    let sum  = 0
+    cartObj.forEach (price => {
+      sum += price.discountPrice
+    })
+    return sum
+
+  }
+  
+
   const CartList = function cartList() {
     return (
-      <div  className = "cartList">
-        <Link style = {{textDecoration: 'none', color: 'black'}} to = 'courses/course-selected'>
-        <div className = "left">
-          <div className ="image">
-            <img  alt = "" src = "../Assets/React-frontend.jpg"/>
-          </div>
-          <div className = 'title-details'>
-            <p>TITLE</p>
-            <p>Little details</p>
-          </div>
-        </div>
-        </Link>
-        <div className ="right">
-          <div  className = "remove">
-            <span>X</span>
-          </div>
-          <div className = "price-tag">
-          <p>$9.88</p>
-          <p style = {{textDecoration: 'line-through'}}>$19.88</p><br/>
-            <button>BUY</button>
-          </div>
-        </div> 
+      <div>
+      { cartObj.map ((data,  index) => 
+        (<div key = {data.id}  className = "cartList">
+            <Link style = {{textDecoration: 'none', color: 'black'}} to = 'courses/course-selected'>
+            <div className = "left">
+              <div className ="image">
+                <img  alt = "" src = "../Assets/React-frontend.jpg"/>
+              </div>
+              <div className = 'title-details'>
+                <p>TITLE</p>
+                <p>Little details</p>
+              </div>
+            </div>
+            </Link> 
+            <div className ="right">
+              <div  className = "remove">
+                <span>X</span>
+              </div>
+              <div className = "price-tag">
+                <p>${data.discountPrice}</p>
+                <p style = {{textDecoration: 'line-through'}}>${data.mainPrice}</p><br/>
+                <button style = {{cursor: 'pointer'}}>BUY</button>
+              </div>
+            </div>
+         
+      </div>
+       ))
+      }
       </div>
     )
   }
@@ -69,11 +108,14 @@ const  cartPage = ()  => {
             </Stack>
           </div>
          <div>
-          <CartList/>
+         
           <CartList/>
          </div>
          <div>
-          <TotalCart/>
+          <TotalCart
+           mainPriceSum = {mainPriceSum} 
+          discountPriceSum = {discountPriceSum}
+          />
          </div> 
 			  </div>
         <div className = "otherCourses">
