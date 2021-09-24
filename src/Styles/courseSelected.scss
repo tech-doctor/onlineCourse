@@ -10,6 +10,25 @@
 .courseSelected{
   .center-div{
     margin: 20px 120px;
+    .categoryFlex{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid black;
+      //height: 25vh;
+    }
+    .preview{
+      border: 1px solid black;
+      width: 35%;
+      margin-right: 10px;
+      height: 100%;
+      .instruction{
+        text-align: center;
+        margin-bottom: 20px;
+        animation: MoveUpDown 2s linear infinite;
+        position: relative;
+      }
+    }
 
     .sameCategoryCourses{
       display: flex;
@@ -32,6 +51,17 @@
 
     }
   }
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    bottom: -15px;
+  }
+
+  50% {
+    bottom: 10px
+  }
+  
 }
 
 .review-div{

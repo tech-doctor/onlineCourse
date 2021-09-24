@@ -1,0 +1,18 @@
+.watch{
+    .iframe{
+        margin: auto;
+        width: 70%;
+        height: 70vh;
+    }
+}
+
+
+@media (max-width: '800px'){
+    .watch{
+        .iframe{
+            margin: auto;
+            width: 90%;
+            height: 50vh;
+        }
+    }
+}

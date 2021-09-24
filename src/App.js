@@ -4,6 +4,7 @@ import CheckOut from "./Pages/checkout";
 import PurchaseHistory from "./Pages/purchaseHistory";
 import MyCourses from "./Pages/myCourses";
 import Cart from "./Pages/cart"
+import Watch from "./Pages/watch"
 import CategoryListPage from './Pages/categoryListPage'
 import './App.css';
 import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
@@ -21,6 +22,7 @@ const  App = () => {
             <Route path = "/cart/checkout" exact render = {() => ( <CheckOut/>)}/>
             <Route path = "/dashboard/purchase-history" exact render = {() => ( <PurchaseHistory/>)}/>
             <Route path = "/home/my-courses" exact render = {() => ( <MyCourses/>)}/> 
+            <Route path = "/courses/course-selected/watch" exact render = {() => ( <Watch/>)}/> 
           </Switch>
     </Router>
     </div>
