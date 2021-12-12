@@ -16,7 +16,7 @@ const  App = () => {
        <Router>
           <Switch>
             <Route path = "/" exact render = {() => ( <LandingPage/>)}/>
-            <Route path = "/courses/course-selected" exact render = {() => ( <CourseSelected/>)}/>
+            <Route path = "/courses/course-selected" exact render = {() => (<CourseSelected/>)}/>
             <Route path = "/courses/category" exact render = {() => ( <CategoryListPage/>)}/>
             <Route path = "/cart" exact render = {() => ( <Cart/>)}/>
             <Route path = "/cart/checkout" exact render = {() => ( <CheckOut/>)}/>

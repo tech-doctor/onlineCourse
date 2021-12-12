@@ -192,20 +192,20 @@
 
 .mobile-header {
   small{
-    background-color: red;
+    background-color: rgb(247, 43, 43);
     font-size: 13px;
     padding: 2px 7px;
     border-radius: 50%;
     position: absolute;
     right: 10px;
-    top: 10px
-    
+    top: 10px 
    }
    
   .mobile-icons{
     @extend .flex-center;
     justify-content: space-between;
     padding: 0 1.5em;
+   // background-color: rgb(151, 150, 150);
     *{
       cursor: pointer;
     }

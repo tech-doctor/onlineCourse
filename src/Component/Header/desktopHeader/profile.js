@@ -44,7 +44,7 @@ const  Profile = (props) => {
            <ul>
              <li><Link to = "/home/my-courses" style = {{textDecoration: 'none', color: 'black'}} >My courses</Link><small>2</small></li>
              <li><Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} >My Cart</Link><small>1</small></li>
-             <li><Link to = "/dashboard/purchase-history" style = {{textDecoration: 'none', color: 'black'}} >Purchase history</Link><small>3</small></li>
+             <li><Link to = "/dashboard/purchase-history" style = {{textDecoration: 'none', color: 'black'}} >Purchase history</Link><small>5</small></li>
            </ul>
          </div>
          <hr/>

@@ -8,7 +8,7 @@ const FeaturedCourses = () => {
 	const Stars = () => {
 		return(
 			<span className = "rating-stars">
-        <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
+              <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
 			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
 			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
 			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
@@ -33,21 +33,21 @@ const FeaturedCourses = () => {
 		}
 	}, 
 
-	{
-    id: 2,
-		thumbNail: '',
-		Title: 'That is the title of this course',
-		Duration: '12.47secs',
-		Rating: {
-      rate: 4.0,
-			likes:  148256,
-			stars: <Stars/>,
-		},
-		Price : {
-		  oldPrice : 80.99,
-		  newPrice : 18.99
-		}
-	}
+	// {
+  //   id: 2,
+	// 	thumbNail: '',
+	// 	Title: 'That is the title of this course',
+	// 	Duration: '12.47secs',
+	// 	Rating: {
+  //     rate: 4.0,
+	// 		likes:  148256,
+	// 		stars: <Stars/>,
+	// 	},
+	// 	Price : {
+	// 	  oldPrice : 80.99,
+	// 	  newPrice : 18.99
+	// 	}
+	// }
 
 ]
 
@@ -103,7 +103,13 @@ const FeaturedCourses = () => {
 				<Box/>
 				<Box/>
 				<Box/>
-				<Box/>		
+				<Box/>	
+        <Box/>
+        <Box/>
+				<Box/>
+				<Box/>
+				<Box/>
+				<Box/>	
 			</div>	
       <FontAwesomeIcon
       className = 'slideIcon slideIconLeft'  

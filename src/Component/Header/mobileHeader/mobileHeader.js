@@ -16,7 +16,7 @@ const  MobileHeader = (props) =>  {
   // set display of sidebarContent as "none" before click, and "block" when clicked
   const 	getSidebarStyle =  {
 		display: sidebarVisible? 
-		'block' : 'none',	
+		'block' : 'none',
 	}
 
    // styling the Search input field 
@@ -57,8 +57,10 @@ const  MobileHeader = (props) =>  {
             style ={{marginLeft: '20px'}}
             className = 'search-icon' 
             icon={faShoppingCart}
-          /></Link>
+          />
           <small>1</small>
+          </Link>
+          
         </div>
       </div>
       <div>
@@ -67,11 +69,9 @@ const  MobileHeader = (props) =>  {
         isLoggedIn = {isLoggedIn}
         getSidebarStyle =  {getSidebarStyle}/>
       </div>
-      <div style ={ searchDiv } className = 'mobileSearchDiv'>
-
-       {/* Pass the searchInputVisibility state as props to the 'Search' component to make it useful at the handleSearchCancel function */}
+      {/* <div style ={ searchDiv } className = 'mobileSearchDiv'>
         <Search setSearchInput = {setSearchInput}/>
-      </div>
+      </div> */}
     </div>  
   )
 }

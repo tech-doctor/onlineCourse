@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from "../../Component/Header/desktopHeader/Header"
 import Footer from '../../Component/Footer/footer'
 import '../../Styles/cart.scss'
@@ -7,12 +7,13 @@ import OtherCourses from './otherCourses'
 import { Link } from 'react-router-dom'
 import { Spinner, Stack,Skeleton, SkeletonText} from "@chakra-ui/react"
 
-const  cartPage = ()  => {
+const  CartPage = ()  => {
+  const [noCartList] = useState(true) 
 
   const cartObj  = [
     {
       id: 1,
-      mainPrice: 19,
+      mainPrice: 20,
       discountPrice: 9.99
     },
     {
@@ -42,7 +43,7 @@ const  cartPage = ()  => {
   }
   
 
-  const CartList = function cartList() {
+  const CartList = () => {
     return (
       <div>
       { cartObj.map ((data,  index) => 
@@ -86,18 +87,17 @@ const  cartPage = ()  => {
 			  <h2 style ={{color: 'white'}}>Shopping Cart</h2>
       </div>
 			<div style = {{margin: '50px 10%'}} className = "body">
-         
-				<div className = "cartList-Total">
-          <div className = "empty-chart">
+         {/* If there is zero item on the cart, return this */}
+         {noCartList? 
+         <div className = "empty-chart">
             <div className = "image">
             <img alt = "noChart" src = "../Assets/Empty-chart.png"/>
             </div>
             <div className = 'details'>
               <p>You have no cart at the moment</p>
               <button>Keep Shopping</button>
-            </div>
-           
-          </div>
+            </div> 
+        </div> : <div className = "cartList-Total">
           <div className = "skeleton">
             <Stack>
               {/* isLOaded will cancel out the effect when the content is loaded */}
@@ -108,7 +108,6 @@ const  cartPage = ()  => {
             </Stack>
           </div>
          <div>
-         
           <CartList/>
          </div>
          <div>
@@ -118,6 +117,10 @@ const  cartPage = ()  => {
           />
          </div> 
 			  </div>
+        }
+       
+
+				
         <div className = "otherCourses">
           <OtherCourses/>
 				</div>
@@ -131,4 +134,4 @@ const  cartPage = ()  => {
 	)
 }
 
-export default cartPage
+export default CartPage

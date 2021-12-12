@@ -62,9 +62,9 @@ const  SideBar = (props) => {
           <div className = "profile-list">
             <MobileCategories/>
             <ul>
-              <li><Link to = "/home/my-courses">My courses</Link><small>2</small></li>
-              <li><Link to = "/cart">My Cart</Link><small>1</small></li>
-              <li><Link to = "/dashboard/purchase-history">Purchase history</Link><small>3</small></li>
+              <li><Link to = "/home/my-courses">My courses</Link></li>
+              <li><Link to = "/cart">My Cart</Link></li>
+              <li><Link to = "/dashboard/purchase-history">Purchase history</Link></li>
             </ul>  
           </div>
           <div className = "logOut">

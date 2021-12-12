@@ -52,20 +52,27 @@ const  myCourses = ()  => {
 				<Header/>
 			</div>
 			<hr/>
-			<div className = "center-div">
+			<div>
         <div className = "title">
 					<h2 style = {{color: 'white'}}>MY COURSES</h2>
 				</div>
 				<hr/>
-        <div style = {{textAlign: 'center'}} >
-          <Spinner  size="xl"/>
-        </div>
-				<div className = "body">
-					<Box/>
-					<Box/>
-					<Box/>
-					<Box/>
-				</div>
+				<div className  = "center-div">
+					<div className = "no-course">
+            <p>No course available</p>
+					</div>
+					<div className = 'myCourse-div'>
+						<div style = {{textAlign: 'center'}} >
+							<Spinner  size="xl"/>
+						</div>
+						<div className = "body">
+							<Box/>
+							<Box/>
+							<Box/>
+							<Box/>
+						</div>
+					</div>	
+				</div> 
 			</div>
 			<hr/>
 			<div>
