@@ -1,17 +1,23 @@
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faSearch, faShoppingCart, faUserCircle}  from '@fortawesome/free-solid-svg-icons'
+import { useSelector, useDispatch } from 'react-redux'
 import '../../../Styles/header.scss'
 import CategoryList from './categoryList'
 import Profile from './profile'
 import  MobileHeader from '../mobileHeader/mobileHeader'
 import Language from '../../language'
 import { Link } from 'react-router-dom'
+import { updateCartList } from '../../../Store/mySlice'
 
 
 const  Header = () => {
-  // Set the loggedIn state(might enter the global Redux state later)
-  const [isLoggedIn] = useState(true);
+  const dispatch = useDispatch()
+ const isLoggedIn = useSelector(state => state.myState.userLoggedin)
+ 
+ const cartList = useSelector(state => state.myState.cartList);
+ //const cartListLength = cartList.length;
+	//dispatch(updateCartList())
     
   //set the initial visibility state of the category list and profile details as false 
   const [profileVisibility, setProfileVisibility]  = useState(false)
@@ -38,6 +44,7 @@ const  Header = () => {
             <input type = "text" placeholder = "Enter search query" className = "search-input"/>	
             <FontAwesomeIcon className = 'search-icon'  icon={faSearch}/>
 				  </div> 
+
           {/* Conditions on what to  display when the user is Logged In or Out  */}
 					{isLoggedIn? 
           <div className = "course">
@@ -47,9 +54,8 @@ const  Header = () => {
 				  <div className = "cart-icon" style = {{cursor: 'pointer'}}>
             <Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} >
               <FontAwesomeIcon icon={faShoppingCart} style = {{fontSize: '20px'}} />
-			        <small>1</small>
-			      </Link> 
-            
+			        <small>{cartList.length}</small>
+			      </Link>  
 				  </div>
 				    {isLoggedIn? 
 					<div className = "user">
@@ -69,15 +75,22 @@ const  Header = () => {
           }
 			  </div>
 			  <div className = "mobile-view">
-				 <MobileHeader isLoggedIn = {isLoggedIn}/> 
+				 <MobileHeader isLoggedIn = {isLoggedIn} cartList = {cartList}/> 
 			  </div>
 			</header>		
 		</div>
 		 <div>
-			 <CategoryList categoryVisibility = {categoryVisibility} setCategoryVisibility = {setCategoryVisibility}/>
+			<CategoryList
+				categoryVisibility = {categoryVisibility}
+				setCategoryVisibility = {setCategoryVisibility}
+			/>
 		 </div>
 		 <div>
-    <Profile profileVisibility = {profileVisibility}  setProfileVisibility = {setProfileVisibility}/>
+			<Profile
+				profileVisibility = {profileVisibility} 
+				cartList = {cartList} 
+				setProfileVisibility = {setProfileVisibility}
+			/>
 		 </div>
 		</div>
 

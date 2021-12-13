@@ -5,10 +5,10 @@ import {Link} from 'react-router-dom'
 import { Container } from '@chakra-ui/react'
 
 const  Profile = (props) => {
-
-  const {profileVisibility, setProfileVisibility} = props
+  
+  const {profileVisibility, setProfileVisibility, cartList} = props
 	const container = React.createRef()
-
+  console.log(cartList)
 	const handleClickOutside = (event) => {
 		if (
 			container.current &&
@@ -43,7 +43,7 @@ const  Profile = (props) => {
          <div className = "profile-list">
            <ul>
              <li><Link to = "/home/my-courses" style = {{textDecoration: 'none', color: 'black'}} >My courses</Link><small>2</small></li>
-             <li><Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} >My Cart</Link><small>1</small></li>
+             <li><Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} >My Cart</Link><small>{cartList.length}</small></li>
              <li><Link to = "/dashboard/purchase-history" style = {{textDecoration: 'none', color: 'black'}} >Purchase history</Link><small>5</small></li>
            </ul>
          </div>

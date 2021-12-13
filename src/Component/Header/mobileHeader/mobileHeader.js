@@ -6,32 +6,17 @@ import SideBar from './sideBar'
 import Search from './search'
 
 const  MobileHeader = (props) =>  {
-  
   // Set the state for the sidebar visibility before the hamburger icon is being clicked
   const [sidebarVisible, setSidebarVisible]  = useState(false)
 
-  //Setting the search input state before clicking the search icon
-  const [searchInputVisible, setSearchInput] = useState(false)
-  
   // set display of sidebarContent as "none" before click, and "block" when clicked
   const 	getSidebarStyle =  {
 		display: sidebarVisible? 
 		'block' : 'none',
 	}
 
-   // styling the Search input field 
-   const searchDiv = {
-    border: '1px solid grey', 
-    width: '100%',
-    position: 'fixed', 
-    right: '0px',
-    // code for Search field visibility before and after clicking the search-bar Icon.
-    display: searchInputVisible? 
-    '' : 'none'
-   }
-  
   //  setting the isLoggedIn props variable
-   const {isLoggedIn} = props;
+   const {isLoggedIn,cartList} = props;
 
   return (
     <div className = "mobile-header">
@@ -49,29 +34,16 @@ const  MobileHeader = (props) =>  {
         </div>
         <div style ={{fontSize: '20px'}}
           className =    "search-cart">
-          <FontAwesomeIcon
-            onClick =  {() => {setSearchInput(true)}} className = 'search-icon' 
-            icon={faSearch} 
-            />
            <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/cart"><FontAwesomeIcon
             style ={{marginLeft: '20px'}}
             className = 'search-icon' 
             icon={faShoppingCart}
           />
-          <small>1</small>
+          <small>{cartList.length}</small>
           </Link>
           
         </div>
       </div>
-      <div>
-        <SideBar 
-        // pass isLogged in as a prop (may be transferred to the redux later) to make the sidebar content mutable
-        isLoggedIn = {isLoggedIn}
-        getSidebarStyle =  {getSidebarStyle}/>
-      </div>
-      {/* <div style ={ searchDiv } className = 'mobileSearchDiv'>
-        <Search setSearchInput = {setSearchInput}/>
-      </div> */}
     </div>  
   )
 }
