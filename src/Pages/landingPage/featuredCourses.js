@@ -112,15 +112,15 @@ const FeaturedCourses = () => {
 				<Box/>	
 			</div>	
       <FontAwesomeIcon
-      className = 'slideIcon slideIconLeft'  
-      icon={faAngleLeft}
-      onClick = {slideLeft}
+        className = 'slideIcon slideIconLeft'  
+        icon={faAngleLeft}
+        onClick = {slideLeft}
       />
 
       <FontAwesomeIcon
-       className = 'slideIcon slideIconRight' 
-        icon={faAngleRight}
-        onClick = {slideRight}
+        className = 'slideIcon slideIconRight' 
+          icon={faAngleRight}
+          onClick = {slideRight}
       />
 		</div>
 	)

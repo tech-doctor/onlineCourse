@@ -29,10 +29,7 @@ const  CartPage = ()  => {
       sum += item.discountPrice
     })
     return sum
-
   }
-  
-
   const CartList = () => {
     return (
       <div>

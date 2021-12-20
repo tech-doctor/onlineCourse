@@ -39,7 +39,7 @@ const  Footer = () => {
           <p>All rights reserved ©2021</p> 
         </div>
 				<div style = {{margin: '50px 30px '}}>
-					<span>Developed by <a href = '#'>Techie-Doctor</a></span> 
+					<span>Developed by <a href = 'https://olukaisaac.netlify.app/'>Techie-Doctor</a></span> 
 					<span style = {{float: 'right', marginRight: '100px'}}>
 					<Language/>
 					</span>

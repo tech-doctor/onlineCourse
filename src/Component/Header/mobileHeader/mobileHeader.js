@@ -16,7 +16,7 @@ const  MobileHeader = (props) =>  {
 	}
 
   //  setting the isLoggedIn props variable
-   const {isLoggedIn,cartList} = props;
+   const {isLoggedIn,cartList,itemsBought} = props;
 
   return (
     <div className = "mobile-header">
@@ -40,11 +40,13 @@ const  MobileHeader = (props) =>  {
             icon={faShoppingCart}
           />
           <small>{cartList.length}</small>
-          </Link>
-          
+          </Link>  
         </div>
       </div>
-    </div>  
+      <div style={getSidebarStyle}>
+        <SideBar/>
+      </div>
+    </div> 
   )
 }
 

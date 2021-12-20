@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import  {faStar}  from '@fortawesome/free-solid-svg-icons'
+import  {faStar,faAngleDown, faAngleUp}  from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 const AllCategories = () => {
@@ -26,10 +26,10 @@ const AllCategories = () => {
           </div>
           <div className = "about">
             <p style = {deepText}>Here is the title for this course</p>
-            <p><small><span style = {deepText} className = "rating-number">4.5</span><Stars/>
+            <div><small><span style = {deepText} className = "rating-number">4.5</span><Stars/>
             <p>11:47secs</p>
             <span className = "likes">(147,256)</span></small>
-            </p>
+            </div>
           </div>
         </div>
         <div className = "right">
@@ -66,9 +66,8 @@ const AllCategories = () => {
           <AllCategory/>  
         </div>
         <div style = {{cursor: 'pointer'}} className = "more">
-         <p>See more</p>
+         <p>See more <FontAwesomeIcon icon={faAngleDown}/></p>
         </div>
-        
       </div>
     )
 }

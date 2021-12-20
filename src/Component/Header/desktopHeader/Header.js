@@ -16,6 +16,7 @@ const  Header = () => {
  const isLoggedIn = useSelector(state => state.myState.userLoggedin)
  
  const cartList = useSelector(state => state.myState.cartList);
+ const itemsBought = useSelector(state => state.myState.itemsBought)
  //const cartListLength = cartList.length;
 	//dispatch(updateCartList())
     
@@ -75,7 +76,7 @@ const  Header = () => {
           }
 			  </div>
 			  <div className = "mobile-view">
-				 <MobileHeader isLoggedIn = {isLoggedIn} cartList = {cartList}/> 
+				 <MobileHeader isLoggedIn = {isLoggedIn} cartList = {cartList} itemsBought = {itemsBought}/> 
 			  </div>
 			</header>		
 		</div>
@@ -89,6 +90,7 @@ const  Header = () => {
 			<Profile
 				profileVisibility = {profileVisibility} 
 				cartList = {cartList} 
+				itemsBought = {itemsBought}
 				setProfileVisibility = {setProfileVisibility}
 			/>
 		 </div>

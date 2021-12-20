@@ -238,9 +238,9 @@
 @media (min-width: 750px){
  .mobile-header {
    .side-bar{
-     display: none !important;
+     //display: none !important;
    }
-  .mobile-icons,.mobileSearchDiv{
+  .mobile-icons{
     display: none;
   }
  }
