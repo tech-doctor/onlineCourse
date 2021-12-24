@@ -8,6 +8,9 @@ import Watch from "./Pages/watch"
 import CategoryListPage from './Pages/categoryListPage'
 import './App.css';
 import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
+import LoginPage from "./Auth/login";
+import  RegisterPage from "./Auth/Register";
+import PageNotFound from "./Pages/pageNotFound";
 
 
 const  App = () => {
@@ -15,14 +18,17 @@ const  App = () => {
     <div className="App">
        <Router>
           <Switch>
-            <Route path = "/" exact render = {() => ( <LandingPage/>)}/>
-            <Route path = "/courses/course-selected" exact render = {() => (<CourseSelected/>)}/>
-            <Route path = "/courses/category" exact render = {() => ( <CategoryListPage/>)}/>
-            <Route path = "/cart" exact render = {() => ( <Cart/>)}/>
-            <Route path = "/cart/checkout" exact render = {() => ( <CheckOut/>)}/>
-            <Route path = "/dashboard/purchase-history" exact render = {() => ( <PurchaseHistory/>)}/>
-            <Route path = "/home/my-courses" exact render = {() => ( <MyCourses/>)}/> 
-            <Route path = "/courses/course-selected/watch" exact render = {() => ( <Watch/>)}/> 
+            <Route exact path = "/" component={LandingPage}/>
+            <Route exact path = "/login" component={LoginPage}/>
+            <Route exact path = "/register" component = {RegisterPage}/>
+            <Route exact path = "/courses/course-selected" component={CourseSelected}/>
+            <Route exact path = "/courses/category" component={CategoryListPage}/>
+            <Route exact path = "/cart" component={Cart}/>
+            <Route exact path = "/cart/checkout" component={CheckOut}/>
+            <Route exact path = "/dashboard/purchase-history"component={PurchaseHistory}/>
+            <Route exact path = "/home/my-courses" component={MyCourses}/> 
+            <Route exact path = "/courses/course-selected/watch" component={Watch}/> 
+            <Route exact path = "*" component={PageNotFound}/>
           </Switch>
     </Router>
     </div>

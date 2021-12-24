@@ -15,7 +15,6 @@
       align-items: center;
       justify-content: space-between;
       border: 1px solid black;
-      //height: 25vh;
     }
     .preview{
       border: 1px solid black;
@@ -94,7 +93,6 @@
    .review-body{
      display: flex;
      padding: 1em 0.2em;
-    //  flex-wrap: wrap;
      .left{
        .avatar{
          width: 100%;
@@ -130,16 +128,13 @@
       margin: 20px 30px;
       .sameCategoryCourses{
         display: flex;
-        // align-items: center;
-        // justify-content: space-between;
         overflow-x: scroll;
        .course-box + .course-box {
            margin-left: 20px;
         }
         .course-box {
            border: 1px solid black;
-          //  width: 200px;
-         .image{
+          .image{
             img{
               width: 100%;
             }
@@ -163,9 +158,6 @@
           height: 26px ;
           border: 1px solid rgb(107, 107, 107);
           @include border-radius(4px);
-          ::placeholder{
-           
-          }
          }
        }
        .filter-review{
@@ -179,8 +171,6 @@
      }
      .review-body{
        flex-wrap: wrap;
-       .left{
-       }
        .right{
         margin-left: 0px;
        }

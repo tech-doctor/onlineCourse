@@ -1,17 +1,15 @@
 import React from 'react'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import  {faStar}  from '@fortawesome/free-solid-svg-icons'
 import Header from '../../Component/Header/desktopHeader/Header'
 import Footer from '../../Component/Footer/footer'
 import Subscribe from '../landingPage/subscribe'
-import { useSelector, useDispatch } from 'react-redux'
-import { Spinner, Stack,Skeleton} from "@chakra-ui/react"
+import { useSelector } from 'react-redux'
+import { Spinner} from "@chakra-ui/react"
 import {Link} from 'react-router-dom'
 import '../../Styles/myCourse.scss'
 
 
 const  MyCourses = ()  => {
-	const dispatch = useDispatch()
+	//const dispatch = useDispatch()
   const itemsBought = useSelector(state => state.myState.itemsBought)
 
 

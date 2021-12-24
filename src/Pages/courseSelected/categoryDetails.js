@@ -34,7 +34,7 @@ const  categoryDetails = () => {
           <Skeleton height="200px" />
           </Stack>
         <div className = "iframe">
-        <iframe width="100%" height="100%"
+        <iframe title='courses-video' width="100%" height="100%"
           src="https://www.youtube.com/embed/tgbNymZ7vqY?controls=0" >
         </iframe>
         </div>

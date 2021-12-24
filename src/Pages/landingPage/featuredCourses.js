@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faStar, faAngleRight,  faAngleLeft}  from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 
 const FeaturedCourses = () => {
+   const [showCartButton, setShowCartButton] = useState(false)
+
 	const Stars = () => {
 		return(
 			<span className = "rating-stars">
-              <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
+        <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
 			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
 			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
 			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
@@ -32,37 +34,23 @@ const FeaturedCourses = () => {
 		  newPrice : 15.99
 		}
 	}, 
-
-	// {
-  //   id: 2,
-	// 	thumbNail: '',
-	// 	Title: 'That is the title of this course',
-	// 	Duration: '12.47secs',
-	// 	Rating: {
-  //     rate: 4.0,
-	// 		likes:  148256,
-	// 		stars: <Stars/>,
-	// 	},
-	// 	Price : {
-	// 	  oldPrice : 80.99,
-	// 	  newPrice : 18.99
-	// 	}
-	// }
-
 ]
 
 
   
-	const Box = function box(){
+	const Box = () => {
 		return (
-      <div className = "course-box">	
+      <div 
+      onMouseEnter={() => setShowCartButton(true)}
+      onMouseLeave={() => setShowCartButton(false)}
+      className = "course-box">
+        
 				{
 				featuredCourses.map ((data,  index) => 	
-        //{ const {thumbNail, Title,Duration} = data;
-	     	// const {likes,stars} = data.Rating
-		    // const {oldPrice, newPrice} = data.Price;
 			   (<Link key = {index} to = "courses/course-selected" style = {{textDecoration: 'none', color: 'black'}} >
-						
+            {showCartButton && (
+            <div className='overlay'></div>
+             )}
             <div  className = 'image'>
 							<img alt ="" src = "Assets/React-frontend.jpg"></img>
 						</div>
@@ -77,9 +65,13 @@ const FeaturedCourses = () => {
 								<span style = {{textDecoration: "line-through"}} className = "oldPrice"> {data.Price.oldPrice}</span>
 							</p>
 						</div>
-            </Link>) 
-					 )
+          </Link>) 
+					)
 				} 
+        {showCartButton && (
+        <div className='button'>
+          <button>Add To Cart</button>
+        </div> )} 
 			</div>			
 		)
 	}

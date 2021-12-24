@@ -10,7 +10,7 @@ import store from './Store'
 ReactDOM.render( 
   <Provider store = {store}>
     <ChakraProvider resetCSS={false}>
-      <App />
+       <App />
     </ChakraProvider>
   </Provider>
    

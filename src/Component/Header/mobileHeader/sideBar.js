@@ -2,16 +2,11 @@ import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight, faUserCircle, faAngleDown} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom';
-//import { useSelector, useDispatch } from 'react-redux';
 
 const  SideBar = (props) => {
   const [closedCategory, setCategory] = useState(true)
-  // const dispatch = useDispatch()
-  // const isLoggedIn = useSelector(state => state.myState.userLoggedin)
-
 
 	const MobileCategories = function category(){
-
     return (
       <div className = "category">
         <p 

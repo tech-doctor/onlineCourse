@@ -40,13 +40,13 @@
           position: relative;
           .left{
             display: flex;
-            width: 100%;
+            width: 85%;
             padding: 0.4em;
             .title-details{
               margin-left: 20px;
             }
             .image{
-                width: 40%;
+                width: 30%;
               img{
                   width: 100%;
               }
@@ -55,10 +55,10 @@
           .right{
             display: flex;
             justify-content: flex-end;
-            width: 100%;
+            width: 15%;
+            height: 100%;
             padding: 0.4em 0.4em 0 0;
             //border: 1px solid black;
-            
             .remove{
               margin-right: 10px;
               cursor: pointer;
@@ -140,9 +140,6 @@
       .body{
         .empty-chart{
           width: 70%;
-          img{
-           
-          }
           .details{
             text-align: center;
             p{
@@ -157,12 +154,8 @@
           }
        }
         .cartList-Total{
-          
           margin: 0 -10%;
           .cartList{
-            // display: flex;
-            // justify-content: space-between;
-            // align-items: center;
             width: 100%;
             flex-wrap: wrap;
             .left{

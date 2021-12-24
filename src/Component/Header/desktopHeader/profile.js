@@ -2,13 +2,12 @@ import React, { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  { faUserCircle}  from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
-//import { Container } from '@chakra-ui/react'
 
 const  Profile = (props) => {
   
   const {profileVisibility, setProfileVisibility, cartList, itemsBought} = props
 	const container = React.createRef()
-  //console.log(itemsBought)
+  
 	const handleClickOutside = (event) => {
 		if (
 			container.current &&
@@ -42,9 +41,9 @@ const  Profile = (props) => {
          <hr/>
          <div className = "profile-list">
            <ul>
-             <li><Link to = "/home/my-courses" style = {{textDecoration: 'none', color: 'black'}} >My courses</Link><small>{itemsBought.length}</small></li>
-             <li><Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} >My Cart</Link><small>{cartList.length}</small></li>
-             <li><Link to = "/dashboard/purchase-history" style = {{textDecoration: 'none', color: 'black'}} >Purchase history</Link><small>5</small></li>
+           <Link to = "/home/my-courses" style = {{textDecoration: 'none', color: 'black'}} > <li>My courses <small>{itemsBought.length}</small></li></Link>
+             <Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} > <li>My Cart<small>{cartList.length}</small></li></Link>
+             <Link to = "/dashboard/purchase-history" style = {{textDecoration: 'none', color: 'black'}} ><li>Purchase history<small>5</small></li></Link>
            </ul>
          </div>
          <hr/>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import  {faStar,faAngleDown, faAngleUp}  from '@fortawesome/free-solid-svg-icons'
+import  {faStar,faAngleDown}  from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 const AllCategories = () => {

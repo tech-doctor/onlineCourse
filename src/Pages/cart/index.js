@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { Spinner, Stack,Skeleton, SkeletonText} from "@chakra-ui/react"
+import {Stack,Skeleton} from "@chakra-ui/react"
 import { useSelector, useDispatch } from 'react-redux'
 import Header from "../../Component/Header/desktopHeader/Header"
 import Footer from '../../Component/Footer/footer'
@@ -22,7 +22,6 @@ const  CartPage = ()  => {
      return sum
   }
 
-
   const discountPriceSum = () => {
     let sum  = 0
     cartList.forEach (item => {
@@ -30,6 +29,8 @@ const  CartPage = ()  => {
     })
     return sum
   }
+
+
   const CartList = () => {
     return (
       <div>
@@ -53,7 +54,9 @@ const  CartPage = ()  => {
             <div className = "price-tag">
               <p>${data.discountPrice}</p>
               <p style = {{textDecoration: 'line-through'}}>${data.mainPrice}</p><br/>
+              <Link style = {{textDecoration: 'none', color: 'black'}} to = 'cart/checkout'>
               <button style = {{cursor: 'pointer'}}>BUY</button>
+              </Link>
             </div>
           </div>
         </div>

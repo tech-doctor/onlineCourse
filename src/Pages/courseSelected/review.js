@@ -1,35 +1,34 @@
 import React from 'react'
-import { Stack, Skeleton, Box, SkeletonText, SkeletonCircle} from "@chakra-ui/react"
+import { Box, SkeletonText, SkeletonCircle} from "@chakra-ui/react"
 
 const  review = () => {
-  const EachReview = () => {
-    return(
-      <div className = "review-body">
-        <div className ="left">
-          <div className = "avatar">
-            <img alt = "pics" src = "../Assets/instructor.jpg"/>
-          </div>
-        </div>
-        <div className = "right">
-          <div style = {{fontWeight: '700'}} className ="name">
-            Oluka Isaac
-          </div>
-          <div className = "comments">
-            Nice video, i will like to get more of this some other time
-          </div>
-        </div>  
-      </div>  
-    )
+  const reviews = [
+    {
+    avatar: '../Assets/instructor.jpg',
+    name: 'Oluka Isaac',
+    comment: ' Nice video, i will like to get more of this some other time'
+  },
+  {
+    avatar: '../Assets/instructor.jpg',
+    name: 'Oluka Isaac',
+    comment: ' Nice video, i will like to get more of this some other time'
+  },
+  {
+    avatar: '../Assets/instructor.jpg',
+    name: 'Oluka Isaac',
+    comment: ' Nice video, i will like to get more of this some other time'
+  },
+  {
+    avatar: '../Assets/instructor.jpg',
+    name: 'Oluka Isaac',
+    comment: ' Nice video, i will like to get more of this some other time'
   }
+]
+
 
   return (
     <div className = "review-div">
       <div className = "skeleton">
-        {/* <Stack>
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-        </Stack> */}
         <Box padding="6" boxShadow="lg" bg="white">
         <SkeletonCircle size="12" />
         <SkeletonText mt="4" noOfLines={3} spacing="4" />
@@ -46,15 +45,28 @@ const  review = () => {
           </select>
         </div>
       </div>
-        <EachReview/>
-        <hr/>
-        <EachReview/>
-        <hr/>
-        <EachReview/>
-        <hr/>
-        <EachReview/>
-        <hr/>
-     
+      <div>
+      {reviews.map((data, index) => 
+        (
+        <div key={index}>
+          <div className = "review-body">
+            <div className ="left">
+              <div className = "avatar">
+                <img alt = "pics" src = {data.avatar}/>
+              </div>
+            </div>
+            <div className = "right">
+              <div style = {{fontWeight: '700'}} className ="name">
+                {data.name}
+              </div>
+              <div className = "comments">
+                {data.comment}
+              </div>
+            </div> 
+          </div>
+          <hr/>
+        </div>))}
+      </div>
     </div>
     )
 }

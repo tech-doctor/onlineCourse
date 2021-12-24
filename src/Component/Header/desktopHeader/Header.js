@@ -1,29 +1,25 @@
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faSearch, faShoppingCart, faUserCircle}  from '@fortawesome/free-solid-svg-icons'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import '../../../Styles/header.scss'
 import CategoryList from './categoryList'
 import Profile from './profile'
 import  MobileHeader from '../mobileHeader/mobileHeader'
 import Language from '../../language'
 import { Link } from 'react-router-dom'
-import { updateCartList } from '../../../Store/mySlice'
+//import { updateCartList } from '../../../Store/mySlice'
 
 
 const  Header = () => {
-  const dispatch = useDispatch()
  const isLoggedIn = useSelector(state => state.myState.userLoggedin)
  
  const cartList = useSelector(state => state.myState.cartList);
  const itemsBought = useSelector(state => state.myState.itemsBought)
- //const cartListLength = cartList.length;
-	//dispatch(updateCartList())
-    
-  //set the initial visibility state of the category list and profile details as false 
+ 
+//set the initial visibility state of the category list and profile details as false 
   const [profileVisibility, setProfileVisibility]  = useState(false)
   const [categoryVisibility, setCategoryVisibility]  = useState(false)
-  
   
 	return (
 		<div className = "">
@@ -70,8 +66,8 @@ const  Header = () => {
           </div>
           {!isLoggedIn? 
           <div className = "Authentication">
-            <button className = 'loginButton'>Login</button>
-            <button className = 'registerButton'>Register</button>
+			  <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/login"><button className = 'loginButton'>Login</button></Link>
+              <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/register"><button className = 'loginButton'>Register</button></Link>
           </div> : ''
           }
 			  </div>

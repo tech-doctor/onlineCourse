@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import  {faBars, faSearch, faShoppingCart} from '@fortawesome/free-solid-svg-icons'
+import  {faBars, faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
 import SideBar from './sideBar'
-import Search from './search'
 
 const  MobileHeader = (props) =>  {
   // Set the state for the sidebar visibility before the hamburger icon is being clicked
@@ -16,7 +15,7 @@ const  MobileHeader = (props) =>  {
 	}
 
   //  setting the isLoggedIn props variable
-   const {isLoggedIn,cartList,itemsBought} = props;
+   const {cartList} = props;
 
   return (
     <div className = "mobile-header">
@@ -24,8 +23,7 @@ const  MobileHeader = (props) =>  {
         <div  className = "menu-barIcon">
           <FontAwesomeIcon
            onClick = {() => setSidebarVisible(!sidebarVisible)} 
-           style ={{fontSize: '20px'}} 
-           className = 'search-icon'  
+           style ={{fontSize: '20px'}}  
            icon={faBars}
           />
         </div>
@@ -36,7 +34,6 @@ const  MobileHeader = (props) =>  {
           className =    "search-cart">
            <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/cart"><FontAwesomeIcon
             style ={{marginLeft: '20px'}}
-            className = 'search-icon' 
             icon={faShoppingCart}
           />
           <small>{cartList.length}</small>

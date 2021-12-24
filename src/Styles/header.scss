@@ -13,7 +13,6 @@
 }
 
 
-
 .header >header {
  .desktop-header{
    .cart-icon{
@@ -62,9 +61,7 @@
     padding: 0.5em 1em;
     outline: none;
     border: 1px solid black;
-    @include border-radius(7px);
-    
-    
+    @include border-radius(7px);   
 }
 
  .language >select{
@@ -134,7 +131,6 @@
     list-style: none;
     width: 100px;
     padding: 0.4em 0.7em 0.6em 1em;
-    //display: none;
     li {
       padding: 1em 1em 1em 0em;
     }
@@ -205,7 +201,6 @@
     @extend .flex-center;
     justify-content: space-between;
     padding: 0 1.5em;
-   // background-color: rgb(151, 150, 150);
     *{
       cursor: pointer;
     }
@@ -237,9 +232,6 @@
 
 @media (min-width: 750px){
  .mobile-header {
-   .side-bar{
-     //display: none !important;
-   }
   .mobile-icons{
     display: none;
   }

@@ -3,11 +3,29 @@ import Header from '../../Component/Header/desktopHeader/Header'
 import Footer from '../../Component/Footer/footer'
 import Subscribe from '../landingPage/subscribe'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import  {faSearch, faShoppingCart, faUserCircle}  from '@fortawesome/free-solid-svg-icons'
-import { Spinner, Stack,Skeleton} from "@chakra-ui/react"
+import  { faShoppingCart}  from '@fortawesome/free-solid-svg-icons'
+import { Spinner} from "@chakra-ui/react"
 import '../../Styles/history.scss'
 
 const  purchaseHistory = ()  => {
+
+  const history = [
+		{
+			Course: 'Javascript course',
+			Category: 'Random',
+			Date:  'Nov 2 2021',
+			Price: '400'
+		},
+		{
+			Course: 'HTML course',
+			Category: 'HTML',
+			Date:  'Nov 5 2021',
+			Price: '300'
+		}
+	]
+
+
+
 	return (
 		<div className = "purchaseHistory">
 			<div>
@@ -32,18 +50,13 @@ const  purchaseHistory = ()  => {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+            {history.map ((data, i) => (
+						<tr key={i}>
 							<td><FontAwesomeIcon icon={faShoppingCart} /> Javascript course</td>
-							<td>Random</td> 
-							<td>Nov 2 2021</td>
-              <td>$400</td>
-						</tr>
-            <tr>
-              <td> <FontAwesomeIcon icon={faShoppingCart} /> HTML courses</td>
-							<td>HTML</td> 
-							<td>Nov 5 2021</td>
-              <td>$300</td>
-						</tr>
+							<td>{data.Course}</td> 
+							<td>{data.Date}</td>
+              <td>{data.Price}</td>
+						</tr>))}
 					</tbody>
 				</table>
 				</div>

@@ -42,9 +42,8 @@ const  otherCourses = () => {
 	return (
 		<div className = "otherCourses">
       <div style = {{textAlign: 'center'}} >
-            <Spinner  size="xl"/>
-            
-          </div>
+        <Spinner  size="xl"/>
+      </div>
 		<div className = "div-title">
 			<p style = {{textAlign: 'center', fontWeight: '700', fontSize: '20px'}}>Other Courses you might interest you</p>
 		</div>

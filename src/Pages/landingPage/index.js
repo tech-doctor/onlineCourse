@@ -14,12 +14,6 @@ const  LandingPage = () => {
     <div>
         <Header/>
         <hr/>
-        
-        {/* <Stack>
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-        </Stack> */}
         <h3>Center div</h3>
         <hr/>
         <div style = {{textAlign: 'center'}} >
