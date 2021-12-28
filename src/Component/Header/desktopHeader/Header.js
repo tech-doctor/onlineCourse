@@ -12,10 +12,10 @@ import { Link } from 'react-router-dom'
 
 
 const  Header = () => {
- const isLoggedIn = useSelector(state => state.myState.userLoggedin)
+ const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
  
- const cartList = useSelector(state => state.myState.cartList);
- const itemsBought = useSelector(state => state.myState.itemsBought)
+ const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
+ const itemsBought = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
  
 //set the initial visibility state of the category list and profile details as false 
   const [profileVisibility, setProfileVisibility]  = useState(false)
@@ -34,7 +34,7 @@ const  Header = () => {
               <p
               onClick = {() => setCategoryVisibility(!categoryVisibility)}
               >Categories</p>
-              <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/courses/category">Random</Link> </p>					
+              <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/courses/category/playlistId">Random</Link> </p>					
 					  </nav>
 				  </div>
 				  <div className = "search">

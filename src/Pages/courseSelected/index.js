@@ -6,8 +6,9 @@ import SameCategory from './sameCategory'
 import CategoryDetails from './categoryDetails'
 import { Spinner} from "@chakra-ui/react"
 import Review from './review'
+//import { useParams } from 'react-router-dom'
 
-const  courseSelected = ()  => {
+const  CourseSelected = ()  => {
 	return (
 		<div className = "courseSelected">
       <div>
@@ -38,4 +39,4 @@ const  courseSelected = ()  => {
 	)
 }
 
-export default courseSelected
+export default CourseSelected

@@ -1,125 +1,62 @@
-import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import  {faStar, faAngleRight,  faAngleLeft}  from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Spinner} from "@chakra-ui/react"
+import Slider from 'react-slick';
+import { settings } from '../../Styles/settings';
+import { fetchAsyncCourses, getAllcourses, updateLoading } from '../../Store/courseSlice'
+import moment from 'moment'
+import CourseCard from './courseCard';
 
 
 const FeaturedCourses = () => {
-   const [showCartButton, setShowCartButton] = useState(false)
+	 const featuredCourses = useSelector(getAllcourses);
+	 const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
+	 const dispatch = useDispatch();
 
-	const Stars = () => {
-		return(
-			<span className = "rating-stars">
-        <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			</span>
-			)
-	}
+  useEffect(() => {
+		  dispatch(updateLoading(true))
+			dispatch(fetchAsyncCourses())
+			dispatch(updateLoading(false))
+	},[dispatch]);
 
-	const featuredCourses = [
-		{
-    id : 1,
-		thumbNail: '',
-		Title: 'Here is the title of this course',
-		Duration: '11.47secs',
-		Rating: {
-      rate: 4.5,
-			likes:  147256,
-			stars: <Stars/>,
-		},
-		Price : {
-		  oldPrice : 87.99,
-		  newPrice : 15.99
-		}
-	}, 
-]
+	
 
+  const [showCartButton, setShowCartButton] = useState(false)
 
-  
-	const Box = () => {
-		return (
-      <div 
-      onMouseEnter={() => setShowCartButton(true)}
-      onMouseLeave={() => setShowCartButton(false)}
-      className = "course-box">
-        
-				{
-				featuredCourses.map ((data,  index) => 	
-			   (<Link key = {index} to = "courses/course-selected" style = {{textDecoration: 'none', color: 'black'}} >
-            {showCartButton && (
-            <div className='overlay'></div>
-             )}
-            <div  className = 'image'>
-							<img alt ="" src = "Assets/React-frontend.jpg"></img>
-						</div>
-						<div className = "course-box-details">
-							<p style = {deepText}>{data.Title}</p>
-							<p>{data.Duration}</p>
-							<p><small><span style = {deepText} className = "rating-number">{data.Rating.rate}</span><Stars/>
-							<span className = "likes">{data.Rating.likes}</span></small>
-							</p>
-							<p>
-								<span style = {deepText} className = "newPrice">{data.Price.newPrice} </span>
-								<span style = {{textDecoration: "line-through"}} className = "oldPrice"> {data.Price.oldPrice}</span>
-							</p>
-						</div>
-          </Link>) 
-					)
-				} 
-        {showCartButton && (
-        <div className='button'>
-          <button>Add To Cart</button>
-        </div> )} 
-			</div>			
-		)
-	}
-
-  const slideRight = () => {
-    console.log('right')
-  }
-
-  const slideLeft = () => {
-    console.log('left')
+	if (loading || featuredCourses.length === 0) {
+    console.log('loading...')
+    return  <div  style = {{textAlign: 'center', padding: '100px'}} >
+		<Spinner  size="xl"/>
+	</div>
   }
 
 	return (
 		<div className = "featuredCourses">
-		  <div>
-				<p style = {{textAlign: 'center', fontSize: '30px'}}>Featured Courses</p>
+		  <div className='heading'>
+				<p style = {{fontSize: '30px'}}>Featured Courses</p>
 			</div>
-			<div className = 'course-box-list'>
-        <Box/>
-        <Box/>
-				<Box/>
-				<Box/>
-				<Box/>
-				<Box/>	
-        <Box/>
-        <Box/>
-				<Box/>
-				<Box/>
-				<Box/>
-				<Box/>	
-			</div>	
-      <FontAwesomeIcon
-        className = 'slideIcon slideIconLeft'  
-        icon={faAngleLeft}
-        onClick = {slideLeft}
-      />
-
-      <FontAwesomeIcon
-        className = 'slideIcon slideIconRight' 
-          icon={faAngleRight}
-          onClick = {slideRight}
-      />
+			<div className = 'course-card'>
+			<Slider {...settings}>
+				{featuredCourses.map (data =>
+				(<CourseCard
+					key = {data.id}
+					id = {data.id}
+					imageAlt ={data.snippet.title}  
+					imageSrc = {data.snippet.thumbnails.standard.url}
+					title = {data.snippet.title}
+					date = {moment(data.snippet.publishedAt).fromNow()}
+					newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
+					oldPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30}
+				/>)
+				)}
+				</Slider>
+			</div>
 		</div>
 	)
 }
 
-const deepText = {
-	fontWeight : "700"
-}
 
 export default FeaturedCourses
+
+
+ 

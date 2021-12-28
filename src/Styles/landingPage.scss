@@ -1,42 +1,41 @@
 
 .featuredCourses {
   margin: 10px 20px;
-  border: 1px solid black;
-  .course-box-list{
-     width: 100%;
-     border: 1px solid black;
-    .course-box{
-      display: inline-block;
-      border: 1px solid rgb(3, 146, 171);
-      width: 15%; 
-      margin: 20px 10px ; 
-      position: relative;
-      .overlay{
-        background-color: rgb(0, 0, 0);
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        opacity: 0.85;   
+  background-color: rgb(226, 226, 226);
+  .heading{
+    text-align: center;
+  }
+  .course-card{
+    //border: 1px solid black;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fill, minmax(220px,1fr ));
+    // grid-gap: 15px;
+    //background-color: rgb(71, 46, 46);
+    margin: 10px;
+    .card-item{
+      background-color: white;
+      transition: all 0.3s;
+      min-height: 380px;
+      margin: 2px 5px;
+      &:hover{
+        transform: scale(1.05);
+        transition: all 0.3s
       }
-      button{
-        bottom: 0px;
-        position: absolute;
-        width: 100%;
-        padding: 7px 0px;
-        background-color: rgb(95, 95, 95);
-        color: white;
-        border: none;
-        cursor: pointer;
+      .card-inner{
+        min-height: 380px;
+        .card-top{
+          img{
+            width: 100%;
+            height:100%;
+          }
+        } 
+        .card-bottom{
+          padding: 5px;
+        }   
       }
-      img{
-        width: 100%;    
-      }
-    }
-
-    .course-box-details{
-      padding: 0 0.5em;
     }
   }
+ 
 }
 
 .slideIcon{
@@ -54,28 +53,27 @@
 
 
 @media(max-width: 1200px){
-  .featuredCourses .course-box-list .course-box{
-    width: 30%;   
-  }
+
+   
 }
 
 @media(max-width: 850px){
-  .featuredCourses .course-box-list .course-box{
-    width: 45%;   
-  }
+  // .featuredCourses .course-box-list .course-box{
+  //   width: 45%;   
+  // }
 }
 
 @media(max-width: 600px){
-  .featuredCourses .course-box-list .course-box{
-    width: 75%;   
-  }
+  // .featuredCourses .course-box-list .course-box{
+  //   width: 75%;   
+  // }
 }
 
 @media(max-width: 360px){
-  .featuredCourses .course-box-list .course-box{
-    width: 95%;  
-    margin-bottom: 12px; 
-  }
+  // .featuredCourses .course-box-list .course-box{
+  //   width: 95%;  
+  //   margin-bottom: 12px; 
+  // }
 }
 
 
@@ -133,3 +131,67 @@
     text-align: center;
   }
 }
+
+
+
+
+
+
+/// Refrence
+
+
+//  //background-color: rgb(0, 0, 0);
+//  .course-box-list{
+//   // border: 1px solid black;
+//   .course-box{
+    
+//     //margin:  0px 10px;
+//      .link{
+//         // text-decoration: none;
+//         // color: black;
+//         // width: 100%; 
+//         // .course-card{
+//         //   border: 1px solid rgb(185, 185, 185);
+//         //   background-color: rgb(248, 248, 248);
+//         //   transition: all 0.3s;
+//         //   min-height: 450px;
+//         //   height: 100%;
+//         //   //width: 100%;
+//         // &:hover{
+//         //   transform: scale(1.05);
+//         //   transition: all 0.3s;  
+//         //   }
+//         // } 
+//       }
+    
+     
+    
+//     //position: relative;
+//     // .overlay{
+//     //   background-color: rgb(0, 0, 0);
+//     //   position: absolute;
+//     //   width: 100%;
+//     //   height: 100%;
+//     //   opacity: 0.85;   
+//     // }
+
+//     // button{
+//     //   bottom: 0px;
+//     //   position: absolute;
+//     //   width: 100%;
+//     //   padding: 7px 0px;
+//     //   background-color: rgb(95, 95, 95);
+//     //   color: white;
+//     //   border: none;
+//     //   cursor: pointer;
+//     // }
+//     // img{
+//     //   width: 100%;  
+//     //   height: 100%;  
+//     // }
+//   }
+
+//   .course-box-details{
+//     padding: 0 0.5em;
+//   }
+// }

@@ -11,7 +11,7 @@ import OtherCourses from './otherCourses'
 
 const  CartPage = ()  => {
   const dispatch = useDispatch()
-  const cartList = useSelector(state => state.myState.cartList)
+  const cartList = useSelector(state => state.rootReducer.courseSlice.database.cartList)
 
   
   const mainPriceSum = () => {

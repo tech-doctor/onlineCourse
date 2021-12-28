@@ -10,7 +10,7 @@ import '../../Styles/myCourse.scss'
 
 const  MyCourses = ()  => {
 	//const dispatch = useDispatch()
-  const itemsBought = useSelector(state => state.myState.itemsBought)
+  const itemsBought = useSelector(state => state.rootReducer.courseSlice.purchasedItem)
 
 
 	return (

@@ -19,13 +19,13 @@ const  SideBar = (props) => {
 				</p>
       {closedCategory? '' :
       <ul>
-        <li><Link to = "/courses/category">HTML</Link></li>
-				<li><Link to = "/courses/category">CSS</Link></li>
-				<li><Link to = "/courses/category">Javascript</Link></li>
-				<li><Link to = "/courses/category">JQuery</Link></li>
+        <li><Link to = "/courses/category/playlistId">HTML</Link></li>
+				<li><Link to = "/courses/category/playlistId">CSS</Link></li>
+				<li><Link to = "/courses/category/playlistId">Javascript</Link></li>
+				<li><Link to = "/courses/category/playlistId">JQuery</Link></li>
       </ul> 
     }
-        <p style = {{fontWeight : '700', cursor: 'pointer'}}><Link to = "/courses/category">Random</Link></p>
+        <p style = {{fontWeight : '700', cursor: 'pointer'}}><Link to = "/courses/category/playlistId">Random</Link></p>
       </div>  
     )
   }

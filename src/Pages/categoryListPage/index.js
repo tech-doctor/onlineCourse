@@ -1,50 +1,24 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import  {faStar}  from '@fortawesome/free-solid-svg-icons'
+import React, {useEffect} from 'react'
 import Header from '../../Component/Header/desktopHeader/Header'
 import Footer from '../../Component/Footer/footer'
 import '../../Styles/categoryListPage.scss'
 import AllCategories from './allCategories'
-import { Spinner, Stack,Skeleton} from "@chakra-ui/react"
+import { Stack,Skeleton} from "@chakra-ui/react"
 import Author from './author'
-import {Link} from 'react-router-dom'
+import TopCourses from './topCourses'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchAsyncCategories, getSelectedCategory } from '../../Store/courseSlice'
+//import CourseCard from '../landingPage/courseCard'
 
 
 const  CategoryListPage = ()  => {
+  const topCourses = useSelector(getSelectedCategory);
+  const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
+  const dispatch = useDispatch()
 
-  const Stars = () => {
-		return(
-			<span className = "rating-stars">
-        <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			</span>
-			)
-	}
-
-	const Box = function box(){
-		return (
-		<div className = "course-box">
-      <Link style = {{textDecoration: 'none', color: 'black'}}  to = "course-selected">
-				<div className = 'image'>
-          <img alt ="" src = "https://www.valuecoders.com/blog/wp-content/uploads/2020/06/10-reasons-to-use-reactjs-for-enterprise-app-development-1024x614.jpg"></img>
-				</div>
-				<div className = "course-box-details">
-        <p style = {deepText}>Hereis the title for this course</p>
-					<p>7th june 2020</p>
-					<p><small><span style = {deepText} className = "rating-number">4.5</span><Stars/>
-					<span className = "likes">(147,256)</span></small>
-					</p>
-					<p>
-						<span style = {deepText} className = "newPrice">$15.99</span>
-						<span style = {{textDecoration: "line-through"}} className = "oldPrice"> $87.99</span>
-					</p>
-				</div>
-        </Link>
-			</div>
-		)
-	}
+  useEffect(() => {
+    dispatch(fetchAsyncCategories())
+},[dispatch]);
 
 	return (
 		<div>
@@ -56,34 +30,27 @@ const  CategoryListPage = ()  => {
           <Author/>
         </div>
         <hr/>
-			  <div className = "TopCourses">
-        <div style = {{textAlign: 'center'}} >
-          <Spinner  size="xl"/>
-        </div>
-		      <div>
-				   <p style = {{ fontSize: '25px'}}>Top JS Courses</p>
-			    </div>
-			    <div className = 'course-box-list'>
-				   <Box/>
-						<Box/>
-						<Box/>
-						<Box/>
-						<Box/>
-						<Box/>
-			    </div>	
-		    </div>
+			    <div>
+            <TopCourses
+            topCourses = {topCourses}
+            loading= {loading}
+            />
+          </div>
         <hr/>
-				<div>
+        
+				<div> 
+          {topCourses.length === 0 ?    
           <div>
             <Stack>
-              {/* isLOaded will cancel out the effect when the content is loaded */}
-              <Skeleton height="70px" isLoaded>
-              </Skeleton>
-              <Skeleton height="70px" />
-              <Skeleton height="70px" />
+              <Skeleton height="100px" />
+              <Skeleton height="100px" />
+              <Skeleton height="100px" />
+              <Skeleton height="100px" />
             </Stack>
-          </div>
-			  	<AllCategories/>
+          </div> :
+			  	<AllCategories
+          topCourses = {topCourses}
+          loading= {loading}/>}
 				</div>
 			</div>
 			<div>
@@ -93,8 +60,8 @@ const  CategoryListPage = ()  => {
 	)
 }
 
-const deepText = {
-	fontWeight : "700"
-}
+// const deepText = {
+// 	fontWeight : "700"
+// }
 
 export default CategoryListPage
