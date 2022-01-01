@@ -8,19 +8,23 @@ import Profile from './profile'
 import  MobileHeader from '../mobileHeader/mobileHeader'
 import Language from '../../language'
 import { Link } from 'react-router-dom'
-//import { updateCartList } from '../../../Store/mySlice'
 
 
 const  Header = () => {
  const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
- 
  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
- const itemsBought = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
+ const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
  
 //set the initial visibility state of the category list and profile details as false 
   const [profileVisibility, setProfileVisibility]  = useState(false)
   const [categoryVisibility, setCategoryVisibility]  = useState(false)
   
+   
+  const  htmlId  = 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK'
+  const cssId = 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2'
+  const javascriptId = 'PLEu7Y7_blvLVNfrsztZmfWEw57lWyuUfI'
+  const jqueryId =  'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808'
+
 	return (
 		<div className = "">
 		 <div className = "header">
@@ -72,12 +76,23 @@ const  Header = () => {
           }
 			  </div>
 			  <div className = "mobile-view">
-				 <MobileHeader isLoggedIn = {isLoggedIn} cartList = {cartList} itemsBought = {itemsBought}/> 
+				 <MobileHeader
+         htmlId = {htmlId}
+         cssId = {cssId}
+         javascriptId = {javascriptId}
+         jqueryId = {jqueryId}
+          isLoggedIn = {isLoggedIn} 
+          cartList = {cartList} 
+          purchasedItem = {purchasedItem}/> 
 			  </div>
 			</header>		
 		</div>
 		 <div>
 			<CategoryList
+        htmlId = {htmlId}
+        cssId = {cssId}
+        javascriptId = {javascriptId}
+        jqueryId = {jqueryId}
 				categoryVisibility = {categoryVisibility}
 				setCategoryVisibility = {setCategoryVisibility}
 			/>
@@ -86,7 +101,7 @@ const  Header = () => {
 			<Profile
 				profileVisibility = {profileVisibility} 
 				cartList = {cartList} 
-				itemsBought = {itemsBought}
+				purchasedItem = {purchasedItem}
 				setProfileVisibility = {setProfileVisibility}
 			/>
 		 </div>

@@ -5,6 +5,9 @@ import {Link} from 'react-router-dom';
 
 const  SideBar = (props) => {
   const [closedCategory, setCategory] = useState(true)
+  const {isLoggedIn, htmlId, cssId, javascriptId, jqueryId} = props
+
+
 
 	const MobileCategories = function category(){
     return (
@@ -19,10 +22,10 @@ const  SideBar = (props) => {
 				</p>
       {closedCategory? '' :
       <ul>
-        <li><Link to = "/courses/category/playlistId">HTML</Link></li>
-				<li><Link to = "/courses/category/playlistId">CSS</Link></li>
-				<li><Link to = "/courses/category/playlistId">Javascript</Link></li>
-				<li><Link to = "/courses/category/playlistId">JQuery</Link></li>
+        <li><Link to = {`/courses/category/${htmlId}`}>HTML</Link></li>
+				<li><Link to = {`/courses/category/${cssId}`}>CSS</Link></li>
+				<li><Link to = {`/courses/category/${javascriptId}`}>Javascript</Link></li>
+				<li><Link to = {`/courses/category/${jqueryId}`}>JQuery</Link></li>
       </ul> 
     }
         <p style = {{fontWeight : '700', cursor: 'pointer'}}><Link to = "/courses/category/playlistId">Random</Link></p>
@@ -35,7 +38,7 @@ const  SideBar = (props) => {
       setCategory(!closedCategory)
 	 }
 	
-   const {isLoggedIn} = props
+   
 	return(
 		<div>
 		  <div className = "side-bar" style = {props.getSidebarStyle} >

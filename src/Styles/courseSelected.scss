@@ -8,47 +8,95 @@
 
 
 .courseSelected{
+  //margin-top: 50px;
   .center-div{
-    margin: 20px 120px;
+    margin: 50px 120px;
     .categoryFlex{
       display: flex;
       align-items: center;
       justify-content: space-between;
       border: 1px solid black;
-    }
-    .preview{
-      border: 1px solid black;
-      width: 35%;
-      margin-right: 10px;
-      height: 100%;
-      .instruction{
-        text-align: center;
-        margin-bottom: 20px;
-        animation: MoveUpDown 2s linear infinite;
-        position: relative;
-      }
-    }
-
-    .sameCategoryCourses{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-     .course-box + .course-box {
-        margin-left: 20px;
-      }
-      .course-box {
+      width: 100%;
+      //padding: 0px 10px;
+      .categoryDetails{
         border: 1px solid black;
-       .image{
-          img{
-            width: 100%;
-          }
+        width: 50%;
+        height: 100%;
+     }
+      .preview{
+        border: 1px solid black;
+        width: 35%;
+        margin-right: 10px;
+        height: 100%;
+        .instruction{
+          text-align: center;
+          margin-bottom: 20px;
+          animation: MoveUpDown 2s linear infinite;
+          position: relative;
         }
-        .box-details{
-          padding-left: 10px;
+      }
+      
+    }
+
+   .sameCategoryCourses-div{
+     //border: 1px solid rgb(0, 0, 0);
+     background-color: rgb(218, 218, 218);
+     margin-top: 50px;
+    .sameCategoryCourses{
+     // border: 1px solid black;
+      //margin: 10px;
+      .card-item{
+        background-color: rgb(245, 245, 245);
+        transition: all 0.3s;
+        min-height: 350px;
+        margin: 2px 5px;
+        border: 1px solid rgb(160, 160, 160);
+        position: relative;
+      .overlay{
+          background-color: rgb(0, 0, 0);
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0.85;   
+        }
+        button{
+          width: 100%;
+          cursor: pointer;
+          position: absolute;
+          padding: 7px 0px;
+          background-color: rgb(95, 95, 95);
+          color: white;
+          border: none;
+          bottom: 0px;
+        }
+        &:hover{
+          transform: scale(1.05);
+          transition: all 0.3s
+        }
+        .card-inner{
+          min-height: 350px;
+          .card-top{
+            img{
+              width: 100%;
+              height:100%;
+            }
+          } 
+          .card-bottom{
+            padding: 5px;
+            .card-info{
+              .best-selling{
+                position: absolute;
+                right: 20px;
+                bottom: 40px;
+              }
+            }
+          }   
         }
       }
 
     }
+   }
+    
   }
 }
 
@@ -65,7 +113,7 @@
 
 .review-div{
   width: 95%;
-  margin: 20px auto;
+  margin: 40px auto;
    .review-heading{
      display: flex;
      align-items: center;
@@ -93,6 +141,7 @@
    .review-body{
      display: flex;
      padding: 1em 0.2em;
+     border-bottom: 1px solid rgb(204, 204, 204);
      .left{
        .avatar{
          width: 100%;
@@ -104,6 +153,12 @@
      }
      .right{
       margin-left: 10px;
+     // border: 1px solid black;
+      width: 100%;
+      .comments{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 16px;
+      }
      }
    }
 }
@@ -126,24 +181,29 @@
   .courseSelected{
     .center-div{
       margin: 20px 30px;
-      .sameCategoryCourses{
-        display: flex;
-        overflow-x: scroll;
-       .course-box + .course-box {
-           margin-left: 20px;
-        }
-        .course-box {
-           border: 1px solid black;
-          .image{
-            img{
-              width: 100%;
-            }
+      .categoryFlex{
+        flex-wrap: wrap;
+        width: 100%;
+        .categoryDetails{
+          border: 1px solid black;
+          width: 100%;
+          margin: auto;
+       }
+        .preview{
+          border: 1px solid black;
+          width: 100%;
+          margin: auto;
+          margin-top: 25px;
+          //margin-right: 10px;
+          height: 100%;
+          .instruction{
+            text-align: center;
+            margin-bottom: 20px;
+            animation: MoveUpDown 2s linear infinite;
+            position: relative;
           }
-          .box-details{
-            padding-left: 10px;
-          }
         }
-  
+        
       }
     }
   }
@@ -173,6 +233,7 @@
        flex-wrap: wrap;
        .right{
         margin-left: 0px;
+        margin-top: 5px;
        }
      }
   }

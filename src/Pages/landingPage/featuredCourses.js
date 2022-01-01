@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Spinner} from "@chakra-ui/react"
 import Slider from 'react-slick';
@@ -6,29 +6,36 @@ import { settings } from '../../Styles/settings';
 import { fetchAsyncCourses, getAllcourses, updateLoading } from '../../Store/courseSlice'
 import moment from 'moment'
 import CourseCard from './courseCard';
+import { useParams } from 'react-router-dom';
 
 
 const FeaturedCourses = () => {
-	 const featuredCourses = useSelector(getAllcourses);
-	 const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
-	 const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
+  const featuredCourses = useSelector(getAllcourses);
+  const allCourse = featuredCourses.result;
+  let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
+  
   useEffect(() => {
-		  dispatch(updateLoading(true))
+    dispatch(updateLoading(true))
 			dispatch(fetchAsyncCourses())
 			dispatch(updateLoading(false))
-	},[dispatch]);
+	},[dispatch, useParams ]);
 
+  
+
+  
 	
 
-  const [showCartButton, setShowCartButton] = useState(false)
+ // const [showCartButton, setShowCartButton] = useState(false)
 
 	if (loading || featuredCourses.length === 0) {
-    console.log('loading...')
     return  <div  style = {{textAlign: 'center', padding: '100px'}} >
-		<Spinner  size="xl"/>
-	</div>
+     <Spinner  size="xl"/>
+  </div>    
   }
+  
+
+
 
 	return (
 		<div className = "featuredCourses">
@@ -37,10 +44,10 @@ const FeaturedCourses = () => {
 			</div>
 			<div className = 'course-card'>
 			<Slider {...settings}>
-				{featuredCourses.map (data =>
+				{allCourse?.map ((data) =>
 				(<CourseCard
 					key = {data.id}
-					id = {data.id}
+					id = {data.contentDetails.upload.videoId}
 					imageAlt ={data.snippet.title}  
 					imageSrc = {data.snippet.thumbnails.standard.url}
 					title = {data.snippet.title}

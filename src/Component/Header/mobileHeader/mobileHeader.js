@@ -15,7 +15,7 @@ const  MobileHeader = (props) =>  {
 	}
 
   //  setting the isLoggedIn props variable
-   const {cartList} = props;
+   const {cartList, htmlId, cssId, javascriptId, jqueryId} = props;
 
   return (
     <div className = "mobile-header">
@@ -41,7 +41,12 @@ const  MobileHeader = (props) =>  {
         </div>
       </div>
       <div style={getSidebarStyle}>
-        <SideBar/>
+        <SideBar
+          htmlId = {htmlId}
+          cssId = {cssId}
+          javascriptId = {javascriptId}
+          jqueryId = {jqueryId}
+        />
       </div>
     </div> 
   )

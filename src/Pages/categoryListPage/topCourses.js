@@ -6,10 +6,15 @@ import Slider from 'react-slick';
 import { settings } from '../../Styles/settings';
 import moment from 'moment';
 import TopCoursesCard from './topCoursesCard'
+//import {useParams} from 'react-router-dom'
 
 
 const TopCourses = (props) => {
-const {loading,topCourses } = props
+const {loading,topCourses, titleFunc } = props
+
+
+
+const topCoursesArray = topCourses.slice(4,11)
 
     if (loading || topCourses.length === 0) {
       return  <div  style = {{textAlign: 'center', padding: '100px'}} >
@@ -20,14 +25,14 @@ const {loading,topCourses } = props
     return (
       <div className = "TopCourses">
         <div>
-         <p style = {{ fontSize: '25px'}}>Top JS Courses</p>
+         <p style = {{ fontSize: '25px'}}>Top {titleFunc} Courses</p>
         </div>
         <div className = 'course-card'>
-         <Slider {...settings}> 
-          {topCourses.map (data =>
+         <Slider {...settings }> 
+          {topCoursesArray.map (data =>
           <TopCoursesCard
             key = {data.id}
-            id = {data.id}
+            id = {data.snippet.resourceId.videoId}
             imageAlt ={data.snippet.title}  
             imageSrc = {data.snippet.thumbnails.standard.url}
             title = {data.snippet.title}

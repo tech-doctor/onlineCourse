@@ -1,21 +1,30 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import  {faAngleDown}  from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import  {faAngleDown}  from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import {Badge} from "@chakra-ui/react"
 import moment from 'moment';
+import { Collapse , Button} from '@chakra-ui/react'
 
 const AllCategories = (props) => {
 
-const { loading, topCourses} = props;
+const {topCourses, titleFunc} = props;
 
+const [show, setShow] = React.useState(false)
+const handleToggle = () => setShow(!show)
+
+// const angleDown = () => {
+//   return (
+//     <FontAwesomeIcon icon={faAngleDown} />
+//   )
+// }
 
   return (
     <div className = "allCategory">
       <div style = {{display: 'flex', justifyContent: 'space-between',
       alignItems:'center' }} className = "title-filter">
         <div className ="title">
-          <p style = {{ fontSize: '25px'}}>All JS Courses</p>
+          <p style = {{ fontSize: '25px'}}>All {titleFunc} Courses</p>
         </div>
           <div className ="filter">
             <select style = {{cursor: 'pointer' }}>
@@ -25,9 +34,10 @@ const { loading, topCourses} = props;
             </select>
           </div>  	 
       </div>
+      <Collapse startingHeight={'890px'} in={show}>
       {topCourses.map(data =>  
       <div key = {data.id} className='all-categories-box'>
-      <Link style = {{textDecoration: 'none', color: 'black'}}  to = "course-selected">
+      <Link style = {{textDecoration: 'none', color: 'black'}}   to = {`/courses/${data.snippet.resourceId.videoId}`}>
         <div style = {{marginBottom: '20px'}} className = "allCoursesDisplay" >
             <div className = "left">
               <div className = "image"> 
@@ -37,12 +47,10 @@ const { loading, topCourses} = props;
                 <p style = {deepText}>{data.snippet.title}</p>
                 <div>
                   <p>{moment(data.snippet.publishedAt).fromNow()}</p>
-                {new Date(data.snippet.publishedAt).getDate() + '0' > 200? 
-                <Badge variant="solid" colorScheme="green" px={2}>
-                Best Selling
-               </Badge>: ''
-              }
-              
+                  {new Date(data.snippet.publishedAt).getDate() + '0' > 200? 
+                  <Badge className='best-selling' variant="solid" colorScheme="green" px={2}>
+                  Best Selling
+                  </Badge>: ''}
                 </div>
               </div>
             </div>
@@ -55,8 +63,11 @@ const { loading, topCourses} = props;
       </Link>   
       </div> 
       )}
-      <div style = {{cursor: 'pointer'}} className = "more">
-        <p>See more <FontAwesomeIcon icon={faAngleDown}/></p>
+      </Collapse>
+      <div>
+        <Button style = {{cursor: 'pointer'}} size='sm' onClick={handleToggle} mt='1rem'>
+        Show {show ? 'Less' : 'More'}
+      </Button>
       </div>
     </div>
   )
@@ -66,4 +77,4 @@ const deepText = {
   fontWeight: '700'
 }
 
-export default AllCategories
+export default AllCategories;

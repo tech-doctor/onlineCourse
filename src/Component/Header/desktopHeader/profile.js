@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 const  Profile = (props) => {
   
-  const {profileVisibility, setProfileVisibility, cartList, itemsBought} = props
+  const {profileVisibility, setProfileVisibility, cartList, purchasedItem} = props
 	const container = React.createRef()
   
 	const handleClickOutside = (event) => {
@@ -41,7 +41,7 @@ const  Profile = (props) => {
          <hr/>
          <div className = "profile-list">
            <ul>
-           <Link to = "/home/my-courses" style = {{textDecoration: 'none', color: 'black'}} > <li>My courses <small>{itemsBought.length}</small></li></Link>
+           <Link to = "/home/my-courses" style = {{textDecoration: 'none', color: 'black'}} > <li>My courses <small>{purchasedItem.length}</small></li></Link>
              <Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} > <li>My Cart<small>{cartList.length}</small></li></Link>
              <Link to = "/dashboard/purchase-history" style = {{textDecoration: 'none', color: 'black'}} ><li>Purchase history<small>5</small></li></Link>
            </ul>

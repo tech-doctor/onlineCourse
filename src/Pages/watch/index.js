@@ -2,8 +2,10 @@ import React from 'react';
 import Header from "../../Component/Header/desktopHeader/Header"
 import Footer from '../../Component/Footer/footer'
 import '../../Styles/watch.scss'
+import { useParams } from 'react-router-dom';
 
-const watch = () => {
+const Watch = () => {
+  const videoId = useParams().id;
     return (
       <div>
           <div>
@@ -13,7 +15,7 @@ const watch = () => {
           <div className = "watch">
           <div className = "iframe">
           <iframe title ="#" width="100%" height="100%"
-            src="https://www.youtube.com/embed/tgbNymZ7vqY?controls=0" frameBorder = 'true' >
+            src={`https://www.youtube.com/embed/${videoId}?controls=0`} frameBorder = 'true' >
           </iframe>
         </div>
           </div>
@@ -25,4 +27,4 @@ const watch = () => {
     );
 }
 
-export default watch;
+export default Watch;

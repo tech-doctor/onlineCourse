@@ -7,6 +7,7 @@ import { Stack,Skeleton} from "@chakra-ui/react"
 import Author from './author'
 import TopCourses from './topCourses'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom';
 import { fetchAsyncCategories, getSelectedCategory } from '../../Store/courseSlice'
 //import CourseCard from '../landingPage/courseCard'
 
@@ -14,11 +15,31 @@ import { fetchAsyncCategories, getSelectedCategory } from '../../Store/courseSli
 const  CategoryListPage = ()  => {
   const topCourses = useSelector(getSelectedCategory);
   const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const {playlistId} = useParams();
 
   useEffect(() => {
-    dispatch(fetchAsyncCategories())
-},[dispatch]);
+    dispatch(fetchAsyncCategories(playlistId))
+},[dispatch,playlistId]);
+
+const titleFunc = () => { 
+  switch (playlistId) {
+    case 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK': 
+      return('HTML');
+      //break;
+    case 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2':
+      return( 'CSS' );
+     // break;
+    case 'PLEu7Y7_blvLVNfrsztZmfWEw57lWyuUfI':
+      return( 'Javascript' );
+      //break;
+      case 'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808':
+      return( 'JQuery' );
+     // break;
+    default:
+      return( 'Random' );
+  }
+}
 
 	return (
 		<div>
@@ -34,6 +55,7 @@ const  CategoryListPage = ()  => {
             <TopCourses
             topCourses = {topCourses}
             loading= {loading}
+            titleFunc = {titleFunc()}
             />
           </div>
         <hr/>
@@ -50,7 +72,9 @@ const  CategoryListPage = ()  => {
           </div> :
 			  	<AllCategories
           topCourses = {topCourses}
-          loading= {loading}/>}
+          loading= {loading}
+          titleFunc = {titleFunc()}
+          />} 
 				</div>
 			</div>
 			<div>
