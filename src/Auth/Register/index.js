@@ -1,9 +1,30 @@
-import React from 'react';
-import { ChakraProvider, Flex, Box, Heading, FormControl, FormLabel, Input,  Button } from '@chakra-ui/react'
+import React,{useState} from 'react';
+import { ChakraProvider, CircularProgress, Flex, Box, Heading, FormControl, FormLabel, Input,  Button, InputGroup, InputRightElement,Icon } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
 import '../../Styles/register.scss'
 
 const RegisterPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [inputs, setInputs] = useState({});
+
+   const handleChange = (event) => {
+    setInputs({
+      ...inputs,
+      [event.target.name]: event.target.value
+    });
+   };
+
+   const  handleSubmit = (event) => {
+      event.preventDefault();
+      alert(JSON.stringify(inputs))
+
+   }
+
+
+ 
+  const handlePasswordVisibility = () => setShowPassword(!showPassword);
+
   return (
     <div className='register'>
       <div className='heading-body'>
@@ -18,25 +39,55 @@ const RegisterPage = () => {
                   <Heading>Register</Heading>
                 </Box>
                 <Box my={4} textAlign="left">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <FormControl isRequired>
                     <FormLabel>First Name</FormLabel>
-                    <Input borderColor={"#808080"} type="text" placeholder="First Name..." />
+                    <Input
+                     onChange={handleChange}
+                     borderColor={"#808080"} type="text" placeholder="First Name..."
+                     name='firstName'
+                     value={inputs.firstName || ''}
+                    />
                   </FormControl>
                   <FormControl mt={6} isRequired>
                     <FormLabel>Last Name</FormLabel>
-                    <Input borderColor={"#808080"} type="text" placeholder="Last Name..." isRequired/>
+                    <Input
+                      onChange={handleChange}
+                     borderColor={"#808080"} type="text" placeholder="Last Name..." isRequired
+                     name='lastName'
+                      value={inputs.lastName || ''}
+                    />
                   </FormControl>
                   <FormControl mt={6} isRequired>
                     <FormLabel>Email</FormLabel>
-                    <Input borderColor={"#808080"} type="Email" placeholder="Enter email..." isRequired/>
+                    <Input 
+                    onChange={handleChange}
+                    borderColor={"#808080"} type="Email" placeholder="Enter email..." isRequired
+                    name='email'
+                    value={inputs.email  || ''}
+                    />
                   </FormControl>
                   <FormControl mt={6} isRequired>
                     <FormLabel>Password</FormLabel>
-                    <Input borderColor={"#808080"} type="password" placeholder="*******" isRequired/>
+                    <InputGroup>
+                        <Input 
+                        onChange={handleChange}
+                        borderColor={"#808080"} type= {showPassword ? 'text': 'password'} placeholder="*******"
+                        name='password'
+                        value={inputs.password || ''}
+                        />
+                        <InputRightElement width="3rem">
+                          <Button h="1.5rem" size="sm" onClick=  
+                            {handlePasswordVisibility}>
+                            {showPassword ? <Icon name="view-off" /> : <Icon name="view" />}
+                          </Button>
+                        </InputRightElement>
+                      </InputGroup> 
                   </FormControl>
                   <Button color={'teal'}  _hover={{ background: "teal", color: "white",}} variant="outline"  width="full" mt={4} type="submit">
-                    Register
+                  {isLoading ? 
+                      <CircularProgress isIndeterminate size="24px" color="teal" />
+                      : 'Register'}
                   </Button>
                 </form>
               </Box>

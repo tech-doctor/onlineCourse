@@ -4,7 +4,7 @@ import Footer from '../../Component/Footer/footer'
 import '../../Styles/courseSelected.scss'
 import SameCategory from './sameCategory'
 import CategoryDetails from './categoryDetails'
-import { Spinner} from "@chakra-ui/react"
+//import { Spinner} from "@chakra-ui/react"
 import Review from './review'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAsyncSelectedCourses, getSelectedCourse } from '../../Store/courseSlice'
@@ -13,7 +13,7 @@ import moment from 'moment'
 
 const  CourseSelected = ()  => {
   const selectedCourses = useSelector(getSelectedCourse);
-  const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
+  //const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   const dispatch = useDispatch();
   const {id} = useParams();
  
@@ -68,7 +68,7 @@ if(selectedCourses.length !== 0){
 
 export default CourseSelected
 
-
+/// code to format time unit
 function formatTimeUnit(input, unit){
   var index = input.indexOf(unit);
   var output = "00"
@@ -88,7 +88,7 @@ function ISO8601toDuration(input){
   var M = formatTimeUnit(input, 'M');
   var S = formatTimeUnit(input, 'S');
 
- if(H == "00"){
+ if(H === "00"){
    H = "";
  }else{
    H += ":"

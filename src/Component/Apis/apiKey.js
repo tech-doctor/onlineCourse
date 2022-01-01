@@ -1,2 +1,2 @@
-//export const apiKey = "AIzaSyBBASn1mcnOfUhGoCFX0DopkZHDo4cPDQQ"
+export const apiKey = "AIzaSyBBASn1mcnOfUhGoCFX0DopkZHDo4cPDQQ"
 

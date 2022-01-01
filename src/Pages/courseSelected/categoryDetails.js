@@ -7,7 +7,7 @@ import {useParams} from 'react-router-dom'
 
 const  CategoryDetails = (props) => {
 
-  const { id, title, description, duration, likeCount,viewCount,embedLink,publishedAt} = props;
+  const { id, title, duration, likeCount,viewCount,embedLink,publishedAt} = props;
 
   const paramsId = useParams().id;
 

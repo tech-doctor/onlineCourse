@@ -9,16 +9,14 @@ const  Review = () => {
    const {id} = useParams();
   const [reviews, setReviews] = useState([]);
  
-  const fetchCountries = async ()=> {
+  async  function fetchReviews () {
     const response = await api.get(`/commentThreads?part=snippet&part=id&part=replies&maxResults=5&videoId=${id}&key=${apiKey}`);
     console.log(response.data.items)
     setReviews(response.data.items)  
   }
 
-
   useEffect(() => {
-    
-    fetchCountries(); 
+   fetchReviews()
   }, [id]);
    
 

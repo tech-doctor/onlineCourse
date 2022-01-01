@@ -6,7 +6,7 @@ import { settings } from '../../Styles/settings';
 import { fetchAsyncCourses, getAllcourses, updateLoading } from '../../Store/courseSlice'
 import moment from 'moment'
 import CourseCard from './courseCard';
-import { useParams } from 'react-router-dom';
+//import { useParams } from 'react-router-dom';
 
 
 const FeaturedCourses = () => {
@@ -19,7 +19,7 @@ const FeaturedCourses = () => {
     dispatch(updateLoading(true))
 			dispatch(fetchAsyncCourses())
 			dispatch(updateLoading(false))
-	},[dispatch, useParams ]);
+	},[dispatch]);
 
   
 

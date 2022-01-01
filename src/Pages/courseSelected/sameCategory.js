@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 //import {Link} from 'react-router-dom';
 import Slider from 'react-slick';
 import { settings } from '../../Styles/settings';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateLoading, fetchAsyncCourses,getAllcourses } from '../../Store/courseSlice';
+import { fetchAsyncCourses,getAllcourses } from '../../Store/courseSlice';
 import { Spinner } from '@chakra-ui/react';
 import TopCoursesCard from '../categoryListPage/topCoursesCard';
 import { useParams } from 'react-router-dom';
@@ -17,7 +17,7 @@ const  SameCategory = () => {
   let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   
   
-  const [showCartButton, setShowCartButton] = useState(false)
+  //const [showCartButton, setShowCartButton] = useState(false)
    const {id} = useParams();
 
   useEffect(() => {
@@ -59,8 +59,8 @@ const  SameCategory = () => {
     )
 }
 
-const deepText = {
-	fontWeight : "700"
-}
+// const deepText = {
+// 	fontWeight : "700"
+// }
 
 export default SameCategory

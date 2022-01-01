@@ -22,3 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# My files
+/src/Component/Apis/apikey.js
