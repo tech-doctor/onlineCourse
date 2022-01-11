@@ -1,12 +1,10 @@
 import React from 'react'
 import '../../Styles/categoryListPage.scss'
 import { Spinner} from "@chakra-ui/react"
-//import {Link} from 'react-router-dom'
 import Slider from 'react-slick';
 import { settings } from '../../Styles/settings';
 import moment from 'moment';
-import TopCoursesCard from './topCoursesCard'
-//import {useParams} from 'react-router-dom'
+import CourseCard from '../../Component/courseCard';
 
 
 const TopCourses = (props) => {
@@ -30,7 +28,7 @@ const topCoursesArray = topCourses.slice(4,11)
         <div className = 'course-card'>
          <Slider {...settings }> 
           {topCoursesArray.map (data =>
-          <TopCoursesCard
+          <CourseCard
             key = {data.id}
             id = {data.snippet.resourceId.videoId}
             imageAlt ={data.snippet.title}  
@@ -39,6 +37,7 @@ const topCoursesArray = topCourses.slice(4,11)
             date = {moment(data.snippet.publishedAt).fromNow()}
             newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
             oldPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30}
+            data = {data}
           />
           )}
          </Slider>

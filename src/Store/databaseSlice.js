@@ -1,17 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+///import { uuid } from uuidv4();
+import  uuid  from 'uuid/dist/v4'
 
 
 const initialState = {
-    cartList : [{
-		id: 1,
-		mainPrice: 20,
-		discountPrice: 9.99
-	  },
-	  {
-		id: 2,
-		mainPrice: 18.89,
-		discountPrice: 8.99
-	  }
+    cartList : [
 	],
 		purchasedItem: [
 			// {
@@ -93,6 +86,7 @@ const initialState = {
 		],
 }
 
+//console.log(uuid())
 
 const databaseSlice = createSlice({
    name: 'DatabaseSlice',
@@ -102,7 +96,14 @@ const databaseSlice = createSlice({
 			state.cartList = action.payload
 		},
 	  updateCartList(state, action){
-			state.cartList = action.payload
+		//   const listIndex = state.cartList.findIndex(item => item.id === action.payload.id);
+		//        console.log(listIndex)
+		// 	   if(listIndex === -1){
+				state.cartList.push({...action.payload, eachId: uuid()})
+			//    }else{
+			// 	   console.log('item already in cart')
+			//    }
+			
 		},
    }
 })

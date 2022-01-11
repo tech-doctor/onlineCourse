@@ -36,7 +36,8 @@ const  MobileHeader = (props) =>  {
             style ={{marginLeft: '20px'}}
             icon={faShoppingCart}
           />
-          <small>{cartList.length}</small>
+          {cartList.length > 0 && <small>{cartList.length}</small>}
+          {/* <small>{cartList.length}</small> */}
           </Link>  
         </div>
       </div>

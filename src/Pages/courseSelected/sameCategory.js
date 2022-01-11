@@ -6,7 +6,8 @@ import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAsyncCourses,getAllcourses } from '../../Store/courseSlice';
 import { Spinner } from '@chakra-ui/react';
-import TopCoursesCard from '../categoryListPage/topCoursesCard';
+//import TopCoursesCard from '../categoryListPage/topCoursesCard';
+import CourseCard from '../../Component/courseCard';
 import { useParams } from 'react-router-dom';
 
 
@@ -41,7 +42,7 @@ const  SameCategory = () => {
             <Slider {...settings}> 
 				    {allCourse?.map ((data) =>
             <div key={data.id}>
-              <TopCoursesCard
+              <CourseCard
                key = {data.id}
                id = {data.contentDetails.upload.videoId}
                imageAlt ={data.snippet.title}  
@@ -50,6 +51,7 @@ const  SameCategory = () => {
                date = {moment(data.snippet.publishedAt).fromNow()}
                newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
                oldPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30}
+               data = {data}
               />
             </div>
             )}

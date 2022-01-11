@@ -42,7 +42,7 @@ const  SideBar = (props) => {
 	return(
 		<div>
 		  <div className = "side-bar" style = {props.getSidebarStyle} >
-        {isLoggedIn? 
+        {!isLoggedIn? 
           <div className ="category">
           <button>Login</button><br/>
           <button>Register</button>

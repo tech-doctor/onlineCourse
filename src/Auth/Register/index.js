@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import { ChakraProvider, CircularProgress, Flex, Box, Heading, FormControl, FormLabel, Input,  Button, InputGroup, InputRightElement,Icon } from '@chakra-ui/react'
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 import '../../Styles/register.scss'
 
@@ -79,7 +80,7 @@ const RegisterPage = () => {
                         <InputRightElement width="3rem">
                           <Button h="1.5rem" size="sm" onClick=  
                             {handlePasswordVisibility}>
-                            {showPassword ? <Icon name="view-off" /> : <Icon name="view" />}
+                            {showPassword ? <ViewOffIcon/> : <ViewIcon/>}
                           </Button>
                         </InputRightElement>
                       </InputGroup> 

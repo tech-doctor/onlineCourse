@@ -55,7 +55,7 @@ const  Header = () => {
 				  <div className = "cart-icon" style = {{cursor: 'pointer'}}>
             <Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} >
               <FontAwesomeIcon icon={faShoppingCart} style = {{fontSize: '20px'}} />
-			        <small>{cartList.length}</small>
+			        {cartList.length > 0 && <small>{cartList.length}</small>}
 			      </Link>  
 				  </div>
 				    {isLoggedIn? 

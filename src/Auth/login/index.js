@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChakraProvider, Text, CircularProgress, Flex, Box, Heading, FormControl, FormLabel, Input,  Button, InputGroup, InputRightElement, Icon } from '@chakra-ui/react'
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 import '../../Styles/login.scss';
 import { userLogin } from '../../utils/mockApi';
@@ -26,7 +27,7 @@ const LoginPage = () => {
 
 
 
-  const handleSubmit = async (event) => {
+    const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
      try {
@@ -90,7 +91,7 @@ const LoginPage = () => {
                         <InputRightElement width="3rem">
                           <Button h="1.5rem" size="sm" onClick=  
                             {handlePasswordVisibility}>
-                            {showPassword ? <Icon name="view-off" /> : <Icon name="view" />}
+                            {showPassword ? <ViewOffIcon/>  : <ViewIcon/>}
                           </Button>
                         </InputRightElement>
                       </InputGroup>
@@ -119,3 +120,7 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+
+
+

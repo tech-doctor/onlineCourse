@@ -19,7 +19,11 @@
      position: relative;
      small{
       background-color: red;
-      padding: 1px 6px;
+      color: white;
+      text-align: center;
+      font-weight: 700;
+      height: 20px;
+      width: 20px;
       border-radius: 50%;
       position: absolute;
       left: 60%;
@@ -189,12 +193,16 @@
 .mobile-header {
   small{
     background-color: rgb(247, 43, 43);
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    height: 20px;
+    width: 20px;
     font-size: 13px;
-    padding: 2px 7px;
     border-radius: 50%;
     position: absolute;
-    right: 10px;
-    top: 10px 
+    right: 13px;
+    top: 13px 
    }
    
   .mobile-icons{

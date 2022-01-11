@@ -5,7 +5,7 @@ import Slider from 'react-slick';
 import { settings } from '../../Styles/settings';
 import { fetchAsyncCourses, getAllcourses, updateLoading } from '../../Store/courseSlice'
 import moment from 'moment'
-import CourseCard from './courseCard';
+import CourseCard from '../../Component/courseCard';
 //import { useParams } from 'react-router-dom';
 
 
@@ -15,6 +15,7 @@ const FeaturedCourses = () => {
   const allCourse = featuredCourses.result;
   let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   
+
   useEffect(() => {
     dispatch(updateLoading(true))
 			dispatch(fetchAsyncCourses())
@@ -54,6 +55,8 @@ const FeaturedCourses = () => {
 					date = {moment(data.snippet.publishedAt).fromNow()}
 					newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
 					oldPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30}
+				   // allCourse = {allCourse}
+					data = {data}
 				/>)
 				)}
 				</Slider>
