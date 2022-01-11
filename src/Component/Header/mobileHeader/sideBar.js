@@ -44,8 +44,8 @@ const  SideBar = (props) => {
 		  <div className = "side-bar" style = {props.getSidebarStyle} >
         {!isLoggedIn? 
           <div className ="category">
-          <button>Login</button><br/>
-          <button>Register</button>
+          <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/login"> <button>Login</button> </Link><br/>
+          <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/Register"> <button>Register</button> </Link><br/>
           <MobileCategories/>
         </div>
          : 

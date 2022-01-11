@@ -30,8 +30,8 @@ const  orderDetails = () => {
             </div>
           </div>
           <div className='right'>
-            <span>${data.newPrice}</span><br/>
-            <span style = {{textDecoration: 'line-through'}}>${data.previousPrice}</span><br/>
+            <span>₦{data.newPrice}</span><br/>
+            <span style = {{textDecoration: 'line-through'}}>₦{data.previousPrice}</span><br/>
           </div>
         </div>))}
        </div>

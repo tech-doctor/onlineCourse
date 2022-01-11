@@ -18,10 +18,8 @@ const RegisterPage = () => {
 
    const  handleSubmit = (event) => {
       event.preventDefault();
-      alert(JSON.stringify(inputs))
-
-   }
-
+      console.log(inputs);
+      }
 
  
   const handlePasswordVisibility = () => setShowPassword(!showPassword);

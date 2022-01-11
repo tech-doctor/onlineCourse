@@ -7,6 +7,9 @@ import Footer from '../../Component/Footer/footer'
 import '../../Styles/cart.scss'
 import TotalCart from './totalCart'
 import OtherCourses from './otherCourses'
+import CartItem from './cartItem'
+import moment from 'moment'
+
 
 
 const  CartPage = ()  => {
@@ -16,55 +19,22 @@ const  CartPage = ()  => {
   
   const mainPriceSum = () => {
     let sum  = 0
-    cartList.forEach (item => {
-      sum += item.mainPrice
+    cartList.forEach (data => {
+      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30
     })
      return sum
   }
 
   const discountPriceSum = () => {
     let sum  = 0
-    cartList.forEach (item => {
-      sum += item.discountPrice
+    cartList.forEach (data => {
+      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0')
     })
     return sum
   }
 
 
-  const CartList = () => {
-    return (
-      <div>
-        { cartList.map ((data,  index) => 
-        (<div key = {data.id}  className = "cartList">
-          <Link style = {{textDecoration: 'none', color: 'black'}} to = 'courses/course-selected'>
-          <div className = "left">
-            <div className ="image">
-              <img  alt = "" src = "../Assets/React-frontend.jpg"/>
-            </div>
-            <div className = 'title-details'>
-              <p>TITLE</p>
-              <p>Little details</p>
-            </div>
-          </div>
-          </Link> 
-          <div className ="right">
-            <div  className = "remove">
-              <span>X</span>
-            </div>
-            <div className = "price-tag">
-              <p>${data.discountPrice}</p>
-              <p style = {{textDecoration: 'line-through'}}>${data.mainPrice}</p><br/>
-              <Link style = {{textDecoration: 'none', color: 'black'}} to = 'cart/checkout'>
-              <button style = {{cursor: 'pointer'}}>BUY</button>
-              </Link>
-            </div>
-          </div>
-        </div>
-       ))
-       }
-      </div>
-    )
-  }
+  
 	return (
 		<div className ="cart">
       <div>
@@ -77,7 +47,7 @@ const  CartPage = ()  => {
         </div>
         <div style = {{margin: '50px 10%'}} className = "body">
           {/* If there is zero item on the cart, return this */}
-          {!cartList?
+          {cartList.length === 0?
           <div className = "empty-chart">
             <div className = "image">
               <img alt = "noChart" src = "../Assets/Empty-chart.png"/>
@@ -90,14 +60,25 @@ const  CartPage = ()  => {
             <div className = "skeleton">
               <Stack>
                 {/* isLOaded will cancel out the effect when the content is loaded */}
-                <Skeleton height="200px" isLoaded>
+                {/* <Skeleton height="200px" isLoaded>
                 </Skeleton>
                 <Skeleton height="200px" />
-                <Skeleton height="200px" />
+                <Skeleton height="200px" /> */}
               </Stack>
             </div>
           <div>
-            <CartList/>
+            { cartList.map(data =>
+               <CartItem 
+                key = {data.id}
+                id = {data.contentDetails.upload.videoId}
+                imageAlt ={data.snippet.title}  
+                imageSrc = {data.snippet.thumbnails.standard.url}
+                title = {data.snippet.title}
+                date = {moment(data.snippet.publishedAt).fromNow()}
+                newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
+                oldPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30}
+               />
+               )} 
           </div>
           { cartList.length > 1?
           <div>
@@ -107,7 +88,7 @@ const  CartPage = ()  => {
             />
           </div> : '' }
         </div>}
-          <div className = "otherCourses">
+          <div>
             <OtherCourses/>
           </div>
         </div>

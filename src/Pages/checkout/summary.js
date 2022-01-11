@@ -13,14 +13,14 @@ const summary = () =>  {
             <p>Discount Price</p>
           </div>
           <div className='amount'>
-            <p>$79.60</p>
-            <p>-$40.00</p>
+            <p>₦79.60</p>
+            <p>-₦40.00</p>
           </div>
         </div>
         <hr/>
         <div className='total'>
           <p>Total</p>
-          <p>$39.00</p>
+          <p>₦39.00</p>
         </div>
         <div className='payment-notice'>
           <p>By completing your purchase, you agree with the <span> terms and condition </span></p>

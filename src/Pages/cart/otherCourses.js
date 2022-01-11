@@ -1,57 +1,60 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faStar}  from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { Spinner} from "@chakra-ui/react"
+import Slider from 'react-slick';
+import { settings } from '../../Styles/settings';
+import CourseCard from '../../Component/courseCard'
+import moment from 'moment'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllcourses, fetchAsyncCourses } from '../../Store/courseSlice'
 
-const  otherCourses = () => {
+const  OtherCourses = () => {
+  const dispatch = useDispatch();
+  const featuredCourses = useSelector(getAllcourses);
+  const allCourse = featuredCourses.result;
+  let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   
-	const Stars = () => {
-		return(
-			<span className = "rating-stars">
-        <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			  <FontAwesomeIcon className = 'search-icon'  icon={faStar}/>
-			</span>
-			)
-	}
+  
 
-  const Box = function courseBox () {
-    return (
-       <div className = "box">
-         <Link style = {{textDecoration: 'none', color: 'black'}}  to = 'courses/course-selected'>
-         <div className = 'image'>
-        <img alt ="" src = "https://www.valuecoders.com/blog/wp-content/uploads/2020/06/10-reasons-to-use-reactjs-for-enterprise-app-development-1024x614.jpg"></img>
-      </div>
-			<div className = "course-box-details">
-			<p style = {deepText}>Hereis the title for this course</p>
-					<p>7th june 2020</p>
-					<p><small><span style = {deepText} className = "rating-number">4.5</span><Stars/>
-					<span className = "likes">(147,256)</span></small>
-					</p>
-					<p>
-						<span style = {deepText} className = "newPrice">$15.99</span>
-						<span style = {{textDecoration: "line-through"}} className = "oldPrice"> $87.99</span>
-					</p>
-			</div>
-      </Link>
-       </div>
-    )
+  useEffect(() => {
+			dispatch(fetchAsyncCourses())
+	},[dispatch]);
+
+  if (loading || featuredCourses.length === 0) {
+    return  <div  style = {{textAlign: 'center', padding: '100px'}} >
+     <Spinner  size="xl"/>
+  </div>    
   }
+
+
+
+
+
 	return (
 		<div className = "otherCourses">
-      <div style = {{textAlign: 'center'}} >
-        <Spinner  size="xl"/>
-      </div>
-		<div className = "div-title">
+		<div className = "heading">
 			<p style = {{textAlign: 'center', fontWeight: '700', fontSize: '20px'}}>Other Courses you might interest you</p>
 		</div>
 		<div className = "body">
-      <Box/>
-      <Box/>
-      <Box/>
-      <Box/>
+      <Slider {...settings}> 
+        {allCourse?.map ((data) =>
+        <div key={data.id}>
+          <CourseCard
+            key = {data.id}
+            id = {data.contentDetails.upload.videoId}
+            imageAlt ={data.snippet.title}  
+            imageSrc = {data.snippet.thumbnails.standard.url}
+            title = {data.snippet.title}
+            date = {moment(data.snippet.publishedAt).fromNow()}
+            newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
+            oldPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30}
+            data = {data}
+          />
+        </div>
+        )}
+      </Slider>
 		 </div>	
 		</div>
 	)
@@ -61,4 +64,4 @@ const deepText = {
 	fontWeight : "700"
 }
 
-export default otherCourses
+export default OtherCourses
