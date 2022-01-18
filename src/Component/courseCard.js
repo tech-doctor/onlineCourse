@@ -1,30 +1,22 @@
 import React, { useState } from 'react'
 import { Badge} from "@chakra-ui/react"
 import { Link} from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { updateCartList } from '../Store/databaseSlice'
 
 
 const CourseCard = (props) => { 
   const [showCartButton, setShowCartButton] = useState(false)
-  const {allCourse, data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice} = props
-  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
+  const { data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice} = props
+ // const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
   const dispatch = useDispatch()
-  //const [cart, setCart] = useState(cartList)
 
 
   const handleClick = () => {
-   
-        dispatch(updateCartList(data))
-        console.log(data.id)
-    
+    dispatch(updateCartList(data))
+    //console.log(data.id)
+    console.log(data.snippet.title)
   }
-
-  //function cartyId () {
-   
-  //}
-
-  
 
 	return (
 		<div className= "card-item" onMouseEnter={() => setShowCartButton(true)}onMouseLeave={() => setShowCartButton(false)}> 

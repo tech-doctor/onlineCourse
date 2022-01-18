@@ -22,7 +22,7 @@ const  App = () => {
             <Route exact path = "/login" component={LoginPage}/>
             <Route exact path = "/register" component = {RegisterPage}/>
             <Route exact path = "/courses/:id" component={CourseSelected}/>
-            <Route exact path = "/courses/category/:playlistId" component={CategoryListPage}/>
+            <Route exact path = "/category/:playlistId" component={CategoryListPage}/>
             <Route exact path = "/cart" component={Cart}/>
             <Route exact path = "/cart/checkout" component={CheckOut}/>
             <Route exact path = "/dashboard/purchase-history"component={PurchaseHistory}/>

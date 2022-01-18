@@ -26,16 +26,12 @@ const titleFunc = () => {
   switch (playlistId) {
     case 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK': 
       return('HTML');
-      //break;
     case 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2':
       return( 'CSS' );
-     // break;
     case 'PLEu7Y7_blvLVNfrsztZmfWEw57lWyuUfI':
       return( 'Javascript' );
-      //break;
       case 'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808':
       return( 'JQuery' );
-     // break;
     default:
       return( 'Random' );
   }

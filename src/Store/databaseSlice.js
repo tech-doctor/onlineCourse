@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 ///import { uuid } from uuidv4();
-import  uuid  from 'uuid/dist/v4'
+//import  uuid  from 'uuid/dist/v4'
 
 
 const initialState = {
@@ -93,16 +93,19 @@ const databaseSlice = createSlice({
    initialState,
    reducers : {
     updatePurchasedItem(state, action){
-			state.cartList = action.payload
+			state.purchasedItem = action.payload
 		},
 	  updateCartList(state, action){
-		//   const listIndex = state.cartList.findIndex(item => item.id === action.payload.id);
-		//        console.log(listIndex)
-		// 	   if(listIndex === -1){
-				state.cartList.push({...action.payload, eachId: uuid()})
-			//    }else{
-			// 	   console.log('item already in cart')
-			//    }
+		  //Generate a unique id for each item in the cart based on the title
+		  const eachId = "i" + btoa(action.payload.snippet.title);
+
+		  const listIndex = state.cartList.findIndex(item => item.snippet.title === action.payload.snippet.title);
+		       console.log(listIndex)
+			   if(listIndex === -1){
+				state.cartList.push({...action.payload,  eachId})
+			   }else{
+				   console.log('item already in cart')
+			   }
 			
 		},
    }

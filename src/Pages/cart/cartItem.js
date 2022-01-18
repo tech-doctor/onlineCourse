@@ -9,7 +9,7 @@ const CartItem = (props) => {
     return (
       <div>
         <div  className = "cartList">
-          <Link style = {{textDecoration: 'none', color: 'black'}} to = 'courses/course-selected'>
+          {/* <Link style = {{textDecoration: 'none', color: 'black'}} to = 'courses/course-selected'> */}
           <div className = "left">
             <div className ="image">
               <img  alt = {imageAlt} src = {imageSrc}/>
@@ -23,7 +23,7 @@ const CartItem = (props) => {
             </Badge>: ''}
             </div>
           </div>
-          </Link> 
+          {/* </Link>  */}
           <div className ="right">
             <div  className = "remove">
               <span>X</span>

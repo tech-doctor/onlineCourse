@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import  {faStar}  from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import  {faStar}  from '@fortawesome/free-solid-svg-icons'
+// import { Link } from 'react-router-dom'
 import { Spinner} from "@chakra-ui/react"
 import Slider from 'react-slick';
 import { settings } from '../../Styles/settings';
-import CourseCard from '../../Component/courseCard'
+import CourseCard from '../../Component/courseCard';
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllcourses, fetchAsyncCourses } from '../../Store/courseSlice'
@@ -60,8 +60,8 @@ const  OtherCourses = () => {
 	)
 }
 
-const deepText = {
-	fontWeight : "700"
-}
+// const deepText = {
+// 	fontWeight : "700"
+// }
 
 export default OtherCourses

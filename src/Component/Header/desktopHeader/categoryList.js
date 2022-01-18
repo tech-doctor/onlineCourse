@@ -31,19 +31,10 @@ const  CategoryList = (props) => {
 			{categoryVisibility? (
 			<div className ="categoryList" ref = {container}>
 				<ul>
-					<li>
-				   <Link 
-							to = {`/courses/category/${htmlId}`}
-							style = {{textDecoration: 'none', 
-							color: 'black'}}
-							//onClick = {() => window.location.reload(false)}
-              >
-							HTML
-					 </Link>
-					 </li>
-					<li><Link to = {`/courses/category/${cssId}`} style = {{textDecoration: 'none', color: 'black'}} >CSS</Link></li>
-					<li><Link to = {`/courses/category/${javascriptId}`}style = {{textDecoration: 'none', color: 'black'}} >Javascript</Link></li>
-					<li><Link to = {`/courses/category/${jqueryId}`} style = {{textDecoration: 'none', color: 'black'}} >JQuery</Link></li>
+					<li> <Link to = {`/category/${htmlId}`} style = {{textDecoration: 'none', color: 'black'}} >HTML</Link> </li>
+					<li><Link to = {`/category/${cssId}`} style = {{textDecoration: 'none', color: 'black'}} >CSS</Link></li>
+					<li><Link to = {`/category/${javascriptId}`}style = {{textDecoration: 'none', color: 'black'}} >Javascript</Link></li>
+					<li><Link to = {`/category/${jqueryId}`} style = {{textDecoration: 'none', color: 'black'}} >JQuery</Link></li>
 				</ul> 
 		  </div>
 		  ): ''}

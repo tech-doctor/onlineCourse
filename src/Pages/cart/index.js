@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import {Stack,Skeleton} from "@chakra-ui/react"
-import { useSelector, useDispatch } from 'react-redux'
+//import { Link } from 'react-router-dom'
+import {Stack} from "@chakra-ui/react"
+import { useSelector} from 'react-redux'
 import Header from "../../Component/Header/desktopHeader/Header"
 import Footer from '../../Component/Footer/footer'
 import '../../Styles/cart.scss'
@@ -13,7 +13,7 @@ import moment from 'moment'
 
 
 const  CartPage = ()  => {
-  const dispatch = useDispatch()
+  //const dispatch = useDispatch()
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
 
   
@@ -70,7 +70,7 @@ const  CartPage = ()  => {
             { cartList.map(data =>
                <CartItem 
                 key = {data.id}
-                id = {data.contentDetails.upload.videoId}
+                // id = {data.contentDetails.upload.videoId}
                 imageAlt ={data.snippet.title}  
                 imageSrc = {data.snippet.thumbnails.standard.url}
                 title = {data.snippet.title}
@@ -89,7 +89,7 @@ const  CartPage = ()  => {
           </div> : '' }
         </div>}
           <div>
-            <OtherCourses/>
+            {/* <OtherCourses/> */}
           </div>
         </div>
       </div>
