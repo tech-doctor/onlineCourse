@@ -1,11 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-///import { uuid } from uuidv4();
-//import  uuid  from 'uuid/dist/v4'
 
 
 const initialState = {
-    cartList : [
-	],
+    cartList : [],
+		checkoutList : [],
 		purchasedItem: [
 			// {
 			// 	id : 1,
@@ -83,10 +81,9 @@ const initialState = {
 			// 		newPrice : 17.99
 			// 	}
 			// }
-		],
+],
 }
 
-//console.log(uuid())
 
 const databaseSlice = createSlice({
    name: 'DatabaseSlice',
@@ -108,10 +105,13 @@ const databaseSlice = createSlice({
 			   }
 			
 		},
+		updateCheckoutList(state, action){
+			state.checkoutList.push({...action.payload})
+		}
    }
 })
 
 
-export const { updateCartList, updatePurchasedItem } = databaseSlice.actions
+export const { updateCartList, updatePurchasedItem, updateCheckoutList } = databaseSlice.actions
 
 export default databaseSlice.reducer

@@ -9,6 +9,7 @@ import TotalCart from './totalCart'
 import OtherCourses from './otherCourses'
 import CartItem from './cartItem'
 import moment from 'moment'
+//import CartListSum from '../../Component/cartListSum'
 
 
 
@@ -17,7 +18,7 @@ const  CartPage = ()  => {
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
 
   
-  const mainPriceSum = () => {
+  const previousPriceSum = () => {
     let sum  = 0
     cartList.forEach (data => {
       sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30
@@ -25,7 +26,7 @@ const  CartPage = ()  => {
      return sum
   }
 
-  const discountPriceSum = () => {
+  const newPriceSum = () => {
     let sum  = 0
     cartList.forEach (data => {
       sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0')
@@ -69,10 +70,11 @@ const  CartPage = ()  => {
           <div>
             { cartList.map(data =>
                <CartItem 
+               data = {data}
                 key = {data.id}
                 // id = {data.contentDetails.upload.videoId}
                 imageAlt ={data.snippet.title}  
-                imageSrc = {data.snippet.thumbnails.standard.url}
+                imageSrc = {data.snippet.thumbnails.high.url}
                 title = {data.snippet.title}
                 date = {moment(data.snippet.publishedAt).fromNow()}
                 newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
@@ -83,13 +85,13 @@ const  CartPage = ()  => {
           { cartList.length > 1?
           <div>
             <TotalCart
-            mainPriceSum = {mainPriceSum} 
-            discountPriceSum = {discountPriceSum}
+            previousPriceSum = {previousPriceSum}
+            newPriceSum = {newPriceSum}
             />
           </div> : '' }
         </div>}
           <div>
-            {/* <OtherCourses/> */}
+            <OtherCourses/>
           </div>
         </div>
       </div>

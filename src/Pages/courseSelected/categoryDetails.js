@@ -4,12 +4,22 @@ import  {faAngleRight, faArrowUp} from '@fortawesome/free-solid-svg-icons'
 import { Spinner, Stack,Skeleton} from "@chakra-ui/react"
 import { Link } from 'react-router-dom'
 import {useParams} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getSelectedCourse } from '../../Store/courseSlice'
+import { updateCheckoutList } from '../../Store/databaseSlice'
 
 const  CategoryDetails = (props) => {
 
   const { id, title, duration, likeCount,viewCount,embedLink,publishedAt} = props;
-
   const paramsId = useParams().id;
+  const dispatch = useDispatch()
+ const selectedCourses = useSelector(getSelectedCourse);
+
+
+  const handleClick = () => {
+    dispatch(updateCheckoutList(selectedCourses[0]))
+  }
+
 
   
   return (
@@ -48,7 +58,10 @@ const  CategoryDetails = (props) => {
           </Link>
           <button style ={{cursor : 'pointer'}}>Add To Cart</button>
           <Link to = '/cart/checkout'>
-            <button  style = {{cursor: 'pointer'}}>Buy Now</button>
+            <button 
+             style = {{cursor: 'pointer'}}
+             onClick={handleClick}
+             >Buy Now</button>
           </Link>
         </div>
       </div>}

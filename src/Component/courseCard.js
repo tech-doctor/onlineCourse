@@ -14,7 +14,6 @@ const CourseCard = (props) => {
 
   const handleClick = () => {
     dispatch(updateCartList(data))
-    //console.log(data.id)
     console.log(data.snippet.title)
   }
 

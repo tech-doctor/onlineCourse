@@ -26,7 +26,6 @@ const LoginPage = () => {
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 
 
-
     const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);

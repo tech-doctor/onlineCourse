@@ -45,7 +45,7 @@ const  OtherCourses = () => {
             key = {data.id}
             id = {data.contentDetails.upload.videoId}
             imageAlt ={data.snippet.title}  
-            imageSrc = {data.snippet.thumbnails.standard.url}
+            imageSrc = {data.snippet.thumbnails.high.url}
             title = {data.snippet.title}
             date = {moment(data.snippet.publishedAt).fromNow()}
             newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}

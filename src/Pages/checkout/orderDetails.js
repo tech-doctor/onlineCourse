@@ -1,39 +1,27 @@
 import React from 'react';
+import CheckoutList from './checkoutList';
+import moment from 'moment';
 
-const  orderDetails = () => {
-  const orders = [
-    {
-      imgLink: ' ../Assets/React-frontend.jpg',
-      title: 'Here is a little details',
-      newPrice: 20.00,
-      previousPrice: 40.00
-    },
-    {
-      imgLink: ' ../Assets/React-frontend.jpg',
-      title: 'Here is a little details',
-      newPrice: 30.00,
-      previousPrice: 60.00
-    }
-  ]
+const  orderDetails = ({orders}) => {
+   
   return (
     <div>
       <div className = "OrderDetails">
         <div className="heading">
           <p>Order Details</p>
+        </div> 
+        <div >
+          { orders?.map((data, i) =>
+          <CheckoutList
+           key = {i}
+            imageAlt ={data.snippet.title} 
+            imageSrc = {data.snippet.thumbnails.high.url}
+            title = {data.snippet.title}
+            date = {moment(data.snippet.publishedAt).fromNow()}
+            newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
+            previousPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30} 
+          /> )}
         </div>
-        {orders.map((data,index) => 
-        (<div key={index} className='details'>
-          <div className='left'>
-              <img alt='img' src = {data.imgLink}/>
-            <div className='about'>
-              <p>{data.title}</p>
-            </div>
-          </div>
-          <div className='right'>
-            <span>₦{data.newPrice}</span><br/>
-            <span style = {{textDecoration: 'line-through'}}>₦{data.previousPrice}</span><br/>
-          </div>
-        </div>))}
        </div>
     </div>
   );

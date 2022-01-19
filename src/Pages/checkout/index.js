@@ -3,9 +3,31 @@ import '../../Styles/checkOut.scss';
 import { Link, useHistory } from "react-router-dom"
 import OrderDetails from './orderDetails';
 import Summary from './summary'
+import { useSelector } from 'react-redux';
+import { Spinner } from '@chakra-ui/react';
+//import DebitCard from '../../Component/debitCard'
+import DebitCard from '../../Component/debitCard';
 
 const  CheckOut = ()  => {
   const history = useHistory();
+  const checkoutList = useSelector(state => state.rootReducer.databaseSlice.checkoutList)
+
+  const originalPriceSum = () => {
+    let sum  = 0
+    checkoutList?.forEach (data => {
+      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30
+    })
+     return sum 
+  }
+
+  const discountPriceSum = () => {
+    let sum  = 0
+    checkoutList?.forEach (data => {
+      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0')
+    })
+     return originalPriceSum() - sum
+  }
+
 
 	return (
 		<div className = "checkOutPage">
@@ -20,6 +42,9 @@ const  CheckOut = ()  => {
       </div>
 			<hr/>
 			<div className ="center-div">
+      {/* <div style = {{textAlign: 'center', padding: '100px'}}  >
+          <Spinner/>
+        </div> */}
 				<div className = "title">
 					<p>checkout</p>
 				</div>
@@ -30,33 +55,20 @@ const  CheckOut = ()  => {
                 <p>Payment integration  is done with paystack. Use any of the test card options   or another card with the details below to make your payment. <span style={{fontSize: '13px'}}>Note this is not a real time payment process.</span> </p>
               </div>
               <div className='bank-card'>
-                <div className="TestCard__Container">
-                  <div className="TestCard__Header">
-                    <span>No validation</span>
-                    <span className="card_subtitle">(reusable)</span>
-                  </div>
-                  <div className="TestCard__Pan">
-                    <p>408 408 408 408 408 1</p>
-                  </div>
-                  <div className="TestCard__Misc">
-                    <div>
-                      <span>Expiry</span>
-                      <span>12/22</span>
-                    </div>
-                    <div>
-                      <span>CVV</span>
-                      <span>408</span>
-                    </div>
-                  </div>
-                </div>
+                <DebitCard/>
               </div>
             </div>
             <div>
-              <OrderDetails/>
+              <OrderDetails
+              orders = {checkoutList}
+              />
             </div>
           </div>
           <div className = "right">
-             <Summary/>
+             <Summary
+              originalPriceSum = {originalPriceSum}
+              discountPriceSum = {discountPriceSum}
+             />
           </div>
 				</div>  
 			</div>
