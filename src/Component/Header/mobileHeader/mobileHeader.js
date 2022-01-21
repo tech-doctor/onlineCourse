@@ -47,6 +47,7 @@ const  MobileHeader = (props) =>  {
           cssId = {cssId}
           javascriptId = {javascriptId}
           jqueryId = {jqueryId}
+          isLoggedIn = {props.isLoggedIn}
         />
       </div>
     </div> 

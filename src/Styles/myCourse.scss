@@ -1,14 +1,18 @@
-.myCourse {
+.myCourse{
   .title{
 			background-color : black;
 			padding: 1em 3em;
 			}
 			.body{
-				display: flex;
-				flex-direction: row;
+				display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px,1fr ));
+        grid-gap: 15px;
 				padding: 1em 3em;		
 				.myCourse-box{
 					border: 1px solid black;
+          .details{
+            padding-left: 0.5em;
+          }
 					.image{
 						width: 100%;
 						img{
@@ -16,11 +20,15 @@
 						}
 					}
 				}
-				.myCourse-box + .myCourse-box {
-					margin-left: 20px;
-				}
+				// .myCourse-box + .myCourse-box {
+				// 	margin-left: 20px;
+				// }
 			}
     }
+
+
+
+
 
 @media(max-width: 800px){
 	.myCourse {
@@ -28,22 +36,18 @@
 				.title{
 					padding: 1em 1.5em;
 				}
-
 				.body{
-					padding: 1em 1.5em;
-					 flex-wrap: wrap;
-					 align-items: center;
-					 justify-content: center;
-					 margin: auto 0;
+         // width: 100%;
+          //display: inline;
+          //display: inline-block;
+         // width: 50%;
+        //  grid-template-columns: auto auto auto auto auto;
+        //    overflow-x: scroll;
 					  .myCourse-box{
-						 margin-bottom: 20px;
-						 width: 70%;
+              
 					  }
-						
-						.myCourse-box + .myCourse-box {
-							margin-left: 0px;
-						}
 				}
 		}
 	}
 }
+

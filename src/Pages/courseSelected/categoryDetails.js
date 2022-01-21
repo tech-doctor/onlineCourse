@@ -1,27 +1,39 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight, faArrowUp} from '@fortawesome/free-solid-svg-icons'
-import { Spinner, Stack,Skeleton} from "@chakra-ui/react"
+import { Spinner, Stack,Skeleton, useToast} from "@chakra-ui/react"
 import { Link } from 'react-router-dom'
 import {useParams} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSelectedCourse } from '../../Store/courseSlice'
-import { updateCheckoutList } from '../../Store/databaseSlice'
+import { updateCheckoutList, updateCartList } from '../../Store/databaseSlice'
 
 const  CategoryDetails = (props) => {
-
   const { id, title, duration, likeCount,viewCount,embedLink,publishedAt} = props;
   const paramsId = useParams().id;
-  const dispatch = useDispatch()
- const selectedCourses = useSelector(getSelectedCourse);
+  const dispatch = useDispatch();
+  const toast = useToast();
 
+  const selectedCourses = useSelector(getSelectedCourse);
+  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
 
-  const handleClick = () => {
-    dispatch(updateCheckoutList(selectedCourses[0]))
+  const handleToast = (description, status) => {
+    toast({
+      position: 'top-right',
+      status,
+      description,
+      duration: 2000,
+    });
+  }
+
+  const handleCartButton = () => {
+    dispatch(updateCartList(selectedCourses[0]));
+    const listIndex = cartList.findIndex(item => item.snippet.title === selectedCourses[0].snippet.title);
+    listIndex === -1 ? handleToast(' 1  item added to Cart', 'success'):
+    handleToast('Item already in Cart', 'error')
   }
 
 
-  
   return (
     <div className = "categoryFlex">
       {!title? <div style = {{textAlign: 'center', padding: '100px'}}  >
@@ -56,11 +68,14 @@ const  CategoryDetails = (props) => {
          <Link to = {`/courses/${paramsId}/watch`}>
             <button  style = {{cursor: 'pointer'}}>Access</button>
           </Link>
-          <button style ={{cursor : 'pointer'}}>Add To Cart</button>
+          <button 
+          style ={{cursor : 'pointer'}}
+          onClick = {handleCartButton}
+          >Add To Cart</button>
           <Link to = '/cart/checkout'>
             <button 
              style = {{cursor: 'pointer'}}
-             onClick={handleClick}
+             onClick={()=> {dispatch(updateCheckoutList(selectedCourses[0]))}}
              >Buy Now</button>
           </Link>
         </div>
@@ -71,9 +86,6 @@ const  CategoryDetails = (props) => {
         </Stack>:  
         <div>
         <div className = "iframe">
-        {/* <iframe title='courses-video' width="100%" height="100%"
-          src= {`https://www.youtube-nocookie.com/embed/${id}`} >
-        </iframe> */}
           <iframe width="100%" height="200px" src={`https://www.youtube.com/embed/${id}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay;  encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </div>
         <div className = 'instruction'>

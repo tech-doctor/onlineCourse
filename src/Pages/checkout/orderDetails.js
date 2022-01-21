@@ -2,7 +2,7 @@ import React from 'react';
 import CheckoutList from './checkoutList';
 import moment from 'moment';
 
-const  orderDetails = ({orders}) => {
+const  orderDetails = ({checkoutList}) => {
    
   return (
     <div>
@@ -11,9 +11,9 @@ const  orderDetails = ({orders}) => {
           <p>Order Details</p>
         </div> 
         <div >
-          { orders?.map((data, i) =>
+          { checkoutList?.map((data, i) =>
           <CheckoutList
-           key = {i}
+            key = {i}
             imageAlt ={data.snippet.title} 
             imageSrc = {data.snippet.thumbnails.high.url}
             title = {data.snippet.title}

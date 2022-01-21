@@ -60,7 +60,7 @@ const  CheckOut = ()  => {
             </div>
             <div>
               <OrderDetails
-              orders = {checkoutList}
+              checkoutList = {checkoutList}
               />
             </div>
           </div>

@@ -5,82 +5,77 @@ const initialState = {
     cartList : [],
 		checkoutList : [],
 		purchasedItem: [
-			// {
-			// 	id : 1,
-			// 	thumbNail: '',
-			// 	Title: 'Here is the title of this course',
-			// 	Duration: '11.47secs',
-			// 	Rating: {
-			// 		rate: 4.5,
-			// 		likes:  147256,
-			// 		stars: <Stars/>,
-			// 	},
-			// 	Price : {
-			// 		oldPrice : 87.99,
-			// 		newPrice : 15.99
-			// 	}
-			// },
+			{
+				id : 1,
+				thumbNail: '',
+				Title: 'Here is the title of this course',
+				Duration: '11.47secs',
+				Rating: {
+					rate: 4.5,
+					likes:  147256,
+				},
+				Price : {
+					oldPrice : 87.99,
+					newPrice : 15.99
+				}
+			},
 		
-			// {
-			// 	id : 2,
-			// 	thumbNail: '',
-			// 	Title: 'Here is the title of the second course',
-			// 	Duration: '15.47secs',
-			// 	Rating: {
-			// 		rate: 4.0,
-			// 		likes:  157256,
-			// 		stars: <Stars/>,
-			// 	},
-			// 	Price : {
-			// 		oldPrice : 85.99,
-			// 		newPrice : 17.99
-			// 	}
-			// },
-			// {
-			// 	id : 3,
-			// 	thumbNail: '',
-			// 	Title: 'Here is the title of the second course',
-			// 	Duration: '15.47secs',
-			// 	Rating: {
-			// 		rate: 4.0,
-			// 		likes:  157256,
-			// 		stars: <Stars/>,
-			// 	},
-			// 	Price : {
-			// 		oldPrice : 85.99,
-			// 		newPrice : 17.99
-			// 	}
-			// },
-			// {
-			// 	id : 4,
-			// 	thumbNail: '',
-			// 	Title: 'Here is the title of the second course',
-			// 	Duration: '15.47secs',
-			// 	Rating: {
-			// 		rate: 4.0,
-			// 		likes:  157256,
-			// 		stars: <Stars/>,
-			// 	},
-			// 	Price : {
-			// 		oldPrice : 85.99,
-			// 		newPrice : 17.99
-			// 	}
-			// },
-			// {
-			// 	id : 5,
-			// 	thumbNail: '',
-			// 	Title: 'Here is the title of the second course',
-			// 	Duration: '15.47secs',
-			// 	Rating: {
-			// 		rate: 4.0,
-			// 		likes:  157256,
-			// 		stars: <Stars/>,
-			// 	},
-			// 	Price : {
-			// 		oldPrice : 85.99,
-			// 		newPrice : 17.99
-			// 	}
-			// }
+			{
+				id : 2,
+				thumbNail: '',
+				Title: 'Here is the title of the second course',
+				Duration: '15.47secs',
+				Rating: {
+					rate: 4.0,
+					likes:  157256,
+				},
+				Price : {
+					oldPrice : 85.99,
+					newPrice : 17.99
+				}
+			},
+			{
+				id : 3,
+				thumbNail: '',
+				Title: 'Here is the title of the second course',
+				Duration: '15.47secs',
+				Rating: {
+					rate: 4.0,
+					likes:  157256,
+				},
+				Price : {
+					oldPrice : 85.99,
+					newPrice : 17.99
+				}
+			},
+			{
+				id : 4,
+				thumbNail: '',
+				Title: 'Here is the title of the second course',
+				Duration: '15.47secs',
+				Rating: {
+					rate: 4.0,
+					likes:  157256,
+				},
+				Price : {
+					oldPrice : 85.99,
+					newPrice : 17.99
+				}
+			},
+			{
+				id : 5,
+				thumbNail: '',
+				Title: 'Here is the title of the second course',
+				Duration: '15.47secs',
+				Rating: {
+					rate: 4.0,
+					likes:  157256,
+				},
+				Price : {
+					oldPrice : 85.99,
+					newPrice : 17.99
+				}
+			}
 ],
 }
 
@@ -95,23 +90,24 @@ const databaseSlice = createSlice({
 	  updateCartList(state, action){
 		  //Generate a unique id for each item in the cart based on the title
 		  const eachId = "i" + btoa(action.payload.snippet.title);
-
 		  const listIndex = state.cartList.findIndex(item => item.snippet.title === action.payload.snippet.title);
-		       console.log(listIndex)
-			   if(listIndex === -1){
-				state.cartList.push({...action.payload,  eachId})
-			   }else{
-				   console.log('item already in cart')
-			   }
-			
+				console.log(listIndex)
+				if(listIndex === -1){
+			 state.cartList.push({...action.payload,  eachId})
+		}else{
+				console.log('item already in cart')
+			}	
 		},
 		updateCheckoutList(state, action){
 			state.checkoutList.push({...action.payload})
+		},
+		updateTotalCheckoutList(state, action){
+        state.checkoutList.push({...action.payload})
 		}
    }
 })
 
 
-export const { updateCartList, updatePurchasedItem, updateCheckoutList } = databaseSlice.actions
+export const { updateCartList, updatePurchasedItem, updateCheckoutList, updateTotalCheckoutList } = databaseSlice.actions
 
 export default databaseSlice.reducer

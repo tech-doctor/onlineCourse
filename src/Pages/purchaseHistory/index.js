@@ -52,10 +52,10 @@ const  purchaseHistory = ()  => {
 					<tbody>
             {history.map ((data, i) => (
 						<tr key={i}>
-							<td><FontAwesomeIcon icon={faShoppingCart} /> Javascript course</td>
+							<td><FontAwesomeIcon icon={faShoppingCart} />Title of course</td>
 							<td>{data.Course}</td> 
 							<td>{data.Date}</td>
-              <td>{data.Price}</td>
+              <td>₦{data.Price}</td>
 						</tr>))}
 					</tbody>
 				</table>

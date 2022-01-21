@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ChakraProvider, Text, CircularProgress, Flex, Box, Heading, FormControl, FormLabel, Input,  Button, InputGroup, InputRightElement } from '@chakra-ui/react'
+import { ChakraProvider, Text, CircularProgress, Flex, Box, Heading, FormControl, FormLabel, Input,  Button, InputGroup, InputRightElement, useToast } from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import '../../Styles/login.scss';
 import { userLogin } from '../../utils/mockApi';
 import ErrorMessage from '../ErrorMessage';
@@ -19,12 +19,28 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
 
+
   const dispatch = useDispatch();
+  const history = useHistory();
+  const toast = useToast();
   const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
   //const isLoggedIn = useSelector(getLoginState);
 
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 
+  const handleToast = (message) => {
+    toast({
+      position: 'top',
+      title: message,
+      status: 'success',
+      //description: `welcome back`,
+      duration: 3000,
+      //isClosable: true,
+      onCloseComplete: () => {
+        history.push('/');
+      }
+    });
+  }
 
     const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,6 +50,7 @@ const LoginPage = () => {
        dispatch(updateLoginState(true));
       setIsLoading(false);
       setShowPassword(false);
+      handleToast('Login Successful');
     } catch (error) {
       setError('Invalid email or password');
       setIsLoading(false);
@@ -42,6 +59,9 @@ const LoginPage = () => {
       setShowPassword(false);
     }
   };
+
+
+  
 
 
 
@@ -55,20 +75,7 @@ const LoginPage = () => {
           <ChakraProvider>
             <Flex mt ={10} width="100%" align="center" justifyContent="center">
               <Box background={"white"} p={8} width={"100%"} maxWidth="500px" borderWidth={1} borderRadius={3} boxShadow="lg">
-              {isLoggedIn ? (
-              <Box textAlign="center">
-                <Text>{email} logged in!</Text>
-                <Button
-                  color={'black'}  _hover={{ background: "grey", color: "white",}}
-                  variantcolor="orange"
-                  variant="outline"
-                  width="full"
-                  mt={4}
-                  onClick={() => dispatch(updateLoginState(true))}>
-                 Sign out
-                </Button>
-              </Box>) :  
-              (<>
+
                 <Box textAlign="center">
                   <Heading>Login</Heading>
                 </Box>
@@ -102,8 +109,6 @@ const LoginPage = () => {
                     </Button>
                   </form>
                 </Box>
-              </>
-              )}
               </Box> 
             </Flex>
           </ChakraProvider>

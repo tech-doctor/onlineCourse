@@ -1,21 +1,36 @@
 import React, { useState } from 'react'
-import { Badge} from "@chakra-ui/react"
+import { Badge, useToast} from "@chakra-ui/react"
 import { Link} from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { updateCartList } from '../Store/databaseSlice'
 
 
 const CourseCard = (props) => { 
   const [showCartButton, setShowCartButton] = useState(false)
   const { data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice} = props
- // const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
-  const dispatch = useDispatch()
+  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
+  const dispatch = useDispatch();
+  const toast = useToast();
+
+
+  const handleToast = (description, status) => {
+	toast({
+		position: 'top-right',
+		status,
+		description,
+		duration: 2000,
+	});
+}
 
 
   const handleClick = () => {
     dispatch(updateCartList(data))
-    console.log(data.snippet.title)
+    const listIndex = cartList.findIndex(item => item.snippet.title === data.snippet.title);
+    listIndex === -1 ? handleToast(' 1  item added to Cart', 'success'):
+    handleToast('Item already in Cart', 'error')			
   }
+
+
 
 	return (
 		<div className= "card-item" onMouseEnter={() => setShowCartButton(true)}onMouseLeave={() => setShowCartButton(false)}> 
