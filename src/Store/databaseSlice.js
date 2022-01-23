@@ -2,81 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 const initialState = {
-    cartList : [],
-		checkoutList : [],
-		purchasedItem: [
-			{
-				id : 1,
-				thumbNail: '',
-				Title: 'Here is the title of this course',
-				Duration: '11.47secs',
-				Rating: {
-					rate: 4.5,
-					likes:  147256,
-				},
-				Price : {
-					oldPrice : 87.99,
-					newPrice : 15.99
-				}
-			},
-		
-			{
-				id : 2,
-				thumbNail: '',
-				Title: 'Here is the title of the second course',
-				Duration: '15.47secs',
-				Rating: {
-					rate: 4.0,
-					likes:  157256,
-				},
-				Price : {
-					oldPrice : 85.99,
-					newPrice : 17.99
-				}
-			},
-			{
-				id : 3,
-				thumbNail: '',
-				Title: 'Here is the title of the second course',
-				Duration: '15.47secs',
-				Rating: {
-					rate: 4.0,
-					likes:  157256,
-				},
-				Price : {
-					oldPrice : 85.99,
-					newPrice : 17.99
-				}
-			},
-			{
-				id : 4,
-				thumbNail: '',
-				Title: 'Here is the title of the second course',
-				Duration: '15.47secs',
-				Rating: {
-					rate: 4.0,
-					likes:  157256,
-				},
-				Price : {
-					oldPrice : 85.99,
-					newPrice : 17.99
-				}
-			},
-			{
-				id : 5,
-				thumbNail: '',
-				Title: 'Here is the title of the second course',
-				Duration: '15.47secs',
-				Rating: {
-					rate: 4.0,
-					likes:  157256,
-				},
-				Price : {
-					oldPrice : 85.99,
-					newPrice : 17.99
-				}
-			}
-],
+	cartList : [],
+	checkoutList : [],
+	purchasedItem: [],
+}
+
+const currentDate = () => {
+  const event = new Date();
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  const date = event.toLocaleDateString(undefined, options);
+  return date
 }
 
 
@@ -85,7 +20,7 @@ const databaseSlice = createSlice({
    initialState,
    reducers : {
     updatePurchasedItem(state, action){
-			state.purchasedItem = action.payload
+			state.purchasedItem.push({...action.payload,  purchasedTime: currentDate()})
 		},
 	  updateCartList(state, action){
 		  //Generate a unique id for each item in the cart based on the title
@@ -109,5 +44,6 @@ const databaseSlice = createSlice({
 
 
 export const { updateCartList, updatePurchasedItem, updateCheckoutList, updateTotalCheckoutList } = databaseSlice.actions
+export const getPurchasedItem = (state) => state.rootReducer.databaseSlice.purchasedItem;
 
 export default databaseSlice.reducer

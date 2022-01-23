@@ -72,7 +72,7 @@ const  CartPage = ()  => {
                <CartItem 
                data = {data}
                 key = {data.id}
-                // id = {data.contentDetails.upload.videoId}
+                id = {data.videoId}
                 imageAlt ={data.snippet.title}  
                 imageSrc = {data.snippet.thumbnails.high.url}
                 title = {data.snippet.title}

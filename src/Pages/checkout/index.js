@@ -68,6 +68,7 @@ const  CheckOut = ()  => {
              <Summary
               originalPriceSum = {originalPriceSum}
               discountPriceSum = {discountPriceSum}
+              checkoutList = {checkoutList}
              />
           </div>
 				</div>  

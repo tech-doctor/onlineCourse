@@ -1,13 +1,18 @@
 import React, {useState} from 'react';
 import { usePaystackPayment } from 'react-paystack';
 import { CircularProgress } from '@chakra-ui/react';
-import {useHistory} from 'react-router-dom'
+import { updatePurchasedItem } from '../../Store/databaseSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateIsPurchased } from '../../Store/courseSlice';
+
 
 const Summary = (props) =>  {
-   const {originalPriceSum, discountPriceSum} = props;
-   const totalSummary = originalPriceSum() - discountPriceSum()
-   const [isLoading, setIsLoading] = useState(false);
-    const history = useHistory();
+  const {originalPriceSum, discountPriceSum, checkoutList} = props;
+  const totalSummary = originalPriceSum() - discountPriceSum()
+  const [isLoading, setIsLoading] = useState(false);
+  //const history = useHistory();
+  const dispatch = useDispatch();
+  const allCourses = useSelector(state => state.rootReducer.courseSlice.courses)
   
    const config = {
     reference: (new Date()).getTime().toString(),
@@ -19,14 +24,24 @@ const Summary = (props) =>  {
 const initializePayment = usePaystackPayment(config);
 
 const onSuccess = (reference) => {
-  console.log({...reference, time : new Date()});
+ // console.log({...reference, purchasedTime : currentDate()});
   setIsLoading(false);
-  //history.push('/')
+  checkoutList.map(data => {
+    dispatch(updatePurchasedItem(data))
+  })  
+  allCourses.map(data => {
+    dispatch(updateIsPurchased(data))
+  })
 };
 
+
+
+
+
+
 const onClose = () => {
+  setIsLoading(false);
   // history.goBack()
-  // console.log('closed')
 }
 
 

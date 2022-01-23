@@ -37,7 +37,7 @@ const handleToggle = () => setShow(!show)
       <Collapse startingHeight={'890px'} in={show}>
       {topCourses.map(data =>  
       <div key = {data.id} className='all-categories-box'>
-      <Link style = {{textDecoration: 'none', color: 'black'}}   to = {`/courses/${data.snippet.resourceId.videoId}`}>
+      <Link style = {{textDecoration: 'none', color: 'black'}}   to = {`/courses/${data.videoId}`}>
         <div style = {{marginBottom: '20px'}} className = "allCoursesDisplay" >
             <div className = "left">
               <div className = "image"> 

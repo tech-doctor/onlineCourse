@@ -30,7 +30,7 @@ const topCoursesArray = topCourses.slice(4,11)
           {topCoursesArray.map (data =>
           <CourseCard
             key = {data.id}
-            id = {data.snippet.resourceId.videoId}
+            id = {data.videoId}
             imageAlt ={data.snippet.title}  
             imageSrc = {data.snippet.thumbnails.standard.url}
             title = {data.snippet.title}

@@ -14,7 +14,7 @@ import Slider from 'react-slick'
 
 const  MyCourses = ()  => {
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
-
+  
 	return (
 		<div className  = "myCourse">
 			<div>
@@ -27,7 +27,7 @@ const  MyCourses = ()  => {
 				</div>
 				<hr/>
 				<div className  = "center-div">
-					{!purchasedItem? 
+					{purchasedItem.lenght === 0? 
 					<div className = "no-course">
             <p>No course available</p>
 					</div> :
@@ -35,10 +35,20 @@ const  MyCourses = ()  => {
 						<div style = {{textAlign: 'center'}} >
 							<Spinner  size="xl"/>
 						</div>
-						<div>
-              <Slider>
-					    <MyCourseCard/>
-              </Slider>
+						<div className='body'>
+              {purchasedItem.map(data => 
+                <MyCourseCard
+                  key = {data.id}
+                  id = {data.videoId}
+                  imageAlt ={data.snippet.title}  
+                  imageSrc = {data.snippet.thumbnails.high.url}
+                  title = {data.snippet.title}
+                  date = {moment(data.snippet.publishedAt).fromNow()}
+                  newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
+                  oldPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30}
+                  data = {data}
+                />
+              )}
 						</div>
 					</div>}	
 				</div> 

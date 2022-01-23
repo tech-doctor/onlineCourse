@@ -12,8 +12,8 @@ import { getAllcourses, fetchAsyncCourses } from '../../Store/courseSlice'
 
 const  OtherCourses = () => {
   const dispatch = useDispatch();
-  const featuredCourses = useSelector(getAllcourses);
-  const allCourse = featuredCourses.result;
+  const allCourses = useSelector(getAllcourses);
+  //const allCourse = featuredCourses.result;
   let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   
   
@@ -22,7 +22,7 @@ const  OtherCourses = () => {
 			dispatch(fetchAsyncCourses())
 	},[dispatch]);
 
-  if (loading || featuredCourses.length === 0) {
+  if (loading || allCourses.length === 0) {
     return  <div  style = {{textAlign: 'center', padding: '100px'}} >
      <Spinner  size="xl"/>
   </div>    
@@ -39,11 +39,11 @@ const  OtherCourses = () => {
 		</div>
 		<div className = "body">
       <Slider {...settings}> 
-        {allCourse?.map ((data) =>
+        {allCourses?.map ((data) =>
         <div key={data.id}>
           <CourseCard
             key = {data.id}
-            id = {data.contentDetails.upload.videoId}
+            id = {data.videoId}
             imageAlt ={data.snippet.title}  
             imageSrc = {data.snippet.thumbnails.high.url}
             title = {data.snippet.title}

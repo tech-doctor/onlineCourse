@@ -11,8 +11,8 @@ import CourseCard from '../../Component/courseCard';
 
 const FeaturedCourses = () => {
   const dispatch = useDispatch();
-  const featuredCourses = useSelector(getAllcourses);
-  const allCourse = featuredCourses.result;
+  const allCourses = useSelector(getAllcourses);
+ // const allCourse = featuredCourses.result;
   let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   
 
@@ -29,7 +29,7 @@ const FeaturedCourses = () => {
 
  // const [showCartButton, setShowCartButton] = useState(false)
 
-	if (loading || featuredCourses.length === 0) {
+	if (loading || allCourses.length === 0) {
     return  <div  style = {{textAlign: 'center', padding: '100px'}} >
      <Spinner  size="xl"/>
   </div>    
@@ -45,10 +45,10 @@ const FeaturedCourses = () => {
 			</div>
 			<div className = 'course-card'>
 			<Slider {...settings}>
-				{allCourse?.map ((data) =>
+				{allCourses?.map ((data) =>
 				(<CourseCard
 					key = {data.id}
-					id = {data.contentDetails.upload.videoId}
+					id = {data.videoId}
 					imageAlt ={data.snippet.title}  
 					imageSrc = {data.snippet.thumbnails.high.url}
 					title = {data.snippet.title}

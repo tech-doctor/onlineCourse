@@ -27,7 +27,6 @@ if(selectedCourses.length !== 0){
 //console.log(moment.duration('PT5M33S').format('hh:mm:ss'))
 }
 
-//ISO8601toDuration('PT5M33S')
 
 //moment(data.snippet.publishedAt).fromNow()
 	return (

@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight, faArrowUp} from '@fortawesome/free-solid-svg-icons'
 import { Spinner, Stack,Skeleton, useToast} from "@chakra-ui/react"
 import { Link } from 'react-router-dom'
-import {useParams} from 'react-router-dom'
+import {useParams, useHistory} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSelectedCourse } from '../../Store/courseSlice'
 import { updateCheckoutList, updateCartList } from '../../Store/databaseSlice'
@@ -12,10 +12,13 @@ const  CategoryDetails = (props) => {
   const { id, title, duration, likeCount,viewCount,embedLink,publishedAt} = props;
   const paramsId = useParams().id;
   const dispatch = useDispatch();
+  const history = useHistory();
   const toast = useToast();
 
   const selectedCourses = useSelector(getSelectedCourse);
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
+  const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
+  const [isPurchased, setIsPurchased] = useState(false);
 
   const handleToast = (description, status) => {
     toast({
@@ -31,6 +34,13 @@ const  CategoryDetails = (props) => {
     const listIndex = cartList.findIndex(item => item.snippet.title === selectedCourses[0].snippet.title);
     listIndex === -1 ? handleToast(' 1  item added to Cart', 'success'):
     handleToast('Item already in Cart', 'error')
+  }
+
+  const handleBuyButton = ()  => {
+    dispatch(updateCheckoutList(selectedCourses[0]));
+    // const itemIndex = purchasedItem.findIndex(item => item.snippet.title === selectedCourses[0].snippet.title);
+    // itemIndex === -1 ? history.push(`/cart/checkout`):
+    // handleToast('Item already bought', 'error')
   }
 
 
@@ -59,25 +69,31 @@ const  CategoryDetails = (props) => {
             <span><span style = {{fontWeight: 'bold'}}>{likeCount} </span>Likes </span>
             <span><span style = {{fontWeight: 'bold'}}>{viewCount} </span>Views</span>
           </div>
+          <div className='Best-Seller'>
+            <span>Best Seller</span>
+          </div>
           <div style = {{fontSize : '13px'}} className='time - language'>
             <span>Latest Upated: {publishedAt}</span>
             <span  style = {{fontWeight: 'bold'}}> All in pidgin English</span>
           </div>
         </div><br/>
         <div className =" ADD-BUY">
-         <Link to = {`/courses/${paramsId}/watch`}>
-            <button  style = {{cursor: 'pointer'}}>Access</button>
-          </Link>
-          <button 
-          style ={{cursor : 'pointer'}}
-          onClick = {handleCartButton}
-          >Add To Cart</button>
-          <Link to = '/cart/checkout'>
+          {isPurchased?  <Link to = {`/courses/${paramsId}/watch`}>
+            <button  style = {{cursor: 'pointer'}}>Access Course</button>
+          </Link>:
+          <div>
             <button 
-             style = {{cursor: 'pointer'}}
-             onClick={()=> {dispatch(updateCheckoutList(selectedCourses[0]))}}
-             >Buy Now</button>
-          </Link>
+             style ={{cursor : 'pointer'}}
+             onClick = {handleCartButton}
+             >Add To Cart</button>
+            <Link to = '/cart/checkout'>
+              <button 
+              style = {{cursor: 'pointer'}}
+              onClick={handleBuyButton}
+              >Buy Now</button>
+            </Link>
+          </div>
+          }
         </div>
       </div>}
       <div className = "preview">

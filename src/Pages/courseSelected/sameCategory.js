@@ -13,21 +13,21 @@ import { useParams } from 'react-router-dom';
 
 const  SameCategory = () => {
   const dispatch = useDispatch();
-  const featuredCourses = useSelector(getAllcourses);
-  const allCourse = featuredCourses.result;
+  const allCourses = useSelector(getAllcourses);
+  //const allCourse = featuredCourses.result;
   let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   
   
   //const [showCartButton, setShowCartButton] = useState(false)
-   const {id} = useParams();
+   const paramsId = useParams().id;
 
   useEffect(() => {
     //dispatch(updateLoading(true))
 			dispatch(fetchAsyncCourses())
 		//	dispatch(updateLoading(false))
-	},[dispatch, id]);
+	},[dispatch, paramsId]);
 
-  if (loading || featuredCourses.length === 0) {
+  if (loading || allCourses.length === 0) {
     return  <div  style = {{textAlign: 'center', padding: '100px'}} >
      <Spinner  size="xl"/>
   </div>    
@@ -40,11 +40,11 @@ const  SameCategory = () => {
           </div>
           <div className = "sameCategoryCourses"> 
             <Slider {...settings}> 
-				    {allCourse?.map ((data) =>
+				    {allCourses?.map ((data) =>
             <div key={data.id}>
               <CourseCard
                key = {data.id}
-               id = {data.contentDetails.upload.videoId}
+               id = {data.videoId}
                imageAlt ={data.snippet.title}  
                imageSrc = {data.snippet.thumbnails.high.url}
                title = {data.snippet.title}

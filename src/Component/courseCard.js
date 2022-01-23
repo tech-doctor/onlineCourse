@@ -3,12 +3,14 @@ import { Badge, useToast} from "@chakra-ui/react"
 import { Link} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateCartList } from '../Store/databaseSlice'
+import { updateIsPurchased } from '../Store/courseSlice'
 
 
 const CourseCard = (props) => { 
   const [showCartButton, setShowCartButton] = useState(false)
   const { data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice} = props
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
+  const allCourses = useSelector(state => state.rootReducer.courseSlice.courses)
   const dispatch = useDispatch();
   const toast = useToast();
 
@@ -25,6 +27,8 @@ const CourseCard = (props) => {
 
   const handleClick = () => {
     dispatch(updateCartList(data))
+    //dispatch(updateIsPurchased(data))
+    
     const listIndex = cartList.findIndex(item => item.snippet.title === data.snippet.title);
     listIndex === -1 ? handleToast(' 1  item added to Cart', 'success'):
     handleToast('Item already in Cart', 'error')			
