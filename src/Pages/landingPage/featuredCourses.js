@@ -49,6 +49,7 @@ const FeaturedCourses = () => {
 				(<CourseCard
 					key = {data.id}
 					id = {data.videoId}
+					// isPurchased = {data.isPurchased}
 					imageAlt ={data.snippet.title}  
 					imageSrc = {data.snippet.thumbnails.high.url}
 					title = {data.snippet.title}

@@ -4,13 +4,17 @@ import authSlice from './authSlice';
 import databaseSlice from './databaseSlice';
 
 
+
+
 const rootReducer = combineReducers({courseSlice, authSlice, databaseSlice})
 
 const store = configureStore({
     reducer: {
-       rootReducer
-
+      rootReducer
     }
 })
+
+
+
 
 export default store

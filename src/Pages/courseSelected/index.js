@@ -4,7 +4,6 @@ import Footer from '../../Component/Footer/footer'
 import '../../Styles/courseSelected.scss'
 import SameCategory from './sameCategory'
 import CategoryDetails from './categoryDetails'
-//import { Spinner} from "@chakra-ui/react"
 import Review from './review'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAsyncSelectedCourses, getSelectedCourse } from '../../Store/courseSlice'
@@ -13,7 +12,6 @@ import moment from 'moment'
 
 const  CourseSelected = ()  => {
   const selectedCourses = useSelector(getSelectedCourse);
-  //const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   const dispatch = useDispatch();
   const {id} = useParams();
  
@@ -22,13 +20,6 @@ const  CourseSelected = ()  => {
 },[dispatch,id]);
 
 
-if(selectedCourses.length !== 0){
-//console.log(selectedCourses[0]);
-//console.log(moment.duration('PT5M33S').format('hh:mm:ss'))
-}
-
-
-//moment(data.snippet.publishedAt).fromNow()
 	return (
 		<div className = "courseSelected">
       <div>

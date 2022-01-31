@@ -5,7 +5,6 @@ import OrderDetails from './orderDetails';
 import Summary from './summary'
 import { useSelector } from 'react-redux';
 import { Spinner } from '@chakra-ui/react';
-//import DebitCard from '../../Component/debitCard'
 import DebitCard from '../../Component/debitCard';
 
 const  CheckOut = ()  => {

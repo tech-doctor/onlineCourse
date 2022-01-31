@@ -31,6 +31,7 @@ const topCoursesArray = topCourses.slice(4,11)
           <CourseCard
             key = {data.id}
             id = {data.videoId}
+            // isPurchased = {data.isPurchased}
             imageAlt ={data.snippet.title}  
             imageSrc = {data.snippet.thumbnails.standard.url}
             title = {data.snippet.title}

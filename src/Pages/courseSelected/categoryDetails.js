@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight, faArrowUp} from '@fortawesome/free-solid-svg-icons'
 import { Spinner, Stack,Skeleton, useToast} from "@chakra-ui/react"
@@ -19,6 +19,21 @@ const  CategoryDetails = (props) => {
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
   const [isPurchased, setIsPurchased] = useState(false);
+  
+  useEffect(() => {
+   setPurchased();
+},[]);
+
+  const setPurchased = () => {
+    purchasedItem.forEach(element => {
+      if(paramsId === element.id){
+        setIsPurchased(true);
+      }
+    });
+  }
+
+  
+
 
   const handleToast = (description, status) => {
     toast({

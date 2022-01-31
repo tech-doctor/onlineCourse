@@ -5,7 +5,7 @@ import App from './App';
 //import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from "@chakra-ui/react"
 import { Provider } from "react-redux";
-import store from './Store'
+import  store from  './Store';
 
 ReactDOM.render( 
   <Provider store = {store}>

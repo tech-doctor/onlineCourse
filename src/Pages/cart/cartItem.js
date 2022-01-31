@@ -1,15 +1,15 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Badge, useToast } from "@chakra-ui/react";
+import { Badge } from "@chakra-ui/react";
 import { updateCheckoutList } from "../../Store/databaseSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
   const history  =  useHistory();
-  const toast =  useToast();
+  //const toast =  useToast();
   const { data, id, imageAlt, imageSrc, title, date, newPrice, oldPrice } = props
-  const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
+ // const purchasedItem = useSelector(state => state.rootReducer.courseSlice.purchasedItem)
   
 
   // const handleToast = (description, status) => {
@@ -24,6 +24,7 @@ const CartItem = (props) => {
 
    const handleClick = () => {
      dispatch(updateCheckoutList(data))
+     history.push('./cart/checkout')
     //  const itemIndex = purchasedItem.findIndex(item => item.snippet.title === data.snippet.title);
     //  itemIndex === -1 ? history.push(`/cart/checkout`):
     //  handleToast('Item already bought', 'error')

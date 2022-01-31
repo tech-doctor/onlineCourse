@@ -3,7 +3,7 @@ import { usePaystackPayment } from 'react-paystack';
 import { CircularProgress } from '@chakra-ui/react';
 import { updatePurchasedItem } from '../../Store/databaseSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateIsPurchased } from '../../Store/courseSlice';
+//import { updateIsPurchased } from '../../Store/courseSlice';
 
 
 const Summary = (props) =>  {
@@ -26,12 +26,15 @@ const initializePayment = usePaystackPayment(config);
 const onSuccess = (reference) => {
  // console.log({...reference, purchasedTime : currentDate()});
   setIsLoading(false);
-  checkoutList.map(data => {
+  console.log('bought');
+  checkoutList.map(data => (
     dispatch(updatePurchasedItem(data))
-  })  
-  allCourses.map(data => {
-    dispatch(updateIsPurchased(data))
-  })
+    //dispatch(updateIsPurchased(data))
+  ))  
+  
+  // allCourses.map(data => {
+  //   dispatch(updateIsPurchased(data))
+  // })
 };
 
 

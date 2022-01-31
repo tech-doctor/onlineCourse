@@ -1,7 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
-import api from '../Component/Apis/api'
-import { apiKey } from '../Component/Apis/apiKey'
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import api from '../Component/Apis/api';
+import { apiKey } from '../Component/Apis/apiKey';
 
 
  export const fetchAsyncCourses = createAsyncThunk('courses/fetchAsyncCourses', async () => {
@@ -14,13 +13,12 @@ import { apiKey } from '../Component/Apis/apiKey'
         return {
           ...item,
           videoId: item.contentDetails.upload.videoId,
-          isPurchased: false,
+          // isPurchased: false,
         }
       }))
      return finalResult
   }
 )
-
 
 
 export const fetchAsyncCategories = createAsyncThunk('selectedCategory/fetchAsyncCategories', async (categoriesId) => {
@@ -31,11 +29,11 @@ export const fetchAsyncCategories = createAsyncThunk('selectedCategory/fetchAsyn
     const finalResult  = Object.assign(result.map(item => {
       return {
         ...item,
-        videoId: item.snippet.resourceId.videoId
+        videoId: item.snippet.resourceId.videoId,
+        // isPurchased: false,
       }
     }))
    return finalResult
-  
     
   }
 )
@@ -48,10 +46,7 @@ export const fetchAsyncSelectedCourses = createAsyncThunk('selectedCourses/fetch
 )
 
 
-
-
-
-
+// initializing the state in this slide
 const initialState = {
   isLoading: false,
   courses: [],
@@ -63,26 +58,24 @@ const initialState = {
 	name: 'courses',
 	initialState,
 	reducers : {
-    // updateSelectedCourse(state, action){
-	  //   state.selectedCourse = action.payload
-    // },
+   
     updateLoading(state, action){
       state.isLoading = action.payload
     },
 
-    //where i stopped
-    updateIsPurchased(state, action){
-      for(let i=0; i<state.courses.length; i++){
-        if(state.courses[i].snippet.title === action.payload.snippet.title){
-          state.courses[i].isPurchased = true;
-          console.log(action.payload.isPurchased)
-        }  else{
-          console.log('not found')
-        }
-      }
-    }
+
+    // updateIsPurchased(state, action){
+    //   for(let i=0; i<state.courses.length; i++){
+    //     if(state.courses[i].snippet.title === action.payload.snippet.title){
+    //       state.courses[i].isPurchased = true;
+    //     }  
+        
+    //   }
+    // },
+
 	},
 
+  
   extraReducers: {
     ///fetchAsyncCourses
     [fetchAsyncCourses.pending]: () => {
@@ -90,6 +83,7 @@ const initialState = {
     },
     [fetchAsyncCourses.fulfilled]: (state, {payload}) => {
       console.log('Fetched Successfully')
+      //console.log({...payload})
       return {...state, courses: payload}
     }, 
     [fetchAsyncCourses.rejected]: () => {
@@ -114,13 +108,11 @@ const initialState = {
 })
 
 
-export const {updateLoading, updateIsPurchased} = courseSlice.actions
+export const {updateLoading} = courseSlice.actions
 export const getAllcourses = (state) => state.rootReducer.courseSlice.courses;
 export const getSelectedCategory = (state) => state.rootReducer.courseSlice.selectedCategory;
 export const getSelectedCourse = (state) => state.rootReducer.courseSlice.selectedCourse;
 export default courseSlice.reducer
-
-
 
 
 

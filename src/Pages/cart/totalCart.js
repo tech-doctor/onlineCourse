@@ -18,9 +18,9 @@ const  TotalCart = (props) => {
    }
 
    const handleClick = () => {
-     cartList.map(data => {
+     cartList.map(data => (
         dispatch(updateTotalCheckoutList(data))
-     })
+     ))
    }
 
  

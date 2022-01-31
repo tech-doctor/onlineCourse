@@ -1,19 +1,36 @@
-import React, { useState } from 'react'
-import { Badge, useToast} from "@chakra-ui/react"
-import { Link} from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { updateCartList } from '../Store/databaseSlice'
-import { updateIsPurchased } from '../Store/courseSlice'
+import React, { useEffect, useState } from 'react';
+import { Badge, useToast} from "@chakra-ui/react";
+import { Link} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCartList } from '../Store/databaseSlice';
+import { useHistory } from 'react-router-dom';
+//import { updateIsPurchased } from '../Store/courseSlice'
 
 
 const CourseCard = (props) => { 
-  const [showCartButton, setShowCartButton] = useState(false)
-  const { data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice} = props
-  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
-  const allCourses = useSelector(state => state.rootReducer.courseSlice.courses)
   const dispatch = useDispatch();
   const toast = useToast();
+  const history = useHistory();
 
+  const { data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice} = props
+  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
+  const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
+  const [showCartButton, setShowCartButton] = useState(false)
+  const [isPurchased, setIsPurchased] = useState(false)
+
+ useEffect(() => {
+  setPurchased();
+},[]);
+ 
+
+const setPurchased = () => {
+  purchasedItem.forEach(element => {
+    if(element.snippet.title === title){
+      setIsPurchased(true);
+    }
+  })
+}
+ 
 
   const handleToast = (description, status) => {
 	toast({
@@ -64,7 +81,9 @@ const CourseCard = (props) => {
       </Link>
       	{showCartButton && (
 					<div className='button'>
-						<button onClick={handleClick}>Add To Cart</button>
+            {isPurchased? <button onClick={()=> {history.push(`/courses/${id}/watch`)}}>Access Course</button> :
+            <button onClick={handleClick}>Add To Cart</button> }
+						
 				</div> )}
 		</div>
 	)

@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react';
-//import {Link} from 'react-router-dom';
 import Slider from 'react-slick';
 import { settings } from '../../Styles/settings';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAsyncCourses,getAllcourses } from '../../Store/courseSlice';
 import { Spinner } from '@chakra-ui/react';
-//import TopCoursesCard from '../categoryListPage/topCoursesCard';
 import CourseCard from '../../Component/courseCard';
 import { useParams } from 'react-router-dom';
 
@@ -14,13 +12,10 @@ import { useParams } from 'react-router-dom';
 const  SameCategory = () => {
   const dispatch = useDispatch();
   const allCourses = useSelector(getAllcourses);
-  //const allCourse = featuredCourses.result;
+  const paramsId = useParams().id;
   let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   
-  
-  //const [showCartButton, setShowCartButton] = useState(false)
-   const paramsId = useParams().id;
-
+   
   useEffect(() => {
     //dispatch(updateLoading(true))
 			dispatch(fetchAsyncCourses())
@@ -45,6 +40,7 @@ const  SameCategory = () => {
               <CourseCard
                key = {data.id}
                id = {data.videoId}
+              //  isPurchased = {data.isPurchased}
                imageAlt ={data.snippet.title}  
                imageSrc = {data.snippet.thumbnails.high.url}
                title = {data.snippet.title}
@@ -60,9 +56,5 @@ const  SameCategory = () => {
 				</div>
     )
 }
-
-// const deepText = {
-// 	fontWeight : "700"
-// }
 
 export default SameCategory

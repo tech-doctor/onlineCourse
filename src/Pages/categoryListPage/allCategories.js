@@ -13,11 +13,7 @@ const {topCourses, titleFunc} = props;
 const [show, setShow] = React.useState(false)
 const handleToggle = () => setShow(!show)
 
-// const angleDown = () => {
-//   return (
-//     <FontAwesomeIcon icon={faAngleDown} />
-//   )
-// }
+
 
   return (
     <div className = "allCategory">
