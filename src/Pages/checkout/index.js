@@ -1,11 +1,12 @@
 import React from 'react';
-import '../../Styles/checkOut.scss';
 import { Link, useHistory } from "react-router-dom"
-import OrderDetails from './orderDetails';
-import Summary from './summary'
-import { useSelector } from 'react-redux';
 import { Spinner } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
+import OrderDetails from './orderDetails';
 import DebitCard from '../../Component/debitCard';
+import Summary from './summary'
+import '../../Styles/checkOut.scss';
+
 
 const  CheckOut = ()  => {
   const history = useHistory();
@@ -40,8 +41,9 @@ const  CheckOut = ()  => {
         </div>
       </div>
 			<hr/>
-			<div className ="center-div">
-      {/* <div style = {{textAlign: 'center', padding: '100px'}}  >
+      <div className = "checkout_body">
+       <div className ="center-div">
+        {/* <div style = {{textAlign: 'center', padding: '100px'}}  >
           <Spinner/>
         </div> */}
 				<div className = "title">
@@ -72,6 +74,8 @@ const  CheckOut = ()  => {
           </div>
 				</div>  
 			</div>
+      </div>
+			
 		</div>
 	)
 }

@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import { usePaystackPayment } from 'react-paystack';
 import { CircularProgress } from '@chakra-ui/react';
-import { updatePurchasedItem } from '../../Store/databaseSlice';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { updatePurchasedItem } from '../../Store/databaseSlice';
+
 //import { updateIsPurchased } from '../../Store/courseSlice';
 
 
@@ -76,7 +78,7 @@ const handleClick = () => {
           <p>₦{totalSummary}.00</p>
         </div>
         <div className='payment-notice'>
-          <p>By completing your purchase, you agree with the <span> terms and condition </span></p>
+          <p>By completing your purchase, you agree with the <span><a href='#'>terms and conditions</a> </span></p>
         </div>
         <div className='payment-button'>
           <button 

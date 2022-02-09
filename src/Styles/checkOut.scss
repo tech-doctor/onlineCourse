@@ -1,18 +1,18 @@
-.checkOutPage{
+.checkOutPage {
   // *{
   //   outline: 1px solid black;
   // }
-  .header{
+  .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0px 40px;
-    .logo *{
+    .logo * {
       cursor: pointer;
       text-decoration: none;
       color: black;
     }
-    .cancel{
+    .cancel {
       cursor: pointer;
       background-color: rgb(90, 90, 90);
       padding: 5px 20px;
@@ -20,178 +20,192 @@
       color: rgb(255, 255, 255);
     }
   }
-  .center-div{
-    border: 1px solid black;
-    width: 70%;
-    padding: 0px 10px;
-    margin: auto;
-    .title{
-      p{
-        font-size: 40px;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      }
-    }
-    .body{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      //padding: 5px;
-      .left{
-        padding: 5px;
-        border: 1px solid black;
-        width: 50%;
-        .paystack-page{
-          .bank-card {
-            width: 100%;  
-          }
+  .checkout_body {
+    background-color: rgb(218, 218, 218);
+    padding: 1em;
+    .center-div {
+      border: 1px solid black;
+      width: 70%;
+      padding: 0px 10px;
+      margin: auto;
+      .title {
+        p {
+          font-size: 40px;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
         }
-        .OrderDetails{
-          .heading{
-            font-size: 25px;
-            font-weight: 600;
+      }
+      .body {
+        display: flex;
+        // align-items: center;
+        justify-content: space-between;
+        //padding: 5px;
+        .left {
+          padding: 5px;
+          border: 1px solid black;
+          width: 50%;
+          .paystack-page {
+            .bank-card {
+              width: 100%;
+            }
           }
-          .details{
-            display: flex;
-          
-            .left{
-              width: 80%;
+          .OrderDetails {
+            .heading {
+              font-size: 25px;
+              font-weight: 600;
+            }
+            .details {
               display: flex;
-                img{
+              align-items: center;
+
+              .left {
+                width: 80%;
+                display: flex;
+                img {
                   width: 70px;
                   padding: 5px;
                   border: 1px solid black;
                 }
-              .about{
-                margin-left: 10px;
-                font-weight: 600;
+                .about {
+                  margin-left: 10px;
+                  font-weight: 600;
+                }
+              }
+              .right {
+                width: 20%;
               }
             }
-            .right {
-              width: 20%;
+          }
+        }
+        .right {
+          border: 1px solid black;
+          background-color: white;
+          width: 40%;
+          height: 100%;
+          padding: 5px;
+          .summary {
+            .heading {
+              font-weight: 700;
+              font-size: 25px;
+            }
+            .details {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+            .total {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              font-weight: 700;
+              font-size: 18px;
+            }
+            .payment-button button {
+              width: 100%;
+              cursor: pointer;
+              padding: 0.5em 1em;
+              font-size: 15px;
+              background-color: rgb(94, 93, 93);
+              color: white;
+              //border: none;
+            }
+            .payment-notice {
+              font-size: 13px;
+              color: rgb(94, 93, 93);
             }
           }
         }
-      }
-      .right{
-        border: 1px solid black;
-        width: 40%;
-        padding: 5px;
-        .summary{
-          .heading{
-            font-weight: 700;
-            font-size: 25px;
-          }
-          .details{
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-          }
-          .total{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 18px;
-          }
-          .payment-button button{
-             width: 100%;
-             cursor: pointer;
-             padding: 0.5em 1em;
-             font-size: 15px;
-             background-color: rgb(94, 93, 93);
-             color: white;
-             //border: none; 
-          }
-        }
-
       }
     }
   }
 }
-
 
 /////////////////////////////////MOBILE////////////////////
 
 @media (max-width: 1200px) {
-  .checkOutPage{
-    .center-div{
-      width: 90%;
-      .title{
-        p{
-          font-size: 35px;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-      }
-      .body{
-        .left{
-          padding: 5px;
-          border: 1px solid black;
-          width: 100%;
-          .OrderDetails{
-            .heading{
-              font-size: 22px;
-            }
+  .checkOutPage {
+    .checkout_body {
+      .center-div {
+        width: 90%;
+        .title {
+          p {
+            font-size: 35px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+              sans-serif;
           }
         }
-        .right{
-          border: 1px solid black;
-          width: 100%;
-          padding: 5px;
+        .body {
+          .left {
+            padding: 5px;
+            border: 1px solid black;
+            width: 100%;
+            .OrderDetails {
+              .heading {
+                font-size: 22px;
+              }
+            }
+          }
+          .right {
+            border: 1px solid black;
+            width: 100%;
+            padding: 5px;
+          }
         }
       }
     }
   }
 }
 
-
-
-
 @media (max-width: 750px) {
-  .checkOutPage{
-    .center-div{
-      border: 1px solid black;
-      width: 90%;
-      padding: 0px 10px;
-      .title{
-        p{
-          font-size: 30px;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-      }
-      .body{
-        flex-wrap: wrap;
-        
-        .left{
-          padding: 5px;
-          border: 1px solid black;
-          width: 100%;
-          .OrderDetails{
-            .heading{
-              font-size: 20px;
-            }
-            .details{
-              display: flex;
-            }
+  .checkOutPage {
+    .checkout_body {
+      .center-div {
+        border: 1px solid black;
+        width: 90%;
+        padding: 0px 10px;
+        .title {
+          p {
+            font-size: 30px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+              sans-serif;
           }
         }
-        .right{
-          border: 1px solid black;
-          width: 100%;
-          padding: 5px;
-          .summary{
-            .heading{
-              font-weight: 700;
-              font-size: 22px;
-            }
-            .details{
-              width: 100%;
-            }
-            .total{
-              font-size: 16px;
+        .body {
+          flex-wrap: wrap;
+
+          .left {
+            padding: 5px;
+            border: 1px solid black;
+            width: 100%;
+            .OrderDetails {
+              .heading {
+                font-size: 20px;
+              }
+              .details {
+                display: flex;
+              }
             }
           }
-  
+          .right {
+            border: 1px solid black;
+            width: 100%;
+            padding: 5px;
+            .summary {
+              .heading {
+                font-weight: 700;
+                font-size: 22px;
+              }
+              .details {
+                width: 100%;
+              }
+              .total {
+                font-size: 16px;
+              }
+            }
+          }
         }
       }
     }
