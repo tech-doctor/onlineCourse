@@ -4,7 +4,6 @@ import { Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCartList } from '../Store/databaseSlice';
 import { useHistory } from 'react-router-dom';
-//import { updateIsPurchased } from '../Store/courseSlice'
 
 
 const CourseCard = (props) => { 
@@ -24,9 +23,9 @@ const CourseCard = (props) => {
         setIsPurchased(true);
       }
     })
-  },[purchasedItem,title]);
+  },[purchasedItem, title]);
 
-  
+
 
   const handleToast = (description, status) => {
 	toast({
