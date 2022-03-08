@@ -31,8 +31,7 @@ const  App = () => {
             <Route exact path = "*" component={PageNotFound}/>
           </Switch>
     </Router>
-    </div>
-    
+    </div> 
   );
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from "react-router-dom"
-import { Spinner } from '@chakra-ui/react';
+//import { Spinner } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import OrderDetails from './orderDetails';
 import DebitCard from '../../Component/debitCard';

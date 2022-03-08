@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from '../../Component/Header/desktopHeader/Header'
-import Footer from '../../Component/Footer/footer'
+import Footer from '../../Component/Footer'
 import Subscribe from '../landingPage/subscribe'
 import { useSelector } from 'react-redux'
-import { Spinner, settings} from "@chakra-ui/react"
+import { Spinner} from "@chakra-ui/react"
 import '../../Styles/myCourse.scss'
 import moment from 'moment'
 import MyCourseCard from './myCourseCard'
-import Slider from 'react-slick'
+//import Slider from 'react-slick'
 
 
 const  MyCourses = ()  => {

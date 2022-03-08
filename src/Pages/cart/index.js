@@ -3,7 +3,7 @@ import React from 'react'
 import {Stack} from "@chakra-ui/react"
 import { useSelector} from 'react-redux'
 import Header from "../../Component/Header/desktopHeader/Header"
-import Footer from '../../Component/Footer/footer'
+import Footer from '../../Component/Footer'
 import '../../Styles/cart.scss'
 import TotalCart from './totalCart'
 import OtherCourses from './otherCourses'

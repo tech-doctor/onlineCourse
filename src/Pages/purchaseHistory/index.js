@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../Component/Header/desktopHeader/Header'
-import Footer from '../../Component/Footer/footer'
+import Footer from '../../Component/Footer'
 import Subscribe from '../landingPage/subscribe'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  { faShoppingCart}  from '@fortawesome/free-solid-svg-icons'

@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../../Component/Header/desktopHeader/Header'
-import Footer from '../../Component/Footer/footer'
+import Footer from '../../Component/Footer'
 import FeaturedCourses from './featuredCourses'
 import AboutInstructor from "./aboutInstructor"
 import AboutProject from './aboutProject'

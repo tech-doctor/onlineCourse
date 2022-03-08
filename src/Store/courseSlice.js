@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import api from '../Component/Apis/api';
 import { apiKey } from '../Component/Apis/apiKey';
 
@@ -98,6 +98,7 @@ const initialState = {
       console.log('Fetched categories Successfully')
       return {...state, selectedCategory: payload}
     },
+
 
     // fetchAyncSelectedCourses
     [fetchAsyncSelectedCourses.fulfilled]: (state, {payload}) => {

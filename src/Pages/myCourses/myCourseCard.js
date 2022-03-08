@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 
 
 const  MyCourseCard = (props) => {
-	const { id, title, imageSrc, imageAlt, newPrice, oldPrice, date} = props;
+	const { title, imageSrc, imageAlt, newPrice, oldPrice, date} = props;
 return (
 	<div  className = " myCourse-box">
 		{/* <Link to = "/courses/course-selected" style = {{textDecoration: 'none', color: 'black'}} > */}

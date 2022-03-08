@@ -28,7 +28,7 @@ const  SideBar = (props) => {
 				<li><Link to = {`/category/${jqueryId}`}>JQuery</Link></li>
       </ul> 
     }
-        <p style = {{fontWeight : '700', cursor: 'pointer'}}><Link to = "/category/playlistId">Random</Link></p>
+        <p style = {{fontWeight : '700', cursor: 'pointer'}}><Link to = "/category/random">Random</Link></p>
       </div>  
     )
   }

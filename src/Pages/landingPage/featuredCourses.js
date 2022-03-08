@@ -49,14 +49,12 @@ const FeaturedCourses = () => {
 				(<CourseCard
 					key = {data.id}
 					id = {data.videoId}
-					// isPurchased = {data.isPurchased}
 					imageAlt ={data.snippet.title}  
 					imageSrc = {data.snippet.thumbnails.high.url}
 					title = {data.snippet.title}
 					date = {moment(data.snippet.publishedAt).fromNow()}
 					newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
 					oldPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30}
-				   // allCourse = {allCourse}
 					data = {data}
 				/>)
 				)}

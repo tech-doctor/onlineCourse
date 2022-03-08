@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from "../../Component/Header/desktopHeader/Header"
-import Footer from '../../Component/Footer/footer'
+import Footer from '../../Component/Footer'
 import '../../Styles/watch.scss'
 import { useParams } from 'react-router-dom';
 

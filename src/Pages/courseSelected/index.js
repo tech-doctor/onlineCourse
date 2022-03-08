@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import Header from "../../Component/Header/desktopHeader/Header"
-import Footer from '../../Component/Footer/footer'
+import Footer from '../../Component/Footer'
 import '../../Styles/courseSelected.scss'
 import SameCategory from './sameCategory'
 import CategoryDetails from './categoryDetails'

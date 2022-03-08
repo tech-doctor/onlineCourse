@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight, faArrowUp} from '@fortawesome/free-solid-svg-icons'
 import { Spinner, Stack,Skeleton, useToast} from "@chakra-ui/react"
 import { Link } from 'react-router-dom'
-import {useParams, useHistory} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSelectedCourse } from '../../Store/courseSlice'
 import { updateCheckoutList, updateCartList } from '../../Store/databaseSlice'
@@ -12,7 +12,7 @@ const  CategoryDetails = (props) => {
   const { id, title, duration, likeCount,viewCount,embedLink,publishedAt} = props;
   const paramsId = useParams().id;
   const dispatch = useDispatch();
-  const history = useHistory();
+  //const history = useHistory();
   const toast = useToast();
 
   const selectedCourses = useSelector(getSelectedCourse);
@@ -20,17 +20,18 @@ const  CategoryDetails = (props) => {
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
   const [isPurchased, setIsPurchased] = useState(false);
   
-  useEffect(() => {
-   setPurchased();
-},[]);
 
-  const setPurchased = () => {
-    purchasedItem.forEach(element => {
-      if(paramsId === element.id){
-        setIsPurchased(true);
-      }
-    });
-  }
+  useEffect(() => {
+   purchasedItem.forEach(element => {
+    if(paramsId === element.id){
+      setIsPurchased(true);
+    }
+  });
+},[paramsId, purchasedItem]);
+
+
+
+  
 
   
 

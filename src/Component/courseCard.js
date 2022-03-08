@@ -18,19 +18,15 @@ const CourseCard = (props) => {
   const [showCartButton, setShowCartButton] = useState(false)
   const [isPurchased, setIsPurchased] = useState(false)
 
- useEffect(() => {
-  setPurchased();
-},[]);
- 
+  useEffect(() => {
+    purchasedItem.forEach(element => {
+      if(element.snippet.title === title){
+        setIsPurchased(true);
+      }
+    })
+  },[purchasedItem,title]);
 
-const setPurchased = () => {
-  purchasedItem.forEach(element => {
-    if(element.snippet.title === title){
-      setIsPurchased(true);
-    }
-  })
-}
- 
+  
 
   const handleToast = (description, status) => {
 	toast({

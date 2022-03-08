@@ -1,16 +1,16 @@
 import React,{useState} from 'react';
-import { ChakraProvider, CircularProgress, Flex, Box, Heading, FormControl, FormLabel, Input,  Button, InputGroup, InputRightElement, useToast} from '@chakra-ui/react'
+import { ChakraProvider, CircularProgress, Flex, Box, Heading, FormControl, FormLabel, Input,  Button, InputGroup, InputRightElement} from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../../Styles/register.scss'
 
 const RegisterPage = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading ] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({});
-  const history = useHistory();
+  //const history = useHistory();
 
-  const toast = useToast();
+  //const toast = useToast();
 
    const handleChange = (event) => {
     setInputs({
@@ -24,19 +24,19 @@ const RegisterPage = () => {
       console.log(inputs);
     }
 
-    const handleToast = (message) => {
-      toast({
-        position: 'top',
-        title: message,
-        status: 'success',
-        description: `welcome back`,
-        duration: 3000,
-        isClosable: true,
-        onCloseComplete: () => {
-          history.push('/');
-        }
-      });
-    }
+    // const handleToast = (message) => {
+    //   toast({
+    //     position: 'top',
+    //     title: message,
+    //     status: 'success',
+    //     description: `welcome back`,
+    //     duration: 3000,
+    //     isClosable: true,
+    //     onCloseComplete: () => {
+    //       history.push('/');
+    //     }
+    //   });
+    // }
 
  
   const handlePasswordVisibility = () => setShowPassword(!showPassword);

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import Header from '../../Component/Header/desktopHeader/Header'
-import Footer from '../../Component/Footer/footer'
+import Footer from '../../Component/Footer'
 import '../../Styles/categoryListPage.scss'
 import AllCategories from './allCategories'
 import { Stack,Skeleton} from "@chakra-ui/react"
@@ -9,18 +9,19 @@ import TopCourses from './topCourses'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { fetchAsyncCategories, getSelectedCategory } from '../../Store/courseSlice'
-//import CourseCard from '../landingPage/courseCard'
 
 
 const  CategoryListPage = ()  => {
   const topCourses = useSelector(getSelectedCategory);
+  
   const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   const dispatch = useDispatch();
   const {playlistId} = useParams();
 
   useEffect(() => {
-    dispatch(fetchAsyncCategories(playlistId))
+    dispatch(fetchAsyncCategories(playlistId))    
 },[dispatch,playlistId]);
+
 
 const titleFunc = () => { 
   switch (playlistId) {
@@ -36,6 +37,7 @@ const titleFunc = () => {
       return( 'Random' );
   }
 }
+
 
 	return (
 		<div>
@@ -55,7 +57,6 @@ const titleFunc = () => {
             />
           </div>
         <hr/>
-        
 				<div> 
           {topCourses.length === 0 ?    
           <div>

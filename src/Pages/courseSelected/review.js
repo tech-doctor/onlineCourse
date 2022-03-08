@@ -10,17 +10,18 @@ const  Review = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
  
-  async  function fetchReviews () {
-    setLoading(true)
-    const response = await api.get(`/commentThreads?part=snippet&part=id&part=replies&maxResults=5&videoId=${id}&key=${apiKey}`);
-    console.log(response.data.items)
-    setReviews(response.data.items)  
-    setLoading(false)
-  }
+  
+
 
   useEffect(() => {
-   fetchReviews()
-  }, [id]);
+    const  fetchReviews =  async() => {
+      setLoading(true)
+      const response = await api.get(`/commentThreads?part=snippet&part=id&part=replies&maxResults=5&videoId=${id}&key=${apiKey}`);
+      setReviews(response.data.items)  
+      setLoading(false)
+    }
+    fetchReviews();
+  },[id]);
    
 
 const LoadingText = function courseBox (){

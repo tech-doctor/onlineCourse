@@ -37,7 +37,7 @@ const handleToggle = () => setShow(!show)
         <div style = {{marginBottom: '20px'}} className = "allCoursesDisplay" >
             <div className = "left">
               <div className = "image"> 
-                <img  alt = {data.snippet.title} src ={data.snippet.thumbnails.standard.url}/>
+                <img  alt = {data.snippet.title} src ={data.snippet.thumbnails.high.url}/>
               </div>
               <div className = "about">
                 <p style = {deepText}>{data.snippet.title}</p>

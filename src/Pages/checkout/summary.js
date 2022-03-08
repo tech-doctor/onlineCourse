@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { usePaystackPayment } from 'react-paystack';
 import { CircularProgress } from '@chakra-ui/react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { updatePurchasedItem } from '../../Store/databaseSlice';
 
@@ -14,7 +14,7 @@ const Summary = (props) =>  {
   const [isLoading, setIsLoading] = useState(false);
   //const history = useHistory();
   const dispatch = useDispatch();
-  const allCourses = useSelector(state => state.rootReducer.courseSlice.courses)
+  //const allCourses = useSelector(state => state.rootReducer.courseSlice.courses)
   
    const config = {
     reference: (new Date()).getTime().toString(),
@@ -78,7 +78,7 @@ const handleClick = () => {
           <p>₦{totalSummary}.00</p>
         </div>
         <div className='payment-notice'>
-          <p>By completing your purchase, you agree with the <span><a href='#'>terms and conditions</a> </span></p>
+          <p>By completing your purchase, you agree with the <span><a href='id'>terms and conditions</a> </span></p>
         </div>
         <div className='payment-button'>
           <button 
