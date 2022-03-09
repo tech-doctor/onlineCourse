@@ -38,7 +38,7 @@ const  Header = () => {
               <p
               onClick = {() => setCategoryVisibility(!categoryVisibility)}
               >Categories</p>
-              <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/category/random">Random</Link> </p>					
+              <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/random">Random</Link> </p>					
 					  </nav>
 				  </div>
 				  <div className = "search">

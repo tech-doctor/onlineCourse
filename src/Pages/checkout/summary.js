@@ -28,11 +28,14 @@ const initializePayment = usePaystackPayment(config);
 const onSuccess = (reference) => {
  // console.log({...reference, purchasedTime : currentDate()});
   setIsLoading(false);
+  
   console.log('bought');
   checkoutList.map(data => (
-    dispatch(updatePurchasedItem(data))
+    dispatch(updatePurchasedItem(data)),
+    console.log(data)
     //dispatch(updateIsPurchased(data))
   ))  
+  console.log(reference, totalSummary)
   
   // allCourses.map(data => {
   //   dispatch(updateIsPurchased(data))

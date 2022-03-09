@@ -9,6 +9,7 @@ import TopCourses from './topCourses'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { fetchAsyncCategories, getSelectedCategory } from '../../Store/courseSlice'
+import PageNotFound from '../pageNotFound'
 
 
 const  CategoryListPage = ()  => {
@@ -39,46 +40,61 @@ const titleFunc = () => {
 }
 
 
-	return (
-		<div>
-		  <div>
-			  <Header/>
-			</div>
-			<div style = {{margin: "0 3%"}} className = "eachCategoryList">
+
+  switch(playlistId){
+    case 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK': 
+    case 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2':
+    case 'PLEu7Y7_blvLVNfrsztZmfWEw57lWyuUfI':
+    case 'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808':
+    return (
+      <div>
         <div>
-          <Author/>
+          <Header/>
         </div>
-        <hr/>
-			    <div>
-            <TopCourses
+        <div style = {{margin: "0 3%"}} className = "eachCategoryList">
+          <div>
+            <Author/>
+          </div>
+          <hr/>
+            <div>
+              <TopCourses
+              topCourses = {topCourses}
+              loading= {loading}
+              titleFunc = {titleFunc()}
+              />
+            </div>
+          <hr/>
+          <div> 
+            {topCourses.length === 0 ?    
+            <div>
+              <Stack>
+                <Skeleton height="100px" />
+                <Skeleton height="100px" />
+                <Skeleton height="100px" />
+                <Skeleton height="100px" />
+              </Stack>
+            </div> :
+            <AllCategories
             topCourses = {topCourses}
             loading= {loading}
             titleFunc = {titleFunc()}
-            />
+            />} 
           </div>
-        <hr/>
-				<div> 
-          {topCourses.length === 0 ?    
-          <div>
-            <Stack>
-              <Skeleton height="100px" />
-              <Skeleton height="100px" />
-              <Skeleton height="100px" />
-              <Skeleton height="100px" />
-            </Stack>
-          </div> :
-			  	<AllCategories
-          topCourses = {topCourses}
-          loading= {loading}
-          titleFunc = {titleFunc()}
-          />} 
-				</div>
-			</div>
-			<div>
-			 <Footer/>
-			</div>		
-		</div>
-	)
+        </div>
+        <div>
+          <Footer/>
+        </div>		
+      </div>
+    )
+  }
+  return (
+    <PageNotFound/>
+  )
+
+  
+
+
+	
 }
 
 // const deepText = {
