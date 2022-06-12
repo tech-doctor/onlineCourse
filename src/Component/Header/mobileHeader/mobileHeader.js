@@ -24,7 +24,7 @@ const  MobileHeader = (props) =>  {
         <div  className = "menu-barIcon">
           <FontAwesomeIcon
            onClick = {() => setSidebarVisible(!sidebarVisible)} 
-           style ={{fontSize: '20px'}}  
+           style ={{fontSize: '22px'}}  
            icon={faBars}
           />
         </div>
