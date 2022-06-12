@@ -34,6 +34,7 @@ const titleFunc = () => {
       return( 'Javascript' );
       case 'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808':
       return( 'JQuery' );
+      //eslint-disable-next-line
     default:
       return( 'Random' );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../Component/Header/desktopHeader/Header';
 import Footer from '../../Component/Footer';
-import Subscribe from '../landingPage/subscribe';
+import Subscribe from '../../Component/subscribe';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import  { faShoppingCart}  from '@fortawesome/free-solid-svg-icons';
 import { Spinner} from "@chakra-ui/react";

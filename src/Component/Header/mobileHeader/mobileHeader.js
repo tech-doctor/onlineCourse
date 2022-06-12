@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import  {faBars, faShoppingCart} from '@fortawesome/free-solid-svg-icons'
+import  {faBars} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
 import SideBar from './sideBar'
+import Logo from '../../Logo'
 
 const  MobileHeader = (props) =>  {
   // Set the state for the sidebar visibility before the hamburger icon is being clicked
@@ -27,17 +28,18 @@ const  MobileHeader = (props) =>  {
            icon={faBars}
           />
         </div>
-        <div className = "logo">
-        <h3><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/">LOGO</Link></h3>
+        <div>
+          <Logo
+          src={'/Assets/logo.png'}
+          color={'#173A56'}
+          />
         </div>
         <div style ={{fontSize: '20px'}}
-          className =    "search-cart">
-           <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/cart"><FontAwesomeIcon
-            style ={{marginLeft: '20px'}}
-            icon={faShoppingCart}
-          />
+          className =    "search-cart"><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/cart">
+            <img 
+            alt='cart'
+            src='/Assets/cart.png' className='cart_png' style = {{width: '25px', height: '25px'}} />
           {cartList.length > 0 && <small>{cartList.length}</small>}
-          {/* <small>{cartList.length}</small> */}
           </Link>  
         </div>
       </div>

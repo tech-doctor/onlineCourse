@@ -1,59 +1,195 @@
-footer {
-  .footer {
-    .footer-1 {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      width: 100%;
-      text-align: center;
-      .column {
-        border: 1px solid black;
-        width: 30%;
-        p a {
-          text-decoration: none;
-          color: rgb(46, 46, 46);
-          &:hover {
-            color: rgb(46, 46, 46);
-          }
-        }
-        .heading {
-          font-weight: 700;
-        }
-      }
-    }
-
-    .footer-2 {
-      text-align: center;
-    }
-    .footer-2-flex {
-      display: flex;
-      text-align: center;
-      justify-content: space-around;
-    }
-  }
+footer{
+  background-color: #074942;
+   //padding: 1em 0;
+  color: white;
+  font-family: poppins;
+  font-weight: 300;
+  letter-spacing: 0.01em;
 }
 
-@media (max-width: 800px) {
-  footer {
-    .footer {
-      .footer-1 {
-        flex-wrap: wrap;
-      }
-    }
-  }
+footer .footer-1{
+  margin: 0 8em;
+  border-bottom: 1px solid #51726f;  
+}
+
+footer .footer-1 .first{
+   display: flex;
+   justify-content: space-between; 
+   flex-wrap: wrap; 
+   padding: 4em 0;
+}
+
+footer .footer-1 .first  .right{
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+
+footer .footer-1 .first  .right .column .heading{
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 1.2em;
+}
+
+footer .footer-1 .first  .right .column :not(.heading) a:hover{
+  margin: 1px 0;
+  text-decoration: underline;
+}
+
+footer .footer-1 .first  .right .column p{
+  margin-top: 10px;
 }
 
 
-@media (max-width: 800px) {
-  footer {
-    .footer {
-      .footer-1 {
-        flex-wrap: wrap;
-        text-align: left;
-        .column {
-          width: 100%;
-        }
-      }
-    }
+
+footer .footer-1 .first .left{
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+footer .footer-1 .first .left .socials a img{
+   width: 40px;
+    height:  40px;
+  
+}
+
+
+
+footer .footer-1 .second{
+  text-align: center;
+  padding: 3em 0;
+}
+
+footer .footer-2{
+  text-align: center;
+  margin: 3em 0 0 0;
+  padding: 5px 0;
+}
+
+
+
+footer .footer-1 a{
+  color: white;
+  text-decoration: none;
+}
+
+footer .footer-2 a{
+  color: #02b9a4;
+  text-decoration: none;
+}
+
+@media(max-width: '1200px'){
+  footer .footer-1{
+    margin: 0 5em; 
   }
+  footer .footer-1 .first{
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    padding: 2.5em 0;
+ }
+  footer .footer-1 .second{
+    padding: 1em 0;
+  }
+  footer .footer-1 .first  .right{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+  }
+  footer .footer-1 .first .left .socials a img{
+    width: 35px;
+    height:  35px; 
+ }
+
+ footer .footer-1 .second{
+  font-size: 15px;
+}
+
+footer .footer-2{
+  font-size: 15px;
+  
+}
+
+}
+
+@media(max-width: '1000px'){
+  footer .footer-1{
+    margin: 0 2em; 
+  }
+
+  footer .footer-1 .first{
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    padding: 2.5em 0;
+ }
+
+  footer .footer-2{
+    margin: 0 2em; 
+    
+  }
+  footer .footer-1 .second{
+    padding: 1em 0;
+  }
+
+  footer .footer-1 .first  .right{
+    width: 60%;
+  
+  }
+
+}
+
+@media(max-width: '850px'){
+  footer{
+    padding: 0em 0;
+  }
+  footer .footer-1{
+    margin: 0 1em; 
+  }
+  footer .footer-1 .first{
+    padding: 1.5em 0;
+ }
+  footer .footer-1 .first  .right{
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 30px;
+  }
+  footer .footer-1 .first  .right .column{
+    margin: 10px 0px;
+     width: 100%;
+  }
+
+  footer .footer-1 .first  .right .column p{
+    margin-top: 7px;
+  }
+
+  footer .footer-1 .first  .right .column .heading{
+    font-size: 1em;
+    margin-bottom: 0.8em;
+  }
+
+  footer .footer-1 .first  .right .column :not(.heading){
+    font-size: 0.9em;
+   
+  }
+
+  footer .footer-1 .first .left .socials a img{
+    width: 28px;
+    height:  28px;
+    margin: 10px 0
+   
+ }
+
+ footer .footer-1 .second{
+  font-size: 12px;
+}
+
+footer .footer-2{
+  font-size: 12px;
+  margin: 0 1em; 
+  
+}
 }

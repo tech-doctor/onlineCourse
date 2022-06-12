@@ -1,3 +1,190 @@
+// HEROSECTION
+.hero_section {
+  background-image: url("https://res.cloudinary.com/rririsrisurisux/image/upload/v1655009256/Hero_z72vxs.png");
+  background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  color: white;
+  position: relative;
+  padding: 8em;
+}
+
+.hero_section .overlay{
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero_section section{
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  margin: 0 auto;
+  width: 40%;
+  z-index: 10;
+}
+
+.hero_section header{
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 80px;
+}
+
+.hero_section p{
+  font-size: 25px;
+  margin: 1em 0;
+}
+
+
+.hero_section button{
+  background-color: #02897A;
+  letter-spacing: 0.03em;
+  font-family: 'arial';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 10px 25px;
+  border-radius: 3px;
+  color: white;
+  outline: none;
+  border: none;
+  width: fit-content;
+}
+
+.hero_section button:hover{
+  background-color: #007568;
+}
+
+
+
+@media(max-width:1500px){
+  .hero_section header{
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 80px;
+  }
+  .hero_section section{
+    width: 50%;
+  }
+
+}
+
+
+@media (max-width: 1200px) {
+  .hero_section {
+    height: 90vh;
+    padding: 5em;
+  }
+  .hero_section button{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 10px 20px;
+  }
+  .hero_section header{
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 50px;
+  }
+
+  .hero_section p{
+    font-size: 22px;
+    //line-height: 40px;
+  }
+
+  .hero_section section{
+    width: 55%;
+  }
+  
+}
+
+@media (max-width: 1000px) {
+  .hero_section {
+    width: 100%;
+    padding: 2em;
+  }
+}
+
+@media (max-width: 850px) {
+  .hero_section {
+    background-position: left;
+    height: 60vh;
+    padding: 1em;
+  }
+  .hero_section header{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 45px;
+  }
+  .hero_section button{
+    font-weight: 400;
+    font-size: 15px;
+    padding: 6px 18px;
+  }
+
+  .hero_section p{
+    font-size: 18px;
+  }
+  .hero_section section{
+    width: 65%;
+  }
+  
+}
+
+@media (max-width: 500px) {
+  .hero_section {
+    background-position: left;
+    height: 50vh;
+    padding: 1em;
+  }
+  .hero_section header{
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 40px;
+  }
+
+  .hero_section section{
+    width: 90%;
+  }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ////////////////////////FEATURED COURSES ////////////////////////////
 
 .featuredCourses {
   margin: 10px 20px;

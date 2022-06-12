@@ -30,11 +30,11 @@ const onSuccess = (reference) => {
   setIsLoading(false);
   
   console.log('bought');
-  checkoutList.map(data => (
-    dispatch(updatePurchasedItem(data)),
+  checkoutList.map(data => {
+    dispatch(updatePurchasedItem(data))
     console.log(data)
     //dispatch(updateIsPurchased(data))
-  ))  
+})  
   console.log(reference, totalSummary)
   
   // allCourses.map(data => {

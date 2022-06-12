@@ -1,29 +1,25 @@
 import React from 'react'
-import Header from '../../Component/Header/desktopHeader/Header'
-import Footer from '../../Component/Footer'
 import FeaturedCourses from './featuredCourses'
 import AboutInstructor from "./aboutInstructor"
-import AboutProject from './aboutProject'
-import Subscribe from './subscribe'
+import AboutProject from './aboutProject';
+import HeroSection from './heroSection';
 import '../../Styles/landingPage.scss'
+import Layout from '../../Component/Layout';
 
 const  LandingPage = () => {
  
   return (
     <div>
-        <Header/>
+      <Layout>
         <hr/>
-        <h3>Center div</h3>
+         <HeroSection/>
         <hr/>
-        <FeaturedCourses/>
-        <hr/>
-        <AboutProject/>
-        <hr/>
-        <AboutInstructor/>
-        <hr/>
-        <Subscribe/>
-        <hr/>
-        <Footer/>
+          <FeaturedCourses/>
+          <hr/>
+          <AboutProject/>
+          <hr/>
+          <AboutInstructor/>
+      </Layout>   
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../../Component/Header/desktopHeader/Header'
 import Footer from '../../Component/Footer'
-import Subscribe from '../landingPage/subscribe'
+import Subscribe from '../../Component/subscribe'
 import { useSelector } from 'react-redux'
 import { Spinner} from "@chakra-ui/react"
 import '../../Styles/myCourse.scss'
