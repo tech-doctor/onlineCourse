@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faBars} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
@@ -6,7 +7,12 @@ import SideBar from './sideBar'
 import Logo from '../../Logo'
 
 const  MobileHeader = (props) =>  {
-  // Set the state for the sidebar visibility before the hamburger icon is being clicked
+//const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
+ const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
+ const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
+  
+
+ // Set the state for the sidebar visibility before the hamburger icon is being clicked
   const [sidebarVisible, setSidebarVisible]  = useState(false)
 
   // set display of sidebarContent as "none" before click, and "block" when clicked
@@ -16,7 +22,7 @@ const  MobileHeader = (props) =>  {
 	}
 
   //  setting the isLoggedIn props variable
-   const {cartList, htmlId, cssId, javascriptId, jqueryId} = props;
+   const { htmlId, cssId, javascriptId, jqueryId} = props;
 
   return (
     <div className = "mobile-header">
@@ -49,11 +55,10 @@ const  MobileHeader = (props) =>  {
           cssId = {cssId}
           javascriptId = {javascriptId}
           jqueryId = {jqueryId}
-          isLoggedIn = {props.isLoggedIn}
         />
       </div>
     </div> 
   )
 }
 
-export default MobileHeader
+export default React.memo(MobileHeader);

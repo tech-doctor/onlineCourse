@@ -17,4 +17,4 @@ const Logo = ({src, color}) => {
 };
 
 
-export default Logo;
+export default React.memo(Logo);

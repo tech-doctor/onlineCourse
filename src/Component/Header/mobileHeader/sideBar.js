@@ -1,11 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight, faUserCircle, faAngleDown} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom';
 
 const  SideBar = (props) => {
+  const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
   const [closedCategory, setCategory] = useState(true)
-  const {isLoggedIn, htmlId, cssId, javascriptId, jqueryId} = props
+  const { htmlId, cssId, javascriptId, jqueryId} = props
 
 
 
@@ -79,4 +81,4 @@ const  SideBar = (props) => {
 	)
 }
 
-export default SideBar
+export default React.memo(SideBar);

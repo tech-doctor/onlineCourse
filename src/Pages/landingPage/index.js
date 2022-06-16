@@ -5,6 +5,7 @@ import AboutProject from './aboutProject';
 import HeroSection from './heroSection';
 import '../../Styles/landingPage.scss'
 import Layout from '../../Component/Layout';
+import Recommended from './recommended';
 
 const  LandingPage = () => {
  
@@ -14,11 +15,14 @@ const  LandingPage = () => {
         <hr/>
          <HeroSection/>
         <hr/>
-          <FeaturedCourses/>
-          <hr/>
-          <AboutProject/>
-          <hr/>
-          <AboutInstructor/>
+          <div  className='center_div'>
+            <FeaturedCourses/>
+            <hr/>
+            {/* <AboutProject/>
+            <hr/> */}
+            <Recommended/>
+            <AboutInstructor/>
+          </div>
       </Layout>   
     </div>
   )

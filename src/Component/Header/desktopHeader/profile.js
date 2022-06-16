@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  { faUserCircle}  from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
 
 const  Profile = (props) => {
-  
-  const {profileVisibility, setProfileVisibility, cartList, purchasedItem} = props
+  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
+ const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
+
+  const {profileVisibility, setProfileVisibility} = props
 	const container = React.createRef()
   
 	const handleClickOutside = (event) => {
@@ -57,4 +60,4 @@ const  Profile = (props) => {
   )
 }
 
-export default Profile 
+export default React.memo(Profile); 

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import  {faSearch, faShoppingCart, faUserCircle}  from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 import '../../../Styles/header.scss'
 import CategoryList from './categoryList'
 import Profile from './profile'
@@ -19,7 +19,7 @@ const  Header = () => {
   const [profileVisibility, setProfileVisibility]  = useState(false)
   const [categoryVisibility, setCategoryVisibility]  = useState(false)
   
-   
+  
   const htmlId  = 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK'
   const cssId = 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2'
   const javascriptId = 'PLEu7Y7_blvLVNfrsztZmfWEw57lWyuUfI'
@@ -79,10 +79,7 @@ const  Header = () => {
             htmlId = {htmlId}
             cssId = {cssId}
             javascriptId = {javascriptId}
-            jqueryId = {jqueryId}
-            isLoggedIn = {isLoggedIn} 
-            cartList = {cartList} 
-            purchasedItem = {purchasedItem}/> 
+            jqueryId = {jqueryId}/> 
           </div>
         </header>	
       </div>	
@@ -99,8 +96,6 @@ const  Header = () => {
 		  <div>
         <Profile
           profileVisibility = {profileVisibility} 
-          cartList = {cartList} 
-          purchasedItem = {purchasedItem}
           setProfileVisibility = {setProfileVisibility}
         />
 		  </div>
