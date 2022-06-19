@@ -12,12 +12,9 @@ const  LandingPage = () => {
   return (
     <div>
       <Layout>
-        <hr/>
          <HeroSection/>
-        <hr/>
           <div  className='center_div'>
             <FeaturedCourses/>
-            <hr/>
             {/* <AboutProject/>
             <hr/> */}
             <Recommended/>

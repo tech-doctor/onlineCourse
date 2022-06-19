@@ -154,6 +154,15 @@
   }  
 }
 
+@media (max-width: 340px) {
+  .hero_section {
+    height: 60vh;
+  }
+ 
+}
+
+
+
 
 ////////////////////center_div/////////////////////////
 
@@ -178,91 +187,6 @@
    margin: 0 1em;
   }  
 }
-
-
-
-// ////////////////////////FEATURED COURSES ////////////////////////////
-
-.featuredCourses {
-  margin: 10px 20px;
-  background-color: rgb(226, 226, 226);
-  .heading{
-    text-align: center;
-  }
-  .course-card{
-    margin: 10px;
-    .card-item{
-      background-color: white;
-      transition: all 0.3s;
-      min-height: 350px;
-      margin: 10px 5px;
-      position: relative;
-      .overlay{
-          background-color: rgb(0, 0, 0);
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          opacity: 0.85;   
-        }
-        button{
-          width: 100%;
-          cursor: pointer;
-          position: absolute;
-          padding: 7px 0px;
-          background-color: rgb(95, 95, 95);
-          color: white;
-          border: none;
-          bottom: 0px;
-        }  
-      &:hover{
-        transform: scale(1.05);
-        transition: all 0.3s
-      }
-      
-      .card-inner{
-        min-height: 350px;
-        .card-top{
-          img{
-            width: 100%;
-            height:100%;
-          }
-        } 
-        .card-bottom{
-          padding: 5px;
-          .card-info{
-            .best-selling{
-              position: absolute;
-              right: 20px;
-              bottom: 40px;
-            }
-          }
-        }   
-      }
-    }
-  }
- 
-}
-
-
-
-
-
-// @media(max-width: 1200px){
-
-   
-// }
-
-// @media(max-width: 850px){
-
-// }
-
-// @media(max-width: 600px){
-
-//   // }
-
-// @media(max-width: 360px){
-
-//   // }
 
 
 
@@ -443,6 +367,7 @@
   font-size: 28px;
   font-family: 'poppins';
   font-weight: 800;
+  color: #22343D;
 }
 
 .recommended{

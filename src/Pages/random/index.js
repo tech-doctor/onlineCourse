@@ -6,7 +6,6 @@ import '../../Styles/categoryListPage.scss';
 import AllCategories from '../categoryListPage/allCategories';
 import { Stack,Skeleton} from "@chakra-ui/react"
 import { fetchAsyncCourses, getAllcourses } from '../../Store/courseSlice';
-import Author from '../categoryListPage/author';
 import TopCourses from '../categoryListPage/topCourses';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -44,9 +43,6 @@ const  Random = ()  => {
 			  <Header/>
 			</div>
 			<div style = {{margin: "0 3%"}} className = "eachCategoryList">
-        <div>
-          <Author/>
-        </div>
         <hr/>
 			    <div>
             <TopCourses

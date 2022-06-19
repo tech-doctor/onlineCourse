@@ -8,7 +8,7 @@ const  CourseList = ({title, image,bestSelling, price }) => {
         <img width={'300px'} height = {'180px'} src={image} alt='list'/>
       </div>
       <div className='right'>
-        <p className='title'>{title}</p>
+        <p className='title'>{`${title}`}</p>
         <p className='details'>Updated about 2 years ago</p>
         <p className='price'>{price}</p>
       </div> 

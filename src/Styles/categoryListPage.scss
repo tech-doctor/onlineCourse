@@ -1,200 +1,151 @@
 
-.eachCategoryList {
-  .author-div{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    border: 1px solid black;
 
-    img{
-      width: 200px;
-      border-radius: 50% ;
-      -webkit-border-radius: 50% ;
-      -moz-border-radius: 50% ;
-      -ms-border-radius: 50% ;
-      -o-border-radius: 50% ;
-    }
-    p{
-      width: 100%;
-    }
-  }
-
-
-  .TopCourses {
-    .course-card{
-      //border: 1px solid black;
-      // display: grid;
-      // grid-template-columns: repeat(auto-fill, minmax(220px,1fr ));
-      // grid-gap: 15px;
-      //background-color: rgb(71, 46, 46);
-      margin: 10px;
-      .card-item{
-        background-color: white;
-        transition: all 0.3s;
-        min-height: 350px;
-        margin: 2px 5px;
-        border: 1px solid rgb(120, 120, 143);
-        position: relative;
-      .overlay{
-          background-color: rgb(0, 0, 0);
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          opacity: 0.85;   
-        }
-        button{
-          width: 100%;
-          cursor: pointer;
-          position: absolute;
-          padding: 7px 0px;
-          background-color: rgb(95, 95, 95);
-          color: white;
-          border: none;
-          bottom: 0px;
-        }
-        &:hover{
-          transform: scale(1.05);
-          transition: all 0.3s
-        }
-        .card-inner{
-          min-height: 350px;
-          .card-top{
-            img{
-              width: 100%;
-              height:100%;
-            }
-          } 
-          .card-bottom{
-            padding: 5px;
-            .card-info{
-              .best-selling{
-                position: absolute;
-                right: 20px;
-                bottom: 40px;
-              }
-            }
-          }   
-        }
-      }
-    }
-  }
-
-  /* STYLING FOR ALL COURSES DIV */
- .allCategory {
-    .allCoursesDisplay {
-      border: 1px solid black;
-      display: flex;
-      justify-content: space-between;
-      position: relative;
-      &:hover{
-        transform: scale(1.01);
-        transition: all 0.3s
-      }
-      .left {
-        display: flex;
-        .about{
-          .best-selling{
-            position: absolute;
-            bottom: 20px;
-          }
-        }
-        .image {
-          width: 200px;
-          height: 100%;
-         margin-right: 10px;
-          >img {
-            width:100%;
-            height: 100%; 
-          }  
-        }
-       
-      }
-      .right{
-        padding: 0 0.5em;
-      }
-    }
+.center_div{
+  margin: 0 8em;
+  //background-color: #007568;
+}
+@media(max-width: 1200px){
+  .center_div{
+   margin: 0 5em;
   }  
+}
+
+@media(max-width: 1000px){
+ .center_div{
+  margin: 0 2em;
+ }  
+}
+
+@media(max-width: 850px){
+ .center_div{
+  margin: 0 1em;
+ }  
+}
+
+
+
+.eachCategoryList {
+  .TopCourses{
+    margin: 3em 0 7em 0;
+    .category_heading{
+      color: #22343D;
+      margin: 1.3em 0 0.6em 0;
+      font-size: 1.5em;
+      font-weight: 500;  
+    }
+  }
 }
 
 
 @media(max-width: 1200px){
   .eachCategoryList{
-    .allCategory {
-      .allCoursesDisplay {
-        border: 1px solid black;
-        display: flex;
-        justify-content: space-between;
-        .left {
-          display: flex;
-
-          .image {
-            width: 160px;
-            height: 100%;
-           margin-right: 10px;
-            >img {
-              width:100%;
-              height: 100%; 
-            }  
-          }
-         
-        }
-        .right{
-          padding: 0 0.5em;
-        }
+    .TopCourses{
+      margin: 2em 0 5em 0;
+      .category_heading{
+        margin: 1.1em 0 0 0.3em 0;
+        font-size: 1.3rem ;   
       }
-    }  
+    }
   }
-  }
+}
   
 @media(max-width: 850px){
   .eachCategoryList{
-    .allCategory {
-      .allCoursesDisplay {
-        border: 1px solid black;
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-        .left {
-          display: flex;
-          .about{
-            .best-selling{
-              position: absolute;
-              right: 20px; ;
-              bottom: 10px;
-            }
-          }
-          .image {
-            width: 160px;
-            height: 100%;
-           margin-right: 10px;
-            >img {
-              width:100%;
-              height: 100%; 
-            }  
-          }
-         
-        }
-        .right{
-          padding: 0 0.5em;
-        }
+    .TopCourses{
+      margin: 1.2em 0 3em 0;
+      .category_heading{
+        margin: 1em 0 0.1em 0;
+        font-size: 1.2rem ;   
       }
-    }  
+    }
   }
   }
 
 
-// @media(max-width: 600px){
-//   .TopCourses .course-box-list .course-box{
-//     width: 75%;   
-//   }
-// }
+@media(max-width: 500px){
+  .eachCategoryList{
+    .TopCourses{
+      margin: 1.1em 0 1.5em 0;
+      .category_heading{
+        margin: 1em 0 0.1em 0;
+        font-size: 1.1rem ;   
+      }
+    }
+  }
+}
 
-// @media(max-width: 360px){
-//   .TopCourses .course-box-list .course-box{
-//     width: 95%;  
-//     margin-bottom: 12px; 
-//   }
-// }
 
+
+.allCategory{
+  margin: 5em 0;
+  .button{
+    margin: 3em 0;
+    text-align: center;
+    button{
+      padding: 7px 20px;
+      font-size: 15px;
+      outline: none;
+      border: none;
+      background-color: #02897A;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: 0.3s;
+      &:hover{
+        background-color: #dfdfdf;
+        color: #02897A;
+      }
+    }
+  }
+  @media(max-width: 1200px){
+    margin: 4em 0;
+  }
+  @media (max-width: 850px){
+    margin: 2em 0;
+  }
+  .allCategories-box {
+    border-bottom: 1px solid #D9D9D9;
+
+    &:hover{
+     
+      transform: scale(1.02);
+    }
+    .right{
+      width: 80%;
+      margin-left: 20px;
+      @media(max-width: 850px){
+        width: 65%;
+      }
+      @media(max-width: 300px){
+        width: 100%;
+      }
+      .category_title{
+        @media (max-width: 850px){
+         // font-size: 1.2rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        
+      }
+    }
+    .image{
+      width: 15%;
+      img{
+        width: 100%;
+      }
+      @media(max-width: 1200px){
+        width: 20%;
+      }
+      @media(max-width: 850px){
+        width: 25%;
+      }
+      @media(max-width: 300px){
+        width: 100%;
+        height: 150px;
+        margin: 10px 0 20px 0;
+      }
+    }
+  }
+}

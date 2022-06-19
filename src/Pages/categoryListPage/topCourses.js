@@ -1,37 +1,41 @@
 import React from 'react'
-import '../../Styles/categoryListPage.scss'
-import { Spinner} from "@chakra-ui/react"
+import { Spinner} from "@chakra-ui/react";
 import Slider from 'react-slick';
+import { useSelector } from 'react-redux';
+import { getSelectedCategory } from '../../Store/courseSlice';
 import { settings } from '../../Styles/settings';
 import moment from 'moment';
 import CourseCard from '../../Component/courseCard';
-
+import '../../Styles/categoryListPage.scss'
+import CourseSlider from '../../Component/CourseSlider';
 
 const TopCourses = (props) => {
-const {loading,topCourses, titleFunc } = props
+  const topCourses = useSelector(getSelectedCategory);
+  const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
+  const {titleFunc } = props
 
 
 
 const topCoursesArray = topCourses.slice(4,11)
 
-    if (loading || topCourses.length === 0) {
+    if (loading) {
       return  <div  style = {{textAlign: 'center', padding: '100px'}} >
       <Spinner  size="xl"/>
     </div>
     }
 
     return (
-      <div className = "TopCourses">
-        <div>
-         <p style = {{ fontSize: '25px'}}>Top {titleFunc} Courses</p>
+      <section className = "TopCourses">
+        <div className='category_heading'>
+         <p>TOP {titleFunc.toUpperCase()} COURSES</p>
         </div>
-        <div className = 'course-card'>
-         <Slider {...settings }> 
+        <CourseSlider 
+         noHeading={true}
+        >
           {topCoursesArray.map (data =>
           <CourseCard
             key = {data.id}
             id = {data.videoId}
-            // isPurchased = {data.isPurchased}
             imageAlt ={data.snippet.title}  
             imageSrc = {data.snippet.thumbnails.high.url}
             title = {data.snippet.title}
@@ -41,9 +45,8 @@ const topCoursesArray = topCourses.slice(4,11)
             data = {data}
           />
           )}
-         </Slider>
-        </div>	
-      </div>       
+        </CourseSlider>	
+      </section>       
     );
 };
 

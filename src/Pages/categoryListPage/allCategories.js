@@ -1,71 +1,49 @@
 import React from 'react'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import  {faAngleDown}  from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
-import {Badge} from "@chakra-ui/react"
+import { Link } from 'react-router-dom';
+import {Badge, Collapse , Button} from "@chakra-ui/react";
 import moment from 'moment';
-import { Collapse , Button} from '@chakra-ui/react'
+import { useSelector } from 'react-redux';
+import { Stack,Skeleton} from "@chakra-ui/react"
+import { getSelectedCategory } from '../../Store/courseSlice';
+import CourseList from '../../Component/courseList';
+import { Article } from '../../Component/styles/course';
+import Filter from '../../Component/Filter';
 
 const AllCategories = (props) => {
-
-const {topCourses, titleFunc} = props;
-
-const [show, setShow] = React.useState(false)
-const handleToggle = () => setShow(!show)
-
+  const topCourses = useSelector(getSelectedCategory);
+  const { titleFunc} = props;
 
 
   return (
-    <div className = "allCategory">
-      <div style = {{display: 'flex', justifyContent: 'space-between',
-      alignItems:'center' }} className = "title-filter">
-        <div className ="title">
-          <p style = {{ fontSize: '25px'}}>All {titleFunc} Courses</p>
-        </div>
-          <div className ="filter">
-            <select style = {{cursor: 'pointer' }}>
-              <option>Filter</option>
-              <option>Latest</option>
-              <option>Most Rated</option>
-            </select>
-          </div>  	 
-      </div>
-      <Collapse startingHeight={'890px'} in={show}>
-      {topCourses.map(data =>  
-      <div key = {data.id} className='all-categories-box'>
-      <Link style = {{textDecoration: 'none', color: 'black'}}   to = {`/courses/${data.videoId}`}>
-        <div style = {{marginBottom: '20px'}} className = "allCoursesDisplay" >
-            <div className = "left">
-              <div className = "image"> 
-                <img  alt = {data.snippet.title} src ={data.snippet.thumbnails.high.url}/>
-              </div>
-              <div className = "about">
-                <p style = {deepText}>{data.snippet.title}</p>
-                <div>
-                  <p>{moment(data.snippet.publishedAt).fromNow()}</p>
-                  {new Date(data.snippet.publishedAt).getDate() + '0' > 200? 
-                  <Badge className='best-selling' variant="solid" colorScheme="green" px={2}>
-                  Best Selling
-                  </Badge>: ''}
-                </div>
-              </div>
-            </div>
-            <div className = "right">
-              <div className = "price-tag">
-                <p>	<span style = {deepText} className = "newPrice">₦{new Date(data.snippet.publishedAt).getDate() + '0'}</span></p>
-              </div>
-            </div>    
+    <section className = "allCategory">
+      <Filter
+      heading = {`All ${titleFunc} Courses`}
+      />
+      {topCourses.map(data =>  (
+      <div key = {data.id} className='allCategories-box'>
+        <Link style = {{textDecoration: 'none'}}   to = {`/courses/${data.videoId}`}>
+          <Article className='all_courses' style={{justifyContent:'flex-start'}}>
+          <div className='image'>
+          <img loading='lazy' width={'200px'} height = {'100%'} src={data.snippet.thumbnails.high.url} alt = {data.snippet.title}/>
           </div>
-      </Link>   
+          <div className='right'>
+            <p className='title category_title'>{data.snippet.title}</p>
+            <p className='details category_detail'>{`Updated about ${moment(data.snippet.publishedAt).fromNow()}`}</p>
+            <p className='price category_price'>₦{new Date(data.snippet.publishedAt).getDate() + '0'}</p>
+          </div>
+          </Article>
+          
+        </Link>   
       </div> 
-      )}
-      </Collapse>
-      <div>
-        <Button style = {{cursor: 'pointer'}} size='sm' onClick={handleToggle} mt='1rem'>
-        Show {show ? 'Less' : 'More'}
-      </Button>
+      ))}
+      <div className='button'>
+        <button>
+           Load More
+        </button>
       </div>
-    </div>
+    </section>
   )
 }
 

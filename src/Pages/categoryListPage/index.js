@@ -4,23 +4,29 @@ import Footer from '../../Component/Footer'
 import '../../Styles/categoryListPage.scss'
 import AllCategories from './allCategories'
 import { Stack,Skeleton} from "@chakra-ui/react"
-import Author from './author'
 import TopCourses from './topCourses'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import { fetchAsyncCategories, getSelectedCategory } from '../../Store/courseSlice'
+import { fetchAsyncCategories, getSelectedCategory, updateLoading } from '../../Store/courseSlice'
 import PageNotFound from '../pageNotFound'
-
+import Layout from '../../Component/Layout'
 
 const  CategoryListPage = ()  => {
   const topCourses = useSelector(getSelectedCategory);
-  
   const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
+  //const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
   const {playlistId} = useParams();
 
   useEffect(() => {
-    dispatch(fetchAsyncCategories(playlistId))    
+    dispatch(updateLoading(true))
+    //setLoading(true)
+    dispatch(fetchAsyncCategories(playlistId)) 
+    .then(() => {
+      // setLoading(false)
+      dispatch(updateLoading(false))
+    })
+    
 },[dispatch,playlistId]);
 
 
@@ -41,7 +47,7 @@ const titleFunc = () => {
 }
 
 
-
+//center_div
   switch(playlistId){
     case 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK': 
     case 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2':
@@ -49,45 +55,32 @@ const titleFunc = () => {
     case 'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808':
     return (
       <div>
-        <div>
-          <Header/>
-        </div>
-        <div style = {{margin: "0 3%"}} className = "eachCategoryList">
-          <div>
-            <Author/>
-          </div>
-          <hr/>
+        <Layout>
+        <div className = "eachCategoryList center_div">
             <div>
               <TopCourses
-              topCourses = {topCourses}
-              loading= {loading}
               titleFunc = {titleFunc()}
               />
             </div>
           <hr/>
           <div> 
-            {topCourses.length === 0 ?    
-            <div>
+            {loading?    
               <Stack>
                 <Skeleton height="100px" />
                 <Skeleton height="100px" />
                 <Skeleton height="100px" />
                 <Skeleton height="100px" />
-              </Stack>
-            </div> :
+              </Stack> :
             <AllCategories
-            topCourses = {topCourses}
-            loading= {loading}
             titleFunc = {titleFunc()}
-            />} 
+            />}  
           </div>
         </div>
-        <div>
-          <Footer/>
-        </div>		
+        </Layout>		
       </div>
     )
   }
+
   return (
     <PageNotFound/>
   )

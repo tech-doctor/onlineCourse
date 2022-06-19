@@ -6,13 +6,14 @@ import { settings } from '../../Styles/settings';
 import { fetchAsyncCourses, getAllcourses, updateLoading } from '../../Store/courseSlice'
 import moment from 'moment'
 import CourseCard from '../../Component/courseCard';
+import CourseSlider from '../../Component/CourseSlider';
 //import { useParams } from 'react-router-dom';
 
 
 const FeaturedCourses = () => {
   const dispatch = useDispatch();
   const allCourses = useSelector(getAllcourses);
- // const allCourse = featuredCourses.result;
+ 
   let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   
 
@@ -40,11 +41,10 @@ const FeaturedCourses = () => {
 
 	return (
 		<div className = "featuredCourses">
-		  <div className='heading'>
-				<p style = {{fontSize: '30px'}}>Featured Courses</p>
-			</div>
-			<div className = 'course-card'>
-			<Slider {...settings}>
+			<CourseSlider
+        heading={ "Featured Courses" }
+        subHeading={ "Check out what others are learning " }
+      >
 				{allCourses?.map ((data) =>
 				(<CourseCard
 					key = {data.id}
@@ -58,8 +58,7 @@ const FeaturedCourses = () => {
 					data = {data}
 				/>)
 				)}
-				</Slider>
-			</div>
+			</CourseSlider>
 		</div>
 	)
 }

@@ -25,6 +25,7 @@ export const fetchAsyncCategories = createAsyncThunk('selectedCategory/fetchAsyn
   const response = await api
     .get(`/playlistItems?part=snippet&part=id&maxResults=20&playlistId=${categoriesId}&key=${apiKey}`)
      const result = response.data.items
+     console.log(response)
      //  Adding videoId to each course object
     const finalResult  = Object.assign(result.map(item => {
       return {
