@@ -1,7 +1,7 @@
 import React from 'react';
 import { FilterBlock } from './styles/extra';
 
-const Filter = ({heading}) => {
+const Filter = ({heading, handleSearch}) => {
   return (
     <FilterBlock className = "title-filter">
         <div className ="title">
@@ -9,10 +9,12 @@ const Filter = ({heading}) => {
         </div>
         <div className ="filter">
           <span className='input'>
-          <input type="text" placeholder="Search"/>
+          <input 
+          onChange={handleSearch}
+          type="text" 
+          placeholder="Search"/>
           <img src={'/Assets/search.png'} alt='search'/>
           </span>
-         
           <span className='select'>
             <select style = {{cursor: 'pointer' }}>
               <option>Most Rated</option>

@@ -1,48 +1,41 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, {useEffect} from 'react'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import  {faStar}  from '@fortawesome/free-solid-svg-icons'
+// import { Link } from 'react-router-dom'
 import { Spinner} from "@chakra-ui/react"
 import Slider from 'react-slick';
 import { settings } from '../../Styles/settings';
-import { fetchAsyncCourses, getAllcourses, updateLoading } from '../../Store/courseSlice'
-import moment from 'moment'
 import CourseCard from '../../Component/courseCard';
 import CourseSlider from '../../Component/CourseSlider';
-//import { useParams } from 'react-router-dom';
+import moment from 'moment'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllcourses, fetchAsyncCourses } from '../../Store/courseSlice'
 
-
-const FeaturedCourses = () => {
+const  SimilarCourses = () => {
   const dispatch = useDispatch();
   const allCourses = useSelector(getAllcourses);
- 
   let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
+  
   
 
   useEffect(() => {
-    dispatch(updateLoading(true))
 			dispatch(fetchAsyncCourses())
-			dispatch(updateLoading(false))
 	},[dispatch]);
 
-  
-
-  
-	
-
- // const [showCartButton, setShowCartButton] = useState(false)
-
-	if (loading || allCourses.length === 0) {
+  if (loading || allCourses.length === 0) {
     return  <div  style = {{textAlign: 'center', padding: '100px'}} >
      <Spinner  size="xl"/>
   </div>    
   }
-  
+
+
 
 
 
 	return (
-		<div className = "featuredCourses">
-			<CourseSlider
-        heading={ "Featured Courses" }
+		<div className = "otherCourses">
+		<CourseSlider
+        heading={ "Similar Courses" }
         subHeading={ "Check out what others are learning " }
       >
 				{allCourses?.map ((data) =>
@@ -59,13 +52,9 @@ const FeaturedCourses = () => {
 					data = {data}
 				/>)
 				)}
-			</CourseSlider>
+			</CourseSlider>	
 		</div>
 	)
 }
 
-
-export default FeaturedCourses
-
-
- 
+export default SimilarCourses

@@ -6,9 +6,10 @@ import Header from "../../Component/Header/desktopHeader/Header"
 import Footer from '../../Component/Footer'
 import '../../Styles/cart.scss'
 import TotalCart from './totalCart'
-import OtherCourses from './otherCourses'
+import SimilarCourses from './similarCourses'
 import CartItem from './cartItem'
 import moment from 'moment'
+import Layout from '../../Component/Layout'
 //import CartListSum from '../../Component/cartListSum'
 
 
@@ -38,15 +39,16 @@ const  CartPage = ()  => {
   
 	return (
 		<div className ="cart">
-      <div>
-        <Header/>
-      </div>
+     <Layout>
       <hr/>
-      <div className = "center-div">
+      <div className = "center_div">
+        <div className='top'>
         <div className = "title">
-          <h2 style ={{color: 'white'}}>Shopping Cart</h2>
+          {cartList.length !== 0 && 
+          <p>{`Shopping Cart (${cartList.length} ${cartList.length > 1? `courses`: `course`}`})</p>
+          }
         </div>
-        <div style = {{margin: '50px 10%'}} className = "body">
+        <div className = "body">
           {/* If there is zero item on the cart, return this */}
           {cartList.length === 0?
           <div className = "empty-chart">
@@ -67,38 +69,38 @@ const  CartPage = ()  => {
                 <Skeleton height="200px" /> */}
               </Stack>
             </div>
-          <div>
-            { cartList.map(data =>
-               <CartItem 
-               data = {data}
-                key = {data.id}
-                id = {data.videoId}
-                imageAlt ={data.snippet.title}  
-                imageSrc = {data.snippet.thumbnails.high.url}
-                title = {data.snippet.title}
-                date = {moment(data.snippet.publishedAt).fromNow()}
-                newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
-                oldPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30}
-               />
-               )} 
-          </div>
-          { cartList.length > 1?
-          <div>
-            <TotalCart
-            previousPriceSum = {previousPriceSum}
-            newPriceSum = {newPriceSum}
-            />
-          </div> : '' }
+            <div>
+              {cartList.map(data =>
+                <CartItem 
+                  data = {data}
+                  key = {data.id}
+                  id = {data.videoId}
+                  imageAlt ={data.snippet.title}  
+                  imageSrc = {data.snippet.thumbnails.high.url}
+                  title = {data.snippet.title}
+                  date = {moment(data.snippet.publishedAt).fromNow()}
+                  newPrice = {data.newPrice}
+                  oldPrice = {data.oldPrice}
+                  bestSelling = {data.bestSelling}
+                />
+              )} 
+            </div>
+            {cartList.length > 1 &&
+            <div>
+              <TotalCart
+              previousPriceSum = {previousPriceSum}
+              newPriceSum = {newPriceSum}
+              />
+            </div>}
         </div>}
-          <div>
-            <OtherCourses/>
-          </div>
+        </div>
+        {cartList.length !== 0 &&  <div>
+            <SimilarCourses/>
+          </div>}
         </div>
       </div>
         <hr/>
-        <div>
-          <Footer/>
-        </div>
+      </Layout>   
 		</div>
 	)
 }

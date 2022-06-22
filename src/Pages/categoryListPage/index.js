@@ -7,7 +7,7 @@ import { Stack,Skeleton} from "@chakra-ui/react"
 import TopCourses from './topCourses'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import { fetchAsyncCategories, getSelectedCategory, updateLoading } from '../../Store/courseSlice'
+import { fetchAsyncCategories, getSelectedCategory, updateLoading, updateStatus } from '../../Store/courseSlice'
 import PageNotFound from '../pageNotFound'
 import Layout from '../../Component/Layout'
 
@@ -15,18 +15,32 @@ const  CategoryListPage = ()  => {
   const topCourses = useSelector(getSelectedCategory);
   const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   //const [loading, setLoading] = React.useState(false);
+  const courseStatus = useSelector(state => state.rootReducer.courseSlice.status);
+  const errorMessage = useSelector(state => state.rootReducer.courseSlice.errorMessage); 
   const dispatch = useDispatch();
   const {playlistId} = useParams();
 
-  useEffect(() => {
-    dispatch(updateLoading(true))
-    //setLoading(true)
-    dispatch(fetchAsyncCategories(playlistId)) 
-    .then(() => {
-      // setLoading(false)
-      dispatch(updateLoading(false))
-    })
+//   useEffect(() => {
+//     dispatch(updateLoading(true))
+//     //setLoading(true)
+//     dispatch(fetchAsyncCategories({categoriesId:playlistId, max: 7})) 
+//     .then(() => {
+//       dispatch(updateLoading(false))
+//     })
     
+// },[dispatch,playlistId]);
+
+useEffect(() => {
+  let mounted = true;
+  if(mounted){
+ //if(courseStatus === 'idle'){
+    dispatch(fetchAsyncCategories(playlistId)) 
+ //}
+}
+  return () => {
+    mounted = false;
+    //dispatch(updateStatus('idle'))
+  }
 },[dispatch,playlistId]);
 
 
@@ -47,7 +61,6 @@ const titleFunc = () => {
 }
 
 
-//center_div
   switch(playlistId){
     case 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK': 
     case 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2':
@@ -59,21 +72,28 @@ const titleFunc = () => {
         <div className = "eachCategoryList center_div">
             <div>
               <TopCourses
+              topCourses = {topCourses}
               titleFunc = {titleFunc()}
               />
             </div>
           <hr/>
           <div> 
-            {loading?    
-              <Stack>
+            {courseStatus === 'pending' &&
+             <Stack>
                 <Skeleton height="100px" />
                 <Skeleton height="100px" />
                 <Skeleton height="100px" />
                 <Skeleton height="100px" />
-              </Stack> :
+              </Stack>  
+              }
+              {courseStatus === 'fufilled' &&
             <AllCategories
+            topCourses = {topCourses}
             titleFunc = {titleFunc()}
-            />}  
+            /> }
+            {courseStatus === 'rejected' && 
+            <div></div>
+            }
           </div>
         </div>
         </Layout>		

@@ -14,13 +14,14 @@ const CourseCard = (props) => {
   const toast = useToast();
   const history = useHistory();
 
-  const { data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice} = props
+  const { data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling} = props
   
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
   const [showCartButton, setShowCartButton] = useState(false)
   const [isPurchased, setIsPurchased] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
+
 
   useEffect(() => {
     purchasedItem.forEach(element => {
@@ -83,13 +84,13 @@ const CourseCard = (props) => {
           </div>)}		 
         <div className='card-inner'>
           <div className='card-top'>
-            <img loading='lazy' alt ={imageAlt}  src = {imageSrc}/>  
+            <img loading='lazy' width = "320px" height = '100%' alt ={imageAlt}  src = {imageSrc}/>  
           </div>
           <div className='card-bottom'>
             <div style={{marginTop: '5px',}} className='card-info'>
               <p className='title'>{textAbstract}</p>
               <p className='date' >{date}</p>
-              {newPrice > 160 ? 
+              {bestSelling? 
               <div className='best-selling'>
                BEST SELLING
               </div>

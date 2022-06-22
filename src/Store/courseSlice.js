@@ -13,7 +13,10 @@ import { apiKey } from '../Component/Apis/apiKey';
         return {
           ...item,
           videoId: item.contentDetails.upload.videoId,
-          // isPurchased: false,
+          // new Date(data.snippet.publishedAt).getDate() + '0'
+          newPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0'),
+          oldPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') + 30,
+          bestSelling: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') > 160 ? true:false
         }
       }))
      return finalResult
@@ -21,21 +24,28 @@ import { apiKey } from '../Component/Apis/apiKey';
 )
 
 
-export const fetchAsyncCategories = createAsyncThunk('selectedCategory/fetchAsyncCategories', async (categoriesId) => {
-  const response = await api
-    .get(`/playlistItems?part=snippet&part=id&maxResults=20&playlistId=${categoriesId}&key=${apiKey}`)
+export const fetchAsyncCategories = createAsyncThunk('selectedCategory/fetchAsyncCategories', async (categoriesId, {rejectWithValue}) => {
+  try{
+    const response = await api
+    .get(`/playlistItems?part=snippet&part=id&maxResults=20&playlistId=${categoriesId}&key=${apiKey}`) 
      const result = response.data.items
-     console.log(response)
      //  Adding videoId to each course object
     const finalResult  = Object.assign(result.map(item => {
       return {
         ...item,
         videoId: item.snippet.resourceId.videoId,
-        // isPurchased: false,
+        position: item.snippet.position + 1,
+        newPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0'),
+        oldPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') + 30,
+        bestSelling: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') > 160 ? true:false
       }
     }))
    return finalResult
-    
+  }
+  catch(error){
+    console.log(error)
+    return rejectWithValue(error)
+  } 
   }
 )
 
@@ -50,6 +60,8 @@ export const fetchAsyncSelectedCourses = createAsyncThunk('selectedCourses/fetch
 // initializing the state in this slide
 const initialState = {
   isLoading: false,
+  status: 'idle',
+  errorMessage: '',
   courses: [],
   selectedCategory: [],
   selectedCourse: [],
@@ -63,42 +75,48 @@ const initialState = {
     updateLoading(state, action){
       state.isLoading = action.payload
     },
-
-
-    // updateIsPurchased(state, action){
-    //   for(let i=0; i<state.courses.length; i++){
-    //     if(state.courses[i].snippet.title === action.payload.snippet.title){
-    //       state.courses[i].isPurchased = true;
-    //     }  
-        
-    //   }
-    // },
-
+    updateStatus(state, action){
+      state.status = action.payload
+    }
 	},
 
   
   extraReducers: {
-    ///fetchAsyncCourses
-    [fetchAsyncCourses.pending]: () => {
-      console.log('pending')
+    [fetchAsyncCourses.pending]: (state, action) => {
+      state.status = 'pending'
     },
     [fetchAsyncCourses.fulfilled]: (state, {payload}) => {
-      console.log('Fetched Successfully')
-      //console.log({...payload})
-      return {...state, courses: payload}
+      return {...state,
+         courses: payload,
+         status: 'fufilled'
+        }
     }, 
-    [fetchAsyncCourses.rejected]: () => {
-      console.log('rejected')
+    [fetchAsyncCourses.rejected]: (state, action) => {
+      state.status = 'rejected'
+     //state.errorMessage = action.payload.message
     },
 
 
 
 
     // fetchAsyncCourses
-    [fetchAsyncCategories.fulfilled]: (state, {payload}) => {
-      console.log('Fetched categories Successfully')
-      return {...state, selectedCategory: payload}
+    [fetchAsyncCategories.pending]: (state, action) => {
+      console.log('pending')
+      state.status = 'pending'
     },
+
+    [fetchAsyncCategories.fulfilled]: (state, {payload}) => {
+      return {...state, 
+        selectedCategory: payload,
+        status: 'fufilled'
+      }
+    },
+    [fetchAsyncCategories.rejected]: (state, action) => {
+      console.log('rejected')
+     state.status = 'rejected'
+     //state.errorMessage = action.payload.message
+    },
+
 
 
     // fetchAyncSelectedCourses
@@ -110,7 +128,7 @@ const initialState = {
 })
 
 
-export const {updateLoading} = courseSlice.actions
+export const {updateLoading, updateStatus} = courseSlice.actions
 export const getAllcourses = (state) => state.rootReducer.courseSlice.courses;
 export const getSelectedCategory = (state) => state.rootReducer.courseSlice.selectedCategory;
 export const getSelectedCourse = (state) => state.rootReducer.courseSlice.selectedCourse;

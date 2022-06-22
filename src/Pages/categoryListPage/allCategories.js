@@ -1,27 +1,41 @@
-import React from 'react'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import  {faAngleDown}  from '@fortawesome/free-solid-svg-icons'
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-import {Badge, Collapse , Button} from "@chakra-ui/react";
 import moment from 'moment';
-import { useSelector } from 'react-redux';
-import { Stack,Skeleton} from "@chakra-ui/react"
-import { getSelectedCategory } from '../../Store/courseSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getSelectedCategory, fetchAsyncCategories, updateMaxResults } from '../../Store/courseSlice';
 import CourseList from '../../Component/courseList';
 import { Article } from '../../Component/styles/course';
 import Filter from '../../Component/Filter';
 
-const AllCategories = (props) => {
-  const topCourses = useSelector(getSelectedCategory);
-  const { titleFunc} = props;
+const AllCategories = ({ titleFunc, topCourses}) => {
+  const dispatch = useDispatch();
+  const {playlistId} = useParams();
+  //const topCourses = useSelector(getSelectedCategory);
+  const courseStatus = useSelector(state => state.rootReducer.courseSlice.status);
+  const [searchItem, setSearchItem] = useState('');
+  const [matchMessage, setMatchMessage] = useState('');
+ 
 
+ const handleSearch = (e) => {
+    setSearchItem(e.target.value);
+    console.log(searchItem);
+ }
+  
 
   return (
     <section className = "allCategory">
       <Filter
+      handleSearch = {handleSearch}
       heading = {`All ${titleFunc} Courses`}
       />
-      {topCourses.map(data =>  (
+      {topCourses.filter((value) => {
+        if(searchItem === ''){ 
+          return value;
+        }else if(value.snippet.title.toLowerCase().includes(searchItem.toLowerCase())){
+          return value;
+        } 
+      }).map(data =>  (
       <div key = {data.id} className='allCategories-box'>
         <Link style = {{textDecoration: 'none'}}   to = {`/courses/${data.videoId}`}>
           <Article className='all_courses' style={{justifyContent:'flex-start'}}>
@@ -31,11 +45,10 @@ const AllCategories = (props) => {
           <div className='right'>
             <p className='title category_title'>{data.snippet.title}</p>
             <p className='details category_detail'>{`Updated about ${moment(data.snippet.publishedAt).fromNow()}`}</p>
-            <p className='price category_price'>₦{new Date(data.snippet.publishedAt).getDate() + '0'}</p>
+            <p className='price category_price'>₦{data.newPrice}</p>
           </div>
           </Article>
-          
-        </Link>   
+        </Link>
       </div> 
       ))}
       <div className='button'>
@@ -46,9 +59,8 @@ const AllCategories = (props) => {
     </section>
   )
 }
-
 const deepText = {
   fontWeight: '700'
 }
 
-export default AllCategories;
+export default React.memo(AllCategories);

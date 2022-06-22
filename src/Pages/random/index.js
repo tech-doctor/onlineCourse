@@ -5,7 +5,7 @@ import '../../Styles/categoryListPage.scss';
 //import AllCategories from './allCategories'
 import AllCategories from '../categoryListPage/allCategories';
 import { Stack,Skeleton} from "@chakra-ui/react"
-import { fetchAsyncCourses, getAllcourses } from '../../Store/courseSlice';
+import { fetchAsyncCourses, getAllcourses, updateStatus } from '../../Store/courseSlice';
 import TopCourses from '../categoryListPage/topCourses';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,27 +14,22 @@ const  Random = ()  => {
   const topCourses = useSelector(getAllcourses);
   const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   const dispatch = useDispatch();
+  const courseStatus = useSelector(state => state.rootReducer.courseSlice.status);
 
 
   useEffect(() => {
-    dispatch(fetchAsyncCourses())    
+    let mounted = true;
+    if (mounted) {
+    //if (courseStatus === 'idle') {
+      dispatch(fetchAsyncCourses()) 
+    //}
+  }
+  return () => {
+    mounted = false;
+    dispatch(updateStatus('idle'))
+    console.log('unmounting')
+  }  
 },[dispatch]);
-
-
-// const titleFunc = () => { 
-//   switch (playlistId) {
-//     case 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK': 
-//       return('HTML');
-//     case 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2':
-//       return( 'CSS' );
-//     case 'PLEu7Y7_blvLVNfrsztZmfWEw57lWyuUfI':
-//       return( 'Javascript' );
-//       case 'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808':
-//       return( 'JQuery' );
-//     default:
-//       return( 'Random' );
-//   }
-// }
 
 
 	return (
@@ -43,13 +38,11 @@ const  Random = ()  => {
 			  <Header/>
 			</div>
 			<div style = {{margin: "0 3%"}} className = "eachCategoryList">
-        <hr/>
 			    <div>
-            <TopCourses
+            {topCourses.length !== 0  && <TopCourses
             topCourses = {topCourses}
-            loading= {loading}
             titleFunc = {"Random"}
-            />
+            />} 
           </div>
         <hr/>
 				<div> 
@@ -64,7 +57,7 @@ const  Random = ()  => {
           </div> :
 			  	<AllCategories
           topCourses = {topCourses}
-          loading= {loading}
+          //loading= {loading}
           titleFunc = {"Random"}
           />} 
 				</div>

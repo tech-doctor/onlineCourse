@@ -8,7 +8,7 @@ const CartItem = (props) => {
   const dispatch = useDispatch();
   const history  =  useHistory();
   //const toast =  useToast();
-  const { data, id, imageAlt, imageSrc, title, date, newPrice, oldPrice } = props
+  const { data, id, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling } = props
  // const purchasedItem = useSelector(state => state.rootReducer.courseSlice.purchasedItem)
   
 
@@ -34,7 +34,6 @@ const CartItem = (props) => {
 
 
     return (
-      <div>
         <div  className = "cartList">
           <Link style = {{textDecoration: 'none', color: 'black'}} to = {`courses/${id}`}>
           <div className = "left">
@@ -44,7 +43,7 @@ const CartItem = (props) => {
             <div className = 'title-details'>
               <p className="cart-title">{title}</p>
               <p className="cart-date">{date}</p>
-              {newPrice > 160 ? 
+              {bestSelling ? 
               <Badge className='best-selling' variant="solid" colorScheme="green" px={2}>
               Best Selling
             </Badge>: ''}
@@ -58,15 +57,12 @@ const CartItem = (props) => {
             <div className = "price-tag">
               <p style={{fontWeight: '650'}}>₦{newPrice}</p>
               <p style = {{textDecoration: 'line-through'}}>₦{oldPrice}</p>
-              {/* <Link style = {{textDecoration: 'none', color: 'black'}} to = 'cart/checkout'> */}
               <button 
               style = {{cursor: 'pointer', }}
               onClick= {handleClick}
               >BUY</button>
-              {/* </Link> */}
             </div>
           </div>
-        </div>
       </div>
     )
   }

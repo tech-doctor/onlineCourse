@@ -41,13 +41,12 @@ import styled from "styled-components";
         padding: 0.3em 1em;
         border-radius: 50px;
         background-color: #D9D9D9;
-        
         ::placeholder{
           color: #B2B5BB;
         }
         @media (max-width: 850px) {
-          font-size: 0.9rem;
-          padding: 0.2em 0.1em 0.2em 1em;
+          font-size: 0.8rem;
+          padding: 0.5em 0.6em 0.2em 1.1em;
         }
       }
       .input{
