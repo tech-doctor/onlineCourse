@@ -1,10 +1,5 @@
 import React, {useEffect} from 'react'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import  {faStar}  from '@fortawesome/free-solid-svg-icons'
-// import { Link } from 'react-router-dom'
 import { Spinner} from "@chakra-ui/react"
-import Slider from 'react-slick';
-import { settings } from '../../Styles/settings';
 import CourseCard from '../../Component/courseCard';
 import CourseSlider from '../../Component/CourseSlider';
 import moment from 'moment'
@@ -15,44 +10,48 @@ const  SimilarCourses = () => {
   const dispatch = useDispatch();
   const allCourses = useSelector(getAllcourses);
   let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
-  
+  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
   
 
   useEffect(() => {
 			dispatch(fetchAsyncCourses())
 	},[dispatch]);
 
-  if (loading || allCourses.length === 0) {
-    return  <div  style = {{textAlign: 'center', padding: '100px'}} >
-     <Spinner  size="xl"/>
-  </div>    
-  }
-
-
-
-
+    const similarCourses = allCourses.filter(course => {
+      let isSimilar = false;
+      cartList.forEach(item => {
+        if(course.snippet.title === item.snippet.title){
+          isSimilar = true;
+        }
+      }
+      )
+      return !isSimilar;
+    })
 
 	return (
 		<div className = "otherCourses">
-		<CourseSlider
+      {similarCourses.length === 0 && <div style = {{textAlign: 'center', padding: '100px'}} >
+      <Spinner  size="xl"/>
+      </div> }
+      <CourseSlider
         heading={ "Similar Courses" }
         subHeading={ "Check out what others are learning " }
       >
-				{allCourses?.map ((data) =>
-				(<CourseCard
-					key = {data.id}
-					id = {data.videoId}
-					imageAlt ={data.snippet.title}  
-					imageSrc = {data.snippet.thumbnails.high.url}
-					title = {data.snippet.title}
-					date = {moment(data.snippet.publishedAt).fromNow()}
-					newPrice = {data.newPrice}
-					oldPrice = {data.oldPrice}
+        {similarCourses?.map ((data) =>
+        (<CourseCard
+          key = {data.id}
+          id = {data.videoId}
+          imageAlt ={data.snippet.title}  
+          imageSrc = {data.snippet.thumbnails.high.url}
+          title = {data.snippet.title}
+          date = {moment(data.snippet.publishedAt).fromNow()}
+          newPrice = {data.newPrice}
+          oldPrice = {data.oldPrice}
           bestSelling = {data.bestSelling}
-					data = {data}
-				/>)
-				)}
-			</CourseSlider>	
+          data = {data}
+        />)
+        )}
+		  </CourseSlider>	
 		</div>
 	)
 }

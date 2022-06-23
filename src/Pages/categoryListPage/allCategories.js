@@ -1,28 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getSelectedCategory, fetchAsyncCategories, updateMaxResults } from '../../Store/courseSlice';
-import CourseList from '../../Component/courseList';
 import { Article } from '../../Component/styles/course';
 import Filter from '../../Component/Filter';
 
 const AllCategories = ({ titleFunc, topCourses}) => {
-  const dispatch = useDispatch();
-  const {playlistId} = useParams();
-  //const topCourses = useSelector(getSelectedCategory);
-  const courseStatus = useSelector(state => state.rootReducer.courseSlice.status);
   const [searchItem, setSearchItem] = useState('');
-  const [matchMessage, setMatchMessage] = useState('');
- 
-
- const handleSearch = (e) => {
+  
+  const handleSearch = (e) => {
     setSearchItem(e.target.value);
     console.log(searchItem);
- }
+  }
   
-
   return (
     <section className = "allCategory">
       <Filter

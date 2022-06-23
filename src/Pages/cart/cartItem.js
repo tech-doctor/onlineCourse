@@ -1,35 +1,35 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Badge } from "@chakra-ui/react";
-import { updateCheckoutList } from "../../Store/databaseSlice";
+import {useToast } from "@chakra-ui/react";
+import { updateCheckoutList,removeItem } from "../../Store/databaseSlice";
 import { useDispatch } from "react-redux";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
+  const toast = useToast();
   const history  =  useHistory();
-  //const toast =  useToast();
-  const { data, id, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling } = props
- // const purchasedItem = useSelector(state => state.rootReducer.courseSlice.purchasedItem)
+  const { data, id, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling } = props;
   
 
-  // const handleToast = (description, status) => {
-  //   toast({
-  //     position: 'top-right',
-  //     status,
-  //     description,
-  //     duration: 2000,
-  //   });
-  // }
+  const handleToast = (description, status) => {
+    toast({
+      position: 'top-right',
+      status,
+      description,
+      duration: 2000,
+    });
+  }
 
 
-   const handleClick = () => {
+   const checkoutCourse = () => {
      dispatch(updateCheckoutList(data))
      history.push('./cart/checkout')
-    //  const itemIndex = purchasedItem.findIndex(item => item.snippet.title === data.snippet.title);
-    //  itemIndex === -1 ? history.push(`/cart/checkout`):
-    //  handleToast('Item already bought', 'error')
    }
    
+   const handleRemove = () => {
+      dispatch(removeItem(data))
+      handleToast('Item removed from Cart', 'error');
+   }
  
 
 
@@ -38,28 +38,30 @@ const CartItem = (props) => {
           <Link style = {{textDecoration: 'none', color: 'black'}} to = {`courses/${id}`}>
           <div className = "left">
             <div className ="image">
-              <img  alt = {imageAlt} src = {imageSrc}/>
+              <img width={'400px'} height = {'100%'}  alt = {imageAlt} src = {imageSrc}/>
             </div>
             <div className = 'title-details'>
               <p className="cart-title">{title}</p>
               <p className="cart-date">{date}</p>
               {bestSelling ? 
-              <Badge className='best-selling' variant="solid" colorScheme="green" px={2}>
-              Best Selling
-            </Badge>: ''}
+              <div className='best-selling'>
+              BEST SELLING
+            </div>: ''}
             </div>
           </div>
           </Link> 
           <div className ="right">
             <div  className = "remove">
-              <span>X</span>
+              <span 
+              onClick = {handleRemove}
+              >REMOVE</span>
             </div>
             <div className = "price-tag">
               <p style={{fontWeight: '650'}}>₦{newPrice}</p>
-              <p style = {{textDecoration: 'line-through'}}>₦{oldPrice}</p>
+              <p style = {{textDecoration: 'line-through', color: '#667085'}}>₦{oldPrice}</p>
               <button 
               style = {{cursor: 'pointer', }}
-              onClick= {handleClick}
+              onClick= {checkoutCourse}
               >BUY</button>
             </div>
           </div>

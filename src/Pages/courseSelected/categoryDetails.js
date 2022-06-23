@@ -31,11 +31,6 @@ const  CategoryDetails = (props) => {
 
 
 
-  
-
-  
-
-
   const handleToast = (description, status) => {
     toast({
       position: 'top-right',
@@ -54,20 +49,31 @@ const  CategoryDetails = (props) => {
 
   const handleBuyButton = ()  => {
     dispatch(updateCheckoutList(selectedCourses[0]));
-    // const itemIndex = purchasedItem.findIndex(item => item.snippet.title === selectedCourses[0].snippet.title);
-    // itemIndex === -1 ? history.push(`/cart/checkout`):
-    // handleToast('Item already bought', 'error')
   }
 
 
   return (
     <div className = "categoryFlex">
+      <div className = "preview">
+        {!embedLink?  <Stack>
+          <Skeleton height="200px" />
+        </Stack>:  
+        <div>
+        <div className = "iframe">
+          <iframe width="100%" height="300px" src={`https://www.youtube.com/embed/${id}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay;  encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        </div>
+        <div className = 'instruction'>
+        <span >
+        <FontAwesomeIcon icon = {faArrowUp}/>
+        </span><br/>
+          Tap to preview course 
+        </div> 
+        </div>} 
+      </div>
       {!title? <div style = {{textAlign: 'center', padding: '100px'}}  >
           <Spinner/>
         </div> :  
-      
-      <div className='categoryDetails'>
-        
+      <div className='categoryDetails'> 
         <div className = "category-heading">
           <span style = {{fontSize: '15px'}}>Category <FontAwesomeIcon icon = {faAngleRight}/></span>
           <span style = {{fontSize: '15px'}}>HTML <FontAwesomeIcon icon = {faAngleRight}/></span>
@@ -112,22 +118,6 @@ const  CategoryDetails = (props) => {
           }
         </div>
       </div>}
-      <div className = "preview">
-        {!embedLink?  <Stack>
-          <Skeleton height="200px" />
-        </Stack>:  
-        <div>
-        <div className = "iframe">
-          <iframe width="100%" height="200px" src={`https://www.youtube.com/embed/${id}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay;  encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        </div>
-        <div className = 'instruction'>
-        <span >
-        <FontAwesomeIcon icon = {faArrowUp}/>
-        </span><br/>
-          Tap to preview course 
-        </div> 
-        </div>} 
-      </div>
     </div>
   )
 }

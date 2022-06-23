@@ -1,9 +1,10 @@
 import React, {useState,useEffect} from 'react'
-import { Box, SkeletonText, SkeletonCircle} from "@chakra-ui/react"
+import { Box, SkeletonText, SkeletonCircle} from "@chakra-ui/react";
 import api from '../../Component/Apis/api';
 import { apiKey } from '../../Component/Apis/apiKey';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import Filter from '../../Component/Filter';
 
 const  Review = () => {
    const {id} = useParams();
@@ -14,13 +15,21 @@ const  Review = () => {
 
 
   useEffect(() => {
+    let mounted = true;
+    if(mounted){
+  
     const  fetchReviews =  async() => {
       setLoading(true)
       const response = await api.get(`/commentThreads?part=snippet&part=id&part=replies&maxResults=5&videoId=${id}&key=${apiKey}`);
       setReviews(response.data.items)  
       setLoading(false)
+      //console.log(reviews)
     }
     fetchReviews();
+  }
+  return () => {
+    mounted = false;
+  }
   },[id]);
    
 
@@ -42,6 +51,11 @@ const LoadingText = function courseBox (){
     </div>
     );
 }
+
+const handleSearch = (e) => {
+  const search = e.target.value;
+  console.log(search);
+}
   
   return (
     <div className = "review-div">
@@ -49,43 +63,30 @@ const LoadingText = function courseBox (){
       <div>
         {!loading && reviews.length === 0 ? <div style={{textAlign: 'center', padding: '5em 0em', backgroundColor: 'grey'}}>No Reviews...</div>:
         <div>
-          <div className ="review-heading">
-            <div className = "search-review">
-              <input type = "search" placeholder = "search-reviews.."></input>
-            </div>
-            <div className = "filter-review">
-              <select>
-                <option>MOST RECENT</option>
-                <option>Highest-Rated</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <div>
-              <Box padding="6" boxShadow="lg" bg="white">
-                <div>
-                  {reviews?.map((data, index) => 
-                  (<div key = {index}>
-                    <div className = "review-body">
-                      <div className ="left">
-                        <div className = "avatar">
-                          <img alt = {data.snippet.topLevelComment.snippet.authorDisplayName} src = {data.snippet.topLevelComment.snippet.authorProfileImageUrl}/>
-                        </div>
-                      </div>
-                      <div className = "right">
-                        <div style = {{fontWeight: '700'}} className ="name-time">
-                          <span> {data.snippet.topLevelComment.snippet.authorDisplayName} <span style = {{fontWeight: '400', fontSize:  '13px'}} > {moment(data.snippet.topLevelComment.snippet.publishedAt).fromNow()}</span></span>     
-                        </div>
-                        <div className = "comments">
-                          {data.snippet.topLevelComment.snippet.textOriginal}
-                        </div>
-                      </div> 
-                    </div>
-                  </div> ))} 
-                </div>  
-              </Box>
-            </div>
-          </div>
+          <Filter
+            handleSearch = {handleSearch}
+            heading = {`Reviews`}
+          />
+            {reviews?.map((data, index) => 
+            (<React.Fragment key = {index}>
+              <div className = "review-body">
+                <div className = "avatar left">
+                  <img 
+                  alt = {data.snippet.topLevelComment.snippet.authorDisplayName} 
+                  src = {data.snippet.topLevelComment.snippet.authorProfileImageUrl}
+                  onError = {(e) => {e.target.src = 'https://image.shutterstock.com/image-vector/user-avatar-icon-sign-profile-260nw-1145752283.jpg'}}
+                  />
+                </div>
+                <div className = "right">
+                  <div style = {{fontWeight: '700'}} className ="name-time">
+                    <span style={{color:'#22343D'}}> {data.snippet.topLevelComment.snippet.authorDisplayName} <span style = {{fontWeight: '400', fontSize:  '13px', color: '#074942'}} > {moment(data.snippet.topLevelComment.snippet.publishedAt).fromNow()}</span></span>     
+                  </div>
+                  <div className = "comments">
+                    {data.snippet.topLevelComment.snippet.textOriginal}
+                  </div>
+                </div> 
+              </div>
+            </React.Fragment> ))}   
         </div>}
       </div>}
     </div>

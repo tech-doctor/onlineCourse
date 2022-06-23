@@ -110,7 +110,7 @@ const databaseSlice = createSlice({
 		  //Generate a unique id for each item in the cart based on the title
 		  const eachId = "i" + btoa(action.payload.snippet.title);
 		  const listIndex = state.cartList.findIndex(item => item.snippet.title === action.payload.snippet.title);
-			console.log(listIndex)
+			//console.log(listIndex)
 			if(listIndex === -1){
 			  state.cartList.push({...action.payload,  eachId})
 		    }
@@ -118,6 +118,14 @@ const databaseSlice = createSlice({
 			   console.log('item already in cart')
 			}	
 		},
+    removeItem(state, action){
+      const listIndex = state.cartList.findIndex(item => item.snippet.title === action.payload.snippet.title);
+      //state.cartList.splice(listIndex, 1);
+       if(listIndex !== -1){
+        state.cartList.splice(listIndex, 1);
+      }
+      //console.log(listIndex)
+    },
 		updateCheckoutList(state, action){
 		   state.checkoutList.push({...action.payload})
 		},
@@ -132,7 +140,7 @@ const databaseSlice = createSlice({
 })
 
 
-export const { updateCartList, updatePurchasedItem, updateCheckoutList, updateTotalCheckoutList } = databaseSlice.actions
+export const { updateCartList, updatePurchasedItem, updateCheckoutList, updateTotalCheckoutList, removeItem } = databaseSlice.actions
 
 
 export default databaseSlice.reducer

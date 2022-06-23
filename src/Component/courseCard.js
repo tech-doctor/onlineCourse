@@ -3,7 +3,7 @@ import { Badge, useToast} from "@chakra-ui/react";
 import { Link} from 'react-router-dom';
 import { CardItem } from './styles/course';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCartList } from '../Store/databaseSlice';
+import { updateCartList, removeItem } from '../Store/databaseSlice';
 import { useHistory } from 'react-router-dom';
 
 
@@ -65,14 +65,23 @@ const CourseCard = (props) => {
 }
 
 
-  const handleClick = () => {
+  const addToCart = () => {
     dispatch(updateCartList(data))
-    const listIndex = cartList.findIndex(item => item.snippet.title === data.snippet.title);
-    listIndex === -1 ? handleToast(' 1  item added to Cart', 'success'):
-    handleToast('Item already in Cart', 'error');
-    setShowCartButton(false)	
-
+    // const listIndex = cartList.findIndex(item => item.snippet.title === data.snippet.title);
+    // listIndex === -1 ? handleToast(' 1  item added to Cart', 'success'):
+    // handleToast('Item already in Cart', 'error');
+    handleToast('Item added to Cart', 'success');	
+    setShowCartButton(false);
   }
+
+  const removeFromCart = () => {
+    dispatch(removeItem(data))
+    handleToast('Item removed from Cart', 'error');
+    setShowCartButton(false)
+    setIsAdded(false);
+  }
+
+
 
 
 
@@ -106,8 +115,8 @@ const CourseCard = (props) => {
       {showCartButton && (
       <div className='button'>
       {isPurchased? <button onClick={()=> {history.push(`/courses/${id}/watch`)}}>Access Course</button>: 
-      isAdded? <button style={{color: 'red'}} >Remove From Cart</button> :
-      <button onClick={handleClick}>Add To Cart</button> }		
+      isAdded? <button onClick={removeFromCart} style={{color: 'red'}} >Remove From Cart</button> :
+      <button onClick={addToCart}>Add To Cart</button> }		
       </div>
       )}
 		</CardItem>

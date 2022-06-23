@@ -1,6 +1,6 @@
 import React from 'react'
 import '../../Styles/cart.scss'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { updateTotalCheckoutList } from '../../Store/databaseSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -8,11 +8,12 @@ import { useDispatch, useSelector } from 'react-redux'
 const  TotalCart = (props) => {
   const {previousPriceSum, newPriceSum} = props
   const dispatch = useDispatch();
+  const history = useHistory();
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
 
    const discount = () => {
-    const  oldPrice = previousPriceSum();
-    const  newPrice = newPriceSum()
+    const  oldPrice = previousPriceSum().sum;
+    const  newPrice = newPriceSum().sum
     const discountPercent = Math.round(((oldPrice - newPrice)/oldPrice) * 100)
     return discountPercent
    }
@@ -21,18 +22,18 @@ const  TotalCart = (props) => {
      cartList.map(data => (
         dispatch(updateTotalCheckoutList(data))
      ))
+     history.push('./cart/checkout')
    }
+  
 
  
   return ( 
-    <div style = {{border: '1px solid black'}} className = "total">
+    <div className = "total">
       <p style = {{fontSize: '22px'}}>Total:</p>
-      <span style = {{fontSize: '22px', fontWeight: '700'}}>₦{newPriceSum()}</span><br/>
-      <span style = {{textDecoration: 'line-through'}}>₦{previousPriceSum()}</span><br/>
-      <span>{discount()}% off</span><br/>
-      <Link 
-      onClick={handleClick}
-      className='button' to  = 'cart/checkout'><button  style = {{width: '100%', cursor: 'pointer'}}>Checkout</button></Link>
+      <span style = {{fontSize: '22px', fontWeight: '700'}}>₦{newPriceSum().amount}</span><br/>
+      <span style = {{textDecoration: 'line-through', color: '#667085'}}>₦{previousPriceSum().amount}</span><br/>
+      <span style={{color: ' #074942'}}>{discount()}% off</span><br/>
+      <button onClick={handleClick}  style = {{width: '100%', cursor: 'pointer'}}>Checkout</button>
     </div>    
   )
 }

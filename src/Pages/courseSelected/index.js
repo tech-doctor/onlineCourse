@@ -1,14 +1,14 @@
-import React, {useEffect} from 'react'
-import Header from "../../Component/Header/desktopHeader/Header"
-import Footer from '../../Component/Footer'
-import '../../Styles/courseSelected.scss'
-import SameCategory from './sameCategory'
+import React, {useEffect} from 'react';
+import { useParams } from 'react-router-dom';
+import Layout from '../../Component/Layout';
+import otherCourses from './otherCourses';
 import CategoryDetails from './categoryDetails'
 import Review from './review'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAsyncSelectedCourses, getSelectedCourse } from '../../Store/courseSlice'
-import { useParams } from 'react-router-dom'
 import moment from 'moment'
+import '../../Styles/courseSelected.scss'
+import OtherCourses from './otherCourses';
 
 const  CourseSelected = ()  => {
   const selectedCourses = useSelector(getSelectedCourse);
@@ -19,39 +19,24 @@ const  CourseSelected = ()  => {
     dispatch(fetchAsyncSelectedCourses(id))
 },[dispatch,id]);
 
-
 	return (
 		<div className = "courseSelected">
-      <div>
-				<Header/>
+      <Layout>
+			<div className = "center_div">
+        <CategoryDetails 
+        id = {selectedCourses.length !== 0? selectedCourses[0].id: null}
+        title = { selectedCourses.length !== 0? selectedCourses[0].snippet.localized.title: null}
+        description = { selectedCourses.length !== 0? selectedCourses[0].snippet.localized.description: null}
+        duration = { selectedCourses.length !== 0? ISO8601toDuration(selectedCourses[0].contentDetails.duration) : null}
+        likeCount = { selectedCourses.length !== 0? selectedCourses[0].statistics.likeCount : null}
+        viewCount = { selectedCourses.length !== 0? selectedCourses[0].statistics.viewCount : null}
+        embedLink = { selectedCourses.length !== 0? selectedCourses[0].player.embedHtml : null}
+        publishedAt = { selectedCourses.length !== 0? moment(selectedCourses[0].snippet.publishedAt).fromNow() : null}
+        />
+      <Review/>
+      <OtherCourses/>	
 			</div>
-			<hr/>
-			<div className = "center-div">
-			  <div>
-            <CategoryDetails 
-            id = {selectedCourses.length !== 0? selectedCourses[0].id: null}
-            title = { selectedCourses.length !== 0? selectedCourses[0].snippet.localized.title: null}
-            description = { selectedCourses.length !== 0? selectedCourses[0].snippet.localized.description: null}
-            duration = { selectedCourses.length !== 0? ISO8601toDuration(selectedCourses[0].contentDetails.duration) : null}
-            likeCount = { selectedCourses.length !== 0? selectedCourses[0].statistics.likeCount : null}
-            viewCount = { selectedCourses.length !== 0? selectedCourses[0].statistics.viewCount : null}
-            embedLink = { selectedCourses.length !== 0? selectedCourses[0].player.embedHtml : null}
-            publishedAt = { selectedCourses.length !== 0? moment(selectedCourses[0].snippet.publishedAt).fromNow() : null}
-           />
-        </div>
-				<hr/>
-				<div>
-         <SameCategory/>
-        </div>
-				<hr/>
-				<div>
-          <Review/>
-        </div>	
-			</div>
-      <hr/>
-			<div>
-				<Footer/>
-			</div>	
+			</Layout>	
 		</div>
 	)
 }
