@@ -1,9 +1,11 @@
 import React from 'react';
 import CheckoutList from './checkoutList';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 
-const  orderDetails = ({checkoutList}) => {
-   
+const  OrderDetails = () => {
+  const checkoutList = useSelector(state => state.rootReducer.databaseSlice.checkoutList);
+
   return (
     <div>
       <div className = "OrderDetails">
@@ -11,7 +13,7 @@ const  orderDetails = ({checkoutList}) => {
           <p>Order Details</p>
         </div> 
         <div >
-          { checkoutList?.map((data, i) =>
+          {checkoutList?.map((data, i) =>
           <CheckoutList
             key = {i}
             imageAlt ={data.snippet.title} 
@@ -27,4 +29,4 @@ const  orderDetails = ({checkoutList}) => {
   );
 }
 
-export default orderDetails;
+export default OrderDetails;

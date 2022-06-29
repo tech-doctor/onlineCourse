@@ -1,81 +1,59 @@
 import React from 'react';
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 //import { Spinner } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import OrderDetails from './orderDetails';
-import DebitCard from '../../Component/debitCard';
-import Summary from './summary'
+import Summary from './summary';
+import DebitCard from '../../Component/View/debitCard';
+import Logo from '../../Component/Logo';
 import '../../Styles/checkOut.scss';
-
 
 const  CheckOut = ()  => {
   const history = useHistory();
-  const checkoutList = useSelector(state => state.rootReducer.databaseSlice.checkoutList)
+  const dispatch = useDispatch();
 
-  const originalPriceSum = () => {
-    let sum  = 0
-    checkoutList?.forEach (data => {
-      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30
-    })
-     return sum 
-  }
-
-  const discountPriceSum = () => {
-    let sum  = 0
-    checkoutList?.forEach (data => {
-      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0')
-    })
-     return originalPriceSum() - sum
-  }
-
-
+const cancel = () => {
+  history.goBack()
+  //dispatch(updateCheckoutList([]))
+}
 	return (
 		<div className = "checkOutPage">
 			<div className= 'header'>
-        <div className= "logo">
-          <h2><Link to = "/">LOGO</Link></h2>
-        </div>
+        <Logo
+        src={'/Assets/logo.png'}
+        color={'#173A56'}
+        />
         <div  className= "cancel"
-          onClick={() =>history.goBack()}>
+          onClick={cancel}>
           Cancel
         </div>
       </div>
-			<hr/>
       <div className = "checkout_body">
-       <div className ="center-div">
+       <div className ="center_div">
         {/* <div style = {{textAlign: 'center', padding: '100px'}}  >
           <Spinner/>
         </div> */}
-				<div className = "title">
-					<p>checkout</p>
-				</div>
 				<div className = "body">
           <div className= "left">
             <div className = "paystack-page">
               <div className='paystack-details'>
-                <p>Payment integration  is done with paystack. Use any of the test card options   or another card with the details below to make your payment. <span style={{fontSize: '13px'}}>Note this is not a real time payment process.</span> </p>
+                <p>Payment integration  is done with paystack. Use any of the test card options  or <span style={{color: 'black', fontWeight: '600'}}>another card with the details below</span> to make your payment.</p>
+                <span style={{fontSize: '13px',fontWeight: '600'}}>Note: This is not a real time payment process.</span>
               </div>
               <div className='bank-card'>
                 <DebitCard/>
               </div>
             </div>
             <div>
-              <OrderDetails
-              checkoutList = {checkoutList}
-              />
+              <OrderDetails/>
             </div>
           </div>
           <div className = "right">
-             <Summary
-              originalPriceSum = {originalPriceSum}
-              discountPriceSum = {discountPriceSum}
-              checkoutList = {checkoutList}
-             />
+             <Summary/>
           </div>
 				</div>  
 			</div>
-      </div>
-			
+      </div>	
 		</div>
 	)
 }

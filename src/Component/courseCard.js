@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, useToast} from "@chakra-ui/react";
-import { Link} from 'react-router-dom';
+import { useToast} from "@chakra-ui/react";
+import { Link, useHistory} from 'react-router-dom';
 import { CardItem } from './styles/course';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCartList, removeItem } from '../Store/databaseSlice';
-import { useHistory } from 'react-router-dom';
+
 
 
  
@@ -14,7 +14,7 @@ const CourseCard = (props) => {
   const toast = useToast();
   const history = useHistory();
 
-  const { data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling} = props
+  const { data,  id, index, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling} = props
   
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
@@ -67,9 +67,6 @@ const CourseCard = (props) => {
 
   const addToCart = () => {
     dispatch(updateCartList(data))
-    // const listIndex = cartList.findIndex(item => item.snippet.title === data.snippet.title);
-    // listIndex === -1 ? handleToast(' 1  item added to Cart', 'success'):
-    // handleToast('Item already in Cart', 'error');
     handleToast('Item added to Cart', 'success');	
     setShowCartButton(false);
   }
@@ -87,13 +84,13 @@ const CourseCard = (props) => {
 
 	return (
 		<CardItem onMouseEnter={() => setShowCartButton(true)}onMouseLeave={() => setShowCartButton(false)}> 
-      <Link to = {`/courses/${id}`} className='link' style = {{textDecoration: 'none', color: 'black'}}>
+      <Link to = {{pathname: `/courses/${id}`, state: {prevPath: history.location.pathname, position: data.position}}} className='link' style = {{textDecoration: 'none', color: 'black'}}>
         {showCartButton && (
           <div className='overlay'>
           </div>)}		 
         <div className='card-inner'>
           <div className='card-top'>
-            <img loading='lazy' width = "320px" height = '100%' alt ={imageAlt}  src = {imageSrc}/>  
+            <img style={{backgroundColor:'gray'}} loading='lazy' width = "320px" height = '100%' alt ={imageAlt}  src = {imageSrc}/>  
           </div>
           <div className='card-bottom'>
             <div style={{marginTop: '5px',}} className='card-info'>

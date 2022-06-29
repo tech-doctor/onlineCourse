@@ -21,7 +21,7 @@ const  OtherCourses = () => {
 
 
   //compare allcourses and Selected courses and return the unsimilar ones
-  const similarCourses = allCourses.filter(course => course.videoId !== selectedCourses[0].id);
+  const similarCourses = allCourses.filter(course => course.videoId !== selectedCourses[0]?.id);
 
   
 

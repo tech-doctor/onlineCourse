@@ -1,119 +1,178 @@
+
+
 .checkOutPage {
-  // *{
-  //   outline: 1px solid black;
-  // }
+  height: 100vh;
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 40px;
-    .logo * {
-      cursor: pointer;
-      text-decoration: none;
-      color: black;
-    }
+    margin: 0 8em;
     .cancel {
       cursor: pointer;
-      background-color: rgb(90, 90, 90);
-      padding: 5px 20px;
+      background-color: #02897A;
+      padding: 4px 25px;
       border-radius: 50px;
       color: rgb(255, 255, 255);
+      &:hover {
+        background-color: #007568;
+      }
     }
   }
   .checkout_body {
-    background-color: rgb(218, 218, 218);
-    padding: 1em;
-    .center-div {
-      border: 1px solid black;
-      width: 70%;
-      padding: 0px 10px;
-      margin: auto;
-      .title {
-        p {
-          font-size: 40px;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-        }
-      }
+    .center_div {
+      margin: 5em 8em;
+      // .title {
+      //   p {
+      //     font-size: 35px;
+      //     color:#22343D;
+      //     font-weight: 500;  
+      //   }
+      // }
       .body {
         display: flex;
-        // align-items: center;
         justify-content: space-between;
-        //padding: 5px;
+        padding: 3em 0;
+        border-bottom: 1px solid #D9D9D9;
+        border-top: 1px solid #D9D9D9;
         .left {
-          padding: 5px;
-          border: 1px solid black;
           width: 50%;
+          overflow-y: scroll;
+          height: 333px;
+          &::-webkit-scrollbar {
+            width: 3px;
+            background-color: rgb(121, 180, 175);
+            border-radius: 100px;
+          }
+          &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+          }
+          &::-webkit-scrollbar-thumb {
+            background-color: rgb(112, 112, 112);
+            border-radius: 100px;
+          }
+
           .paystack-page {
             .bank-card {
-              width: 100%;
+              width: fit-content;
+              margin: 20px auto 0 auto;
+              cursor: pointer;
+            }
+            .paystack-details{
+              font-family: poppins;
+              font-size: 13px;
+              font-weight: 500;
+              p{
+                text-align: center;
+                margin-bottom: 20px;
+              }
+              span{
+                color: rgb(209, 95, 95); 
+              }
             }
           }
           .OrderDetails {
+            margin-top: 20px;
             .heading {
               font-size: 25px;
               font-weight: 600;
+              border-bottom: 1px solid #D9D9D9;
+              padding: 10px 0;
+              color:#22343D
             }
             .details {
               display: flex;
-              align-items: center;
-
-              .left {
+              border-bottom: 1px solid #D9D9D9;
+              padding: 10px 0;
+              .details_left {
                 width: 80%;
                 display: flex;
+                color: #22343D;
                 img {
                   width: 70px;
-                  padding: 5px;
-                  border: 1px solid black;
                 }
                 .about {
                   margin-left: 10px;
                   font-weight: 600;
                 }
               }
-              .right {
+              .details_right {
                 width: 20%;
+                text-align: right; 
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: auto;
+                border-radius: 0;
+                box-shadow: none;
               }
             }
           }
         }
         .right {
-          border: 1px solid black;
           background-color: white;
           width: 40%;
           height: 100%;
-          padding: 5px;
+          box-shadow: 0px 0px 20px rgba(45, 44, 44, 0.1);
           .summary {
+            padding:  15px;
             .heading {
-              font-weight: 700;
+              font-weight: 500;
               font-size: 25px;
+              color:#015364;
+              text-align: center;
+              margin-bottom: 10px;  
             }
             .details {
               width: 100%;
               display: flex;
               align-items: center;
               justify-content: space-between;
+              border-bottom: 1px solid #E4E7EC;  
+              padding: 10px 0;
+              font-weight: 500;
+              .price *{
+                color:#667085;
+                margin: 12px 0;
+              }
+              .amount *{
+                color:#475467;
+                margin: 12px 0;
+              }
             }
             .total {
               display: flex;
               align-items: center;
               justify-content: space-between;
-              font-weight: 700;
-              font-size: 18px;
-            }
-            .payment-button button {
-              width: 100%;
-              cursor: pointer;
-              padding: 0.5em 1em;
-              font-size: 15px;
-              background-color: rgb(94, 93, 93);
-              color: white;
-              //border: none;
+              font-weight: 500;
+              font-size: 20px;
+              color: #344054;
+              margin: 10px 0 30px 0;
+              .total_price{
+                color: #026E78
+              }
             }
             .payment-notice {
-              font-size: 13px;
-              color: rgb(94, 93, 93);
+              font-size: 14px;
+              font-weight: 500;
+              color: #667085;
+              text-align: center;
+              width: 80%;
+              margin: auto;
+              a{
+                color: #015364;
+                text-decoration: none;
+              }
             }
+          }
+          .payment-button button {
+            width: 100%;
+            cursor: pointer;
+            padding: 0.7em;
+            font-size: 15px;
+            font-weight: 600;
+            background-color: #02897A;
+            color: white;
+            border: none;
           }
         }
       }
@@ -125,22 +184,20 @@
 
 @media (max-width: 1200px) {
   .checkOutPage {
+    .header{
+      margin: 0 5em;
+    }
     .checkout_body {
-      .center-div {
-        width: 90%;
-        .title {
-          p {
-            font-size: 35px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-              Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-              sans-serif;
-          }
-        }
+      .center_div {
+        margin: 5em 5em;
+      // .title {
+      //   p {
+      //     font-size: 30px;
+      //   }
+      // }
         .body {
           .left {
-            padding: 5px;
-            border: 1px solid black;
-            width: 100%;
+            width: 54%;
             .OrderDetails {
               .heading {
                 font-size: 22px;
@@ -148,9 +205,7 @@
             }
           }
           .right {
-            border: 1px solid black;
-            width: 100%;
-            padding: 5px;
+            width: 45%;
           }
         }
       }
@@ -158,27 +213,36 @@
   }
 }
 
+@media(max-width:1000px){
+  .checkOutPage{
+    .header{
+      margin: 0 2em;
+    }
+    .checkout_body{
+      .center_div{
+        margin: 5em 2em;
+      }
+    }
+  }
+}
+
 @media (max-width: 750px) {
   .checkOutPage {
+    position: relative;
+    .header{
+      margin: 0 1em;
+    }
     .checkout_body {
-      .center-div {
-        border: 1px solid black;
-        width: 90%;
-        padding: 0px 10px;
+      .center_div {
+        margin: 0.5em 1em;
         .title {
           p {
-            font-size: 30px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-              Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-              sans-serif;
+            font-size: 25px;
           }
         }
         .body {
           flex-wrap: wrap;
-
           .left {
-            padding: 5px;
-            border: 1px solid black;
             width: 100%;
             .OrderDetails {
               .heading {
@@ -186,14 +250,22 @@
               }
               .details {
                 display: flex;
+                .details_left{
+                  .about {
+                    margin-left: 10px;
+                    font-weight: 500;
+                  }
+                }
               }
             }
           }
           .right {
-            border: 1px solid black;
             width: 100%;
-            padding: 5px;
+            margin-top: 20px;
+            border-radius: 0px;
+            box-shadow: none;
             .summary {
+              margin: 20px 0 50px 0;
               .heading {
                 font-weight: 700;
                 font-size: 22px;
@@ -203,9 +275,43 @@
               }
               .total {
                 font-size: 16px;
+              }  
+              .payment-notice {
+                width: 90%;  
+              }
+            }
+            .payment-button button {
+              border: none;
+              border-radius: 0px;
+              position: fixed;
+              bottom: 0;
+              width: 100%;
+              left: 0;
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 370px) {
+  .checkOutPage {
+    .checkout_body {
+      .center_div {
+        .body {
+          .left {
+            .paystack-page {
+              .bank-card {
+                width: 100%;
+                margin: 20px auto 0 auto;
+                cursor: pointer;
+                overflow-x: auto;
               }
             }
           }
+          
         }
       }
     }

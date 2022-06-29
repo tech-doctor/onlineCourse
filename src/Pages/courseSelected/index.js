@@ -22,26 +22,30 @@ const  CourseSelected = ()  => {
 	return (
 		<div className = "courseSelected">
       <Layout>
-			<div className = "center_div">
-        <CategoryDetails 
-        id = {selectedCourses.length !== 0? selectedCourses[0].id: null}
-        title = { selectedCourses.length !== 0? selectedCourses[0].snippet.localized.title: null}
-        description = { selectedCourses.length !== 0? selectedCourses[0].snippet.localized.description: null}
-        duration = { selectedCourses.length !== 0? ISO8601toDuration(selectedCourses[0].contentDetails.duration) : null}
-        likeCount = { selectedCourses.length !== 0? selectedCourses[0].statistics.likeCount : null}
-        viewCount = { selectedCourses.length !== 0? selectedCourses[0].statistics.viewCount : null}
-        embedLink = { selectedCourses.length !== 0? selectedCourses[0].player.embedHtml : null}
-        publishedAt = { selectedCourses.length !== 0? moment(selectedCourses[0].snippet.publishedAt).fromNow() : null}
-        />
-      <Review/>
-      <OtherCourses/>	
-			</div>
+        <div className = "courseSelectedContainer">
+          {selectedCourses.length !== 0 &&  <CategoryDetails 
+          id = {selectedCourses[0].id}
+          title = {selectedCourses[0].snippet.localized.title}
+          description = {selectedCourses[0].snippet.localized.description}
+          duration = {ISO8601toDuration(selectedCourses[0].contentDetails.duration)}
+          likeCount = {selectedCourses[0].statistics.likeCount}
+          viewCount = {selectedCourses[0].statistics.viewCount}
+          embedLink = {selectedCourses[0].player.embedHtml}
+          publishedAt = {moment(selectedCourses[0].snippet.publishedAt).fromNow()}
+          price = {Math.floor(new Date(selectedCourses[0].snippet.publishedAt).getDate() + '0')}
+          bestSelling = {Math.floor(new Date(selectedCourses[0].snippet.publishedAt).getDate() + '0') > 160}
+          />}
+          </div>
+        <div className = "center_div">
+        <Review/>
+        <OtherCourses/>	
+        </div>
 			</Layout>	
 		</div>
 	)
 }
 
-export default CourseSelected
+export default CourseSelected;
 
 /// code to format time unit
 function formatTimeUnit(input, unit){

@@ -2,6 +2,7 @@ import React from 'react';
 import { FilterBlock } from './styles/extra';
 
 const Filter = ({heading, handleSearch}) => {
+
   return (
     <FilterBlock className = "title-filter">
         <div className ="title">
@@ -27,4 +28,4 @@ const Filter = ({heading, handleSearch}) => {
   );
 };
 
-export default Filter;
+export default React.memo(Filter);

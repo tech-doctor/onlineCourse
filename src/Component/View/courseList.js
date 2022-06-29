@@ -1,5 +1,5 @@
 import React from 'react';
-import { Article } from './styles/course';
+import { Article } from '../styles/course';
 
 const  CourseList = ({title, image,bestSelling, price }) => {
   return (

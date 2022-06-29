@@ -1,15 +1,38 @@
-import React from 'react'
-import '../../Styles/cart.scss'
+import React from 'react';
 import { useHistory } from 'react-router-dom'
 import { updateTotalCheckoutList } from '../../Store/databaseSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import '../../Styles/cart.scss'
 
 
-const  TotalCart = (props) => {
-  const {previousPriceSum, newPriceSum} = props
+const  TotalCart = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
+
+  const previousPriceSum = () => {
+    let sum  = 0
+    cartList.forEach (data => {
+      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30
+    })
+     const amount = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+     return {
+        amount,
+        sum
+     }
+  }
+
+  const newPriceSum = () => {
+    let sum  = 0
+    cartList.forEach (data => {
+      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0')
+    })
+    const amount = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+     return {
+        amount,
+        sum
+     }
+  }
 
    const discount = () => {
     const  oldPrice = previousPriceSum().sum;

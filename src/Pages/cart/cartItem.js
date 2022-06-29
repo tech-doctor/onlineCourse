@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 import {useToast } from "@chakra-ui/react";
 import { updateCheckoutList,removeItem } from "../../Store/databaseSlice";
 import { useDispatch } from "react-redux";
@@ -8,6 +8,7 @@ const CartItem = (props) => {
   const dispatch = useDispatch();
   const toast = useToast();
   const history  =  useHistory();
+  
   const { data, id, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling } = props;
   
 
@@ -35,7 +36,7 @@ const CartItem = (props) => {
 
     return (
         <div  className = "cartList">
-          <Link style = {{textDecoration: 'none', color: 'black'}} to = {`courses/${id}`}>
+          <Link style = {{textDecoration: 'none', color: 'black'}} to =  {{pathname: `/courses/${id}`, state: {prevPath: history.location.pathname,position: data.position}}}>
           <div className = "left">
             <div className ="image">
               <img width={'400px'} height = {'100%'}  alt = {imageAlt} src = {imageSrc}/>

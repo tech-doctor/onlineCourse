@@ -76,4 +76,4 @@ const  CourseSlider = ({children, noHeading, heading, subHeading}) => {
   );
 }
 
-export default CourseSlider;
+export default React.memo(CourseSlider);

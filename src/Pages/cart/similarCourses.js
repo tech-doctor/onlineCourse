@@ -9,7 +9,6 @@ import { getAllcourses, fetchAsyncCourses } from '../../Store/courseSlice'
 const  SimilarCourses = () => {
   const dispatch = useDispatch();
   const allCourses = useSelector(getAllcourses);
-  let  loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
   
 

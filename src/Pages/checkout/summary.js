@@ -1,62 +1,57 @@
 import React, {useState} from 'react';
 import { usePaystackPayment } from 'react-paystack';
 import { CircularProgress } from '@chakra-ui/react';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { updatePurchasedItem } from '../../Store/databaseSlice';
+import { public_key } from '../../Component/Apis/apiKey';
 
-//import { updateIsPurchased } from '../../Store/courseSlice';
-
-
-const Summary = (props) =>  {
-  const {originalPriceSum, discountPriceSum, checkoutList} = props;
-  const totalSummary = originalPriceSum() - discountPriceSum()
-  const [isLoading, setIsLoading] = useState(false);
-  //const history = useHistory();
+const Summary = () =>  {
   const dispatch = useDispatch();
-  //const allCourses = useSelector(state => state.rootReducer.courseSlice.courses)
-  
-   const config = {
+  const checkoutList = useSelector(state => state.rootReducer.databaseSlice.checkoutList);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const originalPriceSum = () => {
+    let sum  = 0
+    checkoutList?.forEach (data => {
+      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30
+    })
+     return sum 
+  }
+
+  const discountPriceSum = () => {
+    let sum  = 0
+    checkoutList?.forEach (data => {
+      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0')
+    })
+     return originalPriceSum() - sum
+  }
+
+  const totalSummary = originalPriceSum() - discountPriceSum();
+  const totalAmount = totalSummary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const config = {
     reference: (new Date()).getTime().toString(),
     email: "olukaisaac@gmail.com",
     amount: totalSummary > 0?  totalSummary * 100 : 0,
-    publicKey: 'pk_test_469aa0e95eef18322cd1be290b3d2aeed089d350',
-};
+    publicKey: public_key,
+  };
 
 const initializePayment = usePaystackPayment(config);
 
 const onSuccess = (reference) => {
- // console.log({...reference, purchasedTime : currentDate()});
+  console.log({...reference});
   setIsLoading(false);
-  
-  console.log('bought');
   checkoutList.map(data => {
     dispatch(updatePurchasedItem(data))
-    console.log(data)
-    //dispatch(updateIsPurchased(data))
 })  
-  console.log(reference, totalSummary)
-  
-  // allCourses.map(data => {
-  //   dispatch(updateIsPurchased(data))
-  // })
 };
-
-
-
-
-
 
 const onClose = () => {
   setIsLoading(false);
-  // history.goBack()
 }
-
 
 const handleClick = () => {
   setIsLoading(true);
-  initializePayment(onSuccess, onClose)
-  ///setIsLoading(false);
+  initializePayment(onSuccess, onClose);
 }
 
   return (
@@ -68,30 +63,32 @@ const handleClick = () => {
         <div className='details'>
           <div className='price'>
             <p>Original Price</p>
-            <p>Discount Price</p>
+            <p>Discount</p>
           </div>
           <div className='amount'>
-              <p>₦{originalPriceSum()}.00</p>
+            <p>₦{originalPriceSum()}.00</p>
             <p>-₦{discountPriceSum()}.00</p>
           </div>
         </div>
-        <hr/>
         <div className='total'>
-          <p>Total</p>
-          <p>₦{totalSummary}.00</p>
+          <p>TOTAL</p>
+          <p className='total_price'>₦{totalAmount}.00</p>
         </div>
         <div className='payment-notice'>
-          <p>By completing your purchase, you agree with the <span><a href='id'>terms and conditions</a> </span></p>
-        </div>
-        <div className='payment-button'>
+          <p>*By completing your purchase, you agree with the <span><a href='id'>terms and conditions</a></span></p>
+        </div>   
+      </div>
+      <div className='payment-button'>
           <button 
           onClick={handleClick}>
             {isLoading ? 
               <CircularProgress isIndeterminate size="22px" color="teal" />
-              : 'Complete payment'}
+              : <>
+              <span>Complete payment</span>
+              <span> &#187;</span>
+              </>}
             </button>
-        </div>  
-      </div>
+        </div> 
     </div>
   );
 }

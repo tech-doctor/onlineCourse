@@ -1,5 +1,6 @@
 import React from 'react';
-import CourseList from '../../Component/courseList';
+import CourseList from '../../Component/View/courseList';
+
 
 const  Recommended = () => {
   const recommendedData = [

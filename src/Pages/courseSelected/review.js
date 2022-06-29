@@ -1,5 +1,5 @@
-import React, {useState,useEffect} from 'react'
-import { Box, SkeletonText, SkeletonCircle} from "@chakra-ui/react";
+import React, {useState,useEffect, useCallback} from 'react'
+import { SkeletonText, SkeletonCircle} from "@chakra-ui/react";
 import api from '../../Component/Apis/api';
 import { apiKey } from '../../Component/Apis/apiKey';
 import { useParams } from 'react-router-dom';
@@ -7,23 +7,21 @@ import moment from 'moment';
 import Filter from '../../Component/Filter';
 
 const  Review = () => {
-   const {id} = useParams();
+  const {id} = useParams();
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchItem, setSearchItem] = useState('');
  
   
-
 
   useEffect(() => {
     let mounted = true;
     if(mounted){
-  
     const  fetchReviews =  async() => {
       setLoading(true)
       const response = await api.get(`/commentThreads?part=snippet&part=id&part=replies&maxResults=5&videoId=${id}&key=${apiKey}`);
       setReviews(response.data.items)  
       setLoading(false)
-      //console.log(reviews)
     }
     fetchReviews();
   }
@@ -52,22 +50,31 @@ const LoadingText = function courseBox (){
     );
 }
 
-const handleSearch = (e) => {
-  const search = e.target.value;
-  console.log(search);
-}
-  
+const handleSearch = useCallback((e) => {
+  setSearchItem(e.target.value);
+},[]);
+
+const reviewData = reviews?.filter((value) => {
+  if(searchItem === ''){ 
+    return value;
+  }
+ else if(value.snippet.topLevelComment.snippet.authorDisplayName.toLowerCase().includes(searchItem.toLowerCase())){
+    return value;
+  }
+});
+
+
   return (
     <div className = "review-div">
       {loading? <LoadingText/> :
-      <div>
+      <>
         {!loading && reviews.length === 0 ? <div style={{textAlign: 'center', padding: '5em 0em', backgroundColor: 'grey'}}>No Reviews...</div>:
-        <div>
+        <>
           <Filter
             handleSearch = {handleSearch}
             heading = {`Reviews`}
           />
-            {reviews?.map((data, index) => 
+            {reviewData.map((data, index) => 
             (<React.Fragment key = {index}>
               <div className = "review-body">
                 <div className = "avatar left">
@@ -87,10 +94,10 @@ const handleSearch = (e) => {
                 </div> 
               </div>
             </React.Fragment> ))}   
-        </div>}
-      </div>}
+        </>}
+      </>}
     </div>
   )
 }
 
-export default Review
+export default React.memo(Review);

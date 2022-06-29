@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Spinner} from "@chakra-ui/react"
-import Slider from 'react-slick';
-import { settings } from '../../Styles/settings';
 import { fetchAsyncCourses, getAllcourses, updateLoading } from '../../Store/courseSlice'
 import moment from 'moment'
 import CourseCard from '../../Component/courseCard';

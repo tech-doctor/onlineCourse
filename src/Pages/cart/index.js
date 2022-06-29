@@ -9,42 +9,16 @@ import Layout from '../../Component/Layout';
 import '../../Styles/cart.scss';
 
 
-
-
 const  CartPage = ()  => {
   const history = useHistory();
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
 
-  const previousPriceSum = () => {
-    let sum  = 0
-    cartList.forEach (data => {
-      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30
-    })
-     const amount = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-     return {
-        amount,
-        sum
-     }
-  }
-
-  const newPriceSum = () => {
-    let sum  = 0
-    cartList.forEach (data => {
-      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0')
-    })
-    const amount = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-     return {
-        amount,
-        sum
-     }
-  }
 
   const keepShopping = () => {
     history.push('./random')
   }
 
 
-  
 	return (
 		<div className ="cart">
      <Layout>
@@ -81,10 +55,7 @@ const  CartPage = ()  => {
               />
             )} 
             {cartList.length > 1 &&
-              <TotalCart
-              previousPriceSum = {previousPriceSum}
-              newPriceSum = {newPriceSum}
-              />}
+              <TotalCart/>}
           </div>}
         </div>
         {cartList.length !== 0 &&  <div>

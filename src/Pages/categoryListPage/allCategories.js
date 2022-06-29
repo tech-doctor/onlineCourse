@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { Article } from '../../Component/styles/course';
 import Filter from '../../Component/Filter';
 
 const AllCategories = ({ titleFunc, topCourses}) => {
+  const history = useHistory();
   const [searchItem, setSearchItem] = useState('');
   
   const handleSearch = (e) => {
     setSearchItem(e.target.value);
-    console.log(searchItem);
   }
-  
+
   return (
     <section className = "allCategory">
       <Filter
@@ -26,7 +26,7 @@ const AllCategories = ({ titleFunc, topCourses}) => {
         } 
       }).map(data =>  (
       <div key = {data.id} className='allCategories-box'>
-        <Link style = {{textDecoration: 'none'}}   to = {`/courses/${data.videoId}`}>
+        <Link style = {{textDecoration: 'none'}}   to =  {{pathname: `/courses/${data.videoId}`, state: {prevPath: history.location.pathname,position: data.position}}}>
           <Article className='all_courses' style={{justifyContent:'flex-start'}}>
           <div className='image'>
           <img loading='lazy' width={'200px'} height = {'100%'} src={data.snippet.thumbnails.high.url} alt = {data.snippet.title}/>
@@ -48,8 +48,4 @@ const AllCategories = ({ titleFunc, topCourses}) => {
     </section>
   )
 }
-const deepText = {
-  fontWeight: '700'
-}
-
 export default React.memo(AllCategories);

@@ -2,7 +2,6 @@
 
 .center_div{
   margin: 0 8em;
-  //background-color: #007568;
 }
 @media(max-width: 1200px){
   .center_div{
@@ -67,7 +66,6 @@
           }
         }
         .cartList-Total{
-           //padding: 0.6em;
           .cartList{
             display: flex;
             justify-content: space-between;
@@ -261,36 +259,7 @@
                 font-size: 14px;
               }
             }
-          }
-          // .cartList-Total{
-          //   margin: 0 -10%;
-          //   .cartList{
-          //     width: 100%;
-          //     flex-wrap: wrap;
-          //     .left{
-          //       display: flex;
-          //       //width: 100%;
-          //       padding: 0.4em;
-          //       .title-details{
-          //         margin-left: 20px;
-          //       }
-          //     }
-          //     .right{
-          //       display: flex;
-          //       justify-content: flex-start;
-          //       width: 100%;
-          //       padding: 0.2em;
-          //      // padding: 0.4em 0.4em 0 0;
-          //     }
-          //   }
-          //   .total{
-          //     position: relative;
-          //     width: 100%;
-          //     left: 0%;   
-          //   } 
-          // }
-  
-            
+          }    
         }
       }       
     }
@@ -352,33 +321,6 @@
           .empty-chart{
             width: 90%;
           }
-          // .cartList-Total{
-          //   margin: 0 -10%;
-          //   .cartList{
-          //     width: 100%;
-          //     flex-wrap: wrap;
-          //     .left{
-          //       display: flex;
-          //       //width: 100%;
-          //       padding: 0.4em;
-          //       .title-details{
-          //         margin-left: 20px;
-          //       }
-          //     }
-          //     .right{
-          //       display: flex;
-          //       justify-content: flex-start;
-          //       width: 100%;
-          //       padding: 0.2em;
-          //      // padding: 0.4em 0.4em 0 0;
-          //     }
-          //   }
-          //   .total{
-          //     position: relative;
-          //     width: 100%;
-          //     left: 0%;   
-          //   } 
-          // }    
         }
       }       
     }

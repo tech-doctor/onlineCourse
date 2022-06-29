@@ -1,19 +1,18 @@
-import React from 'react';
 
 const  CheckoutLIst = (props) => {
   const {title, imageSrc, imageAlt, newPrice, previousPrice} = props;
  
   return (
     <div className='details'>
-      <div className='left'>
+      <div className='details_left'>
         <img alt= {imageAlt} src = {imageSrc}/>
         <div className='about'>
           <p>{title}</p>
         </div>
       </div>
-      <div className='right'>
-        <span>₦{newPrice}</span><br/>
-        <span style = {{textDecoration: 'line-through'}}>₦{previousPrice}</span><br/>
+      <div className='details_right'>
+        <p style={{color:'#074942'}}>₦{newPrice}</p>
+        <p style = {{textDecoration: 'line-through', color:'rgb(209, 95, 95)'}}>₦{previousPrice}</p>
       </div>
     </div>
   );
