@@ -17,6 +17,7 @@ const  CategoryDetails = (props) => {
   const toast = useToast();
 
   const selectedCourses = useSelector(getSelectedCourse);
+  console.log(selectedCourses);
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
   const [isAdded, setIsAdded] = useState(false);
@@ -34,9 +35,6 @@ const  CategoryDetails = (props) => {
         setIsAdded(true);
       }
     })
-    return () => {
-      setIsAdded(false);
-    }
 },[paramsId, purchasedItem]);
 
 

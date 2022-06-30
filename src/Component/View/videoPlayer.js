@@ -12,8 +12,8 @@ const  VideoPlayer = ({title}) => {
 
 
   useEffect(() => {
-    let mounted = true;
     const script = document.createElement("script");
+    let mounted = true;
     if(mounted){
       script.src = "https://www.youtube.com/iframe_api";
       script.async = true;
@@ -40,14 +40,21 @@ function onYouTubeIframeAPIReady() {
   player = new window.YT.Player(id, {
     events: {
       //onReady: initialize
+      onStateChange: onPlayerStateChange
     }
   });
+}
+function onPlayerStateChange(event) {
+  if (event.data == window.YT.PlayerState.ENDED) {
+    console.log('ended')
+  }
 }
 
 
 function playVideo() {
-  setIsPlaying(true);
-  console.log(player);
+   setIsPlaying(true);
+  // player.playVideo();
+  // console.log(player);
 }
 
 
@@ -57,7 +64,7 @@ function playVideo() {
     <div className='wrapper'>
       {!isPlaying && <img className='img' src={`/Assets/video2.jpg`} alt=""/>}
     <iframe loading='lazy' id= {id} width="100%" height="300px"
-    src={`https://www.youtube.com/embed/${id}?enablejsapi=1&color=white&controls=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=1&autohide=1${!isPurchased &&'&end=5'}${isPlaying && '&muted=1&autoplay=1'}`}
+    src={`https://www.youtube.com/embed/${id}?enablejsapi=1&color=white&controls=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=1&autohide=1${!isPurchased &&'&end=5'}`}
     frameBorder="0"
     allow="autoplay"
     ></iframe>
@@ -72,3 +79,6 @@ function playVideo() {
 }
 
 export default React.memo(VideoPlayer);
+
+
+//${isPlaying && '&muted=1&autoplay=1'}

@@ -14,7 +14,7 @@ const CourseCard = (props) => {
   const toast = useToast();
   const history = useHistory();
 
-  const { data,  id, index, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling} = props
+  const { data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling} = props
   
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)

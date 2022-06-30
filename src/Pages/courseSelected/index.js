@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../../Component/Layout';
-import otherCourses from './otherCourses';
 import CategoryDetails from './categoryDetails'
 import Review from './review'
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,8 +31,8 @@ const  CourseSelected = ()  => {
           viewCount = {selectedCourses[0].statistics.viewCount}
           embedLink = {selectedCourses[0].player.embedHtml}
           publishedAt = {moment(selectedCourses[0].snippet.publishedAt).fromNow()}
-          price = {Math.floor(new Date(selectedCourses[0].snippet.publishedAt).getDate() + '0')}
-          bestSelling = {Math.floor(new Date(selectedCourses[0].snippet.publishedAt).getDate() + '0') > 160}
+          price = {selectedCourses[0].newPrice}
+          bestSelling = {selectedCourses[0].bestSelling}
           />}
           </div>
         <div className = "center_div">
@@ -66,7 +65,6 @@ function ISO8601toDuration(input){
   var H = formatTimeUnit(input, 'H');
   var M = formatTimeUnit(input, 'M');
   var S = formatTimeUnit(input, 'S');
-
  if(H === "00"){
    H = "";
  }else{

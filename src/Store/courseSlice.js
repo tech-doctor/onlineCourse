@@ -13,7 +13,6 @@ import { apiKey } from '../Component/Apis/apiKey';
         return {
           ...item,
           videoId: item.contentDetails.upload.videoId,
-          // new Date(data.snippet.publishedAt).getDate() + '0'
           newPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0'),
           oldPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') + 30,
           bestSelling: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') > 160 ? true:false
@@ -34,6 +33,7 @@ export const fetchAsyncCategories = createAsyncThunk('selectedCategory/fetchAsyn
       return {
         ...item,
         videoId: item.snippet.resourceId.videoId,
+        playlistId: item.snippet.playlistId,
         position: item.snippet.position + 1,
         newPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0'),
         oldPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') + 30,
@@ -52,7 +52,17 @@ export const fetchAsyncCategories = createAsyncThunk('selectedCategory/fetchAsyn
 export const fetchAsyncSelectedCourses = createAsyncThunk('selectedCourses/fetchAsyncSelectedCourses', async (id) => {
   const response = await api
     .get(`videos?part=snippet&part=contentDetails&part=id&part=player&part=topicDetails&part=statistics&id=${id}&maxResults=5&key=${apiKey}`)
-    return (response.data.items)
+    const result = response.data.items;
+    const finalResult = Object.assign(result.map(item => {
+      return {
+        ...item,
+        videoId: item.id,
+        newPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0'),
+        oldPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') + 30,
+        bestSelling: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') > 160 ? true:false
+      }
+    }))
+    return finalResult
   }
 )
 

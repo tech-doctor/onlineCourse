@@ -7,6 +7,7 @@ import  { faShoppingCart}  from '@fortawesome/free-solid-svg-icons';
 import { Spinner} from "@chakra-ui/react";
 import '../../Styles/history.scss';
 import { useSelector } from 'react-redux';
+import Layout from '../../Component/Layout';
 
 
 const  PurchaseHistory = ()  => {
@@ -28,19 +29,15 @@ const  PurchaseHistory = ()  => {
     }
 
 
-
 	return (
 		<div className = "purchaseHistory">
-			<div>
-        <Header/>
-			</div>
-			<hr/>
-			<div className = "center-div">
-      <div style = {{textAlign: 'center'}} >
+			<Layout>
+			<div className = "center_div">
+        {/* <div style = {{textAlign: 'center'}} >
           <Spinner  size="xl"/>
-        </div>
+        </div> */}
 				<div className = "title">
-          <h1>Purchase History</h1>
+          <p>Purchase History</p>
 				</div>
 				<div className ="body">
         <table>
@@ -50,29 +47,44 @@ const  PurchaseHistory = ()  => {
               <th>Category</th>
 							<th>Date</th> 
 							<th>Price</th>
+              <th>Best selling</th>
 						</tr>
 					</thead>
 					<tbody>
             {purchasedItem.map ((data, i) => (
 						<tr key={data.id}>
-							<td><FontAwesomeIcon icon={faShoppingCart} />{data.snippet.title}</td>
+							<td style={{display:'flex'}}><img src='/Assets/cart.png' className='cart_png' style = {{width: '20px', height: '20px'}} alt = 'cart' />
+              <span style={{marginLeft:'10px'}}>
+                {data.snippet.title}
+              </span></td>
 							<td>{category(data)}</td> 
-							<td>{data.purchasedTime}</td>
-              <td>₦{new Date(data.snippet.publishedAt).getDate() + '0'}</td>
-						</tr>))}
+							{/* <td>{data.purchasedTime}</td> */}
+              <td>Date</td>
+              <td>₦{new Date(data.snippet.publishedAt).getDate() + '0'}.00</td>
+						  <td>
+                <span style={{...bestSellingStyles,backgroundColor:'#DDEFDA'}}>
+                True
+                </span>
+                <span style={{...bestSellingStyles,backgroundColor:'#F8DFDF'}}>
+                false
+                </span>
+                </td>
+            </tr>))}
 					</tbody>
 				</table>
 				</div>
 			</div>
-      <div style = {{marginTop: '20px'}}>
-        <Subscribe/>
-      </div>
-			<hr/>
-			<div>
-				<Footer/>
-			</div>
+      </Layout>
 		</div>
 	)
+}
+
+const bestSellingStyles = {
+  fontWeight:'500', 
+  padding:'1px 18px', 
+  borderRadius: '50px', 
+  fontSize: '12px', 
+  textAlign:'center'
 }
 
 export default PurchaseHistory
