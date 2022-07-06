@@ -1,3 +1,66 @@
+# FElearn
+
+### Description:
+  An online platform  that allow users to learn the core web frontend-technologies(HTML, CSS, Javascript) in Pidgin. Users are able to watch courses directly on the platform, add to cart, checkout and  make payment(test mode) for their desired courses to have full access. 
+
+### Technology stack:
+* ReactJS
+* CSS3
+* SCSS
+* Styled-componenent
+* ChakraUI
+* Reduxtoolkit
+* Netlify
+
+
+### Features:
+* Listing of courses based on category
+* Ability of users to watch desired courses
+* Add to cart/remove from cart
+* Make checkouts
+* Make payment to have full access to a particualar course.
+
+
+
+### Status:
+ In progress...(not completed)
+
+
+ #### API USED: 
+ [Youtube API](https://developers.google.com/youtube/v3).
+ [Paystack API](https://paystack.com/docs/api/) for payment integration(Test mode)
+
+
+### Display: 
+![Display](https://res.cloudinary.com/rririsrisurisux/image/upload/v1657083463/IMG_20220706_052434_qqnae9.jpg)
+
+
+### Live Demo
+  * Click [here](https://fe-learn.netlify.app/)
+
+
+### Setup:
+1. Copy the repository link 
+2. On your commandline/terminal, change the current working directory to the location where you want the cloned directory.
+3. Type ``` git clone https://github.com/USER_NAME/REPOSITORY_NAME```.(make sure the link is the link to the repository)
+4. press enter to create your local clone.
+5. Run npm install on your terminal terminal
+6. Make sure you include your unique API to access the  youtube data
+
+
+
+### Reqirement & Resources for development: 
+ * Any IDE (VSCode, Bracket, Atom, Sublime e.t.c)
+ * Basic knowledge in  ReactJs with Reduxtoolkit
+ * knowledge of handling  react components and lifecycles with the use of functional component and react-hooks respectively 
+ * Knowledge in fetching and displaying form of  data from a remote API 
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
