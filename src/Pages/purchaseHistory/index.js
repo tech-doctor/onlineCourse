@@ -1,13 +1,8 @@
 import React from 'react';
-import Header from '../../Component/Header/desktopHeader/Header';
-import Footer from '../../Component/Footer';
-import Subscribe from '../../Component/subscribe';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import  { faShoppingCart}  from '@fortawesome/free-solid-svg-icons';
-import { Spinner} from "@chakra-ui/react";
-import '../../Styles/history.scss';
+// import { Spinner} from "@chakra-ui/react";
 import { useSelector } from 'react-redux';
 import Layout from '../../Component/Layout';
+import '../../Styles/history.scss';
 
 
 const  PurchaseHistory = ()  => {
@@ -32,11 +27,14 @@ const  PurchaseHistory = ()  => {
 	return (
 		<div className = "purchaseHistory">
 			<Layout>
-			<div className = "center_div">
-        {/* <div style = {{textAlign: 'center'}} >
+         {/* <div style = {{textAlign: 'center'}} >
           <Spinner  size="xl"/>
         </div> */}
-				<div className = "title">
+			<div className = "center_div">
+        { purchasedItem && purchasedItem.length === 0 &&  <div style={{display: 'flex', justifyContent: 'center', padding: '4em 0', fontSize: '20px', color: 'grey',textAlign: 'center'}}>No purchase history!</div>}
+        { purchasedItem && purchasedItem.length > 0 && 
+				<>
+        <div className = "title">
           <p>Purchase History</p>
 				</div>
 				<div className ="body">
@@ -58,21 +56,25 @@ const  PurchaseHistory = ()  => {
                 {data.snippet.title}
               </span></td>
 							<td>{category(data)}</td> 
-							{/* <td>{data.purchasedTime}</td> */}
-              <td>Date</td>
-              <td>₦{new Date(data.snippet.publishedAt).getDate() + '0'}.00</td>
+							<td>{data.purchasedTime}</td>
+              {/* <td>Date</td> */}
+              <td>₦{data.newPrice}.00</td>
 						  <td>
+                {data.bestSelling?
                 <span style={{...bestSellingStyles,backgroundColor:'#DDEFDA'}}>
                 True
-                </span>
-                <span style={{...bestSellingStyles,backgroundColor:'#F8DFDF'}}>
-                false
-                </span>
+                </span>:
+                 <span style={{...bestSellingStyles,backgroundColor:'#F8DFDF'}}>
+                 false
+                 </span>
+                }
                 </td>
             </tr>))}
 					</tbody>
 				</table>
 				</div>
+          </>
+        }
 			</div>
       </Layout>
 		</div>

@@ -120,6 +120,12 @@ export const  Article = styled.article`
       img{
         border-radius: 3px 3px 0px 0px;
         width:100%;
+        height:220px;
+        background-color: #F5F5F5;
+        aspect-ratio: cover;
+        @media (max-width: 850px) {
+          height:150px;
+        }
       }
     }
       .card-bottom{

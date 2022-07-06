@@ -1,32 +1,29 @@
-import React, {useState} from 'react'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import  {faSearch, faShoppingCart, faUserCircle}  from '@fortawesome/free-solid-svg-icons';
+import React from 'react'
 import { useSelector } from 'react-redux';
-import '../../../Styles/header.scss'
 import CategoryList from './categoryList'
 import Profile from './profile'
 import  MobileHeader from '../mobileHeader/mobileHeader';
 import Logo from '../../Logo';
 import { Link } from 'react-router-dom';
-
+import {
+  Menu,
+  MenuButton,
+  Popover,
+} from '@chakra-ui/react';
+import '../../../Styles/header.scss'
 
 const  Header = () => {
  const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
- const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
  
-//set the initial visibility state of the category list and profile details as false 
-  const [profileVisibility, setProfileVisibility]  = useState(false)
-  const [categoryVisibility, setCategoryVisibility]  = useState(false)
-  
-  
+
   const htmlId  = 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK'
   const cssId = 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2'
   const javascriptId = 'PLEu7Y7_blvLVNfrsztZmfWEw57lWyuUfI'
   const jqueryId =  'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808'
 
 	return (
-		<div className = "">
+		<>
       <div className = "header">
         <header>
           <div className = "desktop-header">
@@ -38,9 +35,29 @@ const  Header = () => {
             </div>
             <div className = "nav">
               <nav>
-                <p
-                onClick = {() => setCategoryVisibility(!categoryVisibility)}
-                >Categories</p>
+                <Menu
+                isLazy = {true}
+                trigger = {'hover'}
+                >
+                  <MenuButton
+                  border={'none'}
+                  backgroundColor={'white'}
+                  fontSize={'1em'}
+                  fontWeight = {'600'}
+                  fontFamily = {'-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;'}
+                  cursor = {'pointer'}
+                  _hover = {{textDecoration:'underline'}}
+                  >
+                  Categories 
+                  </MenuButton>
+                  
+                  <CategoryList
+                  htmlId = {htmlId}
+                  cssId = {cssId}
+                  javascriptId = {javascriptId}
+                  jqueryId = {jqueryId}
+                  />
+                </Menu>
                 <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/random">Random</Link> </p>					
               </nav>
             </div>
@@ -60,14 +77,14 @@ const  Header = () => {
                 {cartList.length > 0 && <small>{cartList.length}</small>}
               </Link>  
             </div>
-
-            {isLoggedIn && <div 
-            onClick = {() => setProfileVisibility(!profileVisibility)}
-            className = "user">
-              <img src='/Assets/User.png' alt = 'user' className = "user-icon" />
-              <span>My Account</span>
-            </div>}
-
+            {isLoggedIn &&
+             <>
+              <Popover
+              boxShadow = "3xl"
+              >
+                <Profile/>
+              </Popover>
+            </>}
             {!isLoggedIn &&  <div className = "Authentication">
               <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/login"><button className = 'loginButton'>Login</button></Link>
               <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/register"><button className = 'loginButton'>Register</button></Link>
@@ -84,22 +101,10 @@ const  Header = () => {
         </header>	
       </div>	
       <div>
-        <CategoryList
-          htmlId = {htmlId}
-          cssId = {cssId}
-          javascriptId = {javascriptId}
-          jqueryId = {jqueryId}
-          categoryVisibility = {categoryVisibility}
-          setCategoryVisibility = {setCategoryVisibility}
-        />
       </div>
 		  <div>
-        <Profile
-          profileVisibility = {profileVisibility} 
-          setProfileVisibility = {setProfileVisibility}
-        />
 		  </div>
-	  </div>
+	  </>
 	)
 }
 

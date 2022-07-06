@@ -1,44 +1,73 @@
-import React, { useEffect } from 'react'
-import {Link} from 'react-router-dom'
-
-const  CategoryList = (props) => {
-	const {categoryVisibility, setCategoryVisibility, htmlId, cssId, javascriptId, jqueryId} = props
-	const container = React.createRef()
+import React from 'react'
+import {Link} from 'react-router-dom';
+import { MenuList, MenuItem,} from '@chakra-ui/react'
 
 
-	const handleClickOutside = (event) => {
-		if (
-			container.current &&
-			!container.current.contains(event.target)
-		) {
-			setCategoryVisibility(false)
-			
-		}
-	};
-
-	useEffect(() => {
-		document.addEventListener("mousedown", handleClickOutside);
-
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		}
-	})
-
-
+const  CategoryList = ({htmlId, cssId, javascriptId, jqueryId}) => {
 
 	return (
-		<div>
-			{categoryVisibility? (
-			<div className ="categoryList" ref = {container}>
-				<ul>
-					<li> <Link to = {`/category/${htmlId}`} style = {{textDecoration: 'none', color: 'black'}} >HTML</Link> </li>
-					<li><Link to = {`/category/${cssId}`} style = {{textDecoration: 'none', color: 'black'}} >CSS</Link></li>
-					<li><Link to = {`/category/${javascriptId}`}style = {{textDecoration: 'none', color: 'black'}} >Javascript</Link></li>
-					<li><Link to = {`/category/${jqueryId}`} style = {{textDecoration: 'none', color: 'black'}} >JQuery</Link></li>
-				</ul> 
-		  </div>
-		  ): ''}
-		</div>	
+      <MenuList
+        boxShadow={'2xl'}
+      >
+        <MenuItem
+        padding={0}
+        border = {'none'}
+        borderBottom = {'1px solid #e6e6e6'}
+        >
+        <Link 
+        onMouseOver={(e) => {
+          e.target.style.background = 'rgb(97%, 97%, 97%)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.background = 'white';
+        }}
+        to = {`/category/${htmlId}`} style = {{textDecoration: 'none', color: 'black', width: '100%', padding: '10px 15px', fontSize: '12px', backgroundColor:'white',}}>HTML</Link>
+        </MenuItem>
+
+        <MenuItem
+          padding={0}
+          border = {'none'}
+          borderBottom = {'1px solid #e6e6e6'}
+        >
+        <Link 
+        onMouseOver={(e) => {
+          e.target.style.background = 'rgb(97%, 97%, 97%)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.background = 'white';
+        }}
+        to = {`/category/${cssId}`} style = {{textDecoration: 'none', color: 'black', width: '100%',padding: '10px 15px', fontSize: '12px', backgroundColor:'white'}} >CSS</Link>
+        </MenuItem>
+
+        <MenuItem
+          padding={0}
+          border = {'none'}
+          borderBottom = {'1px solid #e6e6e6'}
+        >
+        <Link 
+        onMouseOver={(e) => {
+          e.target.style.background = 'rgb(97%, 97%, 97%)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.background = 'white';
+        }}
+        to = {`/category/${javascriptId}`} style = {{textDecoration: 'none', color: 'black', width: '100%',padding: '10px 15px', fontSize: '12px', backgroundColor:'white'}} >Javascript</Link>
+        </MenuItem>
+        
+        <MenuItem
+          padding={0}
+          border = {'none'}
+        >
+        <Link 
+        onMouseOver={(e) => {
+          e.target.style.background = 'rgb(97%, 97%, 97%)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.background = 'white';
+        }}
+        to = {`/category/${jqueryId}`} style = {{textDecoration: 'none', color: 'black', width: '100%',padding: '10px 15px', fontSize: '12px', backgroundColor:'white'}} >JQuery</Link>
+        </MenuItem>
+      </MenuList>
 	)
 }
 

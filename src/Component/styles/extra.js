@@ -98,17 +98,19 @@ import styled from "styled-components";
     }
 `
 
-
-
-{/* <div className = "title-filter">
-        <div className ="title">
-          <p>{heading}</p>
-        </div>
-        <div className ="filter">
-          <input type="text" placeholder="Search"/>
-          <select style = {{cursor: 'pointer' }}>
-            <option>Most Rated</option>
-            <option>Latest</option>
-          </select>
-        </div>  	 
-      </div> */}
+ export const  AccountSection = styled.section`
+  display: flex;
+  align-items: center;
+  padding: 0.5em 0.6em;
+  border-bottom: #DCDCDC 1px solid;
+  .email-name{
+    margin-left: 10px;
+    .name{
+      font-weight: 700;
+      font-size: 17px;
+    }
+    .email{
+      font-size: 14px;
+    }
+  }
+ `

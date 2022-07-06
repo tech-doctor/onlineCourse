@@ -14,7 +14,7 @@ const CourseCard = (props) => {
   const toast = useToast();
   const history = useHistory();
 
-  const { data,  id, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling} = props
+  const { data,  id, imageSrc, title, date, newPrice, oldPrice, bestSelling} = props
   
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
@@ -90,7 +90,13 @@ const CourseCard = (props) => {
           </div>)}		 
         <div className='card-inner'>
           <div className='card-top'>
-            <img style={{backgroundColor:'gray'}} loading='lazy' width = "320px" height = '100%' alt ={imageAlt}  src = {imageSrc}/>  
+            <img 
+            style={{backgroundColor:'gray'}} 
+            loading='lazy' width = "320px" 
+            height = 'auto' alt ={textAbstract}  
+            src = {imageSrc}
+            onError = {(e) => {e.target.src = 'https://via.placeholder.com/320x180?text=No+Image+Found'}}
+            />  
           </div>
           <div className='card-bottom'>
             <div style={{marginTop: '5px',}} className='card-info'>

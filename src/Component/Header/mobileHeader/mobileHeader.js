@@ -1,45 +1,76 @@
-import React, { useState } from 'react';
+import React, {useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faBars} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
 import SideBar from './sideBar'
-import Logo from '../../Logo'
+import Logo from '../../Logo';
+import {Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton,Button, useDisclosure,} from '@chakra-ui/react'
+
 
 const  MobileHeader = (props) =>  {
-//const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
  const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
   
 
- // Set the state for the sidebar visibility before the hamburger icon is being clicked
-  const [sidebarVisible, setSidebarVisible]  = useState(false)
-
-  // set display of sidebarContent as "none" before click, and "block" when clicked
-  const 	getSidebarStyle =  {
-		display: sidebarVisible? 
-		'block' : 'none',
-	}
-
   //  setting the isLoggedIn props variable
    const { htmlId, cssId, javascriptId, jqueryId} = props;
+
+   const { isOpen, onOpen, onClose } = useDisclosure()
+   const btnRef = React.useRef()
 
   return (
     <div className = "mobile-header">
       <div className = "mobile-icons">
         <div  className = "menu-barIcon">
-          <FontAwesomeIcon
-           onClick = {() => setSidebarVisible(!sidebarVisible)} 
-           style ={{fontSize: '22px'}}  
-           icon={faBars}
+        <div ref={btnRef} 
+        onClick={onOpen}
+        >
+          <FontAwesomeIcon 
+            style ={{fontSize: '22px'}}  
+            icon={faBars}
+          />  
+        </div>     
+        <Drawer
+        isOpen={isOpen}
+        placement='left'
+        onClose={onClose}
+        finalFocusRef={btnRef}
+        //isFullHeight={false}
+        >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton 
+          border={'none'}
+          backgroundColor={'transparent'}
+          color={'black'}
+          cursor={'pointer'}
+          _focus = {{
+            outline: 'none',
+          }}
           />
+          <DrawerHeader>{null}</DrawerHeader>
+          <DrawerBody>
+            <SideBar
+              htmlId = {htmlId}
+              cssId = {cssId}
+              javascriptId = {javascriptId}
+              jqueryId = {jqueryId}
+            />
+          </DrawerBody>
+          {/* <DrawerFooter>
+            <Button variant='outline' mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button colorScheme='blue'>Save</Button>
+          </DrawerFooter> */}
+        </DrawerContent>
+      </Drawer>
         </div>
-        <div>
           <Logo
           src={'/Assets/logo.png'}
           color={'#173A56'}
           />
-        </div>
         <div style ={{fontSize: '20px'}}
           className =    "search-cart"><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/cart">
             <img 
@@ -48,14 +79,6 @@ const  MobileHeader = (props) =>  {
           {cartList.length > 0 && <small>{cartList.length}</small>}
           </Link>  
         </div>
-      </div>
-      <div style={getSidebarStyle}>
-        <SideBar
-          htmlId = {htmlId}
-          cssId = {cssId}
-          javascriptId = {javascriptId}
-          jqueryId = {jqueryId}
-        />
       </div>
     </div> 
   )

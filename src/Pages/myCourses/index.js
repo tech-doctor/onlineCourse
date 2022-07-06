@@ -1,42 +1,38 @@
-import React from 'react'
-import Header from '../../Component/Header/desktopHeader/Header'
-import Footer from '../../Component/Footer'
-import Subscribe from '../../Component/subscribe'
-import { useSelector } from 'react-redux'
-import { Spinner} from "@chakra-ui/react"
-import '../../Styles/myCourse.scss'
-import moment from 'moment'
-import MyCourseCard from './myCourseCard'
-//import Slider from 'react-slick'
+import React from 'react';
+import Layout from '../../Component/Layout';
+import { useSelector } from 'react-redux';
+// import { Spinner} from "@chakra-ui/react";
+import moment from 'moment';
+import MyCourseCard from './myCourseCard';
+import '../../Styles/myCourse.scss';
 
 
 const  MyCourses = ()  => {
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
   
 	return (
-		<div className  = "myCourse">
-			<div>
-				<Header/>
-			</div>
-			<hr/>
-			<div>
-        <div className = "title">
-					<h2 style = {{color: 'white'}}>MY COURSES</h2>
+		<div className  = "myCourse ">
+			<Layout>
+			<div className='center_div'>
+      { purchasedItem && purchasedItem.length === 0 &&  <div style={{display: 'flex', justifyContent: 'center', padding: '7em 0', fontSize: '18px', color: 'grey', textAlign: 'center'}}>You haven't purchased any course yet!</div>}
+      { purchasedItem && purchasedItem.length > 0 &&
+       <>
+        <div className = "my_course_title">
+					<p>MY COURSES</p>
 				</div>
-				<hr/>
-				<div className  = "center-div">
+				<div className  = "next-div">
 					{purchasedItem.lenght === 0? 
 					<div className = "no-course">
             <p>No course available</p>
 					</div> :
 					<div className = 'myCourse-div'>
-						<div style = {{textAlign: 'center'}} >
+						{/* <div style = {{textAlign: 'center'}} >
 							<Spinner  size="xl"/>
-						</div>
-						<div className='body'>
-              {purchasedItem.map(data => 
+						</div> */}
+						<div className='my_course_slider'>
+              {purchasedItem.map((data,index) => 
                 <MyCourseCard
-                  key = {data.id}
+                  key = {index}
                   id = {data.videoId}
                   imageAlt ={data.snippet.title}  
                   imageSrc = {data.snippet.thumbnails.high.url}
@@ -50,15 +46,10 @@ const  MyCourses = ()  => {
 						</div>
 					</div>}	
 				</div> 
+      </>}
+        
 			</div>
-			<hr/>
-			<div>
-				<Subscribe/>
-			</div>
-			<hr/>
-			<div>
-        <Footer/>
-			</div>
+			</Layout>
 		</div>
 	)
 }

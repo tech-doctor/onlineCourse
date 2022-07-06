@@ -40,7 +40,7 @@ function onYouTubeIframeAPIReady() {
   player = new window.YT.Player(id, {
     events: {
       //onReady: initialize
-      onStateChange: onPlayerStateChange
+     onStateChange: onPlayerStateChange
     }
   });
 }
@@ -64,7 +64,7 @@ function playVideo() {
     <div className='wrapper'>
       {!isPlaying && <img className='img' src={`/Assets/video2.jpg`} alt=""/>}
     <iframe loading='lazy' id= {id} width="100%" height="300px"
-    src={`https://www.youtube.com/embed/${id}?enablejsapi=1&color=white&controls=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=1&autohide=1${!isPurchased &&'&end=5'}`}
+    src={`https://www.youtube.com/embed/${id}?enablejsapi=1&color=white&controls=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=1&autohide=1${!isPurchased &&'&end=20'}`}
     frameBorder="0"
     allow="autoplay"
     ></iframe>
