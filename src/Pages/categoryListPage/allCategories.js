@@ -25,15 +25,15 @@ const AllCategories = ({ titleFunc, topCourses}) => {
           return value;
         } 
       }).map(data =>  (
-      <div key = {data.id} className='allCategories-box'>
+      <div key = {data.key} className='allCategories-box'>
         <Link style = {{textDecoration: 'none'}}   to =  {{pathname: `/courses/${data.videoId}`, state: {prevPath: history.location.pathname,position: data.position}}}>
           <Article className='all_courses' style={{justifyContent:'flex-start'}}>
           <div className='image'>
-          <img loading='lazy' width={'200px'} height = {'100%'} src={data.snippet.thumbnails.high.url} alt = {data.snippet.title}/>
+          <img loading='lazy' width={'200px'} height = {'100%'} src={data.imageUrl} alt = {data.title}/>
           </div>
           <div className='right'>
-            <p className='title category_title'>{data.snippet.title}</p>
-            <p className='details category_detail'>{`Updated about ${moment(data.snippet.publishedAt).fromNow()}`}</p>
+            <p className='title category_title'>{data.title}</p>
+            <p className='details category_detail'>{`Updated about ${moment(data.publishedAt).fromNow()}`}</p>
             <p className='price category_price'>₦{data.newPrice}</p>
           </div>
           </Article>

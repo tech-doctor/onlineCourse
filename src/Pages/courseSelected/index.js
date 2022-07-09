@@ -24,13 +24,13 @@ const  CourseSelected = ()  => {
         <div className = "courseSelectedContainer">
           {selectedCourses.length !== 0 &&  <CategoryDetails 
           id = {selectedCourses[0].id}
-          title = {selectedCourses[0].snippet.localized.title}
-          description = {selectedCourses[0].snippet.localized.description}
-          duration = {ISO8601toDuration(selectedCourses[0].contentDetails.duration)}
-          likeCount = {selectedCourses[0].statistics.likeCount}
-          viewCount = {selectedCourses[0].statistics.viewCount}
-          embedLink = {selectedCourses[0].player.embedHtml}
-          publishedAt = {moment(selectedCourses[0].snippet.publishedAt).fromNow()}
+          title = {selectedCourses[0].title}
+          //description = {selectedCourses[0].snippet.localized.description}
+          duration = {ISO8601toDuration(selectedCourses[0].duration)}
+          likeCount = {selectedCourses[0].likeCount}
+          viewCount = {selectedCourses[0].viewCount}
+          embedLink = {selectedCourses[0].embedUrl}
+          publishedAt = {moment(selectedCourses[0].publishedAt).fromNow()}
           price = {selectedCourses[0].newPrice}
           bestSelling = {selectedCourses[0].bestSelling}
           />}

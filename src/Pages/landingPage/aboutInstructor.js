@@ -7,6 +7,9 @@ const aboutInstructor = () => {
 				<img width={'280px'} height = {'250px'} alt = "" src = "https://yt3.ggpht.com/dLdgCaEVgttRqGV4nbcO9VJyc27YgP0sUIqySVWbRvmcwMofNM0NTkywg_ssjf_Po3w0UVA1ig=s176-c-k-c0x00ffffff-no-rj-mo"
 				onError = {(e) => {e.target.src = 'https://via.placeholder.com/320x180?text=No+Image+Found'}}
 				/>
+				{/* <img width={'280px'} height = {'250px'} alt = "" src = "/Assets/Double-south.jpg"
+				onError = {(e) => {e.target.src = 'https://via.placeholder.com/320x180?text=No+Image+Found'}}
+				/> */}
 			</div>
 			<div className = "about-instructor">
 				<div className='heading'>

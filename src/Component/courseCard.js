@@ -25,12 +25,12 @@ const CourseCard = (props) => {
 
   useEffect(() => {
     purchasedItem.forEach(element => {
-      if(element.snippet.title === title){
+      if(element.title === title){
         setIsPurchased(true);
       }
     })
     cartList.forEach(element => {
-      if(element.snippet.title === title){
+      if(element.title === title){
         setIsAdded(true);
       }
     })

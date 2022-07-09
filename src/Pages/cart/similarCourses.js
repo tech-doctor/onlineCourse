@@ -19,7 +19,7 @@ const  SimilarCourses = () => {
     const similarCourses = allCourses.filter(course => {
       let isSimilar = false;
       cartList.forEach(item => {
-        if(course.snippet.title === item.snippet.title){
+        if(course.title === item.title){
           isSimilar = true;
         }
       }
@@ -38,12 +38,12 @@ const  SimilarCourses = () => {
       >
         {similarCourses?.map ((data) =>
         (<CourseCard
-          key = {data.id}
+          key = {data.key}
           id = {data.videoId}
-          imageAlt ={data.snippet.title}  
-          imageSrc = {data.snippet.thumbnails.high.url}
-          title = {data.snippet.title}
-          date = {moment(data.snippet.publishedAt).fromNow()}
+          imageAlt ={data.title}  
+          imageSrc = {data.imageUrl}
+          title = {data.title}
+          date = {moment(data.publishedAt).fromNow()}
           newPrice = {data.newPrice}
           oldPrice = {data.oldPrice}
           bestSelling = {data.bestSelling}

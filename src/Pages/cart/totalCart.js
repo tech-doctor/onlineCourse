@@ -13,7 +13,7 @@ const  TotalCart = () => {
   const previousPriceSum = () => {
     let sum  = 0
     cartList.forEach (data => {
-      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30
+      sum += Math.floor(new Date(data.publishedAt).getDate() + '0') + 30
     })
      const amount = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
      return {
@@ -25,7 +25,7 @@ const  TotalCart = () => {
   const newPriceSum = () => {
     let sum  = 0
     cartList.forEach (data => {
-      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0')
+      sum += Math.floor(new Date(data.publishedAt).getDate() + '0')
     })
     const amount = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
      return {

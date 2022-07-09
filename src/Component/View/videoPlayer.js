@@ -1,84 +1,140 @@
 import React, {useEffect, useState} from 'react';
-import {useParams, useHistory} from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {useParams,useHistory} from 'react-router-dom';
+import { getSelectedCourse } from '../../Store/courseSlice';
+import { updateCheckoutList } from '../../Store/databaseSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import ReactPlayer from 'react-player/lazy'
+//import ReactPlayer from 'react-player/youtube'
+import {Modal, ModalOverlay, ModalContent, ModalFooter,ModalBody, Button, useDisclosure} from '@chakra-ui/react'
 
 const  VideoPlayer = ({title}) => {
   const {id} = useParams();
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [videoHasEnded, setVideoHasEnded] = useState(false);
+  const [videoIsReady, setVideoIsReady] = useState(false);
   const [isPurchased, setIsPurchased] = useState(false);
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem);
+  const selectedCourses = useSelector(getSelectedCourse);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    const script = document.createElement("script");
     let mounted = true;
     if(mounted){
-      script.src = "https://www.youtube.com/iframe_api";
-      script.async = true;
-      document.body.appendChild(script);
-      window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
       purchasedItem.forEach(element => {
-        if(element.snippet.title === title){
+        if(element.title === title){
           setIsPurchased(true);
-          console.log('bought')
         }
       })
     }
      return () => {
-       document.body.removeChild(script);
        mounted = false;
      }
-   },[id]);
+  },[id, title, purchasedItem]);
 
 
-/////////////new/////////////////////////////
-var player;
-
-function onYouTubeIframeAPIReady() {
-  player = new window.YT.Player(id, {
-    events: {
-      //onReady: initialize
-     onStateChange: onPlayerStateChange
-    }
-  });
-}
-function onPlayerStateChange(event) {
-  if (event.data == window.YT.PlayerState.ENDED) {
-    console.log('ended')
+  const handleBuyButton = ()  => {
+    dispatch(updateCheckoutList(selectedCourses[0]));
+    history.push('/cart/checkout');
   }
-}
 
+  const handleVideoEnded = () => {
+    setVideoHasEnded(true);
+    setVideoIsReady(false);
+    onOpen();
+  }
 
-function playVideo() {
-   setIsPlaying(true);
-  // player.playVideo();
-  // console.log(player);
-}
+  const handleVideoReady = () => {
+    setVideoIsReady(true);
+    setVideoHasEnded(false);
+  }
 
-
-  
+  const handleVideoError = () => {
+    // setVideoHasEnded(true);
+    // setVideoIsReady(false);
+    // onOpen();
+  }
 
   return (
     <div className='wrapper'>
-      {!isPlaying && <img className='img' src={`/Assets/video2.jpg`} alt=""/>}
-    <iframe loading='lazy' id= {id} width="100%" height="300px"
-    src={`https://www.youtube.com/embed/${id}?enablejsapi=1&color=white&controls=1&iv_load_policy=3&modestbranding=1&rel=0&showinfo=1&autohide=1${!isPurchased &&'&end=20'}`}
-    frameBorder="0"
-    allow="autoplay"
-    ></iframe>
-    {!isPlaying &&
-    <button 
-    onClick={playVideo}
-    className='button'>
-      <img width={'45px'} height= {'45px'} src="/Assets/pause.png" alt=""/>
-    </button>}
+      <div>
+        <Modal 
+        isOpen={isOpen} onClose={onClose} isCentered>
+          <ModalOverlay 
+            backdropFilter='auto'
+            backdropInvert='20%'
+            backdropBlur='4px'
+          />
+          <ModalContent
+           borderRadius={'none'}
+           padding={'0.8em 0'}
+          >
+            <ModalBody
+              textAlign={'center'}
+              fontSize={'18px'}
+              fontWeight={'semibold'}
+              fontFamily={'mono'}
+            >
+              Kindly make payment for this Course to allow full access!
+            </ModalBody>
+            <ModalFooter
+             bg={'white'}>
+              <Button 
+               bg={'#02897A'}
+               fontFamily={'mono'}
+               color={'white'}
+               border={'none'}
+               borderRadius={'3px'}
+               cursor={'pointer'}
+               _hover={{
+                  backgroundColor: '#05645A',
+               }}
+               _focus={{
+                  outline: 'none',
+                }}
+               mr={3}
+                onClick = {handleBuyButton}>
+                Buy Now
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </div>
+      {videoHasEnded && <img className='img' src={`/Assets/video2.jpg`} alt={null}/>}
+      <ReactPlayer 
+      url={`https://www.youtube.com/watch?v=${id}`}
+      playing={true}
+      config={{
+        youtube: {
+          playerVars: { 
+            showinfo: 1,
+            end : !isPurchased && '5',
+            origin: window.location.href,
+            modestbranding: 1,
+            rel: 0,
+          }
+        },
+      }}
+      width='100%'
+      height='300px'
+      light={videoIsReady? '/Assets/video2.jpg' : null}
+      playIcon={videoIsReady? <img width={'45px'} height= {'45px'} src="/Assets/pause.png" alt=""/>: null}
+      //previewTabIndex={-1}
+      fallback={<div>Loading...</div>}
+      onReady={handleVideoReady}
+      onEnded={handleVideoEnded}
+      onError={handleVideoError}
+       />
+      {videoHasEnded &&
+      <button 
+        onClick={onOpen}
+        className='button'>
+        <img width={'45px'} height= {'45px'} src="/Assets/pause.png" alt=""/>
+      </button>}
     </div>
   );
 }
 
 export default React.memo(VideoPlayer);
-
-
-//${isPlaying && '&muted=1&autoplay=1'}

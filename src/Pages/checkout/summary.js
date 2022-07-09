@@ -1,19 +1,23 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import { usePaystackPayment } from 'react-paystack';
 import { CircularProgress } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updatePurchasedItem } from '../../Store/databaseSlice';
+import { updatePurchasedItem, updateCartList,resetCheckoutList,resetCartList } from '../../Store/databaseSlice';
 import { public_key } from '../../Component/Apis/apiKey';
 
 const Summary = () =>  {
   const dispatch = useDispatch();
+  const history = useHistory();
   const checkoutList = useSelector(state => state.rootReducer.databaseSlice.checkoutList);
+  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
+  const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
   const [isLoading, setIsLoading] = useState(false);
 
   const originalPriceSum = () => {
     let sum  = 0
     checkoutList?.forEach (data => {
-      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30
+      sum += Math.floor(new Date(data.publishedAt).getDate() + '0') + 30
     })
      return sum 
   }
@@ -21,7 +25,7 @@ const Summary = () =>  {
   const discountPriceSum = () => {
     let sum  = 0
     checkoutList?.forEach (data => {
-      sum += Math.floor(new Date(data.snippet.publishedAt).getDate() + '0')
+      sum += Math.floor(new Date(data.publishedAt).getDate() + '0')
     })
      return originalPriceSum() - sum
   }
@@ -34,15 +38,24 @@ const Summary = () =>  {
     amount: totalSummary > 0?  totalSummary * 100 : 0,
     publicKey: public_key,
   };
+  const cartListNotPurchased = cartList.filter(data => {
+    return !purchasedItem.some(item => item.videoId === data.videoId)
+  })
 
 const initializePayment = usePaystackPayment(config);
 
 const onSuccess = (reference) => {
-  console.log({...reference});
+  //console.log({...reference});
   setIsLoading(false);
+  dispatch(resetCartList())
+  cartListNotPurchased.forEach(data => {
+    dispatch(updateCartList(data))
+  })
+  history.goBack();
   checkoutList.map(data => {
     dispatch(updatePurchasedItem(data))
-})  
+}) 
+  dispatch(resetCheckoutList())  
 };
 
 const onClose = () => {

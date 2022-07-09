@@ -27,14 +27,17 @@
   .center_div{
     .top{
       margin: 1.5em 0;
-      .title{
+      // .title{
+      //   font-weight: 500;
+      //   color: #22343D;
+      //   padding: 10px 0;
+      // }
+      .shopping_title{
+        border-bottom: 1px solid #D9D9D9;
         font-size: 1.6em;
         font-weight: 500;
         color: #22343D;
         padding: 10px 0;
-      }
-      .shopping_title{
-        border-bottom: 1px solid #D9D9D9;
       }
       .body{
         .empty-chart{
@@ -188,7 +191,13 @@
     .center_div{
       .top{
         margin: 1em 0;
-        .title{
+        // .title{
+        //   font-size: 1.4em;
+        //   font-weight: 500;
+        //   color: #22343D;
+        // }
+        .shopping_title{
+          border-bottom: 1px solid #D9D9D9;
           font-size: 1.4em;
           font-weight: 500;
           color: #22343D;
@@ -230,7 +239,12 @@
     .center_div{
       .top{
          margin: 1em 0;
-        .title{
+        // .title{
+        //   font-size: 1.4em;
+        //   font-weight: 500;
+        //   color: #22343D;
+        // }
+        .shopping_title{
           font-size: 1.4em;
           font-weight: 500;
           color: #22343D;
@@ -312,7 +326,7 @@
     .center_div{
       .top{
         margin: 1em 0;
-        .title{
+        .shopping_title{
           font-size: 1.4em;
           font-weight: 500;
           color: #22343D;

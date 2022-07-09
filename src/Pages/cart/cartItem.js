@@ -35,7 +35,7 @@ const CartItem = (props) => {
 
 
     return (
-        <div  className = "cartList">
+        <div className = "cartList">
           <Link style = {{textDecoration: 'none', color: 'black'}} to =  {{pathname: `/courses/${id}`, state: {prevPath: history.location.pathname,position: data.position}}}>
           <div className = "left">
             <div className ="image">

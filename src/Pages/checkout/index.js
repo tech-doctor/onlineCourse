@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 //import { Spinner } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
+import { updateCheckoutList, resetCheckoutList } from '../../Store/databaseSlice';
 import OrderDetails from './orderDetails';
 import Summary from './summary';
 import DebitCard from '../../Component/View/debitCard';
@@ -12,9 +13,14 @@ const  CheckOut = ()  => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  useEffect (() => {
+    return () => {
+      dispatch(resetCheckoutList());  
+    }
+  }, []);
+
 const cancel = () => {
   history.goBack()
-  //dispatch(updateCheckoutList([]))
 }
 	return (
 		<div className = "checkOutPage">

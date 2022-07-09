@@ -95,6 +95,7 @@
                 .about {
                   margin-left: 10px;
                   font-weight: 600;
+                 
                 }
               }
               .details_right {
@@ -191,7 +192,7 @@
     }
     .checkout_body {
       .center_div {
-        margin: 5em 5em;
+        margin: 3em 5em;
       // .title {
       //   p {
       //     font-size: 30px;
@@ -222,7 +223,7 @@
     }
     .checkout_body{
       .center_div{
-        margin: 5em 2em;
+        margin: 2em 2em;
       }
     }
   }
@@ -233,10 +234,15 @@
     position: relative;
     .header{
       margin: 0 1em;
+      padding: 5px 0;
+      .cancel {
+        padding: 3px 25px;
+        border-radius: 50px;
+      }
     }
     .checkout_body {
       .center_div {
-        margin: 0.5em 1em;
+        margin: 0.2em 1em;
         .title {
           p {
             font-size: 25px;
@@ -256,6 +262,7 @@
                   .about {
                     margin-left: 10px;
                     font-weight: 500;
+                    font-size: 14px;
                   }
                 }
               }
@@ -303,6 +310,7 @@
     .checkout_body {
       .center_div {
         .body {
+          padding: 1.5em 0;
           .left {
             .paystack-page {
               .bank-card {

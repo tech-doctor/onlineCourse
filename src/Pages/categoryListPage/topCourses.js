@@ -28,12 +28,12 @@ const topCoursesArray = topCourses.slice(4,11)
         >
           {topCoursesArray.map(data =>
           <CourseCard
-            key = {data.id}
+            key = {data.key}
             id = {data.videoId}
-            imageAlt ={data.snippet.title}  
-            imageSrc = {data.snippet.thumbnails.high.url}
-            title = {data.snippet.title}
-            date = {moment(data.snippet.publishedAt).fromNow()}
+            imageAlt ={data.title}  
+            imageSrc = {data.imageUrl}
+            title = {data.title}
+            date = {moment(data.publishedAt).fromNow()}
             newPrice = {data.newPrice}
             oldPrice = {data.oldPrice}
             bestSelling = {data.bestSelling}

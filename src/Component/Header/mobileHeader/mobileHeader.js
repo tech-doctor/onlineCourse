@@ -1,16 +1,15 @@
-import React, {useRef } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faBars} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
 import SideBar from './sideBar'
 import Logo from '../../Logo';
-import {Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton,Button, useDisclosure,} from '@chakra-ui/react'
+import {Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure,} from '@chakra-ui/react'
 
 
 const  MobileHeader = (props) =>  {
  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
- const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
   
 
   //  setting the isLoggedIn props variable

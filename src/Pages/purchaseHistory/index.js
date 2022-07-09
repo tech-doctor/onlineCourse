@@ -9,7 +9,7 @@ const  PurchaseHistory = ()  => {
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem);
 
     const category = (data) => {
-      switch(data.snippet.playlistId){
+      switch(data.playlistId){
         case 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK': 
           return('HTML');
         case 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2':
@@ -41,6 +41,7 @@ const  PurchaseHistory = ()  => {
         <table>
 					<thead>
 						<tr>
+              <th style={{paddingRight: '15px'}}>S/N</th>
 							<th>Course</th>
               <th>Category</th>
 							<th>Date</th> 
@@ -51,9 +52,10 @@ const  PurchaseHistory = ()  => {
 					<tbody>
             {purchasedItem.map ((data, i) => (
 						<tr key={data.id}>
+              <td style={{textAlign: '', paddingRight: '15px'}}>{i+1}.</td>
 							<td style={{display:'flex'}}><img src='/Assets/cart.png' className='cart_png' style = {{width: '20px', height: '20px'}} alt = 'cart' />
               <span style={{marginLeft:'10px'}}>
-                {data.snippet.title}
+                {data.title}
               </span></td>
 							<td>{category(data)}</td> 
 							<td>{data.purchasedTime}</td>

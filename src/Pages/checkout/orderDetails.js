@@ -16,12 +16,12 @@ const  OrderDetails = () => {
           {checkoutList?.map((data, i) =>
           <CheckoutList
             key = {i}
-            imageAlt ={data.snippet.title} 
-            imageSrc = {data.snippet.thumbnails.high.url}
-            title = {data.snippet.title}
-            date = {moment(data.snippet.publishedAt).fromNow()}
-            newPrice = {new Date(data.snippet.publishedAt).getDate() + '0'}
-            previousPrice = {Math.floor(new Date(data.snippet.publishedAt).getDate() + '0') + 30} 
+            imageAlt ={data.title} 
+            imageSrc = {data.imageUrl}
+            title = {data.title}
+            date = {moment(data.publishedAt).fromNow()}
+            newPrice = {new Date(data.publishedAt).getDate() + '0'}
+            previousPrice = {Math.floor(new Date(data.publishedAt).getDate() + '0') + 30} 
           /> )}
         </div>
        </div>
