@@ -6,6 +6,7 @@ import { Spinner } from '@chakra-ui/react';
 import CourseCard from '../../Component/courseCard';
 import CourseSlider from '../../Component/CourseSlider';
 import { useParams } from 'react-router-dom';
+import { Loader } from '../../Component/Loader';
 
 
 const  OtherCourses = () => {
@@ -23,13 +24,17 @@ const  OtherCourses = () => {
   //compare allcourses and Selected courses and return the unsimilar ones
   const similarCourses = allCourses.filter(course => course.videoId !== selectedCourses[0]?.id);
 
-  
+    
 
 
   return (
     <div className = "other_courses">
       {similarCourses.length === 0 && <div  style = {{textAlign: 'center', padding: '100px'}}>
-      <Spinner  size="xl"/></div> }
+       <Loader
+        speed={'0.55s'}
+        size={'xl'}
+       />
+      </div> }
       <CourseSlider
         heading={ "Other Courses" }
         subHeading={ "Check out what others are learning " }>

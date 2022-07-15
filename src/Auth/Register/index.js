@@ -1,11 +1,12 @@
 import React,{useState} from 'react';
-import { ChakraProvider, CircularProgress, Flex, Box, Heading, FormControl, FormLabel, Input,  Button, InputGroup, InputRightElement} from '@chakra-ui/react'
+import { CircularProgress, Flex, Box, Heading, FormControl, Text,  Input,  Button, InputGroup, InputRightElement} from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { Link } from 'react-router-dom';
 import '../../Styles/register.scss'
+import Logo from '../../Component/Logo';
 
 const RegisterPage = () => {
-  const [isLoading ] = useState(false);
+  const [isLoading, setIsLoading ] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({});
   //const history = useHistory();
@@ -21,6 +22,7 @@ const RegisterPage = () => {
 
    const  handleSubmit = (event) => {
       event.preventDefault();
+      setIsLoading(true);
       console.log(inputs);
     }
 
@@ -42,76 +44,111 @@ const RegisterPage = () => {
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 
   return (
-    <div className='register'>
+    <div className='register' style={{fontFamily:'Arial'}}>
       <div className='heading-body'>
         <div className='heading'>
-          <Link to = "./">LOGO</Link>
+          <Logo
+             src={'/Assets/logo.png'}
+             color={'#173A56'}
+            /> 
         </div>
         <div className='body'>
-          <ChakraProvider>
-            <Flex mt ={10} width="100%" align="center" justifyContent="center">
-              <Box background={"white"} p={8} width={"100%"} maxWidth="500px" borderWidth={1} borderRadius={3} boxShadow="lg">
+            <Flex my ={0.5} width="100%" align="center" justifyContent="center">
+              <Box background={"white"} px={['3', '5',]} width={"100%"}
+                
+              >
                 <Box textAlign="center">
-                  <Heading>Register</Heading>
+                  <Heading
+                  mt={3}
+                  mb={1}
+                  fontFamily="Arial"
+                    fontSize={['lg', 'xl', '2xl', '3xl']}
+                  >Let's Get You Started</Heading>
+                  <Text 
+                  fontSize={['sm', 'md', 'lg']}>
+                    <em
+                    style={{color:'#707070'}}
+                    >Kindly fill the form below to register</em>
+                  </Text>
                 </Box>
-                <Box my={4} textAlign="left">
+                <Box mt={8}  textAlign="left">
                 <form onSubmit={handleSubmit}>
+                  <div style={{display: 'flex', alignItems:'center', justifyContent:'space-between'}}>
                   <FormControl isRequired>
-                    <FormLabel>First Name</FormLabel>
                     <Input
+                    _focus={{outline:'none'}}
+                     width={'95%'}
                      onChange={handleChange}
-                     borderColor={"#808080"} type="text" placeholder="First Name..."
+                     borderColor={"#b8b8b8"} type="text" placeholder="First Name"
                      name='firstName'
                      value={inputs.firstName || ''}
                     />
                   </FormControl>
-                  <FormControl mt={6} isRequired>
-                    <FormLabel>Last Name</FormLabel>
+                  <FormControl isRequired>
                     <Input
-                      onChange={handleChange}
-                     borderColor={"#808080"} type="text" placeholder="Last Name..." isRequired
+                    _focus={{outline:'none'}}
+                    width={'100%'}
+                    onChange={handleChange}
+                     borderColor={"#b8b8b8"} type="text" placeholder="Last Name" isRequired
                      name='lastName'
                       value={inputs.lastName || ''}
                     />
                   </FormControl>
-                  <FormControl mt={6} isRequired>
-                    <FormLabel>Email</FormLabel>
+                  </div>
+                  <FormControl  my={7} isRequired>
+                    <Input
+                    _focus={{outline:'none'}}
+                     onChange={handleChange}
+                     borderColor={"#b8b8b8"} type="text" placeholder="User Name"
+                     name='userName'
+                     value={inputs.userName || ''}
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
                     <Input 
+                    _focus={{outline:'none'}}
                     onChange={handleChange}
-                    borderColor={"#808080"} type="Email" placeholder="Enter email..." isRequired
+                    borderColor={"#b8b8b8"} type="Email" placeholder="Email Address" isRequired
                     name='email'
                     value={inputs.email  || ''}
                     />
                   </FormControl>
-                  <FormControl mt={6} isRequired>
-                    <FormLabel>Password</FormLabel>
+                  <FormControl my={7} isRequired>
                     <InputGroup>
                         <Input 
+                        _focus={{outline:'none'}}
                         onChange={handleChange}
-                        borderColor={"#808080"} type= {showPassword ? 'text': 'password'} placeholder="*******"
+                        borderColor={"#b8b8b8"} type= {showPassword ? 'text': 'password'} placeholder="Password"
                         name='password'
                         value={inputs.password || ''}
                         />
-                        <InputRightElement width="3rem">
-                          <Button h="1.5rem" size="sm" onClick=  
+                        <InputRightElement
+                          outline={false}
+                         width="3rem">
+                          <Button 
+                          variant="outline"
+                          cursor={'pointer'}
+                          h="1.5rem" size="sm" onClick=  
                             {handlePasswordVisibility}>
                             {showPassword ? <ViewOffIcon/> : <ViewIcon/>}
                           </Button>
                         </InputRightElement>
                       </InputGroup> 
                   </FormControl>
-                  <Button color={'teal'}  _hover={{ background: "teal", color: "white",}} variant="outline"  width="full" mt={4} type="submit">
+                  <Button 
+                  _focus={{outline:'none'}}
+                  cursor={'pointer'}
+                  background={"#02897A"} color={'white'}  _hover={{ background: "#02897A", color: "gray.200",}} variant="outline"  width="full" type="submit">
                   {isLoading ? 
-                      <CircularProgress isIndeterminate size="24px" color="teal" />
+                      <CircularProgress isIndeterminate size="24px" color="#02897A" />
                       : 'Register'}
                   </Button>
                 </form>
               </Box>
               </Box> 
             </Flex>
-          </ChakraProvider>
         </div>
-        <p style={{textAlign: 'center', marginTop: '10px', color: 'white'}}>Already have an account? <Link style={{color: 'teal'}} to = './login'>Login</Link></p>
+        <p style={{textAlign: 'center', marginTop: '3px', color: 'black', fontSize:'13px',fontFamily:'Arial'}}>Already have an account? <Link style={{color: '#02897A'}} to = './login'>Login</Link></p>
     </div>  
     </div>
   );

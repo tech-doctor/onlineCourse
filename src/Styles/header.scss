@@ -286,6 +286,9 @@
     font-size: 13px;
     margin-top: 0.3em;
     margin-bottom: 0.5em;
+    p{
+      margin: 0.7em 0 0 0;
+    }
     ul{
       margin: 3px 0;
       * {
@@ -297,6 +300,7 @@
     }
   }
   .sidebar-profile {
+    //  color: green;
     .logOut{
       font-size: 15px;
       color: #02897A;

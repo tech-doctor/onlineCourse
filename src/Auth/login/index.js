@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { ChakraProvider, Text, CircularProgress, Flex, Box, Heading, FormControl, FormLabel, Input,  Button, InputGroup, InputRightElement, Icon } from '@chakra-ui/react'
+import { Text, CircularProgress, Flex, Box, Heading, FormControl,Input,  Button, InputGroup, InputRightElement } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import '../../Styles/login.scss';
 import { userLogin } from '../../utils/mockApi';
 import ErrorMessage from '../ErrorMessage';
 import { updateLoginState } from '../../Store/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import Logo from '../../Component/Logo';
 //import store from '../../Store/index'
 
 
-//console.log(store.getState())
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -49,68 +50,71 @@ const LoginPage = () => {
     <div className='login'>
       <div className='heading-body'>
         <div className='heading'>
-          <Link to = "./">LOGO</Link>
+        <Logo
+          src={'/Assets/logo.png'}
+          color={'#173A56'}
+        /> 
         </div>
         <div className='body'>
-          <ChakraProvider>
-            <Flex mt ={10} width="100%" align="center" justifyContent="center">
-              <Box background={"white"} p={8} width={"100%"} maxWidth="500px" borderWidth={1} borderRadius={3} boxShadow="lg">
-              {isLoggedIn ? (
-              <Box textAlign="center">
-                <Text>{email} logged in!</Text>
-                <Button
-                  color={'black'}  _hover={{ background: "grey", color: "white",}}
-                  variantcolor="orange"
-                  variant="outline"
-                  width="full"
-                  mt={4}
-                  onClick={() => dispatch(updateLoginState(true))}>
-                 Sign out
-                </Button>
-              </Box>) :  
-              (<>
+            <Flex my ={0.5} width="100%" align="center" justifyContent="center">
+              <Box background={"white"} px={['3', '6',]} width={"100%"} >
                 <Box textAlign="center">
-                  <Heading>Login</Heading>
+                <Heading
+                  my={3}
+                  fontFamily="Arial"
+                    fontSize={['lg', 'xl', '2xl', '3xl']}
+                  >Welcome Back</Heading>
+                  <Text 
+                  fontSize={['sm', 'md']}>
+                    <em
+                    style={{color:'#707070'}}
+                    >Kindly fill in your login details</em>
+                  </Text>
                 </Box>
                 <Box my={4} textAlign="left">
                   <form onSubmit={handleSubmit}>
                     {error && <ErrorMessage message={error} />}
-                    <FormControl isRequired>
-                      <FormLabel>Email</FormLabel>
+                    <FormControl my={8} isRequired>
+                     
                       <Input
+                      _focus={{outline:'none'}}
                       onChange={event => setEmail(event.currentTarget.value)}
-                      borderColor={"#808080"} type="email" placeholder="Enter email..."/>
+                      borderColor={"#b8b8b8"} type="email" placeholder="Enter Address"/>
                     </FormControl>
-                    <FormControl mt={6} isRequired>
-                      <FormLabel>Password</FormLabel>
+                    <FormControl  isRequired>
+                     
                       <InputGroup>
                         <Input 
+                        _focus={{outline:'none'}}
                         onChange={event => setPassword(event.currentTarget.value)}
-                        borderColor={"#808080"} type= {showPassword ? 'text': 'password'} placeholder="*******"/>
-                        <InputRightElement width="3rem">
-                          <Button h="1.5rem" size="sm" onClick=  
+                        borderColor={"#b8b8b8"} type= {showPassword ? 'text': 'password'} placeholder="Password"/>
+                        <InputRightElement 
+                         width="3rem">
+                          <Button h="1.5rem"
+                           variant="outline"
+                           cursor={'pointer'}
+                            size="sm" onClick=  
                             {handlePasswordVisibility}>
-                            {showPassword ? <Icon name="view-off" /> : <Icon name="view" />}
+                            {showPassword ? <ViewOffIcon/> : <ViewIcon/>}
                           </Button>
                         </InputRightElement>
                       </InputGroup>
                     </FormControl>
-                    <Button  color={'teal'}  _hover={{ background: "teal.500", color: "white",}} variant="outline"  width="full" mt={4} type="submit">
+                    <Button _focus={{outline:'none'}}
+                    cursor={'pointer'}
+                  background={"#02897A"} color={'white'}  _hover={{ background: "#02897A", color: "gray.200",}} variant="outline"  width="full" mt={4} type="submit">
                       {isLoading ? 
                       <CircularProgress isIndeterminate size="24px" color="teal" />
                       : 'Log In'}
                     </Button>
                   </form>
                 </Box>
-              </>
-              )}
               </Box> 
             </Flex>
-          </ChakraProvider>
         </div>
         {isLoggedIn? '' : 
         <div style={{textAlign: 'center'}}>
-          <span style={{ marginTop: '10px', color: 'white'}}>New to FElearn? <Link style={{color: 'teal'}} to = './register'>Register</Link></span><br/>
+          <span style={{marginTop: '3px', color: 'black', fontSize:'13px',fontFamily:'Arial'}}>New to FElearn? <Link style={{color: 'teal'}} to = './register'>Register</Link></span><br/>
         </div>
         }
     </div>  

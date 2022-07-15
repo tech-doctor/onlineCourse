@@ -6,7 +6,11 @@ import { Link, useHistory,useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { getSelectedCourse } from '../../Store/courseSlice'
 import { updateCheckoutList, updateCartList, removeItem } from '../../Store/databaseSlice'
-import VideoPlayer from '../../Component/View/videoPlayer'
+//import VideoPlayer from '../../Component/View/videoPlayer'
+import { Loader } from '../../Component/Loader';
+
+
+const  VideoPlayer = React.lazy(() => import('../../Component/View/videoPlayer'));
 
 const  CategoryDetails = (props) => {
   const { id, title, duration, likeCount,viewCount,embedLink,publishedAt, price, bestSelling} = props;
@@ -100,9 +104,13 @@ const  CategoryDetails = (props) => {
         </Stack>:  
         <div>
         <div className = "iframe">
+          <React.Suspense fallback={<div style={{display: 'flex', alignItems:'center', justifyContent:'center', padding:'20px 0px' }}>
+            <Loader />
+          </div>}>
          <VideoPlayer
          title = {title}
          />
+          </React.Suspense>
         </div>
         <div className = 'instruction'>
         <span >
@@ -114,7 +122,7 @@ const  CategoryDetails = (props) => {
          } 
       </div>
       {!title? 
-      <div style = {{textAlign: 'center', margin: 'auto'}}  >
+      <div className='spinner' style = {{textAlign: 'center', margin: 'auto'}}  >
           <Spinner/>
         </div> :  
       <div className='categoryDetails'> 

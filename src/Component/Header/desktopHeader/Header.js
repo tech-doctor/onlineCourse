@@ -11,6 +11,7 @@ import {
   Popover,
 } from '@chakra-ui/react';
 import '../../../Styles/header.scss'
+import { Login, Register } from '../../styles/extra';
 
 const  Header = () => {
  const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
@@ -86,8 +87,8 @@ const  Header = () => {
               </Popover>
             </>}
             {!isLoggedIn &&  <div className = "Authentication">
-              <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/login"><button className = 'loginButton'>Login</button></Link>
-              <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/register"><button className = 'loginButton'>Register</button></Link>
+              <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/login"><Login className = 'loginButton'>Login</Login></Link>
+              <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/register"><Register className = 'loginButton'>Register</Register></Link>
             </div>}
           </div>
 

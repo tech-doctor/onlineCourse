@@ -114,3 +114,30 @@ import styled from "styled-components";
     }
   }
  `
+
+export  const Login = styled.button`
+   color: #007568;
+    font-size: 0.9rem;
+    background-color: white;
+    border: 1px solid #007568;
+    border-radius: 3px;
+    padding: 0.4em 1.3em;
+    font-weight: 600;
+    &:hover{
+      background-color: #edf2f2;
+      
+    }
+`
+
+export  const Register = styled.button`
+   background-color: #007568;
+   color: white;
+    font-size: 0.9rem;
+    border:none;
+    border-radius: 3px;
+    padding: 0.43em 1.3em;
+    margin: 0.5em 0;
+    font-weight: 500;
+    &:hover{
+      background-color: #096359;
+`

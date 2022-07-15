@@ -1,18 +1,8 @@
 import React from "react";
-// import LandingPage from "./Pages/landingPage/"
-// import CourseSelected from "./Pages/courseSelected";
-// import CheckOut from "./Pages/checkout";
-// import PurchaseHistory from "./Pages/purchaseHistory";
-// import MyCourses from "./Pages/myCourses";
-// import Cart from "./Pages/cart"
-// import Watch from "./Pages/watch"
-// import CategoryListPage from './Pages/categoryListPage'
-// import Random from "./Pages/random";
 import './App.css';
 import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
-// import LoginPage from "./Auth/login";
-// import  RegisterPage from "./Auth/Register";
 import PageNotFound from "./Pages/pageNotFound";
+import {InitialLoader} from './Component/Loader';
 
 const LandingPage = React.lazy(() => import('./Pages/landingPage'));
 const CourseSelected = React.lazy(() => import('./Pages/courseSelected'));
@@ -31,7 +21,13 @@ const RegisterPage = React.lazy(() => import('./Auth/Register'));
 const  App = () => {
   return (
     <div className="App">
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense 
+        fallback={ 
+        <InitialLoader
+          type={'spinningBubbles'}
+          color={'#02897A'} 
+        />
+      }>
        <Router>
           <Switch>
             <Route exact path = "/login" component={LoginPage}/>
@@ -49,7 +45,7 @@ const  App = () => {
           </Switch>
     </Router>
       </React.Suspense>
-    </div> 
+    </div>
   );
 }
 

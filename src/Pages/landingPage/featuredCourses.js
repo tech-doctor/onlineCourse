@@ -5,6 +5,7 @@ import { fetchAsyncCourses, getAllcourses, updateLoading } from '../../Store/cou
 import moment from 'moment'
 import CourseCard from '../../Component/courseCard';
 import CourseSlider from '../../Component/CourseSlider';
+import { Loader } from '../../Component/Loader'
 //import { useParams } from 'react-router-dom';
 
 
@@ -29,8 +30,11 @@ const FeaturedCourses = () => {
  // const [showCartButton, setShowCartButton] = useState(false)
 
 	if (loading || allCourses.length === 0) {
-    return  <div  style = {{textAlign: 'center', padding: '100px'}} >
-     <Spinner  size="xl"/>
+    return  <div  style = {{textAlign: 'center', padding: '25% 0 20% 0'}} >
+     <Loader
+      speed={'0.55s'}
+      size={'xl'}
+      />
   </div>    
   }
   

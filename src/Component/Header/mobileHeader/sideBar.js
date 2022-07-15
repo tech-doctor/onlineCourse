@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight, faAngleDown} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom';
 import Account from '../../Account';
+import { Login, Register } from '../../styles/extra';
 
 const  SideBar = (props) => {
   const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
@@ -50,13 +51,7 @@ const  SideBar = (props) => {
    
 	return(
     <div className = "side-bar">
-      {!isLoggedIn? 
-        <div className ="category">
-        <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/login"> <button>Login</button> </Link><br/>
-        <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/Register"> <button>Register</button> </Link><br/>
-        <MobileCategories/>
-      </div>
-        : 
+      {isLoggedIn? 
       <div  className = "sidebar-profile">
         <>
           <Account/>
@@ -74,7 +69,13 @@ const  SideBar = (props) => {
         <div className = "logOut">
           <p style  = {{cursor: "pointer"}}>LogOut</p>
         </div>
-      </div>} 
+      </div>:
+      <div className ="category">
+        <MobileCategories/>
+      <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/login"> <Login>Login</Login> </Link><br/>
+      <Link style = {{textDecoration: 'none', color: 'black'}}  to = "/Register"> <Register>Register</Register> </Link><br/>
+    </div>
+      } 
     </div>	
 	)
 }

@@ -1,19 +1,13 @@
 .register{
-	background-color: rgb(44, 43, 43);
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	position: fixed;
 	.heading-body{
-    margin: 20px auto;
-   // border: 1px solid black;
-     width: 50%;
-		 padding: 20px; 
+     margin: auto;
+		 padding: 110px 0; 
+      display: flex;
+     align-items: center;
+     flex-direction: column;
     .heading{
-			text-align: center;
-			font-size: 32px;
-			font-weight: 600;
-			color: white;
+		text-align: center;
+		font-weight: 600;
     }
   }
 }
@@ -22,11 +16,9 @@
 @media(max-width: 750px){
 	.register{
 		.heading-body{
-			 width: 80%;
-			 padding: 20px; 
+			 width: 90%;
+       margin: auto;
 			.heading{
-				text-align: center;
-				font-size: 32px;
 				font-weight: 600;
 				color: white;
 			}
@@ -37,10 +29,10 @@
 @media(max-width: 500px){
 	.register{
 		.heading-body{
-			 width: 90%; 
-			.heading{
-				font-size: 28px;
-			}
+			 width: 100%; 
+			// .heading{
+			// 	// font-size: 28px;
+			// }
 		}
 	}
 }

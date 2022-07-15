@@ -3,9 +3,12 @@ import {useParams,useHistory} from 'react-router-dom';
 import { getSelectedCourse } from '../../Store/courseSlice';
 import { updateCheckoutList } from '../../Store/databaseSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactPlayer from 'react-player/lazy'
-//import ReactPlayer from 'react-player/youtube'
-import {Modal, ModalOverlay, ModalContent, ModalFooter,ModalBody, Button, useDisclosure} from '@chakra-ui/react'
+import ReactPlayer from 'react-player/youtube'
+import {Modal, ModalOverlay, ModalContent, ModalFooter,ModalBody, Button, useDisclosure, Spinner} from '@chakra-ui/react'
+
+
+
+
 
 const  VideoPlayer = ({title}) => {
   const {id} = useParams();
@@ -59,7 +62,6 @@ const  VideoPlayer = ({title}) => {
 
   return (
     <div className='wrapper'>
-      <div>
         <Modal 
         isOpen={isOpen} onClose={onClose} isCentered>
           <ModalOverlay 
@@ -101,7 +103,6 @@ const  VideoPlayer = ({title}) => {
             </ModalFooter>
           </ModalContent>
         </Modal>
-      </div>
       {videoHasEnded && <img className='img' src={`/Assets/video2.jpg`} alt={null}/>}
       <ReactPlayer 
       url={`https://www.youtube.com/watch?v=${id}`}
@@ -122,7 +123,7 @@ const  VideoPlayer = ({title}) => {
       light={videoIsReady? '/Assets/video2.jpg' : null}
       playIcon={videoIsReady? <img width={'45px'} height= {'45px'} src="/Assets/pause.png" alt=""/>: null}
       //previewTabIndex={-1}
-      fallback={<div>Loading...</div>}
+      fallback={<Spinner size='md' thickness='4px' speed='0.65s' emptyColor='#f5f5f5' color='#02897A'/>}
       onReady={handleVideoReady}
       onEnded={handleVideoEnded}
       onError={handleVideoError}
