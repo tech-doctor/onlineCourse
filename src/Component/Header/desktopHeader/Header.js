@@ -30,7 +30,7 @@ const  Header = () => {
           <div className = "desktop-header">
             <div style={{marginLeft: '-10px'}}>
               <Logo
-               src={'/Assets/logo.png'}
+               src={'/Assets/Logo.png'}
                color={'#173A56'}
                />
             </div>

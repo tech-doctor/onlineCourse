@@ -51,7 +51,7 @@ const LoginPage = () => {
       <div className='heading-body'>
         <div className='heading'>
         <Logo
-          src={'/Assets/logo.png'}
+          src={'/Assets/Logo.png'}
           color={'#173A56'}
         /> 
         </div>

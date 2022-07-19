@@ -67,7 +67,7 @@ const  MobileHeader = (props) =>  {
       </Drawer>
         </div>
           <Logo
-          src={'/Assets/logo.png'}
+          src={'/Assets/Logo.png'}
           color={'#173A56'}
           />
         <div style ={{fontSize: '20px'}}

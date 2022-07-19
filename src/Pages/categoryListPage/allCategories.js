@@ -21,7 +21,7 @@ const AllCategories = ({ titleFunc, topCourses}) => {
       {topCourses.filter((value) => {
         if(searchItem === ''){ 
           return value;
-        }else if(value.snippet.title.toLowerCase().includes(searchItem.toLowerCase())){
+        }else if(value.title.toLowerCase().includes(searchItem.toLowerCase())){
           return value;
         } 
       }).map(data =>  (
