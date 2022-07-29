@@ -13,7 +13,7 @@ import { Loader } from '../../Component/Loader';
 const  VideoPlayer = React.lazy(() => import('../../Component/View/videoPlayer'));
 
 const  CategoryDetails = (props) => {
-  const { id, title, duration, likeCount,viewCount,embedLink,publishedAt, price, bestSelling} = props;
+  const { title, duration, likeCount,viewCount,embedLink,publishedAt, price, bestSelling} = props;
   const paramsId = useParams().id;
   const dispatch = useDispatch();
   const history = useHistory();
@@ -39,7 +39,7 @@ const  CategoryDetails = (props) => {
         setIsAdded(true);
       }
     })
-},[paramsId, purchasedItem]);
+},[paramsId, purchasedItem,cartList, title]);
 
 
   const handleToast = (description, status) => {

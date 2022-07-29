@@ -2,7 +2,7 @@ import React from 'react'
 import { Spinner} from "@chakra-ui/react";
 //import { useParams } from 'react-router-dom';
 import moment from 'moment';
-import {useDispatch, useSelector} from 'react-redux';
+import { useSelector} from 'react-redux';
 import CourseCard from '../../Component/courseCard';
 import '../../Styles/categoryListPage.scss'
 import CourseSlider from '../../Component/CourseSlider';

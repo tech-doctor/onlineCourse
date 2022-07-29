@@ -3,19 +3,25 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
 import PageNotFound from "./Pages/pageNotFound";
 import {InitialLoader} from './Component/Loader';
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+
 
 const LandingPage = React.lazy(() => import('./Pages/landingPage'));
 const CourseSelected = React.lazy(() => import('./Pages/courseSelected'));
 const CategoryListPage = React.lazy(() => import('./Pages/categoryListPage'));
-const  CheckOut = React.lazy(() => import('./Pages/checkout')); 
-const  PurchaseHistory = React.lazy(() => import('./Pages/purchaseHistory'));
-const  MyCourses = React.lazy(() => import('./Pages/myCourses'));
-const  Cart = React.lazy(() => import('./Pages/cart'));
-const  Watch = React.lazy(() => import('./Pages/watch'));
+const CheckOut = React.lazy(() => import('./Pages/checkout')); 
+const PurchaseHistory = React.lazy(() => import('./Pages/purchaseHistory'));
+const MyCourses = React.lazy(() => import('./Pages/myCourses'));
+const Cart = React.lazy(() => import('./Pages/cart'));
+const Watch = React.lazy(() => import('./Pages/watch'));
 const Random = React.lazy(() => import('./Pages/random'));
 const LoginPage = React.lazy(() => import('./Auth/login'));
 const RegisterPage = React.lazy(() => import('./Auth/Register'));
 
+
+if (process.env.NODE_ENV !== 'development') {
+  disableReactDevTools();
+}
 
 
 const  App = () => {

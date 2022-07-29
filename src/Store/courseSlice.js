@@ -11,13 +11,10 @@ import { apiKey } from '../Component/Apis/apiKey';
     //  Adding videoId to each course object
     const finalResult  = Object.assign(result.map(item => {
         return {
-          //...item,
-          //Start
           key: item.id,
           publishedAt: item.snippet.publishedAt,
           title: item.snippet.title,
           imageUrl: item.snippet.thumbnails.high.url,
-          //end
           videoId: item.contentDetails.upload.videoId,
           newPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0'),
           oldPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') + 30,
@@ -37,13 +34,10 @@ export const fetchAsyncCategories = createAsyncThunk('selectedCategory/fetchAsyn
      //  Adding videoId to each course object
     const finalResult  = Object.assign(result.map(item => {
       return {
-        // ...item,
-        //start
         key: item.id,
         publishedAt: item.snippet.publishedAt,
         title: item.snippet.title,
         imageUrl: item.snippet.thumbnails.high.url,
-        //end
         videoId: item.snippet.resourceId.videoId,
         playlistId: item.snippet.playlistId,
         position: item.snippet.position + 1,
@@ -67,7 +61,6 @@ export const fetchAsyncSelectedCourses = createAsyncThunk('selectedCourses/fetch
     const result = response.data.items;
     const finalResult = Object.assign(result.map(item => {
       return {
-        //  ...item,
         publishedAt: item.snippet.publishedAt,
         title: item.snippet.title,
         imageUrl: item.snippet.thumbnails.high.url,

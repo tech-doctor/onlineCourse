@@ -103,7 +103,7 @@ const  VideoPlayer = ({title}) => {
             </ModalFooter>
           </ModalContent>
         </Modal>
-      {videoHasEnded && <img className='img' src={`/Assets/video2.jpg`} alt={null}/>}
+      {videoHasEnded && <img className='img' src={`/Assets/video2.jpg`} alt={"video"}/>}
       <ReactPlayer 
       url={`https://www.youtube.com/watch?v=${id}`}
       playing={true}

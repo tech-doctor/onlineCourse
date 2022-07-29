@@ -15,7 +15,7 @@ const  Random = ()  => {
   useEffect(() => {
     let mounted = true;
     if (mounted) {
-      dispatch(fetchAsyncCourses()) 
+      dispatch(fetchAsyncCourses())
   }
   return () => {
     mounted = false;

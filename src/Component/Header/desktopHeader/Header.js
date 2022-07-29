@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useSelector } from 'react-redux';
 import CategoryList from './categoryList'
 import Profile from './profile'
@@ -12,6 +12,10 @@ import {
 } from '@chakra-ui/react';
 import '../../../Styles/header.scss'
 import { Login, Register } from '../../styles/extra';
+
+
+//import Search from './search';
+const Search = React.lazy(() => import('./search'));
 
 const  Header = () => {
  const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
@@ -62,11 +66,11 @@ const  Header = () => {
                 <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/random">Random</Link> </p>					
               </nav>
             </div>
-            <div className = "search">
-              <input type = "text" placeholder = "Search" className = "search-input"/>	
-              <img src = '/Assets/search.png' style = {{width: '18px', height: '18px'}} className = "search-icon" alt='search'/>
-            </div> 
-
+            
+            <Suspense fallback = {<div>loading...</div>}>
+              <Search/>
+            </Suspense>
+             {/* <Search/> */}
             {/* Conditions on what to  display when the user is Logged In or Out  */}
             {isLoggedIn && <div className = "course">
               <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/home/my-courses">Courses</Link></p>

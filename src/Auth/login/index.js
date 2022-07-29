@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import '../../Styles/login.scss';
 import { userLogin } from '../../utils/mockApi';
-import ErrorMessage from '../ErrorMessage';
+import {ErrorMessage} from '../messages';
 import { updateLoginState } from '../../Store/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import Logo from '../../Component/Logo';
@@ -66,9 +66,7 @@ const LoginPage = () => {
                   >Welcome Back</Heading>
                   <Text 
                   fontSize={['sm', 'md']}>
-                    <em
-                    style={{color:'#707070'}}
-                    >Kindly fill in your login details</em>
+                    Kindly fill in your login details
                   </Text>
                 </Box>
                 <Box my={4} textAlign="left">
@@ -89,7 +87,7 @@ const LoginPage = () => {
                         onChange={event => setPassword(event.currentTarget.value)}
                         borderColor={"#b8b8b8"} type= {showPassword ? 'text': 'password'} placeholder="Password"/>
                         <InputRightElement 
-                         width="3rem">
+                         width="3.5rem">
                           <Button h="1.5rem"
                            variant="outline"
                            cursor={'pointer'}
@@ -101,8 +99,14 @@ const LoginPage = () => {
                       </InputGroup>
                     </FormControl>
                     <Button _focus={{outline:'none'}}
-                    cursor={'pointer'}
-                  background={"#02897A"} color={'white'}  _hover={{ background: "#02897A", color: "gray.200",}} variant="outline"  width="full" mt={4} type="submit">
+                      cursor={'pointer'}
+                      background={"#02897A"} 
+                      color={'white'}  
+                      _hover={{ background: "#02897A", color: "gray.200",}} 
+                      variant="outline"  
+                      width="full" 
+                      mt={4} 
+                      type="submit">
                       {isLoading ? 
                       <CircularProgress isIndeterminate size="24px" color="teal" />
                       : 'Log In'}

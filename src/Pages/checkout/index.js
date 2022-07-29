@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 //import { Spinner } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { updateCheckoutList, resetCheckoutList } from '../../Store/databaseSlice';
+import { resetCheckoutList } from '../../Store/databaseSlice';
 import OrderDetails from './orderDetails';
 import Summary from './summary';
 import DebitCard from '../../Component/View/debitCard';
@@ -17,7 +17,7 @@ const  CheckOut = ()  => {
     return () => {
       dispatch(resetCheckoutList());  
     }
-  }, []);
+  }, [dispatch]);
 
 const cancel = () => {
   history.goBack()
@@ -26,7 +26,7 @@ const cancel = () => {
 		<div className = "checkOutPage">
 			<div className= 'header'>
         <Logo
-        src={'/Assets/logo.png'}
+        src={'/Assets/Logo.png'}
         color={'#173A56'}
         />
         <div  className= "cancel"

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAsyncCourses,getAllcourses,  getSelectedCourse } from '../../Store/courseSlice';
-import { Spinner } from '@chakra-ui/react';
+//import { Spinner } from '@chakra-ui/react';
 import CourseCard from '../../Component/courseCard';
 import CourseSlider from '../../Component/CourseSlider';
 import { useParams } from 'react-router-dom';

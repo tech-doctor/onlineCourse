@@ -27,5 +27,4 @@ const authSlice = createSlice({
 export const { updateCurrentUser, updateUsers, updateLoginState } = authSlice.actions
 //export const getLoginState = (state) => state.rootReducer.authSlice.userLoggedin
 
-
 export default authSlice.reducer

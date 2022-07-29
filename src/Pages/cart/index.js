@@ -12,17 +12,18 @@ import '../../Styles/cart.scss';
 const  CartPage = ()  => {
   const history = useHistory();
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
-  const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
+  //const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
 
   const keepShopping = () => {
     history.push('./random')
   }
 
   //return data that has not being purchased as cartList
-  const cartListNotPurchased = cartList.filter(data => {
-    return !purchasedItem.some(item => item.videoId === data.videoId)
-  }
-  )
+
+  // const cartListNotPurchased = cartList.filter(data => {
+  //   return !purchasedItem.some(item => item.videoId === data.videoId)
+  // }
+  // )
 
 
 

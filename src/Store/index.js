@@ -11,7 +11,8 @@ const rootReducer = combineReducers({courseSlice, authSlice, databaseSlice})
 const store = configureStore({
     reducer: {
       rootReducer
-    }
+    },
+    devTools: process.env.NODE_ENV !== 'production'
 })
 
 
