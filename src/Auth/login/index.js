@@ -1,47 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Text, CircularProgress, Flex, Box, Heading, FormControl,Input,  Button, InputGroup, InputRightElement } from '@chakra-ui/react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import '../../Styles/login.scss';
-import { userLogin } from '../../utils/mockApi';
+//import { userLogin } from '../../utils/mockApi';
 import {ErrorMessage} from '../messages';
 import { updateLoginState } from '../../Store/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import Logo from '../../Component/Logo';
-//import store from '../../Store/index'
-
+import Logo from '../../Component/Layout/Logo';
 
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector(state => state.rootReducer.authSlice.userLoggedin)
+  //const user = true;
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+useEffect(() => {
+    if (user) {
+      history.goBack();
+    }
+  }, []);
 
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
+
 
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-     try {
-       await userLogin({email, password});
-       dispatch(updateLoginState(true));
+    setTimeout(() => {
+      dispatch(updateLoginState(true));
       setIsLoading(false);
-      setShowPassword(false);
-    } catch (error) {
-      setError('Invalid email or password');
-      setIsLoading(false);
-      setEmail('');
-      setPassword('');
-      setShowPassword(false);
-    }
+    }, 3000);
   };
 
 
@@ -116,11 +113,9 @@ const LoginPage = () => {
               </Box> 
             </Flex>
         </div>
-        {isLoggedIn? '' : 
         <div style={{textAlign: 'center'}}>
           <span style={{marginTop: '3px', color: 'black', fontSize:'13px',fontFamily:'Arial'}}>New to FElearn? <Link style={{color: 'teal'}} to = './register'>Register</Link></span><br/>
         </div>
-        }
     </div>  
     </div>
   );

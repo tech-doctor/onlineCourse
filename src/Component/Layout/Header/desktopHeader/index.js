@@ -1,31 +1,46 @@
-import React, { Suspense } from 'react'
+import React, { Suspense,useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux';
+import {Menu, MenuButton, Popover,} from '@chakra-ui/react';
 import CategoryList from './categoryList'
 import Profile from './profile'
 import  MobileHeader from '../mobileHeader/mobileHeader';
 import Logo from '../../Logo';
 import { Link } from 'react-router-dom';
-import {
-  Menu,
-  MenuButton,
-  Popover,
-} from '@chakra-ui/react';
-import '../../../Styles/header.scss'
-import { Login, Register } from '../../styles/extra';
-
-
-//import Search from './search';
+import { Login, Register } from '../../../styles/extra';
+import '../../../../Styles/header.scss'
 const Search = React.lazy(() => import('./search'));
+
+
+const htmlId  = 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK'
+const cssId = 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2'
+const javascriptId = 'PLEu7Y7_blvLVNfrsztZmfWEw57lWyuUfI'
+const jqueryId =  'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808'
 
 const  Header = () => {
  const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
  const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
- 
+ const [searchItem, setSearchItem] = useState('');
+ const [showSearch, setShowSearch] = useState(false);
+ const  searchRef = useRef(null);
 
-  const htmlId  = 'PLEu7Y7_blvLXlM820Uy30N8ay-eoZVyIK'
-  const cssId = 'PLEu7Y7_blvLVwibRK9szNWmTios4OsLF2'
-  const javascriptId = 'PLEu7Y7_blvLVNfrsztZmfWEw57lWyuUfI'
-  const jqueryId =  'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808'
+ useEffect(() => {
+   const clickOutside = (e) => {
+      if(showSearch && searchRef.current && !searchRef.current.contains(e.target)){
+        setShowSearch(false);
+      }
+   }
+    document.addEventListener('click', clickOutside);
+    return () => {
+      document.removeEventListener('click', clickOutside);
+    }
+ },[ showSearch])
+
+
+
+ const handleSearch = (e) => {
+  setSearchItem(e.target.value);
+  setShowSearch(true);
+}
 
 	return (
 		<>
@@ -66,11 +81,18 @@ const  Header = () => {
                 <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/random">Random</Link> </p>					
               </nav>
             </div>
-            
-            <Suspense fallback = {<div>loading...</div>}>
-              <Search/>
-            </Suspense>
-             {/* <Search/> */}
+            <div ref={searchRef} className = "search">
+              <input 
+              onChange={handleSearch}
+              type = "text" placeholder = "Search courses" className = "search-input"/>	
+              <img src = '/Assets/search.png' style = {{width: '18px', height: '18px'}} className = "search-icon" alt='search'/>
+              <Suspense fallback = {<div>loading...</div>}>
+                {showSearch &&
+                 <Search 
+                 searchItem = {searchItem}
+                 />}
+              </Suspense>
+            </div>
             {/* Conditions on what to  display when the user is Logged In or Out  */}
             {isLoggedIn && <div className = "course">
               <p><Link style = {{textDecoration: 'none', color: 'black'}}  to = "/home/my-courses">Courses</Link></p>

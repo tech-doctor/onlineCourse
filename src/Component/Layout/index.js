@@ -1,4 +1,4 @@
-import Header from "./Header/desktopHeader/Header";
+import Header from "./Header/desktopHeader";
 import Footer from "./Footer";
 import Subscribe from "./subscribe";
 

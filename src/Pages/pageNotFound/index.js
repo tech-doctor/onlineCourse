@@ -1,6 +1,6 @@
 import React from 'react';
 import "../../Styles/error.scss";
-import Header  from '../../Component/Header/desktopHeader/Header';
+//import Header  from '../../Component/Header/desktopHeader/Header';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const PageNotFound = () => {
@@ -9,7 +9,7 @@ const PageNotFound = () => {
 
 	return (
 		<div className='page-error'>
-				<Header/>
+				{/* <Header/> */}
 			<div className='error-div'>
          <h1>404 Page Not Found</h1>
 				 <button

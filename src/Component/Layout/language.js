@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select, Style } from './styles'
+import { Select, Style } from '../styles'
 
 const  Language = () => {
   return (

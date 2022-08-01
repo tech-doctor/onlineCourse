@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight, faAngleDown} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom';
-import Account from '../../Account';
-import { Login, Register } from '../../styles/extra';
+import Account from '../../../Account';
+import { Login, Register } from '../../../styles/extra';
 
 const  SideBar = (props) => {
   const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)

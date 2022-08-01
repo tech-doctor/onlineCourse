@@ -1,16 +1,23 @@
 import React,{useState, useEffect, useRef} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateLoginState } from '../../Store/authSlice';
 import { CircularProgress, Flex, Box, Heading, FormControl, Text,  Input,  Button, InputGroup, InputRightElement} from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { USERNAME_REGEX, PASSWORD_REGEX, EMAIL_REGEX, NAME_REGEX } from '../Const';
 import {ErrorMessage, ValidationMessage} from '../messages'
-import Logo from '../../Component/Logo';
+import Logo from '../../Component/Layout/Logo';
 import '../../Styles/register.scss'
 
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const userRef = useRef();
   const [isLoading, setIsLoading ] = useState(false);
+  const user = useSelector(state => state.rootReducer.authSlice.userLoggedin)
+  //const user = true;
+
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({})
   const [validInput, setValidInput] = useState({
@@ -23,6 +30,9 @@ const RegisterPage = () => {
 
 
   useEffect(() => {
+    if (user) {
+      history.goBack();
+    }
     userRef.current.focus();
   },[])
 
@@ -64,6 +74,11 @@ const RegisterPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsLoading(true);
+    setTimeout(() => {
+      dispatch(updateLoginState(true));
+      history.push('/');
+      setIsLoading(false);
+    }, 3000);
   }
 
 

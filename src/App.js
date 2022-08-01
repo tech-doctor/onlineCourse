@@ -1,9 +1,10 @@
 import React from "react";
-import './App.css';
 import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+import ProtectRoute from "./Component/ProtectRoute";
 import PageNotFound from "./Pages/pageNotFound";
 import {InitialLoader} from './Component/Loader';
-import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+import './App.css';
 
 
 const LandingPage = React.lazy(() => import('./Pages/landingPage'));
@@ -42,11 +43,13 @@ const  App = () => {
             <Route exact path = "/courses/:id" component={CourseSelected}/>
             <Route exact path = "/category/:playlistId" component={CategoryListPage}/>
             <Route exact path = "/random" component={Random}/>
-            <Route exact path = "/cart" component={Cart}/>
-            <Route exact path = "/cart/checkout" component={CheckOut}/>
-            <Route exact path = "/dashboard/purchase-history"component={PurchaseHistory}/>
-            <Route exact path = "/home/my-courses" component={MyCourses}/> 
-            <Route exact path = "/courses/:id/watch" component={Watch}/> 
+            <ProtectRoute>
+              <Route exact path = "/cart" component={Cart}/>
+              <Route exact path = "/cart/checkout" component={CheckOut}/>
+              <Route exact path = "/dashboard/purchase-history"component={PurchaseHistory}/>
+              <Route exact path = "/home/my-courses" component={MyCourses}/> 
+              <Route exact path = "/courses/:id/watch" component={Watch}/> 
+            </ProtectRoute>
             <Route exact path = "/*" component={PageNotFound}/>
           </Switch>
     </Router>

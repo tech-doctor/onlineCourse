@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { Popover, PopoverTrigger, PopoverContent, PopoverArrow} from '@chakra-ui/react';
-import Account from '../../Account';
+import Account from '../../../Account';
 
 const  Profile = () => {
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);

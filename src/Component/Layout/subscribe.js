@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Styles/subscribe.scss';
+import '../../Styles/subscribe.scss';
 
 const  Subscribe = () =>{
 	return (

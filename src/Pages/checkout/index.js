@@ -6,7 +6,7 @@ import { resetCheckoutList } from '../../Store/databaseSlice';
 import OrderDetails from './orderDetails';
 import Summary from './summary';
 import DebitCard from '../../Component/View/debitCard';
-import Logo from '../../Component/Logo';
+import Logo from '../../Component/Layout/Logo';
 import '../../Styles/checkOut.scss';
 
 const  CheckOut = ()  => {
