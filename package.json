@@ -1,10 +1,6 @@
 {
   "name": "onlinestore",
   "version": "0.1.0",
-  "engines": {
-    "node": "14.x",
-    "npm": "6.x"
-  },
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^1.1.1",
@@ -23,7 +19,7 @@
     "axios": "^0.24.0",
     "framer-motion": "^4.1.17",
     "moment": "^2.29.4",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-loading": "^2.0.3",
@@ -41,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rimraf ./build && react-scripts build && rimraf ./build/**/*.map",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

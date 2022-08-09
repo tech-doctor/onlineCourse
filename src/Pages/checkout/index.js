@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 //import { Spinner } from '@chakra-ui/react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { resetCheckoutList } from '../../Store/databaseSlice';
 import OrderDetails from './orderDetails';
 import Summary from './summary';
@@ -12,8 +12,12 @@ import '../../Styles/checkOut.scss';
 const  CheckOut = ()  => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const checkoutList = useSelector(state => state.rootReducer.databaseSlice.checkoutList);
 
   useEffect (() => {
+  if(checkoutList.length === 0){
+    history.goBack();
+  }
     return () => {
       dispatch(resetCheckoutList());  
     }

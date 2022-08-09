@@ -13,6 +13,7 @@ const currentDate = () => {
 	return date
 }
 
+
 const databaseSlice = createSlice({
    name: 'DatabaseSlice',
    initialState,

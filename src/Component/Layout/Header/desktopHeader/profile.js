@@ -1,10 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { Popover, PopoverTrigger, PopoverContent, PopoverArrow} from '@chakra-ui/react';
+import { logout } from '../../../../Store/authSlice';
 import Account from '../../../Account';
 
 const  Profile = () => {
+  const dispatch = useDispatch();
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
  const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
 
@@ -37,7 +39,9 @@ const  Profile = () => {
              <Link to = "/dashboard/purchase-history" style = {{textDecoration: 'none', color: 'black'}} ><li>Purchase history<small>{purchasedItem.length}</small></li></Link>
            </ul>
          </div>
-         <div className = "logOut">
+         <div 
+         onClick={() => dispatch(logout())}
+         className = "logOut">
            <span>LogOut</span>
          </div>
         </div> 

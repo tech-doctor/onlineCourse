@@ -5,7 +5,10 @@ import {InfoIcon} from '@chakra-ui/icons';
 
 export const ErrorMessage = ({ message }) => {
   return (
-    <Box my={4}>
+    <Box
+     my={6}
+     mb={-4}
+     >
       <Alert status="error" borderRadius={4}>
         <AlertIcon />
         <AlertDescription>{message}</AlertDescription>

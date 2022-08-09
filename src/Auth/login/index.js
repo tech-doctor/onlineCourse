@@ -1,49 +1,43 @@
 import React, { useState, useEffect  } from 'react';
-import { Text, CircularProgress, Flex, Box, Heading, FormControl,Input,  Button, InputGroup, InputRightElement } from '@chakra-ui/react'
 import { Link, useHistory } from 'react-router-dom';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import '../../Styles/login.scss';
-//import { userLogin } from '../../utils/mockApi';
-import {ErrorMessage} from '../messages';
-import { updateLoginState } from '../../Store/authSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { Text, CircularProgress, Flex, Box, Heading, FormControl,Input,  Button, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import {ErrorMessage} from '../messages';
 import Logo from '../../Component/Layout/Logo';
+import { login,reset } from '../../Store/authSlice';
+import '../../Styles/login.scss';
+import ProtectAuth from '../../utils/ProtectAuth';
 
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector(state => state.rootReducer.authSlice.userLoggedin)
-  //const user = true;
 
+  const isLoading = useSelector(state => state.rootReducer.authSlice.isLoading);
+  const user = useSelector(state => state.rootReducer.authSlice.userLoggedin);
+  const message = useSelector(state => state.rootReducer.authSlice.message);
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
-useEffect(() => {
-    if (user) {
-      history.goBack();
-    }
-  }, []);
-
-
+  
 
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 
-  const handleSubmit = async (event) => {
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setIsLoading(true);
-    setTimeout(() => {
-      dispatch(updateLoginState(true));
-      setIsLoading(false);
-    }, 3000);
+    const data = {
+      email,
+      password
+    };
+    dispatch(login(data));
   };
 
 
-
   return (
+    <ProtectAuth>
     <div className='login'>
       <div className='heading-body'>
         <div className='heading'>
@@ -55,9 +49,12 @@ useEffect(() => {
         <div className='body'>
             <Flex my ={0.5} width="100%" align="center" justifyContent="center">
               <Box background={"white"} px={['3', '6',]} width={"100%"} >
-                <Box textAlign="center">
+                <Box 
+                mt={1}
+                mb={9}
+                textAlign="center">
                 <Heading
-                  my={3}
+                  my={1}
                   fontFamily="Arial"
                     fontSize={['lg', 'xl', '2xl', '3xl']}
                   >Welcome Back</Heading>
@@ -68,7 +65,7 @@ useEffect(() => {
                 </Box>
                 <Box my={4} textAlign="left">
                   <form onSubmit={handleSubmit}>
-                    {error && <ErrorMessage message={error} />}
+                    {message !== '' && <ErrorMessage message={message} />}
                     <FormControl my={8} isRequired>
                      
                       <Input
@@ -102,10 +99,13 @@ useEffect(() => {
                       _hover={{ background: "#02897A", color: "gray.200",}} 
                       variant="outline"  
                       width="full" 
-                      mt={4} 
+                      mt={7} 
                       type="submit">
                       {isLoading ? 
-                      <CircularProgress isIndeterminate size="24px" color="teal" />
+                      <CircularProgress isIndeterminate 
+                      mt={1}
+                      size="20px" 
+                      color="teal" />
                       : 'Log In'}
                     </Button>
                   </form>
@@ -118,6 +118,7 @@ useEffect(() => {
         </div>
     </div>  
     </div>
+    </ProtectAuth>
   );
 };
 

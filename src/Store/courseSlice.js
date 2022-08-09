@@ -6,9 +6,7 @@ import { apiKey } from '../Component/Apis/apiKey';
  export const fetchAsyncCourses = createAsyncThunk('courses/fetchAsyncCourses', async () => {
   const response = await api
     .get(`/activities?part=snippet%2CcontentDetails%2Cid&channelId=UCzroHLKLlfA-hR7S4if6qww&maxResults=40&key=${apiKey}`)
-    // const status = response.status
      const result = shuffle(response.data.items)
-    //  Adding videoId to each course object
     const finalResult  = Object.assign(result.map(item => {
         return {
           key: item.id,
@@ -31,7 +29,6 @@ export const fetchAsyncCategories = createAsyncThunk('selectedCategory/fetchAsyn
     const response = await api
     .get(`/playlistItems?part=snippet&part=id&maxResults=20&playlistId=${categoriesId}&key=${apiKey}`) 
      const result = response.data.items
-     //  Adding videoId to each course object
     const finalResult  = Object.assign(result.map(item => {
       return {
         key: item.id,
@@ -93,7 +90,6 @@ const initialState = {
 	name: 'courses',
 	initialState,
 	reducers : {
-   
     updateLoading(state, action){
       state.isLoading = action.payload
     },
@@ -128,6 +124,7 @@ const initialState = {
     },
 
     [fetchAsyncCategories.fulfilled]: (state, {payload}) => {
+      
       return {...state, 
         selectedCategory: payload,
         status: 'fufilled'
@@ -154,6 +151,7 @@ export const {updateLoading, updateStatus} = courseSlice.actions
 export const getAllcourses = (state) => state.rootReducer.courseSlice.courses;
 export const getSelectedCategory = (state) => state.rootReducer.courseSlice.selectedCategory;
 export const getSelectedCourse = (state) => state.rootReducer.courseSlice.selectedCourse;
+
 export default courseSlice.reducer
 
 

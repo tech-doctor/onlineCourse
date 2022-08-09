@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom';
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
-import ProtectRoute from "./Component/ProtectRoute";
+import ProtectRoute from "./utils/ProtectRoute";
 import PageNotFound from "./Pages/pageNotFound";
 import {InitialLoader} from './Component/Loader';
 import './App.css';

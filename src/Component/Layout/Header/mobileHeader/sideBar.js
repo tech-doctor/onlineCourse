@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
-import { useSelector } from 'react-redux';
+import {Link} from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import  {faAngleRight, faAngleDown} from '@fortawesome/free-solid-svg-icons'
-import {Link} from 'react-router-dom';
+import { logout } from '../../../../Store/authSlice';
 import Account from '../../../Account';
 import { Login, Register } from '../../../styles/extra';
 
 const  SideBar = (props) => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
   const [closedCategory, setCategory] = useState(false)
   const { htmlId, cssId, javascriptId, jqueryId} = props
@@ -66,8 +68,10 @@ const  SideBar = (props) => {
             <li><Link to = "/dashboard/purchase-history">Purchase history</Link></li>
           </ul>  
         </div>
-        <div className = "logOut">
-          <p style  = {{cursor: "pointer"}}>LogOut</p>
+        <div  className = "logOut">
+          <p 
+          onClick={() => dispatch(logout())}
+          style  = {{cursor: "pointer", width:'fit-content'}}>LogOut</p>
         </div>
       </div>:
       <div className ="category">

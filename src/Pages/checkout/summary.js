@@ -9,6 +9,7 @@ import { public_key } from '../../Component/Apis/apiKey';
 const Summary = () =>  {
   const dispatch = useDispatch();
   const history = useHistory();
+  const currentUser = useSelector(state => state.rootReducer.authSlice.currentUser);
   const checkoutList = useSelector(state => state.rootReducer.databaseSlice.checkoutList);
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList)
   const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
@@ -34,7 +35,7 @@ const Summary = () =>  {
   const totalAmount = totalSummary.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   const config = {
     reference: (new Date()).getTime().toString(),
-    email: "olukaisaac@gmail.com",
+    email: currentUser?.email,
     amount: totalSummary > 0?  totalSummary * 100 : 0,
     publicKey: public_key,
   };

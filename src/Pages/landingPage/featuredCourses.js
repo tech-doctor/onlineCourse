@@ -9,7 +9,6 @@ import { Loader } from '../../Component/Loader'
 
 
 
-
 const FeaturedCourses = () => {
   const dispatch = useDispatch();
 

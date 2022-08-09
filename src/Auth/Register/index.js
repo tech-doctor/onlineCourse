@@ -1,7 +1,7 @@
 import React,{useState, useEffect, useRef} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateLoginState } from '../../Store/authSlice';
+// import { updateLoginState } from '../../Store/authSlice';
 import { CircularProgress, Flex, Box, Heading, FormControl, Text,  Input,  Button, InputGroup, InputRightElement} from '@chakra-ui/react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { USERNAME_REGEX, PASSWORD_REGEX, EMAIL_REGEX, NAME_REGEX } from '../Const';
@@ -9,14 +9,19 @@ import {ErrorMessage, ValidationMessage} from '../messages'
 import Logo from '../../Component/Layout/Logo';
 import '../../Styles/register.scss'
 
+import { signup,reset } from '../../Store/authSlice';
+import ProtectAuth from '../../utils/ProtectAuth';
+
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const userRef = useRef();
-  const [isLoading, setIsLoading ] = useState(false);
-  const user = useSelector(state => state.rootReducer.authSlice.userLoggedin)
-  //const user = true;
+ 
+  const user = useSelector(state => state.rootReducer.authSlice.userLoggedin);
+  const isLoading = useSelector(state => state.rootReducer.authSlice.isLoading);
+  const message = useSelector(state => state.rootReducer.authSlice.message);
+
 
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({})
@@ -30,9 +35,10 @@ const RegisterPage = () => {
 
 
   useEffect(() => {
-    if (user) {
-      history.goBack();
-    }
+    // dispatch(reset());
+    // if (user) {
+    //   history.goBack();
+    // }
     userRef.current.focus();
   },[])
 
@@ -66,25 +72,28 @@ const RegisterPage = () => {
         password: PASSWORD_REGEX.test(event.target.value)
       })
     }
-
     validate[event.target.name]();
   };
 
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
-    setIsLoading(true);
-    setTimeout(() => {
-      dispatch(updateLoginState(true));
-      history.push('/');
-      setIsLoading(false);
-    }, 3000);
+     const data = {
+      firstname: inputs.firstName,
+      lastname: inputs.lastName,
+      username: inputs.userName,
+      email: inputs.email,
+      password: inputs.password
+     };
+    dispatch(signup(data));
   }
+  
 
 
   const handlePasswordVisibility = () => setShowPassword(!showPassword);
 
   return (
+    <ProtectAuth>
     <section className='register' style= {{fontFamily:'Arial'}}>
       <div className='heading-body'>
         <div className='heading'>
@@ -109,9 +118,7 @@ const RegisterPage = () => {
                   Kindly fill the form below to register
                   </Text>
                 </Box>
-                {/* <ErrorMessage
-                  message={'Invalid email or password'}
-                /> */}
+                {message && <ErrorMessage message={message} />}
                 <Box mt={8}  textAlign="left">
                 <form onSubmit={handleSubmit}>
                   <div style={{display: 'flex', alignItems:'center', justifyContent:'space-between'}}>
@@ -237,7 +244,9 @@ const RegisterPage = () => {
                   cursor={'pointer'}
                   background={"#02897A"} color={'white'}  _hover={{ background: "#02897A", color: "gray.200",}} variant="outline"  width="full" type="submit">
                   {isLoading ? 
-                      <CircularProgress isIndeterminate size="24px" color="#02897A" />
+                      <CircularProgress isIndeterminate 
+                      mt={1}
+                      size="20px" color="#02897A" />
                       : 'Register'}
                   </Button>
                 </form>
@@ -248,6 +257,7 @@ const RegisterPage = () => {
         <p style={{textAlign: 'center', marginTop: '3px', color: 'black', fontSize:'13px',fontFamily:'Arial'}}>Already have an account? <Link style={{color: '#02897A'}} to = './login'>Login</Link></p>
     </div>  
     </section>
+    </ProtectAuth>
   );
 };
 

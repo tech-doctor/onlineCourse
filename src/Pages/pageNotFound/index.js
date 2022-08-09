@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 const PageNotFound = () => {
 
 	const history = useHistory();
-
+     console.log(history);
 	return (
 		<div className='page-error'>
 				{/* <Header/> */}
