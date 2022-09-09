@@ -254,7 +254,7 @@ const RegisterPage = () => {
               </Box> 
             </Flex>
         </div>
-        <p style={{textAlign: 'center', marginTop: '3px', color: 'black', fontSize:'13px',fontFamily:'Arial'}}>Already have an account? <Link style={{color: '#02897A'}} to = './login'>Login</Link></p>
+        <p style={{textAlign: 'center', marginTop: '3px', color: 'black', fontSize:'13px',fontFamily:'Arial'}}>Already have an account? <Link style={{color: '#02897A'}} to = '/login'>Login</Link></p>
     </div>  
     </section>
     </ProtectAuth>

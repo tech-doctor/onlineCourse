@@ -114,7 +114,7 @@ const LoginPage = () => {
             </Flex>
         </div>
         <div style={{textAlign: 'center'}}>
-          <span style={{marginTop: '3px', color: 'black', fontSize:'13px',fontFamily:'Arial'}}>New to FElearn? <Link style={{color: 'teal'}} to = './register'>Register</Link></span><br/>
+          <span style={{marginTop: '3px', color: 'black', fontSize:'13px',fontFamily:'Arial'}}>New to FElearn? <Link style={{color: 'teal'}} to = '/register'>Register</Link></span><br/>
         </div>
     </div>  
     </div>
