@@ -82,7 +82,6 @@ const authSlice = createSlice({
       state.fetchStatus = 'fulfilled';
       if(action.payload?.token){
         localStorage.setItem ('token', action.payload.token);
-
         localStorage.setItem('current_user', JSON.stringify(action.payload.user));
 
         state.userLoggedin = true;

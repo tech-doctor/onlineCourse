@@ -31,7 +31,7 @@ const  App = () => {
       <React.Suspense 
         fallback={ 
         <InitialLoader
-          type={'spinningBubbles'}
+          type={'spokes'}
           color={'#02897A'} 
         />
       }>

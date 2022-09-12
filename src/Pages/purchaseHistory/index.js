@@ -51,7 +51,7 @@ const  PurchaseHistory = ()  => {
 					</thead>
 					<tbody>
             {purchasedItem.map ((data, i) => (
-						<tr key={data.id}>
+						<tr key={data.key}>
               <td style={{textAlign: '', paddingRight: '15px'}}>{i+1}.</td>
 							<td style={{display:'flex'}}><img src='/Assets/cart.png' className='cart_png' style = {{width: '20px', height: '20px'}} alt = 'cart' />
               <span style={{marginLeft:'10px'}}>
@@ -84,11 +84,12 @@ const  PurchaseHistory = ()  => {
 }
 
 const bestSellingStyles = {
-  fontWeight:'500', 
-  padding:'1px 18px', 
-  borderRadius: '50px', 
-  fontSize: '12px', 
-  textAlign:'center'
+  fontWeight:'600', 
+  padding:'3px 15px', 
+  borderRadius: '4px', 
+  fontSize: '11px', 
+  textAlign:'center',
+
 }
 
 export default PurchaseHistory
