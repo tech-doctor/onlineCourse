@@ -18,7 +18,7 @@ const jqueryId =  'PLEu7Y7_blvLVVwb0lGCk9J1E4mJcDO808'
 
 const  Header = () => {
  const isLoggedIn = useSelector(state => state.rootReducer.authSlice.userLoggedin)
- const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
+ const cartCount = useSelector(state => state.rootReducer.databaseSlice.cartCount);
  const [searchItem, setSearchItem] = useState('');
  const [showSearch, setShowSearch] = useState(false);
  const  searchRef = useRef(null);
@@ -101,7 +101,7 @@ const  Header = () => {
             <div className = "cart-icon" style = {{cursor: 'pointer'}}>
               <Link to = "/cart" style = {{textDecoration: 'none', color: 'black'}} >
                 <img src='/Assets/cart.png' className='cart_png' style = {{width: '25px', height: '25px'}} alt = 'cart' />
-                {cartList.length > 0 && <small>{cartList.length}</small>}
+                {cartCount > 0 && <small>{cartCount}</small>}
               </Link>  
             </div>
             {isLoggedIn &&
@@ -123,7 +123,7 @@ const  Header = () => {
             htmlId = {htmlId}
             cssId = {cssId}
             javascriptId = {javascriptId}
-            jqueryId = {jqueryId}/> 
+            jqueryId = {jqueryId}/>
           </div>
         </header>	
       </div>	

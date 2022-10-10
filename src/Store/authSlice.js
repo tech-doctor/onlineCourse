@@ -46,6 +46,12 @@ export const signup = createAsyncThunk('authSlice/signup', async ( data,thunkAPI
   }
 })
 
+export const removefromStorage =  () => {
+  localStorage.removeItem('current_user');
+  localStorage.removeItem('token');
+  //localStorage.removeItem('cart_public_id');
+  localStorage.removeItem('cart_count');
+}
 
 const initialState = {
  isLoading: false,
@@ -65,8 +71,7 @@ const authSlice = createSlice({
       state.message = '';
     },
     logout (state) {
-      localStorage.removeItem('current_user');
-      localStorage.removeItem('token');
+      removefromStorage();
       state.currentUser = null;
       state.userLoggedin = false;
     }
@@ -83,7 +88,7 @@ const authSlice = createSlice({
       if(action.payload?.token){
         localStorage.setItem ('token', action.payload.token);
         localStorage.setItem('current_user', JSON.stringify(action.payload.user));
-
+        //createCart(action.payload.token);
         state.userLoggedin = true;
         state.currentUser = action.payload.user;
       }
@@ -113,9 +118,9 @@ const authSlice = createSlice({
 
       if(action.payload?.token){
         localStorage.setItem ('token', action.payload.token);
-
         localStorage.setItem('current_user', JSON.stringify(action.payload.user));
-
+        localStorage.setItem('cart_count', JSON.stringify(0));
+        createCart(action.payload.token);
         state.userLoggedin = true;
         state.currentUser = action.payload.user;
       }
@@ -138,8 +143,30 @@ const authSlice = createSlice({
 })
 
 
-export const { reset, logout } = authSlice.actions;
+function createCart(token){
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", `Bearer ${token}`);
+  
+  const requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+};
 
+fetch(`${BASE_URL}/carts`, requestOptions)
+  .then(response => response.json())
+  .then(result => {
+    console.log(result)
+    localStorage.setItem ('cart_public_id', result.id);
+    localStorage.setItem('cart_count', 0);
+  })
+  .catch(error => console.log('error', error));
+}
+
+
+
+
+export const { reset, logout } = authSlice.actions;
 export const  getCurrentUser  = (state) => state.rootReducer.authSlice.currentUser;
 
 

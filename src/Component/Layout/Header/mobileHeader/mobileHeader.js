@@ -9,7 +9,7 @@ import {Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCl
 
 
 const  MobileHeader = (props) =>  {
- const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
+ const cartCount = useSelector(state => state.rootReducer.databaseSlice.cartCount);
   
 
   //  setting the isLoggedIn props variable
@@ -75,7 +75,7 @@ const  MobileHeader = (props) =>  {
             <img 
             alt='cart'
             src='/Assets/cart.png' className='cart_png' style = {{width: '25px', height: '25px'}} />
-          {cartList.length > 0 && <small>{cartList.length}</small>}
+          {cartCount > 0 && <small>{cartCount}</small>}
           </Link>  
         </div>
       </div>

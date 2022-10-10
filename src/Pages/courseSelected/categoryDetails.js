@@ -5,9 +5,10 @@ import { Spinner, Stack,Skeleton, useToast} from "@chakra-ui/react"
 import { Link, useHistory,useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { getSelectedCourse } from '../../Store/courseSlice'
-import { updateCheckoutList, updateCartList, removeItem } from '../../Store/databaseSlice'
+import { updateCheckoutList, removeItem } from '../../Store/databaseSlice'
 //import VideoPlayer from '../../Component/View/videoPlayer'
 import { Loader } from '../../Component/Loader';
+import { addToCart } from '../../Store/databaseSlice';
 
 
 const  VideoPlayer = React.lazy(() => import('../../Component/View/videoPlayer'));
@@ -52,7 +53,8 @@ const  CategoryDetails = (props) => {
   }
 
   const handleCartButton = () => {
-    dispatch(updateCartList(selectedCourses[0]));
+    //dispatch(updateCartList(selectedCourses[0]));
+    dispatch(addToCart(paramsId))
     handleToast('1 item added to cart', 'success');
     setIsAdded(true);
   }

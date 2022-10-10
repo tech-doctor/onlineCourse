@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useToast} from "@chakra-ui/react";
+import { useToast, CircularProgress} from "@chakra-ui/react";
 import { Link, useHistory} from 'react-router-dom';
 import { CardItem } from './styles/course';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCartList, removeItem } from '../Store/databaseSlice';
+import { removeItem } from '../Store/databaseSlice';
+import { addToCart } from '../Store/databaseSlice';
 
-
-
- 
 
 const CourseCard = (props) => { 
   const dispatch = useDispatch();
@@ -17,11 +15,13 @@ const CourseCard = (props) => {
   const { data,  id, imageSrc, title, date, newPrice, oldPrice, bestSelling} = props
   
   const cartList = useSelector(state => state.rootReducer.databaseSlice.cartList);
-  const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem)
+  const purchasedItem = useSelector(state => state.rootReducer.databaseSlice.purchasedItem);
+  //const cart_count = parseInt(localStorage.getItem('cart_count'));
   const [showCartButton, setShowCartButton] = useState(false)
   const [isPurchased, setIsPurchased] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(true);
+  
 
   useEffect(() => {
     purchasedItem.forEach(element => {
@@ -34,9 +34,9 @@ const CourseCard = (props) => {
         setIsAdded(true);
       }
     })
-
-    
   },[purchasedItem, cartList, title]);
+
+ 
 
   function TextAbstract(text, length) {
     if (text == null) {
@@ -65,10 +65,10 @@ const CourseCard = (props) => {
 }
 
 
-  const addToCart = () => {
-    dispatch(updateCartList(data))
-    handleToast('Item added to Cart', 'success');	
-    setShowCartButton(false);
+  const addToCartFunction = () => {
+   dispatch(addToCart(id))
+  handleToast('Item added to Cart', 'success');	
+  setShowCartButton(false);
   }
 
   const removeFromCart = () => {
@@ -78,10 +78,7 @@ const CourseCard = (props) => {
     setIsAdded(false);
   }
 
-
-
-
-
+  
 	return (
 		<CardItem onMouseEnter={() => setShowCartButton(true)}onMouseLeave={() => setShowCartButton(false)}> 
       <Link to = {{pathname: `/courses/${id}`, state: {prevPath: history.location.pathname, position: data.position}}} className='link' style = {{textDecoration: 'none', color: 'black'}}>
@@ -119,7 +116,24 @@ const CourseCard = (props) => {
       <div className='button'>
       {isPurchased? <button onClick={()=> {history.push(`/courses/${id}/watch`)}}>Access Course</button>: 
       isAdded? <button onClick={removeFromCart} style={{color: 'red'}} >Remove From Cart</button> :
-      <button onClick={addToCart}>Add To Cart</button> }		
+      <button onClick={addToCartFunction}>
+        Add To Cart
+      </button> 
+      // <button onClick={addToCartFunction}>
+      // <CircularProgress isIndeterminate 
+      //   mt={1}
+      //   size="20px" 
+      //   color="teal"
+      // />
+    //</button> 
+      
+      }		
+       {/* {isLoading? 
+        <CircularProgress isIndeterminate 
+        mt={1}
+        size="20px" 
+        color="teal" />
+        : 'Log In'} */}
       </div>
       )}
 		</CardItem>

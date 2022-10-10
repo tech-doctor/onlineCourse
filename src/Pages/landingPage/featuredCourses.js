@@ -18,8 +18,8 @@ const FeaturedCourses = () => {
   
   useEffect(() => {
     dispatch(updateLoading(true))
-			dispatch(fetchAsyncCourses())
-			dispatch(updateLoading(false))
+		dispatch(fetchAsyncCourses())
+		dispatch(updateLoading(false))
 	},[dispatch]);
 
   

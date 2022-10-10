@@ -1,7 +1,6 @@
 // HEROSECTION
 .hero_section {
   background-image: url("https://res.cloudinary.com/rririsrisurisux/image/upload/v1655009256/Hero_z72vxs.png");
-  // background-image: url("/public/Assets/Hero.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -25,9 +24,11 @@
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
-  margin: 0 auto;
-  width: 40%;
-  z-index: 10;
+  //margin: 0 auto;
+  //width: 40%;
+  //position: relative;
+  width: 50%;
+  z-index: 1;
 }
 
 .hero_section header{
@@ -71,7 +72,7 @@
     line-height: 80px;
   }
   .hero_section section{
-    width: 50%;
+    width: 60%;
   }
 
 }

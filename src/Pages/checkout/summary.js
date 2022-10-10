@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { usePaystackPayment } from 'react-paystack';
 import { CircularProgress } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updatePurchasedItem, updateCartList,resetCheckoutList,resetCartList } from '../../Store/databaseSlice';
+import { updatePurchasedItem,resetCheckoutList,resetCartList } from '../../Store/databaseSlice';
 import { public_key } from '../../Component/Apis/apiKey';
 
 const Summary = () =>  {
@@ -49,9 +49,9 @@ const onSuccess = (reference) => {
   //console.log({...reference});
   setIsLoading(false);
   dispatch(resetCartList())
-  cartListNotPurchased.forEach(data => {
-    dispatch(updateCartList(data))
-  })
+  // cartListNotPurchased.forEach(data => {
+  //   dispatch(updateCartList(data))
+  // })
   history.goBack();
   checkoutList.map(data => {
     dispatch(updatePurchasedItem(data))

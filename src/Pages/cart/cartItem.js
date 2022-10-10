@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, useHistory} from "react-router-dom";
 import {useToast } from "@chakra-ui/react";
-import { updateCheckoutList,removeItem } from "../../Store/databaseSlice";
+import { updateCheckoutList,removeItem, removeFromCart } from "../../Store/databaseSlice";
+
 import { useDispatch } from "react-redux";
 
 const CartItem = (props) => {
@@ -10,7 +11,9 @@ const CartItem = (props) => {
   const history  =  useHistory();
   
   const { data, id, imageAlt, imageSrc, title, date, newPrice, oldPrice, bestSelling } = props;
-  
+
+
+
 
   const handleToast = (description, status) => {
     toast({
@@ -21,14 +24,13 @@ const CartItem = (props) => {
     });
   }
 
-
    const checkoutCourse = () => {
      dispatch(updateCheckoutList(data))
      history.push('./cart/checkout')
    }
    
    const handleRemove = () => {
-      dispatch(removeItem(data))
+      dispatch(removeFromCart(id))
       handleToast('Item removed from Cart', 'error');
    }
  
