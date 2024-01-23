@@ -15,6 +15,7 @@ const FeaturedCourses = () => {
   const allCourses = useSelector(getAllcourses);
   const loading = useSelector(state => state.rootReducer.courseSlice.isLoading);
   
+  console.log(allCourses)
   
   useEffect(() => {
     dispatch(updateLoading(true))
@@ -50,7 +51,7 @@ const FeaturedCourses = () => {
 					date = {moment(data.publishedAt).fromNow()}
 					newPrice = {data.newPrice}
 					oldPrice = {data.oldPrice}
-          bestSelling = {data.bestSelling}
+                    bestSelling = {data.bestSelling}
 					data = {data}
 				/>))}
 			</CourseSlider>

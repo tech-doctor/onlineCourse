@@ -3,9 +3,12 @@ import api from '../Component/Apis/api';
 import { apiKey } from '../Component/Apis/apiKey';
 
 
+
+
+
  export const fetchAsyncCourses = createAsyncThunk('courses/fetchAsyncCourses', async () => {
   const response = await api
-    .get(`/activities?part=snippet%2CcontentDetails%2Cid&channelId=UCzroHLKLlfA-hR7S4if6qww&maxResults=40&key=${apiKey}`)
+    .get(`/activities?part=snippet%2CcontentDetails%2Cid&channelId=UCzroHLKLlfA-hR7S4if6qww&maxResults=25&key=${apiKey}`)
      const result = shuffle(response.data.items)
     const finalResult  = Object.assign(result.map(item => {
         return {
@@ -13,7 +16,7 @@ import { apiKey } from '../Component/Apis/apiKey';
           publishedAt: item.snippet.publishedAt,
           title: item.snippet.title,
           imageUrl: item.snippet.thumbnails.high.url,
-          videoId: item.contentDetails.upload.videoId,
+          videoId: item.contentDetails.upload?.videoId || item.contentDetails.playlistItem?.resourceId.videoId,
           newPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0'),
           oldPrice: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') + 30,
           bestSelling: Math.floor(new Date(item.snippet.publishedAt).getDate() + '0') > 160 ? true:false
